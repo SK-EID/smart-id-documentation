@@ -127,7 +127,8 @@ In case the RP fails to verify the connection security and the attacks is able t
 
 ## 4.1. Interface patterns
 
-BASE URL value is given in service documentation and may vary between environments and service instances.The base URL for SK DEMO environment is  https://sid.demo.sk.ee/smart-id-rp/v1/NB! The production environment base URL is different and it's fixed in service agreement.
+BASE URL value is given in service documentation and may vary between environments and service instances.The base URL for SK DEMO environment is  https://sid.demo.sk.ee/smart-id-rp/v1/  
+NB! The production environment base URL is different and it's fixed in service agreement.
 
 ### 4.1.1. Session management
 
@@ -192,7 +193,7 @@ When requestor wants, it can override the idempotent behaviour inside of this ti
 
 ## 4.2. REST API main flows
 
-![RP API sequences](https://github.com/raunotali/rauno-pokes-at-smartid-doc/blob/master/images/RP_API_sequences_REST.png)
+![RP API sequences](https://github.com/SK-EID/smart-id-documentation/blob/master/images/RP_API_sequences_REST.png)
 
 ## 4.3. Certificate choice session
 
@@ -503,15 +504,3 @@ After receiving the transaction response from the getRequestResult() API call, t
 * The identity of the authenticated person is in the 'subject' field of the included X.509 certificate.
 
 After successful authentication, the RP must invalidate the old user's browser or API session identifier and generate a new one.
-
-# 7. Known issues
-
-# This repo / TODO
-
-Should be automated:
-- header counts
-Should not be automated:
-- two lists in one chapter are numbered
-IDK if should be automated:
-- images
-- i might shoot myself before i get table creation to work in a fully automated way
