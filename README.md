@@ -46,7 +46,6 @@
         * [6.1.1. Sending authentication request](#611-sending-authentication-request)
         * [6.1.2. Computing the verification code](#612-computing-the-verification-code)
         * [6.1.3. Verifying the authentication response](#613-verifying-the-authentication-response)
-* [7. Known issues](#7-known-issues)
 
 # 1. Introduction
 
@@ -238,9 +237,9 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 **Certificate choice request:**
 ```
 {
-	"relyingPartyUUID": "de305d54-75b4-431b-adb2-eb6b9e546014",
-	"relyingPartyName": "BANK123",
-	"certificateLevel": "ADVANCED"
+	"relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
+	"relyingPartyName": "DEMO",
+	"certificateLevel": "QUALIFIED"
 }
 ```
 ### 4.3.5. Example response
@@ -286,16 +285,17 @@ Parameter | Type | Mandatory | Description
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
 certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
-hash | string | + | Base64 encoded hash function output to be signed.hashTypestring+Hash algorithm. See hash algorithm section.
+hash | string | + | Base64 encoded hash function output to be signed.
+hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
 
 **Authentication request:**
 ```
 {
-   "relyingPartyUUID": "de305d54-75b4-431b-adb2-eb6b9e546014",
-   "relyingPartyName": "BANK123",
-   "certificateLevel": "ADVANCED"
+   "relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
+   "relyingPartyName": "DEMO",
+   "certificateLevel": "QUALIFIED"
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
    "displayText": "Log into internet banking system"
@@ -349,16 +349,17 @@ Parameter | Type | Mandatory | Description
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
 certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
-hash | string | + | Base64 encoded hash function output to be signed.hashTypestring+Hash algorithm. See hash algorithm section.
+hash | string | + | Base64 encoded hash function output to be signed.
+hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
  
 **Signature request:**
 ```
 {
-   "relyingPartyUUID": "de305d54-75b4-431b-adb2-eb6b9e546014",
-   "relyingPartyName": "BANK123",
-   "certificateLevel": "ADVANCED"
+   "relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
+   "relyingPartyName": "DEMO",
+   "certificateLevel": "QUALIFIED"
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
    "displayText": "Authorize transfer of £10"
