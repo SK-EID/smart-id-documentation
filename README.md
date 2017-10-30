@@ -159,8 +159,10 @@ In some cases, 4xx series error codes are used, those cases are described per re
 
 All 5xx series error codes indicate some kind of fatal server error.
 
-There are two custom status codes which are specific to this interface:
+There are three custom status codes which are specific to this interface:
 
+* **471** - No suitable account of requested type found, but user has some other accounts.
+* **472** - Person should view app or self-service portal now.
 * **480** - The client (i.e. client-side implementation of this API) is old and not supported any more. Relying Party must contact customer support.
 * **580** - System is under maintenance, retry later.
 
