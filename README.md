@@ -59,7 +59,7 @@ The interface is to be used by all parties who wish consume Smart-ID services, i
 
 * **Document number** - A unique number given to end user accounts in Smart-ID system, identifies a particular set of end user cryptographic key pairs with their certificates.
 * **Relying Party (RP)** - a provider of some kind of e-service (like an internet banking site or government agency website), or, technically, that same e-service. Relying Party authenticates users via Smart-ID service and requests digital certificates from them.
-* **Session** - Alternatively, "RP Request". A process initated by Relying Party, which contains a single certificate choice, authentication or signing operation.
+* **Session** - Alternatively, "RP Request". A process initiated by Relying Party, which contains a single certificate choice, authentication or signing operation.
 
 # 2. References
 
@@ -148,7 +148,7 @@ Session result can be obtained using a GET request described below.
 ### 4.1.2. REST object references
 
 * Objects referenced by "pno/:country/:national-identity-number" are natural persons identified by their ETSI PNO-type identifier (i.e. PNOEE-12345 becomes pno/EE/12345)
-  * Please not that the country code here conforms to ISO 3166-1 alpha-2 code and as such **must me in upper case**.
+  * Please note that the country code here conforms to ISO 3166-1 alpha-2 code and as such **must be in upper case**.
 * Objects referenced by "document/:documentnumber" are particular documents (also known as user accounts) in the Smart-ID system.
 
 ### 4.1.3. HTTP status code usage
@@ -159,7 +159,7 @@ In some cases, 4xx series error codes are used, those cases are described per re
 
 All 5xx series error codes indicate some kind of fatal server error.
 
-There are three custom status codes which are specific to this interface:
+There are four custom status codes which are specific to this interface:
 
 * **471** - No suitable account of requested type found, but user has some other accounts.
 * **472** - Person should view app or self-service portal now.
@@ -336,7 +336,7 @@ There are two main modes of signature operation and Relying Party must choose ca
 
 ### 4.5.2. Postconditions
 
-* A new RP request request and a related transaction record has been created.
+* A new RP request and a related transaction record has been created.
 
 ### 4.5.3. Error conditions
 
