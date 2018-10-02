@@ -69,7 +69,7 @@ The interface is to be used by all parties who wish consume Smart-ID services, i
 
 Relying Party API is exposed over a REST interface as described below.
 
-All messages are encoded using UTF-8.
+All messages are encoded using UTF-8. All requests support HTTP/1.1 only.
 
 ## 3.1. UUID encoding
 
@@ -290,7 +290,7 @@ certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUAL
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
-nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
+nonce | string |   | Random string, up to 60 characters. If present, must have at least 1 character.
 
 **Authentication request:**
 ```
@@ -354,7 +354,7 @@ certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUAL
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
-nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
+nonce | string |   | Random string, up to 60 characters. If present, must have at least 1 character.
  
 **Signature request:**
 ```
