@@ -69,7 +69,7 @@ The interface is to be used by all parties who wish consume Smart-ID services, i
 
 Relying Party API is exposed over a REST interface as described below.
 
-All messages are encoded using UTF-8.
+All messages are encoded using UTF-8. All requests support HTTP/1.1 only.
 
 ## 3.1. UUID encoding
 
@@ -79,7 +79,7 @@ Smart-ID uses version 4 (random) UUID values.
 
 ## 3.2. relyingPartyName handling
 
-relyingPartyName request field is case insensitive, must match one of the names configured for the calling RP.
+relyingPartyName request field is case insensitive, must match one of the names configured for the calling RP. The names are limited to 32 bytes in UTF-8 encoding.
 
 The string is passed to end user as sent in via API.
 
@@ -141,7 +141,7 @@ Session is created for one of the three operations:
 
 * Authentication
 * Signing certificate choice (needed for certain digital signature schemes, see below)
-* Signing 
+* Signing
 
 Session result can be obtained using a GET request described below.
 
@@ -176,7 +176,7 @@ sessionID | string | + | A string that can be used to request operation result, 
 
 **successful session creation response:**
 ```
-{	
+{
       "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014"
 }
 ```
@@ -212,6 +212,8 @@ Having a correct certificate is needed for giving signatures under *AdES schemes
 
 This method initiates a certificate (device) choice dialogue on end user's device, so it may not be called without explicit need (i.e. it may be called only as the first step in signing process).
 
+This method accepts "QSCD" as a certificate level parameter. This is a shortcut marking a certificate of "QUALIFIED" level which is also QSCD-capable. "ADVANCED" certificates cannot be QSCD-capable.
+
 ### 4.3.1. Preconditions
 
 * User identified in the request (either by PNO identifier or document number) is present in the system.
@@ -232,8 +234,8 @@ This method initiates a certificate (device) choice dialogue on end user's devic
 Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
 relyingPartyUUID | string | + | UUID of Relying Party
-relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
-certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
+relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.
+certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
 
 **Certificate choice request:**
@@ -248,7 +250,7 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 
 **Certificate choice session creation response:**
 ```
-{	
+{
       "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014"
 }
 ```
@@ -264,6 +266,8 @@ POST | BASE/authentication/document/:documentnumber
 This method is the main entry point to authentication logic.
 
 It selects user's authentication key as the one to be used in the process.
+
+This method accepts "QSCD" as a certificate level parameter. This is a shortcut marking a certificate of "QUALIFIED" level which is also QSCD-capable. "ADVANCED" certificates cannot be QSCD-capable.
 
 ### 4.4.1. Preconditions
 
@@ -285,11 +289,11 @@ It selects user's authentication key as the one to be used in the process.
 Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
 relyingPartyUUID | string | + | UUID of Relying Party
-relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
-certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
+relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.
+certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
-displayText | string |  | Text to display for authentication consent dialog on the mobile device
+displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
 
 **Authentication request:**
@@ -308,7 +312,7 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 
 **Authentication session creation response:**
 ```
-{	
+{
       "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546015"
 }
 ```
@@ -317,11 +321,13 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 
  Method | URL | Notes
  -------|-----|------
- POST | BASE/signature/document/:documentnumber | 
+ POST | BASE/signature/document/:documentnumber |
  POST | BASE/signature/pno/:country/:national-identity-number | **See description below, this method must be used with care.**
 
 
 This method is the main entry point to signature logic.
+
+It accepts "QSCD" as a certificate level parameter. This is a shortcut marking a certificate of "QUALIFIED" level which is also QSCD-capable. "ADVANCED" certificates cannot be QSCD-capable.
 
 There are two main modes of signature operation and Relying Party must choose carefully between them. They look like the ones used in case of authentication, but there are important differences.
 
@@ -344,18 +350,18 @@ There are two main modes of signature operation and Relying Party must choose ca
  * Relying Party has no permission to invoke operations on accounts with ADVANCED certificates.
 * HTTP error code 404 - object described in URL was not found, essentially meaning that the user does not have account in Smart-ID system.
 
-### 4.5.4. Request parameters 
+### 4.5.4. Request parameters
 
 Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
 relyingPartyUUID | string | + | UUID of Relying Party
-relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
-certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
+relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.
+certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
-displayText | string |  | Text to display for authentication consent dialog on the mobile device
+displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
- 
+
 **Signature request:**
 ```
 {
@@ -372,7 +378,7 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 
 **Signature session creation response:**
 ```
-{	
+{
       "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546016"
 }
 ```
@@ -406,7 +412,7 @@ Example URL:
 
 * HTTP error code 404 - session does not exist or is too old or has expired.  
 
-### 4.6.4. Response structure 
+### 4.6.4. Response structure
 
 Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
@@ -418,7 +424,7 @@ signature | object |   | Structure describing the signature result, if any.
 signature.value | string | + | Signature value, base64 encoded.
 signature.algorithm | string | + | Signature algorithm, in the form of sha256WithRSAEncryption
 cert | object | for OK | Structure describing the certificate related to request.
-cert.value | string | + | Certificate value, DER+Base64 encoded.
+cert.value | string | + | Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the cerificate is QSCD-enabled, data which is not represented by certificate level.
 cert.assuranceLevel | string |   | **DEPRECATED. **Please use cert.certificateLevel parameter instead.
 cert.certificateLevel | string | + | Level of Smart-ID certificate: **ADVANCED** - Used for Smart-ID basic. **QUALIFIED** - Used for Smart-ID. This means that issued certificate is qualified.
 
