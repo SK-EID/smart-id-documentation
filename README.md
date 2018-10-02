@@ -290,7 +290,7 @@ certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUAL
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
-nonce | string |   | Random string, up to 60 characters. If present, must have at least 1 character.
+nonce | string |   | Random string, up to 60 characters or 128 bytes. If present, must have at least 1 character.
 
 **Authentication request:**
 ```
@@ -354,7 +354,7 @@ certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUAL
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
-nonce | string |   | Random string, up to 60 characters. If present, must have at least 1 character.
+nonce | string |   | Random string, up to 60 characters or 128 bytes. If present, must have at least 1 character.
  
 **Signature request:**
 ```
