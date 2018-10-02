@@ -212,6 +212,8 @@ Having a correct certificate is needed for giving signatures under *AdES schemes
 
 This method initiates a certificate (device) choice dialogue on end user's device, so it may not be called without explicit need (i.e. it may be called only as the first step in signing process).
 
+This method accepts "QSCD" as a certificate level parameter. This is a shortcut marking a certificate of "QUALIFIED" level which is also QSCD-capable. "ADVANCED" certificates cannot be QSCD-capable.
+
 ### 4.3.1. Preconditions
 
 * User identified in the request (either by PNO identifier or document number) is present in the system.
@@ -233,7 +235,7 @@ Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
-certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
+certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
 
 **Certificate choice request:**
@@ -265,6 +267,8 @@ This method is the main entry point to authentication logic.
 
 It selects user's authentication key as the one to be used in the process.
 
+This method accepts "QSCD" as a certificate level parameter. This is a shortcut marking a certificate of "QUALIFIED" level which is also QSCD-capable. "ADVANCED" certificates cannot be QSCD-capable.
+
 ### 4.4.1. Preconditions
 
 * User identified in the request (either by PNO identifier or document number) is present in the system.
@@ -286,7 +290,7 @@ Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
-certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
+certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
@@ -323,6 +327,8 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 
 This method is the main entry point to signature logic.
 
+It accepts "QSCD" as a certificate level parameter. This is a shortcut marking a certificate of "QUALIFIED" level which is also QSCD-capable. "ADVANCED" certificates cannot be QSCD-capable.
+
 There are two main modes of signature operation and Relying Party must choose carefully between them. They look like the ones used in case of authentication, but there are important differences.
 
 * **Signature by document number.** This is the main and common usage scenario. Document number can be obtained from result of certificate choice operation or authentication result. It is vitally important that signatures using any of the *AdES signature schemes that include certificate as part of signature use this method. Otherwise, the signature may be given by the person specified, but not using the key pair corresponding to the certificate chosen by Relying Party.
@@ -350,7 +356,7 @@ Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP
-certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
+certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device
@@ -418,7 +424,7 @@ signature | object |   | Structure describing the signature result, if any.
 signature.value | string | + | Signature value, base64 encoded.
 signature.algorithm | string | + | Signature algorithm, in the form of sha256WithRSAEncryption
 cert | object | for OK | Structure describing the certificate related to request.
-cert.value | string | + | Certificate value, DER+Base64 encoded.
+cert.value | string | + | Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the cerificate is QSCD-enabled, data which is not represented by certificate level.
 cert.assuranceLevel | string |   | **DEPRECATED. **Please use cert.certificateLevel parameter instead.
 cert.certificateLevel | string | + | Level of Smart-ID certificate: **ADVANCED** - Used for Smart-ID basic. **QUALIFIED** - Used for Smart-ID. This means that issued certificate is qualified.
 
