@@ -113,8 +113,8 @@ In case the RP fails to verify the connection security and the attacks is able t
 1. RP connects to the authentication API endpoint, but attacker is able MITM the connection and answer himself.
 1. RP sends the correctly formed authentication request with randomly generated hash (h2) to the attacker, acting as the Smart-ID API.
 1. Attacker computes the VC values for both hashes, i.e.
-  1. vc1 = integer(SHA256(h1)[−2:−1]) mod 10000
-  1. vc2 = integer(SHA256(h2)[−2:−1]) mod 10000
+    1. vc1 = integer(SHA256(h1)[−2:−1]) mod 10000
+    1. vc2 = integer(SHA256(h2)[−2:−1]) mod 10000
 1. If the vc1 != vc1, the attacker drops the connection to the RP website and creates a new one. The connections are tried until the randomly generated hash value yields the same VC value as the vc1. It should take about 5000 tries, before such collision is found.
 1. The attacker sends the authentication request with the hash value h2 to the Smart-ID authentication API endpoint.
 1. Smart-ID sends the authentication request to the end user mobile device and asks to verify the VC.
