@@ -267,8 +267,6 @@ This method is the main entry point to authentication logic.
 
 It selects user's authentication key as the one to be used in the process.
 
-This method accepts "QSCD" as a certificate level parameter. This is a shortcut marking a certificate of "QUALIFIED" level which is also QSCD-capable. "ADVANCED" certificates cannot be QSCD-capable.
-
 ### 4.4.1. Preconditions
 
 * User identified in the request (either by PNO identifier or document number) is present in the system.
@@ -290,7 +288,7 @@ Parameter | Type | Mandatory | Description
 ----------|------|-----------|------------
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.
-certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
+certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
 hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
