@@ -365,7 +365,7 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 {
    "relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
    "relyingPartyName": "DEMO",
-   "certificateLevel": "QUALIFIED"
+   "certificateLevel": "QUALIFIED",
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
    "displayText": "Authorize transfer of £10"
