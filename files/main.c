@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	fclose(f);
 
 	// Calculate code
-	char code[4];
+	char code[5];
 	int result = VerificationCode(data, size, code);
 	free(data);
 	return printf("Verification code: %s\n", code);
