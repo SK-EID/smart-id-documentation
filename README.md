@@ -198,23 +198,21 @@ When requestor wants, it can override the idempotent behaviour inside of this ti
 
 The RP can include additional properties to some of the requests (POST to signature/ and authentication/) for requesting some desired behaviour.
 
-The request parameter "requestProperties" can be used to include a list of properties.
+The request parameter "requestProperties" can be used to include properties as a set of name/value pairs. 
+
+Supported property names:
+
+* **threeChoiceVerificationCode** - Can be used to require the Smart-ID App to let the User choose the correct verification code from three differing codes, out of which one code is the real one and the other two are random codes.
 
 Supported property values:
 
-* **THREE_CHOICE_VERIFICATION_CODE** - Can be used to require the Smart-ID App to let the User choose the correct verification code from three differing codes, out of which one code is the real one and the other two are random codes.
+* **true** - The property is enabled.
+* **false** - The property is disabled.
+* **null** - The property is disabled.
 
-Any unsupported property will produce an error.
+Any unsupported property will be ignored and will be listed in the "ignoredProperties" parameter of the Session status response.
 
 Any defined property that is not supported by the Smart-ID App because the App is too old will be listed in the "ignoredProperties" parameter of the Session status response.
-
-### 4.1.7 Additional request result info
-
-The RP API may deem necessary to return some additional information to the RP about the result of the request. For that, the "additionalInfo" session result response parameter is used.
-
-Possible values:
-
-* **USER_CHOSE_CORRECT_CODE** - The three-choice verification code request was accepted and processed, and the user chose the correct code.
 
 ## 4.2. REST API main flows
 
@@ -317,7 +315,7 @@ hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
-requestProperties | array |   | An array of optional request properties. See [Request properties](#416-request-properties).
+requestProperties | object |   | A request properties object. See [Request properties](#416-request-properties).
 
 **Authentication request:**
 ```
@@ -328,7 +326,9 @@ requestProperties | array |   | An array of optional request properties. See [Re
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
    "displayText": "Log into internet banking system",
-   "requestProperties": ["THREE_CHOICE_VERIFICATION_CODE"]
+   "requestProperties": {
+      "threeChoiceVerificationCode": true
+   }
 }
 ```
 
@@ -385,7 +385,7 @@ hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
-requestProperties | array |   | An array of optional request properties. See [Request properties](#416-request-properties).
+requestProperties | object |   | A request properties object. See [Request properties](#416-request-properties).
 
 **Signature request:**
 ```
@@ -396,7 +396,9 @@ requestProperties | array |   | An array of optional request properties. See [Re
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
    "displayText": "Authorize transfer of £10",
-   "requestProperties": ["THREE_CHOICE_VERIFICATION_CODE"]
+   "requestProperties": {
+      "threeChoiceVerificationCode": true
+   }
 }
 ```
 
@@ -454,8 +456,7 @@ cert | object | for OK | Structure describing the certificate related to request
 cert.value | string | + | Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the cerificate is QSCD-enabled, data which is not represented by certificate level.
 cert.assuranceLevel | string |   | **DEPRECATED. **Please use cert.certificateLevel parameter instead.
 cert.certificateLevel | string | + | Level of Smart-ID certificate: **ADVANCED** - Used for Smart-ID basic. **QUALIFIED** - Used for Smart-ID. This means that issued certificate is qualified.
-additionalInfo | array |   | Additional information about the result of the request. See [Additional request result info](#417-additional-request-result-info).
-ignoredProperties | array |   | Any values from the requestProperties that were ignored because of the Smart-ID App being too old to support them.
+ignoredProperties | array |   | Any values from the requestProperties that were unsupported or ignored because of the Smart-ID App being too old to support them.
 
 **successful response when still waiting for user's response:**
 ```
@@ -481,8 +482,7 @@ ignoredProperties | array |   | Any values from the requestProperties that were 
         "value": "B+C9XVjIAZnCHH9vfBSv...",
         "assuranceLevel": "http://eidas.europa.eu/LoA/substantial",
 		"certificateLevel": "QUALIFIED"
-    },
-    "additionalInfo": ["USER_CHOSE_CORRECT_CODE"]
+    }
 }
 ```
 
@@ -493,7 +493,7 @@ ignoredProperties | array |   | Any values from the requestProperties that were 
 * **USER_REFUSED** - user refused the session.
 * **TIMEOUT** - there was a timeout, i.e. end user did not confirm or refuse the operation within given timeframe.
 * **DOCUMENT_UNUSABLE** - for some reason, this RP request cannot be completed. User must either check his/her Smart-ID mobile application or turn to customer support for getting the exact reason.
-* **USER_CHOSE_WRONG_CODE** - in case the three-choice verification code was requested, the user did not choose the correct verification code
+* **WRONG_VC** - in case the three-choice verification code was requested, the user did not choose the correct verification code
 
 # 6. Protocols
 
