@@ -17,7 +17,6 @@
         * [4.1.4. Response on successful session creation](#414-response-on-successful-session-creation)
         * [4.1.5. Idempotent behaviour](#415-idempotent-behaviour)
         * [4.1.6. Request properties](#416-request-properties)
-        * [4.1.7. Additional request result info](#417-additional-request-result-info)
     * [4.2. REST API main flows](#42-rest-api-main-flows)
     * [4.3. Certificate choice session](#43-certificate-choice-session)
         * [4.3.1. Preconditions](#431-preconditions)
@@ -198,11 +197,11 @@ When requestor wants, it can override the idempotent behaviour inside of this ti
 
 The RP can include additional properties to some of the requests (POST to signature/ and authentication/) for requesting some desired behaviour.
 
-The request parameter "requestProperties" can be used to include properties as a set of name/value pairs. 
+The request parameter "requestProperties" can be used to include properties as a set of name/value pairs.
 
 Supported property names:
 
-* **threeChoiceVerificationCode** - Can be used to require the Smart-ID App to let the User choose the correct verification code from three differing codes, out of which one code is the real one and the other two are random codes.
+* **vcChoice** - Can be used to require the Smart-ID App to let the User choose the correct verification code from multiple differing codes, out of which one code is the real one and the others are random codes.
 
 Supported property values:
 
@@ -211,8 +210,6 @@ Supported property values:
 * **null** - The property is disabled.
 
 Any unsupported property will be ignored and will be listed in the "ignoredProperties" parameter of the Session status response.
-
-Any defined property that is not supported by the Smart-ID App because the App is too old will be listed in the "ignoredProperties" parameter of the Session status response.
 
 ## 4.2. REST API main flows
 
@@ -327,7 +324,7 @@ requestProperties | object |   | A request properties object. See [Request prope
    "hashType": "SHA512",
    "displayText": "Log into internet banking system",
    "requestProperties": {
-      "threeChoiceVerificationCode": true
+      "vcChoice": true
    }
 }
 ```
@@ -397,7 +394,7 @@ requestProperties | object |   | A request properties object. See [Request prope
    "hashType": "SHA512",
    "displayText": "Authorize transfer of £10",
    "requestProperties": {
-      "threeChoiceVerificationCode": true
+      "vcChoice": true
    }
 }
 ```
@@ -456,7 +453,7 @@ cert | object | for OK | Structure describing the certificate related to request
 cert.value | string | + | Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the cerificate is QSCD-enabled, data which is not represented by certificate level.
 cert.assuranceLevel | string |   | **DEPRECATED. **Please use cert.certificateLevel parameter instead.
 cert.certificateLevel | string | + | Level of Smart-ID certificate: **ADVANCED** - Used for Smart-ID basic. **QUALIFIED** - Used for Smart-ID. This means that issued certificate is qualified.
-ignoredProperties | array |   | Any values from the requestProperties that were unsupported or ignored because of the Smart-ID App being too old to support them.
+ignoredProperties | array |   | Any values from the requestProperties that were unsupported or ignored.
 
 **successful response when still waiting for user's response:**
 ```
