@@ -204,7 +204,9 @@ Supported property values:
 
 * **THREE_CHOICE_VERIFICATION_CODE** - Can be used to require the Smart-ID App to let the User choose the correct verification code from three differing codes, out of which one code is the real one and the other two are random codes.
 
-Any defined property that is not supported by Smart-ID or the App (e.g. the App is too old) will be listed in the "ignoredProperties" parameter of the Session status response.
+Any unsupported property will produce an error.
+
+Any defined property that is not supported by the Smart-ID App because the App is too old will be listed in the "ignoredProperties" parameter of the Session status response.
 
 ### 4.1.7 Additional request result info
 
@@ -453,7 +455,7 @@ cert.value | string | + | Certificate value, DER+Base64 encoded. The certificate
 cert.assuranceLevel | string |   | **DEPRECATED. **Please use cert.certificateLevel parameter instead.
 cert.certificateLevel | string | + | Level of Smart-ID certificate: **ADVANCED** - Used for Smart-ID basic. **QUALIFIED** - Used for Smart-ID. This means that issued certificate is qualified.
 additionalInfo | array |   | Additional information about the result of the request. See [Additional request result info](#417-additional-request-result-info).
-ignoredProperties | array |   | Any values from the requestProperties that were ignored because of Smart-ID Server or Smart-ID App not supporting them.
+ignoredProperties | array |   | Any values from the requestProperties that were ignored because of the Smart-ID App being too old to support them.
 
 **successful response when still waiting for user's response:**
 ```
