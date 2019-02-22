@@ -16,6 +16,7 @@
         * [4.1.3. HTTP status code usage](#413-http-status-code-usage)
         * [4.1.4. Response on successful session creation](#414-response-on-successful-session-creation)
         * [4.1.5. Idempotent behaviour](#415-idempotent-behaviour)
+        * [4.1.6. Request properties](#416-request-properties)
     * [4.2. REST API main flows](#42-rest-api-main-flows)
     * [4.3. Certificate choice session](#43-certificate-choice-session)
         * [4.3.1. Preconditions](#431-preconditions)
@@ -126,7 +127,7 @@ In case the RP fails to verify the connection security and the attacks is able t
 
 ## 4.1. Interface patterns
 
-BASE URL value is given in service documentation and may vary between environments and service instances.The base URL for SK DEMO environment is  https://sid.demo.sk.ee/smart-id-rp/v1/  
+BASE URL value is given in service documentation and may vary between environments and service instances.The base URL for SK DEMO environment is  https://sid.demo.sk.ee/smart-id-rp/v1/
 NB! The production environment base URL is different and it's fixed in service agreement.
 
 ### 4.1.1. Session management
@@ -191,6 +192,24 @@ This allows to retry RP POST requests in case of communication errors.
 Retry timeframe is **15 seconds**.
 
 When requestor wants, it can override the idempotent behaviour inside of this timeframe using an optional "nonce" parameter present for all POST requests. Normally, that parameter can be omitted.
+
+### 4.1.6. Request properties
+
+The RP can include additional properties to some of the requests (POST to signature/ and authentication/) for requesting some desired behaviour.
+
+The request parameter "requestProperties" can be used to include properties as a set of name/value pairs.
+
+Supported property names:
+
+* **vcChoice** - Can be used to require the Smart-ID App to let the User choose the correct verification code from multiple differing codes, out of which one code is the real one and the others are random codes.
+
+Supported property values:
+
+* **true** - The property is enabled.
+* **false** - The property is disabled.
+* **null** - The property is disabled.
+
+Any unsupported property will be ignored and will be listed in the "ignoredProperties" parameter of the Session status response.
 
 ## 4.2. REST API main flows
 
@@ -293,16 +312,20 @@ hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
+requestProperties | object |   | A request properties object. See [Request properties](#416-request-properties).
 
 **Authentication request:**
 ```
 {
    "relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
    "relyingPartyName": "DEMO",
-   "certificateLevel": "QUALIFIED"
+   "certificateLevel": "QUALIFIED",
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
-   "displayText": "Log into internet banking system"
+   "displayText": "Log into internet banking system",
+   "requestProperties": {
+      "vcChoice": true
+   }
 }
 ```
 
@@ -359,6 +382,7 @@ hash | string | + | Base64 encoded hash function output to be signed.
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
+requestProperties | object |   | A request properties object. See [Request properties](#416-request-properties).
 
 **Signature request:**
 ```
@@ -368,7 +392,10 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
    "certificateLevel": "QUALIFIED",
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
-   "displayText": "Authorize transfer of £10"
+   "displayText": "Authorize transfer of £10",
+   "requestProperties": {
+      "vcChoice": true
+   }
 }
 ```
 
@@ -387,8 +414,9 @@ Method | URL
 -------|----
 GET | BASE/session/:sessionId
 
-**Query parameter****Contents**timeoutMs
-Request long poll timeout value in milliseconds. If not provided, a default is used. Server configuration may force this value into a certain range, see server configuration documentation for details.
+Query parameter | Contents
+----------------|---------
+timeoutMs | Request long poll timeout value in milliseconds. If not provided, a default is used. Server configuration may force this value into a certain range, see server configuration documentation for details.
 
 This method can be used to retrieve session result from Smart-ID backend.
 
@@ -408,7 +436,7 @@ Example URL:
 
 ### 4.6.3. Error conditions
 
-* HTTP error code 404 - session does not exist or is too old or has expired.  
+* HTTP error code 404 - session does not exist or is too old or has expired.
 
 ### 4.6.4. Response structure
 
@@ -425,6 +453,7 @@ cert | object | for OK | Structure describing the certificate related to request
 cert.value | string | + | Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the cerificate is QSCD-enabled, data which is not represented by certificate level.
 cert.assuranceLevel | string |   | **DEPRECATED. **Please use cert.certificateLevel parameter instead.
 cert.certificateLevel | string | + | Level of Smart-ID certificate: **ADVANCED** - Used for Smart-ID basic. **QUALIFIED** - Used for Smart-ID. This means that issued certificate is qualified.
+ignoredProperties | array |   | Any values from the requestProperties that were unsupported or ignored.
 
 **successful response when still waiting for user's response:**
 ```
@@ -461,6 +490,7 @@ cert.certificateLevel | string | + | Level of Smart-ID certificate: **ADVANCED**
 * **USER_REFUSED** - user refused the session.
 * **TIMEOUT** - there was a timeout, i.e. end user did not confirm or refuse the operation within given timeframe.
 * **DOCUMENT_UNUSABLE** - for some reason, this RP request cannot be completed. User must either check his/her Smart-ID mobile application or turn to customer support for getting the exact reason.
+* **WRONG_VC** - in case the three-choice verification code was requested, the user did not choose the correct verification code
 
 # 6. Protocols
 
