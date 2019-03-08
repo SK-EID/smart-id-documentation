@@ -66,6 +66,15 @@ The interface is to be used by all parties who wish consume Smart-ID services, i
 
 * R. Fielding et al. Hypertext Transfer Protocol – HTTP/1.1. RFC 2616 (Draft Standard). Internet Engineering Task Force, June 1999. URL: http://www.ietf.org/rfc/rfc2616.txt.
 
+
+* [**ETSI319412-1**]: ETSI. Electronic Signatures and Infrastructures (ESI); Certificate Profiles;
+Part 1: Overview and common data structures. 2015. URL: [http://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.01.00_30/en_31941201v010100v.pdf][ETSI319412-1]
+
+<!-- markdown url to be used in this document -->
+[ETSI319412-1]: http://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.01.00_30/en_31941201v010100v.pdf "ETSI. Electronic Signatures and Infrastructures (ESI); Certificate Profiles;
+Part 1: Overview and common data structures. 2015"
+
+
 # 3. General description
 
 Relying Party API is exposed over a REST interface as described below.
@@ -148,9 +157,16 @@ Session result can be obtained using a GET request described below.
 
 ### 4.1.2. REST object references
 
-* Objects referenced by "pno/:country/:national-identity-number" are natural persons identified by their ETSI PNO-type identifier (i.e. PNOEE-12345 becomes pno/EE/12345)
-  * Please note that the country code here conforms to ISO 3166-1 alpha-2 code and as such **must be in upper case**.
-* Objects referenced by "document/:documentnumber" are particular documents (also known as user accounts) in the Smart-ID system.
+* Objects referenced by `etsi/:semantics-identifier` are persons identified by their ETSI Natural Person Sematics Identifier specified in [ETSI319412-1][ETSI319412-1] (for example `etsi/PNOEE-12345`). Please note that:
+  * `:semantics-identifier` value should be encoded according to the rules defined in [ETSI319412-1][ETSI319412-1]
+  * the country code part in `:semantics-identifier` conforms to ISO 3166-1 alpha-2 code and as such **MUST BE in upper case**.
+
+
+* Objects referenced by `pno/:country/:national-identity-number` are natural persons identified by their ETSI PNO-type identifier (i.e. `PNOEE-12345` becomes `pno/EE/12345`). Please note that:
+  * This endpoint is **DEPRECATED**. Use `etsi/:semantics-identifier` instead.
+  * The country code here conforms to ISO 3166-1 alpha-2 code and as such **MUST BE in upper case**.
+
+* Objects referenced by `document/:documentnumber` are particular documents (also known as user accounts) in the Smart-ID system.
 
 ### 4.1.3. HTTP status code usage
 
@@ -219,6 +235,7 @@ Any unsupported property will be ignored and will be listed in the "ignoredPrope
 
 Method | URL
 -------|----
+POST | BASE/certificatechoice/etsi/:semantics-identifier
 POST | BASE/certificatechoice/pno/:country/:national-identity-number
 POST | BASE/certificatechoice/document/:documentnumber
 
@@ -235,7 +252,7 @@ This method accepts "QSCD" as a certificate level parameter. This is a shortcut 
 
 ### 4.3.1. Preconditions
 
-* User identified in the request (either by PNO identifier or document number) is present in the system.
+* User identified in the request (either by ETSI Natural Person Sematics Identifier or PNO identifier or document number) is present in the system.
 * User has certificate(s) with level which is equal to or higher than the level requested.
 
 ### 4.3.2. Postconditions
@@ -279,6 +296,7 @@ nonce | string |   | Random string, up to 30 characters. If present, must have a
 
 Method | URL
 -------|----
+POST | BASE/authentication/etsi/:semantics-identifier
 POST | BASE/authentication/pno/:country/:national-identity-number
 POST | BASE/authentication/document/:documentnumber
 
@@ -288,7 +306,7 @@ It selects user's authentication key as the one to be used in the process.
 
 ### 4.4.1. Preconditions
 
-* User identified in the request (either by PNO identifier or document number) is present in the system.
+* User identified in the request (either by ETSI Natural Person Sematics Identifier or PNO identifier or document number) is present in the system.
 * User (as limited by the previous point) has at least one account with given or higher certificate level.
 
 ### 4.4.2. Postconditions
@@ -343,6 +361,7 @@ requestProperties | object |   | A request properties object. See [Request prope
  Method | URL | Notes
  -------|-----|------
  POST | BASE/signature/document/:documentnumber |
+ POST | BASE/signature/etsi/:semantics-identifier | **See description below, this method must be used with care.**
  POST | BASE/signature/pno/:country/:national-identity-number | **See description below, this method must be used with care.**
 
 
@@ -357,7 +376,7 @@ There are two main modes of signature operation and Relying Party must choose ca
 
 ### 4.5.1. Preconditions
 
-* User identified in the request (either by PNO identifier or document number) is present in the system.
+* User identified in the request (either by ETSI Natural Person Sematics Identifier or PNO identifier or document number) is present in the system.
 * User (as limited by the previous point) has at least one account with given or higher certificate level.
 * RP knows the user's signing certificate related to particular document, if needed by signature scheme.
 
