@@ -157,13 +157,27 @@ Session result can be obtained using a GET request described below.
 
 ### 4.1.2. REST object references
 
-* Objects referenced by `etsi/:semantics-identifier` are persons identified by their ETSI Natural Person Sematics Identifier specified in [ETSI319412-1][ETSI319412-1] (for example `etsi/PNOEE-12345`). Please note that:
-  * `:semantics-identifier` value should be encoded according to the rules defined in [ETSI319412-1][ETSI319412-1]
-  * the country code part in `:semantics-identifier` conforms to ISO 3166-1 alpha-2 code and as such **MUST BE in upper case**.
+* Objects referenced by `etsi/:semantics-identifier` are persons identified by their ETSI Natural Person Sematics Identifier specified in [ETSI319412-1][ETSI319412-1]. Semantics identifier contain information using the following structure in the presented order:
+  * 3 character natural identity type reference, that shall have one of the following defined values:
+    * "PAS" for identification based on passport number.
+    * "IDC" for identification based on national identity card number.
+    * "PNO" for identification based on (national) personal number (national civic registration number).
+  * 2 character ISO 3166-1 alpha-2 country code (for example EE, LT, LV, KZ)
+  * hyphen-minus "-" (0x2D (ASCII), U+002D (UTF-8))
+  * identifier (according to country and identity type reference)
+
+  Example values may be:
+    * `etsi/PASEE-48010010101`
+    * `etsi/PNOKZ-987654321012`
+    * `etsi/IDCCZ-1234567890`
+
+  Please note that:
+    * `:semantics-identifier` value should be encoded according to the rules defined in [ETSI319412-1][ETSI319412-1]
+    * the country code part in `:semantics-identifier` conforms to ISO 3166-1 alpha-2 code and as such **MUST BE in upper case**.
 
 
 * Objects referenced by `pno/:country/:national-identity-number` are natural persons identified by their ETSI PNO-type identifier (i.e. `PNOEE-12345` becomes `pno/EE/12345`). Please note that:
-  * This endpoint is **DEPRECATED**. Use `etsi/:semantics-identifier` instead.
+  * This endpoint may be deprecated at some point in the future. Please use `etsi/:semantics-identifier` for new development instead.
   * The country code here conforms to ISO 3166-1 alpha-2 code and as such **MUST BE in upper case**.
 
 * Objects referenced by `document/:documentnumber` are particular documents (also known as user accounts) in the Smart-ID system.
