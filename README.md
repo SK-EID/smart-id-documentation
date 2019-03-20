@@ -167,8 +167,8 @@ Session result can be obtained using a GET request described below.
   * identifier (according to country and identity type reference)
 
   Example values may be:
-    * `etsi/PASEE-48010010101`
-    * `etsi/PNOKZ-987654321012`
+    * `etsi/PASKZ-987654321012`
+    * `etsi/PNOEE-48010010101`
     * `etsi/IDCCZ-1234567890`
 
   Please note that:
