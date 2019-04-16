@@ -74,6 +74,10 @@ Part 1: Overview and common data structures. 2015. URL: [http://www.etsi.org/del
 [ETSI319412-1]: http://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.01.00_30/en_31941201v010100v.pdf "ETSI. Electronic Signatures and Infrastructures (ESI); Certificate Profiles;
 Part 1: Overview and common data structures. 2015"
 
+* [**RFC4648**]: S. Josefsson. The Base16, Base32, and Base64 Data Encodings. RFC 4648 (Proposed Standard). Internet Engineering Task Force, Oct. 2006. URL: [http://www.ietf.org/rfc/rfc4648.txt][RFC4648]
+
+[RFC4648]: http://www.ietf.org/rfc/rfc4648.txt
+
 
 # 3. General description
 
@@ -340,7 +344,7 @@ Parameter | Type | Mandatory | Description
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.
 certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED". **Defaults to "QUALIFIED".**
-hash | string | + | Base64 encoded hash function output to be signed.
+hash | string | + | Base64 encoded hash function output to be signed (Base64 encoding accourding to [RFC4648]).
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
@@ -411,7 +415,7 @@ Parameter | Type | Mandatory | Description
 relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.
 certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
-hash | string | + | Base64 encoded hash function output to be signed.
+hash | string | + | Base64 encoded hash function output to be signed (Base64 encoding accourding to [RFC4648][RFC4648]).
 hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
