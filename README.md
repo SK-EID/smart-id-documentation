@@ -54,7 +54,7 @@ Relying Party interface offers the entry point to Smart-ID main use cases, i.e. 
 
 The interface is to be used by all parties who wish consume Smart-ID services, i.e. ask end users to perform authentication and signing operations.
 
-*Cybernetica AS reference: Y-952-4, version 6.0.*
+*Cybernetica AS reference: Y-952-4, version 13.5.*
 
 ## 1.1. Terminology
 
@@ -291,13 +291,15 @@ relyingPartyUUID | string | + | UUID of Relying Party
 relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.
 certificateLevel | string |   | Level of certificate requested. "ADVANCED"/"QUALIFIED"/"QSCD". **Defaults to "QUALIFIED".**
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
+capabilities | array |   | Used only when agreed with Smart-ID service provider.
 
 **Certificate choice request:**
 ```
 {
 	"relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
 	"relyingPartyName": "DEMO",
-	"certificateLevel": "QUALIFIED"
+	"certificateLevel": "ADVANCED",
+	"capabilities": ["QUALIFIED","BASIC"]
 }
 ```
 ### 4.3.5. Example response
@@ -349,19 +351,21 @@ hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
 requestProperties | object |   | A request properties object. See [Request properties](#416-request-properties).
+capabilities | array |   | Used only when agreed with Smart-ID service provider.
 
 **Authentication request:**
 ```
 {
    "relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
    "relyingPartyName": "DEMO",
-   "certificateLevel": "QUALIFIED",
+   "certificateLevel": "ADVANCED",
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
    "displayText": "Log into internet banking system",
    "requestProperties": {
       "vcChoice": true
-   }
+   },
+   "capabilities": ["QUALIFIED","BASIC"]
 }
 ```
 
@@ -420,19 +424,21 @@ hashType | string | + | Hash algorithm. See hash algorithm section.
 displayText | string |  | Text to display for authentication consent dialog on the mobile device. Limited to 60 characters or 128 bytes in UTF-8 encoding, whichever is reached first.
 nonce | string |   | Random string, up to 30 characters. If present, must have at least 1 character.
 requestProperties | object |   | A request properties object. See [Request properties](#416-request-properties).
+capabilities | array |   | Used only when agreed with Smart-ID service provider.
 
 **Signature request:**
 ```
 {
    "relyingPartyUUID": "00000000-0000-0000-0000-000000000000",
    "relyingPartyName": "DEMO",
-   "certificateLevel": "QUALIFIED",
+   "certificateLevel": "ADVANCED",
    "hash": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
    "hashType": "SHA512",
    "displayText": "Authorize transfer of £10",
    "requestProperties": {
       "vcChoice": true
-   }
+   },
+   "capabilities": ["QUALIFIED","BASIC"]
 }
 ```
 
@@ -515,7 +521,7 @@ ignoredProperties | array |   | Any values from the requestProperties that were 
     "cert": {
         "value": "B+C9XVjIAZnCHH9vfBSv...",
         "assuranceLevel": "http://eidas.europa.eu/LoA/substantial",
-		"certificateLevel": "QUALIFIED"
+		"certificateLevel": "ADVANCED"
     }
 }
 ```
