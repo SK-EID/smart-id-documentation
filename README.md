@@ -119,7 +119,7 @@ The RP must do the following checks:
 These checks are incorporated into:
 
 * [smart-id-java-client](https://github.com/SK-EID/smart-id-java-client/wiki/SSL-configuration)
-* [smart-id-php-client](https://github.com/andrevka/smart-id-php-client/tree/DDS-2738#https-pinning)
+* [smart-id-php-client](https://github.com/SK-EID/smart-id-php-client#https-pinning)
 
 In case the RP fails to verify the connection security and the attacks is able to launch MITM attack (https://en.wikipedia.org/wiki/Man-in-the-middle_attack) on the connection and circumvent the connection authentication, the following attack is possible:
 
