@@ -9,6 +9,7 @@
     * [3.3. Hash algorithms](#33-hash-algorithms)
     * [3.4. Relying Party authentication](#34-relying-party-authentication)
     * [3.5. API endpoint authentication](#35-api-endpoint-authentication)
+    * [3.6. Delay API call until user has seen verification code](#36-delay-api-call)
 * [4. REST API](#4-rest-api)
     * [4.1. Interface patterns](#41-interface-patterns)
         * [4.1.1. Session management](#411-session-management)
@@ -139,6 +140,12 @@ In case the RP fails to verify the connection security and the attacks is able t
 1. Attacker receives the authentication response from the Smart-ID API and returns this to the RP connected, associated with the attacker's session.
 1. RP receives the authentication response with the signature on the hash h2, verifies that the signature is valid and creates authenticated session for the attacker, under the end user identity.
 1. The attacker is logged in as the end user.
+
+## 3.6. Delay API call until user has seen verification code
+
+When Smart-ID is used to perform a transaction on the same device it is installed on (browser or RP app) the push notification can arrive quickly and bring the Smart-ID app into the foreground before the user has had a chance to read the verification code presented by the RP. This is especially pronounced in the Verification Code Choice scenario as the user will not know the correct code when prompted to choose it.
+
+To give the user time to read the verification code the RP should delay issuing the RP API call a few seconds. It is up to the RP to decide on the exact timing.
 
 # 4. REST API
 
