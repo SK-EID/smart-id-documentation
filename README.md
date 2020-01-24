@@ -9,7 +9,7 @@
     * [3.3. Hash algorithms](#33-hash-algorithms)
     * [3.4. Relying Party authentication](#34-relying-party-authentication)
     * [3.5. API endpoint authentication](#35-api-endpoint-authentication)
-    * [3.6. Delay API call until user has seen verification code](#36-delay-api-call)
+    * [3.6. Delay API call until user has seen verification code](#36-delay-api-call-until-user-has-seen-verification-code)
 * [4. REST API](#4-rest-api)
     * [4.1. Interface patterns](#41-interface-patterns)
         * [4.1.1. Session management](#411-session-management)
