@@ -116,6 +116,10 @@ The RP must do the following checks:
 1. Verify if the HTTPS connection and the TLS handshake is performed with the secure TLS ciphersuite.
 1. Verify that the X.509 certificate of the HTTPS endpoint belongs to the well-known public key of the Smart-ID API. The RP must implement HTTPS pinning (https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning)
 1. Verify that the X.509 certificate of the HTTPS endpoint is valid (not expired, signed by trusted CA and not revoked)
+These checks are incorporated into:
+
+* [smart-id-java-client](https://github.com/SK-EID/smart-id-java-client/wiki/SSL-configuration)
+* [smart-id-php-client](https://github.com/SK-EID/smart-id-php-client#https-pinning)
 
 In case the RP fails to verify the connection security and the attacks is able to launch MITM attack (https://en.wikipedia.org/wiki/Man-in-the-middle_attack) on the connection and circumvent the connection authentication, the following attack is possible:
 
