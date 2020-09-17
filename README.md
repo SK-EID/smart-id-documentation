@@ -470,7 +470,7 @@ GET | BASE/session/:sessionId
 
 Query parameter | Contents
 ----------------|---------
-timeoutMs | Request long poll timeout value in milliseconds. The upper bound of timeout: 120000, minimum 1000.  If no is specified by the API client in the request, a value halfway between maximum and minimum value is used.
+timeoutMs | Request long poll timeout value in milliseconds. The upper bound of timeout: 120000, minimum 1000.  If not specified by the API client in the request, a value halfway between maximum and minimum is used.
 
 This method can be used to retrieve session result from Smart-ID backend.
 
