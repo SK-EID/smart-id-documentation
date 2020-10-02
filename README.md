@@ -826,8 +826,7 @@ Table 10. Session status response
 
 ```json
 {
-  "state": "RUNNING",
-  "result": {}
+  "state": "RUNNING"
 }
 ```
 
@@ -846,7 +845,6 @@ Example message 13. Successful response when still waiting for user's response
   },
   "cert": {
     "value": "B+C9XVjIAZnCHH9vfBSv...",
-    "assuranceLevel": "http://eidas.europa.eu/LoA/substantial",
     "certificateLevel": "QUALIFIED"
   }
 }
