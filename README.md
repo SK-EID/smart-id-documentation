@@ -72,14 +72,14 @@ i.e. ask end users to perform authentication and signing operations.
 ## 1.1 Glossary
 
 * Smart-ID account - A person has to register a Smart-ID account to use services provided by the Smart-ID
-system. Account binds a Smart-ID app instance (installed on a personâ€™s mobile device)
-to a personâ€™s identity in the Smart-ID system. In the course of account creation and
+system. Account binds a Smart-ID app instance (installed on a person's mobile device)
+to a person's identity in the Smart-ID system. In the course of account creation and
 registration, the identity of the account owner (person) is proofed by a Registration
 Authority (RA) and the relation between the identity and a key pair is certified by a
 Certificate Authority (CA). An account has a signature key pair and an authentication
 key pair.
 * Smart-ID app - A technical component of the Smart-ID system. A mobile app instance installed on a
-personâ€™s mobile device that provides access to Smart-ID functionality for persons.
+person's mobile device that provides access to Smart-ID functionality for persons.
 * Smart-ID provider - An organization that is legally responsible for the Smart-ID system.
 * Smart-ID server - A technical component of the Smart-ID system. Server-side counterpart of the Smart-ID
 app. Handles backend operations and provides API-s to Relying Party (RP).
@@ -148,17 +148,17 @@ The interface is to be used by all parties who wish to consume Smart-ID services
 end users to perform authentication and signing operations.
 
 The main Smart-ID use case is of a relying party to start a transaction by calling the Smart-
-ID server RP API with the userâ€™s identifier and a hash when the user wishes to authenticate
-with the relying partyâ€™s service or create a signature.
+ID server RP API with the user's identifier and a hash when the user wishes to authenticate
+with the relying party's service or create a signature.
 
-The Smart-ID server then sends a push message notification to the userâ€™s device where
+The Smart-ID server then sends a push message notification to the user's device where
 the user opens the Smart-ID application, checks the details and enters a PIN code.
 
 The application communicates with the Smart-ID server and once the final signature is
 created makes it available for the relying party.
 
 Meanwhile the relying party has been waiting for a reply from the Smart-ID server using a
-long poll connection. In case of success it receives the signed hash and the userâ€™s certificate
+long poll connection. In case of success it receives the signed hash and the user's certificate
 to be able to validate the result.
 
 The Smart-ID server only accepts hashes to be signed. For document signing the relying
@@ -243,12 +243,12 @@ VC value as the `vc1`. On average it should take about 5000 tries until such a c
 found.
 9. The attacker sends the authentication request with the hash value `h2` to the Smart-ID
 authentication RP API endpoint.
-10. Smart-ID sends the authentication request to the end userâ€™s mobile device and asks to
+10. Smart-ID sends the authentication request to the end user's mobile device and asks to
 verify the VC.
 11. End user compares the `vc1` displayed on the browser to the `vc2` displayed on the mobile
 device and finds that they are equivalent and consents to the authentication.
 12. Attacker receives the authentication response from the Smart-ID RP API and returns this
-to the RP connected, associated with the attackerâ€™s session.
+to the RP connected, associated with the attacker's session.
 13. RP receives the authentication response with the signature on the hash `h2`, verifies that
 the signature is valid and creates authenticated session for the attacker, under the end
 user identity.
@@ -534,7 +534,7 @@ Having a correct certificate is needed for giving signatures under \*AdES scheme
 method can be ignored if the signature scheme does not mandate presence of certificate in
 the document structure that is to be signed.
 
-This method initiates a certificate (device) choice dialogue on end userâ€™s devices, so it may
+This method initiates a certificate (device) choice dialogue on end user's devices, so it may
 not be called without explicit need (i.e. it may be called only as the first step in the signing
 process).
 
@@ -606,7 +606,7 @@ Table 4. Authentication endpoints
 
 This method is the main entry point to authentication logic.
 
-It selects userâ€™s authentication key as the one to be used in the process.
+It selects user's authentication key as the one to be used in the process.
 
 #### 2.3.9.1 Preconditions
 
@@ -697,7 +697,7 @@ previous authentication result. It is vitally important that signatures using an
 \*AdES signature schemes that include certificate as part of signature use this method.
 Otherwise, the signature may be given by the person specified, but not using the key pair
 corresponding to the certificate chosen by Relying Party.
-2. **Signature by personâ€™s identifier.** This method should only be used if it is acceptable that
+2. **Signature by person's identifier.** This method should only be used if it is acceptable that
 the end user gives the signature using any of the Smart-ID devices at his/her possession.
 
 #### 2.3.10.1 Preconditions
@@ -706,7 +706,7 @@ the end user gives the signature using any of the Smart-ID devices at his/her po
 system.
 - User (as limited by the previous point) has at least one account with given or higher
 certificate level.
-- RP knows the userâ€™s signing certificate related to particular document, if needed by
+- RP knows the user's signing certificate related to particular document, if needed by
 signature scheme.
 
 #### 2.3.10.2 Postconditions
@@ -901,7 +901,7 @@ byte[] hash = md.digest();
 byte[] encodedHash = Base64.encodeBase64(hash);
 ```
 
-The value of the `encodedHash` must be recorded in the current userâ€™s session for later
+The value of the `encodedHash` must be recorded in the current user's session for later
 comparison.
 
 #### 2.3.12.2 Computing the verification code
@@ -923,7 +923,7 @@ representation.
 
 The VC value must be displayed to the user in the browser together with a message asking
 the end user to verify the code matches with the one displayed on their mobile device. The
-user must not proceed if these donâ€™t match.
+user must not proceed if these don't match.
 
 [^1]: See https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html
 
@@ -938,7 +938,7 @@ of the authenticating end user is.
   - The certificate is trusted (signed by a trusted CA).
   - The certificate has not expired.
   - The certificate is not revoked.
-- The personâ€™s certificate given in the `cert.value` is of required or higher assurance level
+- The person's certificate given in the `cert.value` is of required or higher assurance level
 as requested.
 - The identity of the authenticated person is in the `subject` field or `subjectAltName`
 extension of the X.509 certificate.
@@ -948,7 +948,7 @@ the RP verified using the public key from `cert.value`.
 It is strongly recommended to have these steps performed using standard cryptographic
 libraries.
 
-After successful authentication, the RP must invalidate the old userâ€™s browser or API
+After successful authentication, the RP must invalidate the old user's browser or API
 session identifier and generate a new one.
 
 # 3 Use Case realization models
