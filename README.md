@@ -112,7 +112,7 @@ system. It may or may not create a transaction.
 
 * **ETSI319412-1** ETSI. Electronic Signatures and Infrastructures (ESI); Certificate Profiles;
 Part 1: Overview and common data structures. 2015. URL: <http://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.01.00_30/en_31941201v010100v.pdf>.
-* **rfc2616** R. Fielding et al. Hypertext Transfer Protocol â€“ HTTP/1.1. RFC 2616 (Draft Standard).
+* **rfc2616** R. Fielding et al. Hypertext Transfer Protocol – HTTP/1.1. RFC 2616 (Draft Standard).
 Obsoleted by RFCs 7230, 7231, 7232, 7233, 7234, 7235, updated by RFCs 2817, 5785,
 6266, 6585. Internet Engineering Task Force, June 1999. URL: <https://tools.ietf.org/html/rfc2616>.
 * **rfc4122** P. Leach, M. Mealling, and R. Salz. A Universally Unique IDentifier (UUID) URN
