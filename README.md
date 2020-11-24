@@ -781,7 +781,7 @@ Table 8. Session status endpoint
 
 | Parameter | Type | Mandatory | Description |
 | :-------- | :--- | :-------- | :---------- |
-| timeoutMs | integer | | Request long poll timeout value in milliseconds. If not provided, a default is used. Server configuration may force this value into a certain range. Refer to Smart-ID service documentation. |
+| timeoutMs | integer | | Request long poll timeout value in milliseconds. The upper bound of timeout: 120000, minimum 1000.  If not specified by the API client in the request, a value halfway between maximum and minimum is used. |
 
 Table 9. Session status query parameter
 
