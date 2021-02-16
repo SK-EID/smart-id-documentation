@@ -937,7 +937,6 @@ of the authenticating end user is.
 - The certificate from `cert.value` is valid:
   - The certificate is trusted (signed by a trusted CA).
   - The certificate has not expired.
-  - The certificate is not revoked.
 - The person's certificate given in the `cert.value` is of required or higher assurance level
 as requested.
 - The identity of the authenticated person is in the `subject` field or `subjectAltName`
