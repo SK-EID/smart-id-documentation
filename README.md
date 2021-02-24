@@ -237,7 +237,7 @@ to the attacker, acting as the Smart-ID RP API.
 7. Attacker computes the VC values for both hashes, i.e.
   -    `vc1 = integer(SHA256(h1)[-2:-1]) mod 10000`
   -    `vc2 = integer(SHA256(h2)[-2:-1]) mod 10000`
-8. If the `vc1!=vc1`, the attacker drops the connection to the RP website and creates a new
+8. If the `vc1!=vc2`, the attacker drops the connection to the RP website and creates a new
 one. The connections are tried until the randomly generated hash value yields the same
 VC value as the `vc1`. On average it should take about 5000 tries until such a collision is
 found.
