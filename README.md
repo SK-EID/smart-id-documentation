@@ -821,6 +821,7 @@ Example URL:
 | cert.certificateLevel | string | + | Level of Smart-ID certificate: `ADVANCED` or `QUALIFIED` |
 | ignoredProperties | array | | Any values from `requestProperties` that were unsupported or ignored. |
 | interactionFlowUsed | string | for OK | Name of interaction used. See section [3.1](#31-uc-x-interaction-choice-realization). |
+| deviceIpAddress | string | | IP address of the device running the App. Present only for subscribed RPs and when available (e.g. not present in case `state` is `TIMEOUT`).
 
 Table 10. Session status response
 
