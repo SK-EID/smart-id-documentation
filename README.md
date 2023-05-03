@@ -29,34 +29,35 @@
     * [2.3.6 Request properties](#236-request-properties)
     * [2.3.7 Allowed interactions order](#237-allowed-interactions-order)
       * [2.3.7.1 Example allowedInteractionsOrder elements](#2371-example-allowedinteractionsorder-elements)
-    * [2.3.8 Certificate choice session](#238-certificate-choice-session)
-      * [2.3.8.1 Preconditions](#2381-preconditions)
-      * [2.3.8.2 Postconditions](#2382-postconditions)
-    * [2.3.8.3 Error conditions](#2383-error-conditions)
-      * [2.3.8.4 Request parameters](#2384-request-parameters)
-      * [2.3.8.5 Example response](#2385-example-response)
-    * [2.3.9 Authentication session](#239-authentication-session)
+    * [2.3.8 Mobile Device IP sharing](#238-mobile-device-ip-sharing)
+    * [2.3.9 Certificate choice session](#239-certificate-choice-session)
       * [2.3.9.1 Preconditions](#2391-preconditions)
       * [2.3.9.2 Postconditions](#2392-postconditions)
       * [2.3.9.3 Error conditions](#2393-error-conditions)
       * [2.3.9.4 Request parameters](#2394-request-parameters)
       * [2.3.9.5 Example response](#2395-example-response)
-    * [2.3.10 Signing session](#2310-signing-session)
+    * [2.3.10 Authentication session](#2310-authentication-session)
       * [2.3.10.1 Preconditions](#23101-preconditions)
       * [2.3.10.2 Postconditions](#23102-postconditions)
       * [2.3.10.3 Error conditions](#23103-error-conditions)
       * [2.3.10.4 Request parameters](#23104-request-parameters)
       * [2.3.10.5 Example response](#23105-example-response)
-    * [2.3.11 Session status](#2311-session-status)
+    * [2.3.11 Signing session](#2311-signing-session)
       * [2.3.11.1 Preconditions](#23111-preconditions)
       * [2.3.11.2 Postconditions](#23112-postconditions)
       * [2.3.11.3 Error conditions](#23113-error-conditions)
-      * [2.3.11.4 Response structure](#23114-response-structure)
-      * [2.3.11.5 Session status end result codes](#23115-session-status-end-result-codes)
-    * [2.3.12 Authentication/Signing protocol usage](#2312-authenticationsigning-protocol-usage)
-      * [2.3.12.1 Sending authentication request](#23121-sending-authentication-request)
-      * [2.3.12.2 Computing the verification code](#23122-computing-the-verification-code)
-      * [2.3.12.3 Verifying the authentication response](#23123-verifying-the-authentication-response)
+      * [2.3.11.4 Request parameters](#23114-request-parameters)
+      * [2.3.11.5 Example response](#23115-example-response)
+    * [2.3.12 Session status](#2312-session-status)
+      * [2.3.12.1 Preconditions](#23121-preconditions)
+      * [2.3.12.2 Postconditions](#23122-postconditions)
+      * [2.3.12.3 Error conditions](#23123-error-conditions)
+      * [2.3.12.4 Response structure](#23124-response-structure)
+      * [2.3.12.5 Session status end result codes](#23125-session-status-end-result-codes)
+    * [2.3.13 Authentication/Signing protocol usage](#2313-authenticationsigning-protocol-usage)
+      * [2.3.13.1 Sending authentication request](#23131-sending-authentication-request)
+      * [2.3.13.2 Computing the verification code](#23132-computing-the-verification-code)
+      * [2.3.13.3 Verifying the authentication response](#23133-verifying-the-authentication-response)
 * [3 Use Case realization models](#3-use-case-realization-models)
   * [3.1 UC-X Interaction choice realization](#31-uc-x-interaction-choice-realization)
 
@@ -270,7 +271,7 @@ Session is created for one of the three operations:
 * Signing certificate choice (needed for certain digital signature schemes, see below)
 * Signing
 
-Session result can be obtained using a GET request as described in [2.3.11](#2311-session-status).
+Session result can be obtained using a GET request as described in [2.3.12](#2312-session-status).
 
 ### 2.2.8 Delay API call until user has seen verification code
 When Smart-ID is used to perform a transaction on the same device it is installed on (browser
@@ -309,6 +310,8 @@ It replaces parameters `displayText` and `requestProperties.vcChoice`.
   - `USER_REFUSED_CONFIRMATIONMESSAGE`
   - `USER_REFUSED_CONFIRMATIONMESSAGE_WITH_VC_CHOICE`
   - `USER_REFUSED_CERT_CHOICE`
+- New parameter [Request properties](#236-request-properties) for API `/v2/certificatechoice` also
+- New option `shareMdClientIpAddress` for parameter `requestProperties`
 - Previously deprecated object reference `pno/:country/:national-identity-number`
 removed, use `etsi/:semantics-identifier` instead.
 - RP must ignore any unknown names (fields) in JSON response object.
@@ -415,19 +418,16 @@ can be omitted.
 In RP API version 1 `requestProperties` and `ignoredProperties` were used to modify
 the Smart-ID app interaction flow to ask the user to choose between multiple verification codes.
 
-RP API 2 replaced that functionality with `allowedInteractionsOrder` and
-`interactionUsed` instead. See section [3.1](#31-uc-x-interaction-choice-realization).
+Request property `vcChoice` from RP API version 1
+was replaced in RP API version 2 with `allowedInteractionsOrder` and `interactionUsed` instead.
+See section [3.1](#31-uc-x-interaction-choice-realization).
 
-The `requestProperties` itself is preserved in RP API 2 for future uses though.
+The RP can include additional properties to some of the requests (v1 can consume them via POST to 
+`signature/` and `authentication/` only, but higher versions via POST to `certificatechoice/` also) 
+for requesting some desired behaviour using the request parameter `requestProperties`.
 
-The RP can include additional properties to some of the requests (POST to `signature/`
-and `authentication/`) for requesting some desired behaviour using the request
-parameter `requestProperties`.
-
-Any unsupported property will be ignored and will be listed in the ignoredProperties
+Any unsupported property will be ignored and will be listed in the `ignoredProperties`
 parameter of the Session status response.
-
-Currently there are no properties supported by RP API v2.
 
 ### 2.3.7 Allowed interactions order
 
@@ -516,7 +516,25 @@ displayTextAndPIN should used.
 Example message 6. RP insists on confirmationMessage, if not available then
 fail.
 
-### 2.3.8 Certificate choice session
+### 2.3.8 Mobile Device IP sharing
+Mobile device IP address is shared to authorized RP, who are able to use the data in their
+transaction monitoring mechanisms to detect unauthorized or fraudulent transactions by comparing
+this shared IP address with the IP address, that `person` represents to the RP during interaction
+with RP services.
+
+The IP address is saved to the RP session when `person` reacts to the `RpRequest` with one its
+mobile device. Saved IP address is returned to the RP in the session status response (see the
+structure in [Session status end result codes](#23125-session-status-end-result-codes)) only if:
+
+- The RP is allowed to receive it (default configuration does not allow the IP sharing).
+- The RP is requested it via `requestProperties` of RP request. Property option
+  `shareMdClientIpAddress` is used for it, and it is optional. It may allow or forbid to share
+  IP address with `true` or `false` value accordingly. If property is not defined in the
+  RP request IP address won't be shared in session.
+- The RP session is complete.
+- The mobile device IP address was successfully saved to the \gls{rp} session.
+
+### 2.3.9 Certificate choice session
 
 | Method | Url |
 | :----- | :--- |
@@ -542,17 +560,17 @@ The method accepts `QSCD` as a certificate level parameter. This is a shortcut m
 certificate of `QUALIFIED` level which is also QSCD-capable. `ADVANCED` certificates cannot be
 QSCD-capable.
 
-#### 2.3.8.1 Preconditions
+#### 2.3.9.1 Preconditions
 
 - User identified in the request (either by private identifier or ETSI Natural Person Sematics
 Identifier or document number) is present in the system.
 - User has certificate(s) with level which is equal to or higher than the level requested.
 
-#### 2.3.8.2 Postconditions
+#### 2.3.9.2 Postconditions
 
 - New session has been created in the system and its ID returned to Relying Party.
 
-### 2.3.8.3 Error conditions
+### 2.3.9.3 Error conditions
 
 - HTTP error code `403` - Relying Party has no permission to issue the request. This may
 happen when:
@@ -562,15 +580,16 @@ certificates.
 - HTTP error code `404` - object described in URL was not found, essentially meaning that
 the user does not have an account in Smart-ID system.
 
-#### 2.3.8.4 Request parameters
+#### 2.3.9.4 Request parameters
 
-| Parameter | Type | Mandatory | Description |
-| :-------- | :--- | :-------- | :---------- |
-| relyingPartyUUID | string | + | UUID of Relying Party. |
+| Parameter | Type   | Mandatory | Description                                                                                                                                      |
+| :-------- |:-------| :-------- |:-------------------------------------------------------------------------------------------------------------------------------------------------|
+| relyingPartyUUID | string | + | UUID of Relying Party.                                                                                                                           |
 | relyingPartyName | string | + | RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding. See [2.2.4](#224-relyingpartyname-handling). |
-| certificateLevel | string | | Level of certificate requested. `ADVANCED`/`QUALIFIED`/`QSCD`, defaults to `QUALIFIED`. |
-| nonce | string | | Random string, up to 30 characters. If present, must have at least 1 character. |
-| capabilities | array | | Used only when agreed with Smart-ID provider. When omitted request capabilities are derived from `certificateLevel` parameter. |
+| certificateLevel | string | | Level of certificate requested. `ADVANCED`/`QUALIFIED`/`QSCD`, defaults to `QUALIFIED`.                                                          |
+| nonce | string | | Random string, up to 30 characters. If present, must have at least 1 character.                                                                  |
+| capabilities | array  | | Used only when agreed with Smart-ID provider. When omitted request capabilities are derived from `certificateLevel` parameter.                   |
+| requestProperties | object | | A request properties object as a set of name/value pairs. See section [2.3.6](#236-request-properties).                                          |
 
 Table 3. Certificate choice request parameters
 
@@ -584,7 +603,7 @@ Table 3. Certificate choice request parameters
 
 Example message 7. Certifcate choice request example
 
-#### 2.3.8.5 Example response
+#### 2.3.9.5 Example response
 
 ```json
 {
@@ -594,7 +613,7 @@ Example message 7. Certifcate choice request example
 
 Example message 8. Certificate choice session creation response
 
-### 2.3.9 Authentication session
+### 2.3.10 Authentication session
 
 | Method | Url |
 | :----- | :--- |
@@ -608,18 +627,18 @@ This method is the main entry point to authentication logic.
 
 It selects user's authentication key as the one to be used in the process.
 
-#### 2.3.9.1 Preconditions
+#### 2.3.10.1 Preconditions
 
 - User identified in the request (either by private identifier or ETSI Natural Person Sematics
 Identifier or document number) is present in the system.
 - User (as limited by the previous point) has at least one account with given or higher
 certificate level.
 
-#### 2.3.9.2 Postconditions
+#### 2.3.10.2 Postconditions
 
 - New session has been created in the system and its ID returned to Relying Party.
 
-#### 2.3.9.3 Error conditions
+#### 2.3.10.3 Error conditions
 
 - HTTP error code `403` - Relying Party has no permission to issue the request. This may
 happen when: Relying Party has no permission to invoke operations on accounts with ADVANCED
@@ -627,7 +646,7 @@ certificates. Relying Party has no permission to use requested capability.
 - HTTP error code `404` - object described in URL was not found, essentially meaning that
 the user does not have an account in Smart-ID system.
 
-#### 2.3.9.4 Request parameters
+#### 2.3.10.4 Request parameters
 
 | Parameter | Type | Mandatory | Description |
 | :-------- | :--- | :-------- | :---------- |
@@ -661,7 +680,7 @@ Table 5. Authentication request parameters
 
 Example message 9. Authentication request example
 
-#### 2.3.9.5 Example response
+#### 2.3.10.5 Example response
 
 ```json
 {
@@ -671,7 +690,7 @@ Example message 9. Authentication request example
 
 Example message 10. Authentication session creation response
 
-### 2.3.10 Signing session
+### 2.3.11 Signing session
 
 | Method | Url |
 | :----- | :--- |
@@ -700,7 +719,7 @@ corresponding to the certificate chosen by Relying Party.
 2. **Signature by person's identifier.** This method should only be used if it is acceptable that
 the end user gives the signature using any of the Smart-ID devices at his/her possession.
 
-#### 2.3.10.1 Preconditions
+#### 2.3.11.1 Preconditions
 
 - User identified in the request (either by private identifier or ETSI Natural Person Sematics Identifier ETSI Natural Person Sematics Identifier or document number) is present in the
 system.
@@ -709,11 +728,11 @@ certificate level.
 - RP knows the user's signing certificate related to particular document, if needed by
 signature scheme.
 
-#### 2.3.10.2 Postconditions
+#### 2.3.11.2 Postconditions
 
 - A new RP request and a related transaction record has been created.
 
-#### 2.3.10.3 Error conditions
+#### 2.3.11.3 Error conditions
 
 - HTTP error code `403` - Relying Party has no permission to issue the request. This may
 happen when:
@@ -723,7 +742,7 @@ certificates.
 - HTTP error code `404` - object described in URL was not found, essentially meaning that
 the user does not have an account in Smart-ID system.
 
-#### 2.3.10.4 Request parameters
+#### 2.3.11.4 Request parameters
 
 | Parameter | Type | Mandatory | Description |
 | :-------- | :--- | :-------- | :---------- |
@@ -761,7 +780,7 @@ Table 7. Signature request parameters
 
 Example message 11. Signature request example
 
-#### 2.3.10.5 Example response
+#### 2.3.11.5 Example response
 
 ```json
 {
@@ -771,7 +790,7 @@ Example message 11. Signature request example
 
 Example message 12. Signature session creation response
 
-### 2.3.11 Session status
+### 2.3.12 Session status
 
 | Method | Url |
 | :----- | :--- |
@@ -793,19 +812,19 @@ tune the request parameters inside the bounds set by service operator.
 Example URL:
 - https://example.com/rp/v2/session/de305d54-75b4-431b-adb2-eb6b9e546016?timeoutMs=10000
 
-#### 2.3.11.1 Preconditions
+#### 2.3.12.1 Preconditions
 
 - Session is present in the system and the request is either running or has been completed less than 5 minutes ago.
 
-#### 2.3.11.2 Postconditions
+#### 2.3.12.2 Postconditions
 
 - Request result has been returned to RP.
 
-#### 2.3.11.3 Error conditions
+#### 2.3.12.3 Error conditions
 
 - HTTP error code `404` - session does not exist or has expired.
 
-#### 2.3.11.4 Response structure
+#### 2.3.12.4 Response structure
 
 | Parameter | Type | Mandatory | Description |
 | :-------- | :--- | :-------- | :---------- |
@@ -821,7 +840,7 @@ Example URL:
 | cert.certificateLevel | string | + | Level of Smart-ID certificate: `ADVANCED` or `QUALIFIED` |
 | ignoredProperties | array | | Any values from `requestProperties` that were unsupported or ignored. |
 | interactionFlowUsed | string | for OK | Name of interaction used. See section [3.1](#31-uc-x-interaction-choice-realization). |
-| deviceIpAddress | string | | IP address of the device running the App. Present only for subscribed RPs and when available (e.g. not present in case `state` is `TIMEOUT`).
+| deviceIpAddress | string | | IP address of the mobile device. Is present only when it has been previously requested by the `RelyingParty` within the session creation parameters. See section [2.3.8](#238-mobile-device-ip-sharing)
 
 Table 10. Session status response
 
@@ -853,7 +872,7 @@ Example message 13. Successful response when still waiting for user's response
 
 Example message 14. Successful response after completion
 
-#### 2.3.11.5 Session status end result codes
+#### 2.3.12.5 Session status end result codes
 
 - `OK` - session was completed successfully, there is a certificate, document number and
 possibly signature in return structure.
@@ -878,13 +897,13 @@ screen.
 - `USER_REFUSED_CONFIRMATIONMESSAGE_WITH_VC_CHOICE` - user cancelled on
 `confirmationMessageAndVerificationCodeChoice` screen.
 
-### 2.3.12 Authentication/Signing protocol usage
+### 2.3.13 Authentication/Signing protocol usage
 
 Previous sections give an overview of the specific RP API methods, which can be used to
 perform authentication and signing operations. This section gives an overview of how to
 securely combine them and how to correctly interpret the operation result.
 
-#### 2.3.12.1 Sending authentication request
+#### 2.3.13.1 Sending authentication request
 
 The RP must create the a hash value for each new authentication request. The recommended
 way of doing this is to use the Java SecureRandom class[^1] or equivalent method in other
@@ -905,7 +924,7 @@ byte[] encodedHash = Base64.encodeBase64(hash);
 The value of the `encodedHash` must be recorded in the current user's session for later
 comparison.
 
-#### 2.3.12.2 Computing the verification code
+#### 2.3.13.2 Computing the verification code
 
 The RP must compute a verification code for each authentication and siging request, so the
 user can bind together the session on the browser or RP app and the authentication request
@@ -928,7 +947,7 @@ user must not proceed if these don't match.
 
 [^1]: See https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html
 
-#### 2.3.12.3 Verifying the authentication response
+#### 2.3.13.3 Verifying the authentication response
 
 After receiving the transaction response from the Session status API call, the following
 algorithm must be used to decide, if the authentication result is trustworthy and what the identity
