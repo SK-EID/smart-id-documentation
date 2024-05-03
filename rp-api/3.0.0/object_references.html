@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Terms and glossary :: RP API integration guidance - DRAFT</title>
-    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/3.0.0/glossary.html">
+    <title>REST object references :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0/object_references.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -12,7 +12,7 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://sk-eid.github.io">RP API integration guidance - DRAFT</a>
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance - DRAFT</a>
       <div class="navbar-item search hide-for-print">
         <div id="search-field" class="field">
           <input id="search-input" type="text" placeholder="Search the docs">
@@ -29,7 +29,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="smart-id-documentation" data-version="3.0.0">
+<div class="nav-container" data-component="rp-api" data-version="3.0.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -43,7 +43,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="introduction.html">Introduction</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Terms and glossary</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -78,7 +78,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="object_references.html">REST object references</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -127,110 +127,118 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="introduction.html">Introduction</a></li>
-    <li><a href="glossary.html">Terms and glossary</a></li>
+    <li><a href="object_references.html">REST object references</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/glossary.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/object_references.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Terms and glossary</h1>
-<div class="dlist glossary">
-<dl>
-<dt>Smart-ID account</dt>
-<dd>
-<p>A person has to register a Smart-ID account to use
-services provided by the Smart-ID system. Account binds a Smart-ID app
-instance (installed on a person&#8217;s mobile device) to a person&#8217;s identity
-in the Smart-ID system. In the course of account creation and
-registration, the identity of the account owner (person) is proofed by a
-Registration Authority (RA) and the relation between the identity and a
-key pair is certified by a Certificate Authority (CA). An account has a
-signature key pair and an authentication key pair.</p>
-</dd>
-<dt>Smart-ID app</dt>
-<dd>
-<p>A technical component of the Smart-ID system. A mobile
-app instance installed on a person&#8217;s mobile device that provides access
-to Smart-ID functionality for persons.</p>
-</dd>
-<dt>Smart-ID provider</dt>
-<dd>
-<p>An organization that is legally responsible for
-the Smart-ID system.</p>
-</dd>
-<dt>Smart-ID server</dt>
-<dd>
-<p>A technical component of the Smart-ID system.
-Server-side counterpart of the Smart-ID app. Handles backend operations
-and provides API-s to Relying Party (RP).</p>
-</dd>
-<dt>Smart-ID system</dt>
-<dd>
-<p>- A technical and organizational environment, which
-enables digital authentication and issuing of digital signatures of
-persons in an electronic environment. The Smart-ID system provides
-services that allow persons (Smart-ID account owners) to authenticate
-themselves to RPs, to give digital signatures requested by RPs, and to
-manage their Smart-ID accounts.</p>
-</dd>
-<dt>Authentication key pair (or authentication key)</dt>
-<dd>
-<p>Key pair, which is
-used to digitally authenticate a person.</p>
-</dd>
-<dt>Certificate Authority (CA)</dt>
-<dd>
-<p>An entity that issues certificates for
-Smart-ID account owners.</p>
-</dd>
-<dt>Key pair</dt>
-<dd>
-<p>Pair of keys, which are required for digital signature
-scheme. There are two kinds of key pairs (or shortly, keys) in the
-Smart-ID system, authentication key pair and signature key pair. The
-word pair refers to to the private and public keys of each key pair used
-in an asymmetric cryptographic algorithm, here RSA.</p>
-</dd>
-<dt>Mobile device</dt>
-<dd>
-<p>A tablet computer or smartphone that runs a mobile
-device operating system (Apple iOS, Google Android).</p>
-</dd>
-<dt>Person</dt>
-<dd>
-<p>A natural person who uses the Smart-ID system to authenticate
-herself to an RP and to issue digital signatures requested by RP.</p>
-</dd>
-<dt>Registration Authority (RA)</dt>
-<dd>
-<p>An entity responsible for recording or
-verifying some or all of the information (particularly the identities of
-subjects) needed by a CA to issue certificates and CRLs and to perform
-other certificate management functions.</p>
-</dd>
-<dt>Relying Party (RP)</dt>
-<dd>
-<p>An organization or service, for example a bank,
-which is using the Smart-ID service to authenticate its users and to get
-them to sign the documents.</p>
-</dd>
-<dt>Relying Party request</dt>
-<dd>
-<p>A request from an RP that requires some kind
-of operation in the Smart-ID backend system. It may or may not create a
-transaction.</p>
-</dd>
-<dt>Signature key pair (or signature key)</dt>
-<dd>
-<p>Key pair, which is used to
-give digital signatures of a person.</p>
-</dd>
-</dl>
+<h1 class="page">REST object references</h1>
+<div class="sect1">
+<h2 id="_anonymous"><a class="anchor" href="#_anonymous"></a>anonymous</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For dynamic link based flows anonymous REST API endpoints may used. Here the RP learns the identity of the user only when receiving the successful session result.</p>
+</div>
+<div class="paragraph">
+<p>Usage of the anonymous endpoint is optional.</p>
+</div>
+<div class="paragraph">
+<p>For the dynamic link based flows, the other REST object references may be used as well. In that case the check whether the identifiers match is done right after the user has interacted with the dynamic link (QR code, Web2App link, or App2App link), but before signature creation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_etsisemantics_identifier"><a class="anchor" href="#_etsisemantics_identifier"></a>etsi/:semantics-identifier</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Objects referenced by <code>etsi/:semantics-identifier</code> are persons
+identified by their ETSI Natural Person Semantics Identifier specified in
+ETSI319412 - 1. Semantics identifier contain information using the
+following structure in the presented order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3 character natural identity type reference, that shall have one of
+the following defined values:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>PAS</code> for identification based on passport number.</p>
+</li>
+<li>
+<p><code>IDC</code> for identification based on national identity card number.</p>
+</li>
+<li>
+<p><code>PNO</code> for identification based on (national) personal number
+(national civic registration number).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2 character ISO 3166-1 alpha-2 country code (for example EE, LT, LV,
+KZ)</p>
+</li>
+<li>
+<p>hyphen-minus - (0x2D (ASCII), U+002D (UTF-8))</p>
+</li>
+<li>
+<p>identifier (according to country and identity type reference)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example values may be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>etsi/PASKZ-987654321012</code></p>
+</li>
+<li>
+<p><code>etsi/PNOEE-48010010101</code></p>
+</li>
+<li>
+<p><code>etsi/IDCCZ-1234567890</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Please note:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:semantics-identifier</code> value should be encoded according to the rules
+defined in ETSI 319 412-1</p>
+</li>
+<li>
+<p>the country code part in <code>:semantics-identifier</code> conforms to ISO
+3166-1 alpha-2 code and as such must be in upper case.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentdocumentnumber"><a class="anchor" href="#_documentdocumentnumber"></a>document/:documentnumber</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Objects referenced by <code>document/:documentnumber</code> are particular
+documents (also known as user accounts) in the Smart-ID system.</p>
+</div>
+<div class="paragraph">
+<p>This is may be used for signing once a user has already authenticated,
+for re-authentication or for signing once the document is known from a
+certificate choice query.</p>
+</div>
+</div>
 </div>
 </article>
   </div>
