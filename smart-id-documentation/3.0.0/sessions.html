@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Session types :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/smart-id-documentation/3.0.0/sessions.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance - DRAFT</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="smart-id-documentation" data-version="3.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="sessions.html">Session types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="signing_session.html">Signing session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session_status.html">Session status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="object_references.html">REST object references</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="request_properties.html">Additional request properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_details.html">REST API details</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">3.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="sessions.html">Session types</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/sessions.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Session types</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The API provides four different types of endpoints. The first three are <code>POST</code> requests that return a <code>sessionID</code> and the fourth used is a <code>GET</code> used to query for the result based on the <code>sessionID</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>authentication</code> session is used to log a user onto a system or otherwise verify the identity of a user;</p>
+</li>
+<li>
+<p>the <code>signing</code> session is used to to create digital signature;</p>
+</li>
+<li>
+<p>the <code>certificate choice</code> session is used immediately prior to the signing session when the User&#8217;s signing certificate is required to create the object that will be signed;</p>
+</li>
+<li>
+<p>finally, the <code>session status</code> endpoint provides the result of the above sessions.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_security_model_for_accessing_sessions"><a class="anchor" href="#_security_model_for_accessing_sessions"></a>Security model for accessing sessions</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This solution is still work-in-progress and has not been finalized yet.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Push notification based flows do not link the location of the Smart-ID app to the location of the RP
+page/app (that the user is authenticating to) in any way. This means that attackers can
+launch remote authentication requests for unsuspecting users. They can combine these
+push requests with phone calls or emails, convincing users to complete an
+authentication for them. They can also launch a large number of requests, trying to
+exhaust the user and let them enter their PIN to get rid of the notifications.</p>
+</div>
+<div class="paragraph">
+<p>The main benefit of the new dynamic link based flows is that they solve this problem by helping to ensure that the location of the Smart-ID app
+coincides to the physical location of the RP page/app.</p>
+</div>
+<div class="paragraph">
+<p>Maximum security would be attained by making the dynamic link based flows mandatory. However, this solution might be deemed not reasonable by RPs
+and might face initial pushback from end users (at least until they have gotten used to it).</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, if the authentication flow method would be up to the user to choose (dynamic or notification-based),
+then this could easily be exploited by the attackers to continue sending out the remote authentication requests for unsuspecting users, as has happened previously.</p>
+</div>
+<div class="paragraph">
+<p>The way to obtain simultaneously optimal security and optimal user experience is to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Require dynamic link based login for the user for every new device that he uses;</p>
+</li>
+<li>
+<p>Allow for subsequent requests from the same device to be done in either way (dynamic or notification-based).
+It would be up to RP to decide how long this would be allowed for until they must re-validate using a dynamic flow
+(the recommended validity time window is 7-30 days (depending on RP security model), the longest allowable is 90 days).</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For the same-device use case (Web2App and App2App), the new dynamic flows provide both enhanced security and user experience;
+thus, it is recommended to always use the new flows on the mobile device. However, push based flows are still available as previously,
+if deemed necessary by the RP (after the user has completed the dynamic link based flow at least once on that device).
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_technical_details_of_the_solution_device_proximity_enforcement_tokens"><a class="anchor" href="#_technical_details_of_the_solution_device_proximity_enforcement_tokens"></a>Technical details of the solution (device proximity enforcement tokens)</h3>
+<div class="paragraph">
+<p>Technically, this would be enabled by the use of tokens (called <code>deviceProximityEnforcedToken</code>).</p>
+</div>
+<div class="paragraph">
+<p>Whenever an RP makes a request to one of the dynamic link based flows (QR / Web2App / App2App), it can request for the token <code>deviceProximityEnforcedToken</code>.
+It is returned in the session status response upon successful transaction completion.
+The RP must then provide this token for any subsequent request made to the notification-based endpoints.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The security provided by the token mechanism is only achieved when implemented correctly by the RP. The token must be stored by the RP in a manner that
+is tied to the given user and device (or preferably, tied to the RP browser/app). For example, it may be saved in a cookie on the user&#8217;s browser for the
+RP webpage or app storage of the RP app.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Whenever an attacker tries to initiate an authentication session on behalf of a user, they
+will do so from a computer that does not have the token, which will trigger a
+stronger form of authentication, protecting the user against the attack.</p>
+</div>
+<div class="paragraph">
+<p>The token is only valid for that single user and can not be used with other users. In case of a
+token leak, the users will be able to revoke all of their tokens, similar to a "Forget me on all
+devices" functionality.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The token-based approach only provide the base minimum level of security; it is up to RPs to decide if they want to adopt a stricter policy or not.
+For example, RPs might instead:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Require dynamic links for every transaction.</p>
+</li>
+<li>
+<p>Require dynamic links at beginning of every session.</p>
+</li>
+<li>
+<p>Whenever there is anything suspicious or requiring a stricter authentication, ask for a dynamic link based authentication/signature.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The exact validity of the token will be configurable for each RP in the Smart-ID system.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

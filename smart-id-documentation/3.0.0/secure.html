@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Secure Implementation Guide :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/smart-id-documentation/3.0.0/secure.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance - DRAFT</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="smart-id-documentation" data-version="3.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="sessions.html">Session types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="signing_session.html">Signing session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session_status.html">Session status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="object_references.html">REST object references</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="request_properties.html">Additional request properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_details.html">REST API details</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">3.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="secure.html">Secure Implementation Guide</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/secure.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Secure Implementation Guide</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This document has not been updated for RP version 3. After the updates it will be restructured and integrated into the rest of the RP API documentation.
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+<!-- toc disabled -->
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Although ID-card, Mobile-ID and Smart-ID are all secure technologies for
+authentication and digital signing, e-service providers (Relying
+Parties, RPs) need to consider potential risks, which are
+associated with digital authentication solutions. It
+is important that RPs implement additional security mechanisms to help
+users to understand the context of their actions and to protect them from possible
+attacks. For example, there might be a malicious phishing
+website controlled by attacker between user&#8217;s browser and the
+RP&#8217;s website.</p>
+</div>
+<div class="paragraph">
+<p>This document lists attacks that can be launched against RP&#8217;s website or RP&#8217;s app, when the RP is using ID-card, Mobile-ID or Smart-ID for authentication and digital signatures. Both user interface options (browser and app) are considered and when it is not specifically stated, attacks and proposed countermeasures are relevant for both cases.</p>
+</div>
+<div class="paragraph">
+<p>Effective security measures for mitigating attacks are described in the following sections. Some security conscious RPs have already deployed them. Others should also consider implementing and deploying these measures and defences to prevent cybercriminals from being successful in their actions.</p>
+</div>
+<div class="paragraph">
+<p>Guidelines are written in affirmative and imperative
+mood, however, not all security measures are considered mandatory for all RPs. Nevertheless,
+there&#8217;s nobody else, who can implement those defences and security
+measures on their behalf. It is the relying party&#8217;s opportunity and
+responsibility to carefully assess these risks and select appropriate
+countermeasures.</p>
+</div>
+<div class="sect2">
+<h3 id="_terms_and_concepts"><a class="anchor" href="#_terms_and_concepts"></a>1.1. Terms and concepts</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Relying Party (RP, e-service provider)</dt>
+<dd>
+<p>Organisation developing and managing the website and providing some service to its users. The organisation may bear financial losses in case cybercriminals are successful with their attacks.</p>
+</dd>
+<dt class="hdlist1">Website (e-service)</dt>
+<dd>
+<p>Information system built by RP and uses Mobile-ID or Smart-ID service to authenticate users and to create digital signatures. The website is integrated with the Mobile-ID RP API (<a href="https://github.com/SK-EID/MID" class="bare">https://github.com/SK-EID/MID</a>) or the Smart-ID RP API (<a href="https://github.com/SK-EID/smart-id-documentation" class="bare">https://github.com/SK-EID/smart-id-documentation</a>).</p>
+</dd>
+<dt class="hdlist1">App</dt>
+<dd>
+<p>RP&#8217;s mobile application running on a user&#8217;s device. The app is used to interact with the RP&#8217;s e-service and in the background, the app is communicating to the RP&#8217;s backend or website.</p>
+</dd>
+<dt class="hdlist1">Users</dt>
+<dd>
+<p>Natural persons with registered Mobile-ID/Smart-ID accounts. Users authenticate to the RP&#8217;s e-service and create digital signatures with the browser or the RP&#8217;s app.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.2. Feedback</h3>
+<div class="paragraph">
+<p>All feedback to this document and proposed security measures is much appreciated. Please send it to the e-mail address <a href="mailto:support@sk.ee?subject=Feedback">support@sk.ee</a> on the Secure Implementation Guidance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_threats_and_attacks"><a class="anchor" href="#_threats_and_attacks"></a>2. Threats and attacks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes common attacks, which have been tried in the past against RPs, against their users and against SK ID Solutions. Giving a brief overview of the attacks is necessary as it may be the case some RPs are not aware of some of the attacks and may erroneously think they are safe. Also, not all countermeasures are effective against every possible attack. RPs will need to consider, which attacks could have the most devastating impact on their business and therefore, which countermeasures should be deployed first.</p>
+</div>
+<div class="paragraph">
+<p>Attacks are described in a generic way and don&#8217;t differentiate between browser, app, ID-cards, Mobile-ID and Smart-ID.</p>
+</div>
+<div class="sect2">
+<h3 id="_user_mistakes"><a class="anchor" href="#_user_mistakes"></a>2.1. User mistakes</h3>
+<div class="sect3">
+<h4 id="_risk_login_by_mistake"><a class="anchor" href="#_risk_login_by_mistake"></a>2.1.1. Risk: Login by mistake</h4>
+<div class="paragraph">
+<p>User starts the login process on the RP&#8217;s website or app. They enter national identity code, but sometimes make a small error in the code. By random chance the entered incorrect code corresponds to another real person, who also has a Smart-ID or Mobile-ID account. Smart-ID/Mobile-ID system initiates the authentication transaction for the wrong user and the phone of another user wakes up and displays the authentication consent screen.</p>
+</div>
+<div class="paragraph">
+<p>It has occurred in the past the other user accepted the foreign consent dialog without verifying it and without having second thoughts confirmed it by entering PIN1, behaving almost like on auto-pilot. The session of the original user was then authenticated by the RP&#8217;s website, although the original user is logged into the wrong person&#8217;s account.</p>
+</div>
+<div class="paragraph">
+<p>There was no malicious attempt in the beginning, it was purely accidental error by both users.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_harassment_and_coercion_attacks"><a class="anchor" href="#_harassment_and_coercion_attacks"></a>2.2. Harassment and coercion attacks</h3>
+<div class="sect3">
+<h4 id="_attack_user_annoyance"><a class="anchor" href="#_attack_user_annoyance"></a>2.2.1. Attack: User annoyance</h4>
+<div class="paragraph">
+<p>In this case, an attacker is specifically targeting some particular user. The attacker tries to irritate and to annoy the user by repeatedly initiating an authentication session with the user&#8217;s identity. This sends nefarious Smart-ID/Mobile-ID notifications to the user&#8217;s phone and disturbs normal phone usage. Attacker could ask for a ransom to cease the attack or simply cause inconvenience as a revenge.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_attack_denial_of_service_attack_against_rp"><a class="anchor" href="#_attack_denial_of_service_attack_against_rp"></a>2.2.2. Attack: Denial of service attack against RP</h4>
+<div class="paragraph">
+<p>In a more advanced situation, an attacker targets the RP itself and starts many authentication sessions with the app or website of RP, using some scripted and automated tools. The attacker could use random usernames and generated national identity codes and this results nefarious notifications on phones of multiple users and disturbs normal phone usage.</p>
+</div>
+<div class="paragraph">
+<p>Not only does this cause inconvenience to users, but also, this kind of attack could result in a large number of complaints to SK ID Solutions and SK could be forced to temporarily cut off the Smart-ID and/or Mobile-ID service to the RP.</p>
+</div>
+<div class="paragraph">
+<p>This results in the outage of the RP&#8217;s website or app, because other users cannot login either. Attacker could ask for a ransom to cease the attack or simply cause damage as a revenge.</p>
+</div>
+<div class="paragraph">
+<p>An advanced version of this attack targets multiple RP&#8217;s and in such a widespread attack, SK could be forced to temporarily cut off the Smart-ID and/or Mobile-ID service to those RPs, who are not able to filter the malicious authentication attempts by themselves.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_leaks"><a class="anchor" href="#_data_leaks"></a>2.3. Data leaks</h3>
+<div class="sect3">
+<h4 id="_attack_user_data_mining"><a class="anchor" href="#_attack_user_data_mining"></a>2.3.1. Attack: User data mining</h4>
+<div class="paragraph">
+<p>An attacker is trying to extract and deduce information about Mobile-ID/Smart-ID users through the RP&#8217;s website or other information systems or software. For example, the attacker initiates a Smart-ID authentication session on the RP&#8217;s website with a generated national identity code. If no error message is returned, the attacker can deduce that this particular user has a Smart-ID account and it may be worthwhile to try some further attacks against that particular user.</p>
+</div>
+<div class="paragraph">
+<p>In more advanced situation, the attacker may be able to use the RP&#8217;s information system to download the user&#8217;s signing certificate.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_phishing_attacks"><a class="anchor" href="#_phishing_attacks"></a>2.4. Phishing attacks</h3>
+<div class="paragraph">
+<p>Phishing attacks are intended to confuse users and to gain access to the RP&#8217;s e-service under the user&#8217;s name. Usually, these attacks are automated and distributed in large quantities via spam e-mails. The attacker hopes some percentage of users, who are not aware of risks and are not careful, will "take the bait" and be "hooked". Hence, the name "phishing" (fishing). However, e-mail and browsers are not the only attack vector.</p>
+</div>
+<div class="paragraph">
+<p>In case the RP requires digital signatures in order to commit an operation or transaction on the e-service, the attacker tries to further confuse the user and will try to get the user to enter PIN2 for the signing request as well.</p>
+</div>
+<div class="sect3">
+<h4 id="_attack_phishing_with_fully_automated_website"><a class="anchor" href="#_attack_phishing_with_fully_automated_website"></a>2.4.1. Attack: Phishing with fully automated website</h4>
+<div class="paragraph">
+<p>Previously, phishing has been attempted in a manual (non-automated) ways and with simple (static) counterfeit websites. However, with advances in attack tools, more powerful attackers must be considered. Nowadays, they are able to build authentic looking and well-functioning dynamic websites, which proxy authentic HTML pages and images from the original website of the RP.</p>
+</div>
+<div class="paragraph">
+<p>General steps of such kind of phishing attacks are following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>An attacker sends users a phishing e-mail with a URL to the proxy website and waits until the user connects to the attacker&#8217;s website. Automatic tools then connect from the proxy website to the original website of the RP.</p>
+</li>
+<li>
+<p>The user enters all the required information (username, national identity code, &#8230;&#8203;) and starts authenticating on the attacker&#8217;s website.</p>
+</li>
+<li>
+<p>The proxy website sends the same information to the original website and starts the same kind of authentication session there as well and mediates back the correct Mobile-ID/Smart-ID verification code and any other displayed information.</p>
+</li>
+<li>
+<p>The user sees the authentication dialog on the mobile device, with correct serviceName, correct displayText and correct verification code. The user will consent to the authentication dialog and enters PIN1, although the attacker&#8217;s proxy will be logged in to the user&#8217;s account at the RP&#8217;s website.</p>
+</li>
+<li>
+<p>After logging in, the attacker&#8217;s proxy waits until the user initiates the operation or transaction and changes details of the transaction on the fly (for example, change the destination bank account number of the transfer order) and starts the changed transaction on the original website.</p>
+</li>
+<li>
+<p>The user enters the PIN2 to confirm the transaction, but it will be the attacker&#8217;s changed transaction that will be executed.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_attack_social_engineering_over_phone"><a class="anchor" href="#_attack_social_engineering_over_phone"></a>2.4.2. Attack: Social engineering over phone</h4>
+<div class="paragraph">
+<p>An attacker makes a phone call to a user, posing as an employee of the RP (or some other authoritative person, for example, police officer) and persuades the user that they need to perform a Mobile-ID/Smart-ID authentication in order to confirm something fictional.</p>
+</div>
+<div class="paragraph">
+<p>General steps of such kind of phishing attacks are following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>An attacker gathers the required information (username, national identity code, &#8230;&#8203;) from the user or has already them at hand before the phone call.</p>
+</li>
+<li>
+<p>The attacker navigates with the browser to the RP&#8217;s original website and starts the authentication session under the name of the user. Website initiates the Mobile-ID/Smart-ID authentication and displays the verification code to the attacker. (Instead of the website, the attacker could use the RP&#8217;s app as well.)</p>
+</li>
+<li>
+<p>The attacker informs the user that Mobile-ID/Smart-ID authentication needs to be performed and tells them the verification code and asks to complete the authentication on the mobile device.</p>
+</li>
+<li>
+<p>The user verifies the authentication dialog on the device, consents and enters PIN1.</p>
+</li>
+<li>
+<p>The Browser of the attacker is logged into the RP&#8217;s website under the user&#8217;s identity.</p>
+</li>
+<li>
+<p>The attacker starts an operation (for example, a transfer order) on the RP&#8217;s website. The website initiates the Mobile-ID/Smart-ID digital signature operation and displays the verification code to the attacker.</p>
+</li>
+<li>
+<p>The attacker informs the user, still on the phone call, that Mobile-ID/Smart-ID digital signature needs to be created as well, and tells them the verification code and asks to complete the signing operation on the mobile device.</p>
+</li>
+<li>
+<p>The user verifies the digital signature dialog on the mobile device, consents and enters PIN2.</p>
+</li>
+<li>
+<p>The operation on the website of the RP is executed.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_security_measures_for_rps"><a class="anchor" href="#_security_measures_for_rps"></a>3. Security measures for RPs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section lists security measures, which can be deployed by the RP itself in order to protect from threats and attacks listed in the previous section.</p>
+</div>
+<div class="sect2">
+<h3 id="_effectiveness_of_proposed_security_measures"><a class="anchor" href="#_effectiveness_of_proposed_security_measures"></a>3.1. Effectiveness of proposed security measures</h3>
+<div class="sect3">
+<h4 id="_requiredness_and_applicability"><a class="anchor" href="#_requiredness_and_applicability"></a>3.1.1. Requiredness and applicability</h4>
+<div class="paragraph">
+<p>This table describes proposed security measures. It includes the following information:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In case the proposed security measure is considered mandatory for customers of SK ID Solutions, it is marked as "MUST". In case it is recommended, it is marked as "SHOULD".</p>
+</li>
+<li>
+<p>Information whether the security measure can be applied to websites and/or apps. Most of the measures are universal, but there are specific measures, such as "keeping track of trusted browsers" that apply only in certain situations.</p>
+</li>
+<li>
+<p>Information whether the security measure can be applied in case of ID-card, Mobile-ID and/or Smart-ID integration.</p>
+</li>
+</ol>
+</div>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Security measure</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Applicable with websites</th>
+<th class="tableblock halign-left valign-top">Applicable with mobile apps</th>
+<th class="tableblock halign-left valign-top">Applicable with Smart-ID</th>
+<th class="tableblock halign-left valign-top">Applicable with Mobile-ID</th>
+<th class="tableblock halign-left valign-top">Applicable with ID-card</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">secure TLS-CCA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">good <code>serviceName</code> and <code>displayText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">select correct VC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display last authentication details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display history of operations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display generic error messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">include details in displayText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ask for non-public id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track trusted browsers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track suspicious IP-addresses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">monitor e-service usage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">respond to incidents</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_mitigation_of_threats"><a class="anchor" href="#_mitigation_of_threats"></a>3.1.2. Mitigation of threats</h4>
+<div class="paragraph">
+<p>This table gives an overview of security measure relations to the described threats.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In case there&#8217;s a direct mitigation effect and the measure helps to prevent the attack, the cell has "yes".</p>
+</li>
+<li>
+<p>In case the effect is not as strong or in case the security measure only helps to detect the attack, the cell has "some".</p>
+</li>
+<li>
+<p>In case there&#8217;s no relation, the cell has "no".</p>
+</li>
+</ol>
+</div>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Security measure</th>
+<th class="tableblock halign-left valign-top">Login by mistake</th>
+<th class="tableblock halign-left valign-top">User annoyance</th>
+<th class="tableblock halign-left valign-top">DOS against RP</th>
+<th class="tableblock halign-left valign-top">User data mining</th>
+<th class="tableblock halign-left valign-top">Phishing with proxy website</th>
+<th class="tableblock halign-left valign-top">Social engineering over the phone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">secure TLS-CCA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">good <code>serviceName</code> and <code>displayText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">select correct VC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display last authentication details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display history of operations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display generic error messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">include details in displayText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ask for non-public id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track trusted browsers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">track suspicious IP-addresses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">monitor e-service usage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">respond to incidents</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_implement_id_card_authentication_securely"><a class="anchor" href="#_defence_implement_id_card_authentication_securely"></a>3.2. Defence: implement ID-card authentication securely</h3>
+<div class="paragraph">
+<p>If RP uses <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security#Client-authenticated_TLS_handshake">TLS Client Certificate Authentication</a> (TLS-CCA) with smart-cards, issued by Estonian government as identity cards, it is important to implement the authentication securely.</p>
+</div>
+<div class="paragraph">
+<p>RP must implement the following checks and controls.</p>
+</div>
+<div class="sect3">
+<h4 id="_explicitly_trust_and_reject_ca_certificates"><a class="anchor" href="#_explicitly_trust_and_reject_ca_certificates"></a>3.2.1. Explicitly trust and reject CA certificates</h4>
+<div class="paragraph">
+<p>Using simple means just to include a number of CA certificates in the TLS server configuation is not enough. SK ID Solutions uses many CAs and TLS server needs information about them all in order to build trust chains. However, not all of the CAs are used to issue ID-card certificates and this information needs to be manually added. It is important to explicitly specify, which CA-s are trusted to issue the certificates for the CCA authentication and which CAs are not trusted to do that.</p>
+</div>
+<div class="paragraph">
+<p>For example the OpenSSL utility can be used for that:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /path/to/trusted_certificates_directory/
+wget https://c.sk.ee/EE-GovCA2018.pem.crt
+wget https://www.sk.ee/upload/files/EE_Certification_Centre_Root_CA.pem.crt
+wget https://c.sk.ee/esteid2018.pem.crt
+...
+openssl x509 -addreject clientAuth -trustout -in EE-GovCA2018.pem.crt -out EE-GovCA2018_trusted.pem.crt
+openssl x509 -addreject clientAuth -trustout -in EE_Certification_Centre_Root_CA.pem.crt -out EE_Certification_Centre_Root_CA_trusted.pem.crt
+openssl x509 -addtrust clientAuth -trustout -in esteid2018.pem.crt -out esteid2018_trusted.pem.crt
+...
+rm EE-GovCA2018.pem.crt
+rm EE_Certification_Centre_Root_CA.pem.crt
+rm esteid2018.pem.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that it is important to include the certificate of root CAs and implicitly configure clientAuth reject for them.</p>
+</div>
+<div class="paragraph">
+<p>When configuring Apache in this way, it is also neccessary to use the SSLCADNRequestPath directive, which specifies the list of acceptable CA-s, which are sent to the client over the TLS handshake.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /path/to/client_request_CAs_directory/
+wget https://c.sk.ee/esteid2018.pem.crt
+openssl rehash /path/to/client_request_CAs_directory/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After specifying trust settings for individual certificates, allow TLS server to only trust these CAs and to request specific certificates from clients (configuration example is given for Apache mod_ssl):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-apache hljs" data-lang="apache">#...
+SSLEngine on
+SSLCertificateFile ...
+SSLCertificateKeyFile ...
+SSLCACertificatePath /path/to/trusted_certificates_directory/
+SSLCADNRequestPath /path/to/client_request_CAs_directory/
+#...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_id_card_authentication_using_web_eid"><a class="anchor" href="#_id_card_authentication_using_web_eid"></a>3.2.2. ID-card authentication using Web-eID</h4>
+<div class="paragraph">
+<p>Web-EID provides authentication using a custom protocol instead of TLS CCA. When implementing it adhere to the requirements and configuration outlined in the documentation.</p>
+</div>
+<div class="paragraph">
+<p>Web-eID validation libraries handle correct verification of ID-card certificates on your behalf. Keeping the Web-eID software libraries updated is critical.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://web-eid.eu/" class="bare">https://web-eid.eu/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_use_ocsp_to_check_for_the_validity_of_certificate"><a class="anchor" href="#_use_ocsp_to_check_for_the_validity_of_certificate"></a>3.2.3. Use OCSP to check for the validity of certificate</h4>
+<div class="paragraph">
+<p>SK Identity Solutions provides OCSP service to check for the validity of issued certificates. More details are available at <a href="https://www.skidsolutions.eu/en/services/validity-confirmation-services/" class="bare">https://www.skidsolutions.eu/en/services/validity-confirmation-services/</a></p>
+</div>
+<div class="paragraph">
+<p>Configuration example is given for Apache mod_ssl:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-apache hljs" data-lang="apache">#...
+SSLEngine on
+SSLOCSPEnable leaf
+SSLOCSPDefaultResponder "http://responder.example.com:8888/responder"
+SSLOCSPOverrideResponder on
+#...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_only_accept_certificates_with_trusted_issuance_policy"><a class="anchor" href="#_only_accept_certificates_with_trusted_issuance_policy"></a>3.2.4. Only accept certificates with trusted issuance policy</h4>
+<div class="paragraph">
+<p>It is important to only accept these certificates, which correspond to production ID-cards, Digi-ID and other identity documents. An attacker could present other certificates as well and in some cases this might lead to a vulnerability.</p>
+</div>
+<div class="paragraph">
+<p>Issuance policy is recorded in the certificate extension <code>X509v3 Certificate Policies</code> and contains an OID identifier. Identifier values of issuance policies are listed at the page <a href="https://www.skidsolutions.eu/en/repository/CP/" class="bare">https://www.skidsolutions.eu/en/repository/CP/</a> and <a href="https://www.skidsolutions.eu/upload/files/SK-CPR-ESTEID2018-EN-v1_2_20200630.pdf" class="bare">https://www.skidsolutions.eu/upload/files/SK-CPR-ESTEID2018-EN-v1_2_20200630.pdf</a>.</p>
+</div>
+<div class="paragraph">
+<p>Following table compiles a helpful list of policies relevant to accept in the TLS-CCA authentication sessions.</p>
+</div>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name of the CP</th>
+<th class="tableblock halign-left valign-top">Issuing CA</th>
+<th class="tableblock halign-left valign-top">OID value (authentication certificate)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for newer ID-card of Estonian citizen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51361.1.1.1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for newer ID-card of EU citizen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51361.1.1.2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for newer Digi-ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51361.1.1.3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for digital identity card of e-resident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51361.1.1.4</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for residence card of long-term resident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51361.1.1.5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for residence card of temporary resident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51361.1.1.6</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for residence card of family members of citizen of EU</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51361.1.1.7</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CP for diplomatic identity card</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESTEID2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.3.6.1.4.1.51455.1.1.1</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Unfortunately, filtering is not possible with only a TLS-server configuration. RP would need to export the full client certificate from the TLS session to the application server and then apply filtering with PHP or other applications.</p>
+</div>
+<div class="paragraph">
+<p>Configuration example with Apache mod_ssl:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-apache hljs" data-lang="apache">#...
+SSLEngine on
+#...
+SSLOptions +ExportCertData
+#...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and source code example with PHP:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$cert = getenv('SSL_CLIENT_CERT');
+$x509 = openssl_x509_parse($cert);
+$certificatePolicies = 'Policy: 1.3.6.1.4.1.51361.1.1.1';
+if(preg_match("/$certificatePolicies$/m", $x509['extensions']['certificatePolicies']) == 0) {
+	echo "OK\n";
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that demo code examples only use a single OID value. Production systems would have to use the whole table.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_only_accept_certificates_with_trusted_key_usage"><a class="anchor" href="#_only_accept_certificates_with_trusted_key_usage"></a>3.2.5. Only accept certificates with trusted key usage</h4>
+<div class="paragraph">
+<p>It is important to only accept these certificates, which have the "TLS Web Client Authentication" extension and are issued by trusted CAs.</p>
+</div>
+<div class="paragraph">
+<p>Partial configuration example for Apache:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-apache hljs" data-lang="apache">#...
+&lt;Location "/"&gt;
+Require expr "TLS Web Client Authentication, E-mail Protection" in PeerExtList('extendedKeyUsage')
+&lt;/Location&gt;
+#...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and partial configuration example for F5 BIG-IP loadbalancer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-tcl hljs" data-lang="tcl">when CLIENTSSL_CLIENTCERT {
+	HTTP::release
+	if { [SSL::cert count] &lt; 1 } {
+        reject
+	}
+	set client_cert [SSL::cert 0]
+	set clientCA [X509::cert_fields $client_cert [SSL::verify_result] issuer ]
+	#If issuer contains "-SK 20" assume it is a SK certificate and process further
+	if {($clientCA contains "-SK 20") } {
+			if {($clientCA contains "ESTEID-SK 20") } {
+			#If issued by ESTEID check if it is mobile-id or not, mobile-ID profile doesn't have TLS web auth enabled
+			if { !([X509::extensions $client_cert] contains "TLS Web Client Authentication") } {
+				log local0. "Invalid certificate used for authentication, IP: [IP::client_addr], Issued by: $clientCA"
+				reject
+			}
+		} else {
+			#Not issued by ESTEID, shouldn't allow TLS auth
+			log local0. "Invalid certificate used for authentication, IP: [IP::client_addr], Issued by: $clientCA"
+			reject
+		}
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_use_distinguishing_and_well_known_servicename_and_displaytext"><a class="anchor" href="#_defence_use_distinguishing_and_well_known_servicename_and_displaytext"></a>3.3. Defence: use distinguishing and well-known <code>serviceName</code> and <code>displayText</code></h3>
+<div class="paragraph">
+<p><code>serviceName</code> is a short text string, displayed to the user in the Mobile-ID/Smart-ID authentication or digital signature consent dialog. It helps user to verify that the request is coming from a trusted source. <code>serviceName</code> will be displayed on the top of the consent screen, in bold letters.</p>
+</div>
+<div class="paragraph">
+<p>SK ID Solutions have established basic requirements that <code>serviceName</code> should contain one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>name of the company,</p>
+</li>
+<li>
+<p>a DNS domain which your website is using,</p>
+</li>
+<li>
+<p>a registered trademark, associated with the website or app, which the user is interacting with,</p>
+</li>
+<li>
+<p>a brand name, associated with the website or app, which the user is interacting with.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Generic <code>serviceName</code>, which does not help user to distinguish between different RP-s, are not accepted (such as "login", "authentication", etc).</p>
+</div>
+<div class="paragraph">
+<p><code>displayText</code> is a short text string, displayed to the user in the Mobile-ID or Smart-ID authentication or digital signature consent dialog. It helps the user understand the context of the operation. <code>displayText</code> will be displayed on the authentication or signing consent screen, under the verification code number.</p>
+</div>
+<div class="paragraph">
+<p>The RP can use this to distinguish between the different information systems or different services within the RP, when requesting the authentication. When requesting a digital signature, the RP can use this to give information about the nature of signature, such as the name of the document to be signed or information about the transfer order to be executed.</p>
+</div>
+<div class="paragraph">
+<p>For example, in case the RP is using Mobile-ID or Smart-ID to authenticate users, who are calling the RP&#8217;s helpdesk via phone, these authentication requests must use different <code>displayText</code> than requests sent by the RP&#8217;s website. This way the user has greater confidence, that the person on the phone (a helpdesk agent, who might be out-sourced from an external company) is not logging into the website of the RP under the name of the user.</p>
+</div>
+<div class="paragraph">
+<p>With signing operations, there&#8217;s also possibility to use much longer and descriptive <code>displayText</code>. For more details, see section <a href="#defence-show-details-of-transactions-in-the-displaytext-with-smart-id">Defence: show details of transactions in the displayText</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_ask_users_to_select_correct_verification_code_with_smart_id_app"><a class="anchor" href="#_defence_ask_users_to_select_correct_verification_code_with_smart_id_app"></a>3.4. Defence: ask users to select correct verification code with Smart-ID app</h3>
+<div class="paragraph">
+<p>At the basic security level, Smart-ID is using a 4-digit verification code, which is displayed to a user on the RP&#8217;s website and on the Smart-ID app. The user is expected to match these and thus verify they consent to the correct authentication or signature request.</p>
+</div>
+<div class="paragraph">
+<p>At more advanced security level, the RP can request the Smart-ID app should display three verification codes (one correct code and two random codes) and the user is required to select the correct code, which is displayed by the RP&#8217;s website or app. In case the user doesn&#8217;t choose the correct code, the Smart-ID app aborts the request.</p>
+</div>
+<div class="paragraph">
+<p>This can be requested in the Smart-ID RP API call using the <code>verificationCodeChoice</code> interaction type. More information in the API documentation: <a href="https://github.com/SK-EID/smart-id-documentation/tree/v2" class="bare">https://github.com/SK-EID/smart-id-documentation/tree/v2</a></p>
+</div>
+<div class="paragraph">
+<p>In case the RP is using an app it is recommended to include a small delay after showing the verification code to user and before starting the transaction on the RP-API. This way, the user has additional time to look at the verification code on the RP&#8217;s app, before the screen of the Smart-ID app is displayed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_display_information_about_last_authentication_to_users"><a class="anchor" href="#_defence_display_information_about_last_authentication_to_users"></a>3.5. Defence: display information about last authentication to users</h3>
+<div class="paragraph">
+<p>In order to increase trust and confidence in users, it is useful to show details of the last successful session. The RP must prominently display the information about the last authentication, including such elements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Date and time of the last successful authentication.</p>
+</li>
+<li>
+<p>Geographic location (country) of the last successful authentication.</p>
+</li>
+<li>
+<p>Short human readable description of the browser last used for successful authentication (such as "Chrome on Windows", "Safari on Mac"), deduced from the browser&#8217;s <code>user-Agent</code> header.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will help users to recognise the last login details and increase their confidence that nobody else has accessed their account after their last login. If they don&#8217;t recognise the last session, the user can contact the RP&#8217;s user support and raise the alarm.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_display_generic_error_messages"><a class="anchor" href="#_defence_display_generic_error_messages"></a>3.6. Defence: display generic error messages</h3>
+<div class="paragraph">
+<p>With password-based authentication systems, it was a good practice (<a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-responses" class="bare">https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-responses</a>) to show same error message for two cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>username was incorrect and the account didn&#8217;t exist, and</p>
+</li>
+<li>
+<p>username was correct, but the password was incorrect.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This helps to prevent the user account enumeration (<a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/04-Testing_for_Account_Enumeration_and_Guessable_User_Account">WSTG-IDNT-04</a>). With Mobile-ID and Smart-ID services, following the same principle helps to prevent data mining for attack preparation. It also makes some phishing attacks more difficult.</p>
+</div>
+<div class="paragraph">
+<p>Mobile-ID RP API and Smart-ID RP API return different error codes to help debuging:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mobile-ID RP API, HTTP 200, "result": "NOT_MID_CLIENT"&#8201;&#8212;&#8201;"Given user has no active certificates and is not MID client"</p>
+</li>
+<li>
+<p>Smart-ID RP API, HTTP 404&#8201;&#8212;&#8201;"object described in URL was not found, essentially meaning that the user does not have an account in Smart-ID system"</p>
+</li>
+<li>
+<p>Smart-ID RP API, HTTP 471&#8201;&#8212;&#8201;"No suitable account of requested type found, but user has some other accounts"</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, it is the reponsibility of the RP not to show different UI messages for those cases, but to follow generic, uniform pattern:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Request new authentication session from the Mobile-ID or Smart-ID API with the user identifier.</p>
+</li>
+<li>
+<p>In case the API responded with the new authentication session:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Display the text "Authentication session started, verification code 1234" with the value of the verification code given by Mobile-ID or Smart-ID API</p>
+</li>
+<li>
+<p>In case the authentication is successful, continue with the login</p>
+</li>
+<li>
+<p>In case the authentication session is timed out after 120 seconds, show the error message "User account not found or user didn&#8217;t responded in time"</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>In case the API responded with "NOT_MID_CLIENT" or "HTTP 404" or "HTTP 471":</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Generate random verification code value</p>
+</li>
+<li>
+<p>Display the text "Authentication session started, verification code 1234"</p>
+</li>
+<li>
+<p>Wait for 120 seconds and then show the error message "User account not found or user didn&#8217;t responded in time"</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_show_history_of_operations_on_the_website"><a class="anchor" href="#_defence_show_history_of_operations_on_the_website"></a>3.7. Defence: show history of operations on the website</h3>
+<div class="paragraph">
+<p>Good design of the website should include a way for a user to see the history of their actions. For example when the user logged in, what operations the user has executed, what orders the user has placed and so on. This provides the user visibility and transparency about what is happening on the user&#8217;s account. It also provides an opportunity to see actions or operations the user doesn&#8217;t recognise and that could point to security incidents. On the other hand, when the user does recognise all the history, it will increase the trust in the website and services of the RP.</p>
+</div>
+<div class="paragraph">
+<p>Also, the RP must allow the user to download digitally signed documents that were created after entering PIN2. This applies to any operation that uses PIN2 for additional consent. For example, after signing the terms and conditions for the e-service or when signing a transfer order on the RP&#8217;s website the user must be allowed to download the signed document.</p>
+</div>
+<div class="paragraph">
+<p>This allows the signer to verify contents of the signed document.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_show_details_of_transactions_in_the_displaytext_with_smart_id"><a class="anchor" href="#_defence_show_details_of_transactions_in_the_displaytext_with_smart_id"></a>3.8. Defence: show details of transactions in the displayText with Smart-ID</h3>
+<div class="paragraph">
+<p><code>displayText</code> is a short text string, displayed to a user in the Smart-ID signing consent dialog that helps the user understand the context of the operation. There are two options for the string length of the <code>displayText</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>short <code>displayText</code> string can be up to 60 characters and it will be displayed as a single line below the verification code, on the same screen as the keypad for entering PIN2.</p>
+</li>
+<li>
+<p>longer <code>displayText</code> string can be up to 200 characters and it will be displayed on a separate screen to gain the user&#8217;s attention.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In case there&#8217;s an advanced phishing attack in progress and an attacker is presenting a modified website to the user, with the modified operation details, such as destination account number of the transfer order, the user cannot detect the attack solely with the user&#8217;s browser. However, the string of the <code>displayText</code> is coming directly from the RP and the attacker cannot modify it to deceive the user. This way, the RP can use a secondary authentic channel to allow the user to verify and confirm the operation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_ask_for_multiple_or_non_public_user_identifiers"><a class="anchor" href="#_defence_ask_for_multiple_or_non_public_user_identifiers"></a>3.9. Defence: ask for multiple or non-public user identifiers</h3>
+<div class="paragraph">
+<p>A common way to start the Mobile-ID or Smart-ID authentication is to ask for a user identifier, either the phone number or national identity number. However, these numbers are not secret and even though they are not outright published, there are ways for an attacker to obtain the national identity number of the user and start authenticating on their behalf. It is also possible for the attacker to create automated scripts to simply generate a list of numbers and try them all to start many authentication sessions under the name of multiple users.</p>
+</div>
+<div class="paragraph">
+<p>A better approach is to ask for an additional identifier. With Mobile-ID, a good option is to ask for both phone number and national identity number. The Mobile-ID API verifies that those identifiers match with each other and doesn&#8217;t initiate the authentication session otherwise.</p>
+</div>
+<div class="paragraph">
+<p>With Smart-ID, a good option is to ask for national identity number and some not-so-public identifier as well. It could be a username, which the users can select by themselves, the account contract number or something else only the user knows and is convenient for them to remember and type.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_keep_track_of_trusted_and_unknown_browsers"><a class="anchor" href="#_defence_keep_track_of_trusted_and_unknown_browsers"></a>3.10. Defence: keep track of trusted and unknown browsers</h3>
+<div class="sect3">
+<h4 id="_description"><a class="anchor" href="#_description"></a>3.10.1. Description</h4>
+<div class="paragraph">
+<p>A useful security measure is to keep track of trusted browser instances for each user. This allows the RP to take different actions whether the user is connecting from their usual (trusted) browser or attempting to login from a previously unseen, unknown browser. In case of the latter an attacker may be attempting a phishing attack and the RP could ask for more information or alert the user.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_algorithm"><a class="anchor" href="#_algorithm"></a>3.10.2. Algorithm</h4>
+<div class="paragraph">
+<p>The tracking should be done with the HTTP cookie (or with similar client-side storage feature supported by modern browsers) with the content of randomly generated identifier. The status of each browser instance for the user is then tracked in the RP&#8217;s website database.</p>
+</div>
+<div class="paragraph">
+<p>The fact about placing such a cookie in the browser of the user must be declared in the public cookie policy.</p>
+</div>
+<div class="paragraph">
+<p>The browser cookie has to be set with <code>Secure</code> and <code>HttpOnly</code> flags. The scope of the cookie has to be the URL of the RP&#8217;s website. In case of a phishing attack, the proxied website will be setup on a different URL and the browser will not send the value of that cookie to the attacker&#8217;s website. Therefore, the attacker cannot pose to the RP&#8217;s website as the trusted browser.</p>
+</div>
+<div class="paragraph">
+<p>In order to manage the data associated with the tracking, each user account must have the following extra data for each browser which the user has connected from in the past:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>displayName</code>&#8201;&#8212;&#8201;Human recognisable description of the browser, like "Chrome on Windows" or "Safari on my work Mac", etc. Simple names with tolerable errors could be generated automatically from the browser&#8217;s <code>User-Agent</code> header with the help of software libraries and toolkits. The RP could also allow the user to edit this field, so that the user can provide their own meaningful names.</p>
+</li>
+<li>
+<p><code>lastSeen</code>&#8201;&#8212;&#8201;Timestamp, when that browser was last used by the user to connect to the RP&#8217;s website.</p>
+</li>
+<li>
+<p><code>hashedTrackingID</code>&#8201;&#8212;&#8201;Hashed value of the randomly generated identifier. Length of the identifier should be at least 32 bytes. The Base64 encoded clear-text value of the identifier is placed in the browser&#8217;s cookie and the hashed value is stored in the database. Storing only hashed values makes the database leak less dangerous. Salting hashes, a common practice when when storing passwords, is not required, because <code>trackingID</code> is already long enough with random bytes and additional protection against brute-forcing is not essential.</p>
+</li>
+<li>
+<p><code>trustLevel</code>&#8201;&#8212;&#8201;Information about whether that browser instance could be considered trusted or not. Proposed algorithm uses values "seenOnce", "seenTwice" and "trusted". The RP could use more levels if required.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that in case multiple users are using the same browser instance then the same <code>hashedTrackingID</code> value will be stored for multiple user accounts. Care must be taken to lookup the correct record, based on the user account, which is starting the authentication.</p>
+</div>
+<div class="paragraph">
+<p>A general algorithm to keep track of the browsers and to manage the <code>trustLevel</code> is described below.</p>
+</div>
+<div class="paragraph">
+<p>When the user navigates with the browser to the RP&#8217;s website and requests the Smart-ID authentication, the following cases are possible:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the connecting browser&#8217;s <code>trustLevel</code> is not known (i.e. the browser didn&#8217;t send the cookie value or the cookie value doesn&#8217;t match any value of <code>hashedTrackingID</code> in the user&#8217;s account) and the user doesn&#8217;t have any other browser&#8217;s <code>trustLevel</code> as "trusted", proceed with the authentication as usual. After the successful authentication, the RP should update the browser&#8217;s <code>trustLevel</code> as "seenOnce".</p>
+</li>
+<li>
+<p>If the connecting browser&#8217;s <code>trustLevel</code> is not known and the user already has at least one other browser as "trusted", then the situation indicates a possible phishing attack. The RP should perform additional checks and controls.</p>
+</li>
+<li>
+<p>If the connecting browser&#8217;s <code>trustLevel</code> is "trusted", then the RP should proceed with the authentication. The situation indicates somewhat lower risk and the RP could decide not to execute some security measures, which are required otherwise, for example, asking the user to enter multiple identifiers. After successful authentication, the RP should update the <code>lastSeen</code> timestamp.</p>
+</li>
+<li>
+<p>If the connecting browser&#8217;s <code>trustLevel</code> is "seenOnce", then the RP should proceed with the authentication as usual. After the successful authentication, if the <code>lastSeen</code> timestamp was older than 24 hours, the browser&#8217;s <code>trustLevel</code> will be updated as "seenTwice".</p>
+</li>
+<li>
+<p>If the connecting browser&#8217;s <code>trustLevel</code> is "seenTwice", then the RP should proceed with the authentication as usual. After the successful authentication, if the <code>lastSeen</code> timestamp was older than 24 hours, the browser&#8217;s <code>trustLevel</code> will be set as "trusted".</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The described algorithm can be implemented and silently deployed by the RP without any additional security measures or checks actually performed in the first phase. Those browsers, which are regularly used by users, will eventually move to the "trusted" classification. In the next phase, additional security measures could be put into place and when the new connection is being made from an unknown browser, additional security measures will kick in and protect users.</p>
+</div>
+<div class="paragraph">
+<p>The following sections describe such additional security measures.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ask_national_identity_number_when_connecting_from_unknown_browser"><a class="anchor" href="#_ask_national_identity_number_when_connecting_from_unknown_browser"></a>3.10.3. Ask national identity number when connecting from unknown browser</h4>
+<div class="paragraph">
+<p>When the RP detects that a user has started authenticating from a known browser, the RP could withhold the requirement to ask for multiple user identifiers. Good simplification is to only require one identifier, such as the username of the user. After the username is entered on the RP&#8217;s website, the RP can lookup the user&#8217;s account information from the internal database and then initiate the Smart-ID authentication with the national identity number.</p>
+</div>
+<div class="paragraph">
+<p>However, when the RP detects the user has started an authentication session from an unknown browser, while he usually connects to the website from a different browser, the RP can ask for additional details from the user, to verify that it is indeed the user who is starting the authentication. Such details could be to the national identity number or something else, which the user knows, but the attacker might not know.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alert_user_with_smart_id_when_connecting_from_an_unknown_browser"><a class="anchor" href="#_alert_user_with_smart_id_when_connecting_from_an_unknown_browser"></a>3.10.4. Alert user with Smart-ID when connecting from an unknown browser</h4>
+<div class="paragraph">
+<p>When the RP detects that a user has started authentication from an unknown browser, while he usually connects to the website from a different browser, the RP can use the longer <code>displayText</code> and send an alert to the user. The alert would be sent in the same authentication session request as usual, but it will be displayed on a separate screen to the user during the authentication consent dialog.</p>
+</div>
+<div class="paragraph">
+<p>The RP could use a message, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"Authentication started from an unknown browser. Are you using a new computer?", or</p>
+</li>
+<li>
+<p>"It seems that you are not using your regular browser. Are you using a new computer and are you sure that you are on the correct website www.example-rp.com?"</p>
+</li>
+<li>
+<p>or something similar.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The message will be displayed on a separate screen from the usual PIN1 entry dialog and the user will be asked to either confirm or cancel. In case the user is really connecting from a new computer and is aware of this, they can press "Confirm". The authentication then proceeds, the user can enter PIN1 and the user&#8217;s browser will be logged in to the user&#8217;s account. However, if this comes to the user as a surprise and the user is actually using their regular computer, the user can press "Cancel" and investigate further.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_keep_track_of_suspicious_and_malicious_ip_addresses"><a class="anchor" href="#_defence_keep_track_of_suspicious_and_malicious_ip_addresses"></a>3.11. Defence: keep track of suspicious and malicious IP-addresses</h3>
+<div class="paragraph">
+<p>When a user connects to the RP&#8217;s e-service, either with a browser or with the RP&#8217;s app, it connects from the IP-address of the user&#8217;s device. In case an attacker makes the connection by itself or in case the attacker proxies the connection, the RP will see the attacker&#8217;s IP-address.</p>
+</div>
+<div class="paragraph">
+<p>There are commercial services, which provide the general information about IP-addresses. For example, they can tell if the IP-address is known to be used for the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sending spam messages, which may indicate the user connecting from such an IP-address might be using a compromised computer.</p>
+</li>
+<li>
+<p>Is known to be an open HTTP proxy host, which may indicate the user connecting from such an IP-address might be using a compromised computer or that the attacker is using this host to proxy their connection to the RP&#8217;s website.</p>
+</li>
+<li>
+<p>Is known to be used as a TOR exit node or an anonymising VPN service, which may indicate that the attacker could be using this to hide their connection to the RP&#8217;s website.</p>
+</li>
+<li>
+<p>Is known to be an IP-address of a hosting provider, data-centre or content delivery network. This may indicate that the requests coming from such IP-addresses are used to perform denial of service or data mining attack.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In addition to such commercial services, the RP&#8217;s own incident resolution team or security monitoring team could provide a list of IP-addresses that are related to known incidents or suspicious activities.</p>
+</div>
+<div class="paragraph">
+<p>The following sections describe possible actions to take  when there&#8217;s suspicion of an attack.</p>
+</div>
+<div class="sect3">
+<h4 id="_alert_user_with_smart_id_when_connecting_from_suspicious_ip_address"><a class="anchor" href="#_alert_user_with_smart_id_when_connecting_from_suspicious_ip_address"></a>3.11.1. Alert user with Smart-ID when connecting from suspicious IP-address</h4>
+<div class="paragraph">
+<p>RP can use the longer <code>displayText</code> and send an alert to the user. RP could use a message text, such as</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"Authentication started from an IP-address with open proxy service. Are you sure that you are on the correct website www.example-rp.com?",</p>
+</li>
+<li>
+<p>or something similar.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The message will be displayed on a separate screen from the usual PIN1 entry and the user will be asked to either confirm or cancel. There could be legitimate reasons why the user is using such IP-address or VPN service and if the user is aware of this, they can press "Confirm". However, if this comes to the user as a surprise, the user can press "Cancel" and investigate further.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_verify_human_users_with_connections_from_suspicious_ip_addresses"><a class="anchor" href="#_verify_human_users_with_connections_from_suspicious_ip_addresses"></a>3.11.2. Verify human users with connections from suspicious IP-addresses</h4>
+<div class="paragraph">
+<p>In case the source IP-address is used to send many authentication requests and there&#8217;s suspicion that a denial of service attack is in progress, RP can perform additional verification on the browser with a CAPTCHA. This can slow down the attackers and forces them to change their scripts and tactics.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_block_connections_from_malicious_ip_addresses"><a class="anchor" href="#_block_connections_from_malicious_ip_addresses"></a>3.11.3. Block connections from malicious IP-addresses.</h4>
+<div class="paragraph">
+<p>In case the source IP-address is associated with a previous fraud case and is known to be malicious, the RP can block this connection and deny service.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_carefully_monitor_website_usage"><a class="anchor" href="#_defence_carefully_monitor_website_usage"></a>3.12. Defence: carefully monitor website usage</h3>
+<div class="paragraph">
+<p>The RP must first record enough information about connections and operations users regularly attempt on the RP&#8217;s website. It is then possible to apply log analysis and other security intelligence to the available information (and cross-reference with other data sources) to deduce with some certainty:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>there is an ongoing attack;</p>
+</li>
+<li>
+<p>some source (IP-address, browser, phone number, e-mail address) behaves in a weird way and perhaps should be more closely monitored or added to the list of suspicious IP-addresses or malicious IP-addresses;</p>
+</li>
+<li>
+<p>some logs might indicate that there&#8217;s an unknown vulnerability in the RP&#8217;s website.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defence_respond_swiftly_and_decisively_to_security_incidents"><a class="anchor" href="#_defence_respond_swiftly_and_decisively_to_security_incidents"></a>3.13. Defence: respond swiftly and decisively to security incidents</h3>
+<div class="paragraph">
+<p>Procedures to respond to fraud and security incidents must be developed and communicated and practiced within the RP organization. When it is known that the RP responds quickly to attacks and attackers are caught by the law enforcement it also acts as a deterrent to future attackers.</p>
+</div>
+<div class="paragraph">
+<p>The RP must be familiar with services and guidelines from law enforcement authorities and other bodies. It is useful to establish contacts with these organisations before the urgent need arises. Good opportunity to do that is to participate in exercise sessions with the local cyber defence league unit.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_personal_data_processing"><a class="anchor" href="#_personal_data_processing"></a>4. Personal data processing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some security measures described in this document require processing additional data about users (for example, which IP-addresses they have used) and require placing additional information on their browser cookies. This means that the RP must re-evaluate their personal data processing guidelines and public policies.</p>
+</div>
+<div class="paragraph">
+<p>For using cookies a cookie consent must be asked from the data subject and the information about using such cookie must be declared in the public cookie policy.</p>
+</div>
+<div class="paragraph">
+<p>For processing personal data the RP must make sure that they have a lawful basis for doing so (see GDPR art 6(1)). In case the processing is likely to result in a high risk to the rights and freedoms of data subjects a data protection impact assessment (DPIA) must be carried out. It is also useful to review the RP&#8217;s privacy policy and update it with relevant information.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Certificate choice session :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/smart-id-documentation/3.0.0/certificatechoice_session.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance - DRAFT</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="smart-id-documentation" data-version="3.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="sessions.html">Session types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="signing_session.html">Signing session</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session_status.html">Session status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="object_references.html">REST object references</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="request_properties.html">Additional request properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_details.html">REST API details</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">3.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="sessions.html">Session types</a></li>
+    <li><a href="certificatechoice_session.html">Certificate choice session</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/certificatechoice_session.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Certificate choice session</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This method initiates certificate choice between multiple signing certificates the
+user may hold on his/her different mobile devices.</p>
+</div>
+<div class="paragraph">
+<p>Having a correct certificate is needed for giving signatures under <code>*AdES</code>
+schemes. The method can be ignored if the signature scheme does not
+mandate presence of certificate in the document structure that is to be
+signed.</p>
+</div>
+<div class="paragraph">
+<p>In practice, the user is the one who confirms which device (and therefore signing certificate) she will use for the upcoming signing operation. How this is done depends on which endpoint/flow the RP has chosen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in the dynamic link flow (the dynamic link based endpoint), the user interacts with the dynamic link (QR code, Web2App link, or App2App link) on a certain device, thereby indicating that this is the device that she intends to use.</p>
+</li>
+<li>
+<p>in the notification-based flow (the notification-based endpoint), a certificate (device) choice dialogue is initiated on the user&#8217;s devices. The user interacts with one of the devices.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After the certificate has been determined, it becomes available to the RP via the session result endpoint.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the notification-based flow, if the user has only one account, the certificate is returned to the RP without involving the mobile device at all.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The method accepts <code>QSCD</code> as a certificate level parameter. This is a
+shortcut marking a certificate of <code>QUALIFIED</code> level which is also
+QSCD-capable. <code>ADVANCED</code> certificates cannot be QSCD-capable.</p>
+</div>
+<div class="paragraph">
+<p><strong>Warning</strong>. This method initiates a certificate (device) choice dialogue on end
+user&#8217;s devices, so it may not be called without explicit need (i.e. it
+may be called only as the first step in the signing process).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_certificate_choice_session_endpoints"><a class="anchor" href="#_certificate_choice_session_endpoints"></a>Certificate choice session endpoints</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For the certificate choice requests, the API descriptions practically coincide. The only differences are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Request endpoints</p>
+</li>
+<li>
+<p>Response structure</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In below, only the differing parts are described separately.</p>
+</div>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Dynamic link based certificate choice endpoints</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 88.8889%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/dynamic-link/etsi/:semantics-identifier</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/dynamic-link/document/:documentnumber</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Notification-based certificate choice endpoints</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 88.8889%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/notification/etsi/:semantics-identifier</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/notification/document/:documentnumber</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>Error conditions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>HTTP error code <code>403</code> - Relying Party has no permission to issue the
+request. This may happen when:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Relying Party has no permission to invoke operations on accounts with
+<code>ADVANCED</code> certificates.</p>
+</li>
+<li>
+<p>Relying Party has no permission to use requested capability.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>HTTP error code <code>404</code> - object described in URL was not found,
+essentially meaning that the user does not have an account in Smart-ID
+system.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_request_parameters"><a class="anchor" href="#_request_parameters"></a>Request parameters</h3>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Certificate choice request parameters</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 8.3333%;">
+<col style="width: 4.1666%;">
+<col style="width: 62.5001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">relyingPartyUUID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID of Relying Party.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">relyingPartyName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RP friendly name, one of those configured
+for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">certificateLevel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level of certificate requested.
+<code>ADVANCED</code>/<code>QUALIFIED</code>/<code>QSCD</code>, defaults to <code>QUALIFIED</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nonce</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Random string, up to 30 characters. If present, must
+have at least 1 character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">capabilities</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used only when agreed with Smart-ID provider.
+When omitted request capabilities are derived from <code>certificateLevel</code>
+parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requestProperties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A request properties object as a set of
+name/value pairs. <a href="request_properties.html#ip_sharing" class="xref page">IP sharing</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Certificate choice request example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "relyingPartyUUID": "1f1bfa89-4f8b-420a-a98e-fb3a161a30bc",
+  "relyingPartyName": "DEMO",
+  "certificateLevel": "QUALIFIED"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_response"><a class="anchor" href="#_example_response"></a>Example response</h3>
+<div class="listingblock">
+<div class="title">Certificate choice response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_response_on_successful_session_creation"><a class="anchor" href="#_response_on_successful_session_creation"></a>Response on successful session creation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The response depends on whether the notification-based or dynamic link based endpoint was called.</p>
+</div>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Successful notification-based certificate choice session creation response parameters</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sessionID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A string that can be used to request the operation
+result.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Successful notification-based session creation response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Successful dynamic link based certificate choice session creation response parameters</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sessionID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A string that can be used to request the operation
+result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sessionToken</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique random value that will be used to connect this login attempt between the relevant parties (RP, RP-API, mobile app)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sessionSecret</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique random value that should be kept in secret and should be shared only between the RP backend and RP-API server</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Successful dynamic link based session creation response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014",
+  "sessionToken": "2cfcfb47-e7df-4b86-b66b-823f8a9f2eed",
+  "sessionSecret": "77b534d0-d27d-40b4-9316-d46cf944df8a"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

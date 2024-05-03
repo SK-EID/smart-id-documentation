@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Session status :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/smart-id-documentation/3.0.0/session_status.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance - DRAFT</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="smart-id-documentation" data-version="3.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="sessions.html">Session types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="signing_session.html">Signing session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="session_status.html">Session status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="object_references.html">REST object references</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="request_properties.html">Additional request properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_details.html">REST API details</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">3.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="sessions.html">Session types</a></li>
+    <li><a href="session_status.html">Session status</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/session_status.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Session status</h1>
+<div id="preamble">
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Session status endpoint</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 88.8889%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/session/:sessionId</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Session status query parameter</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 8.3333%;">
+<col style="width: 4.1666%;">
+<col style="width: 62.5001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timeoutMs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Request long poll timeout value in milliseconds.
+The upper bound of timeout: 120000, minimum 1000. If not specified by
+the API client in the request, a value halfway between maximum and
+minimum is used.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This method can be used to retrieve session result from Smart-ID
+backend.</p>
+</div>
+<div class="paragraph">
+<p>This is a long poll method, meaning it might not return until a timeout
+expires. Caller can tune the request parameters inside the bounds set by
+service operator.</p>
+</div>
+<div class="paragraph">
+<p>Example URL:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>https://example.com/rp/v3/session/de305d54-75b4-431b-adb2-eb6b9e546016?timeoutMs=10000</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>Error conditions</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>HTTP error code <code>404</code> - session does not exist or has expired.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_response_structure"><a class="anchor" href="#_response_structure"></a>Response structure</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Session status response</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">State of request. <code>RUNNING</code>/<code>COMPLETE</code>. There are
+only two possible status codes for now.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">result</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing end result, may be empty or
+missing when still running.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">result.endResult</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">End result of the transaction. Refer to
+the subsection below.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">result.documentNumber</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for <code>OK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Document number, can be used
+in further signature and authentication requests to target the same
+device.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deviceProximityEnforcedToken</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID token which is returned to the RP after successfully completing a transaction via a dynamic flow if RP has requested for it in the initial request. This token indicates that the proximity check has been completed for that user and that device. It allows RP to use the notification-based endpoints for a certain pre-configured time for the combination of the given user and device.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deviceProximityEnforcedTokenValidity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validity of <code>deviceProximityEnforcedToken</code> parameter (in seconds)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signatureProtocol</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol. Possible values:</p>
+<p class="tableblock">* <code>ACSP_V1</code> - signature protocol used
+for the authentication sessions.</p>
+<p class="tableblock">* <code>RAW_DIGEST_SIGNATURE</code> - signature protocol used for the
+signing sessions.</p>
+<p class="tableblock">See <a href="signature_protocols.html" class="xref page">Signature protocols</a> for additional details.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing the signature result, if any. The structure depends on
+the signature protocol used.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cert</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for OK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing the certificate related to
+the request.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cert.value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Certificate value, DER+Base64 encoded. The
+certificate itself contains info on whether the certificate is
+QSCD-enabled, data which is not represented by certificate level.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cert.certificateLevel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level of Smart-ID certificate:
+<code>ADVANCED</code> or <code>QUALIFIED</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ignoredProperties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any values from <code>requestProperties</code> that
+were unsupported or ignored.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interactionFlowUsed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for OK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of interaction used. See
+section <a href="interactions.html#available-interactions" class="xref page">available interactions</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deviceIpAddress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP address of the mobile device. Is present
+only when it has been previously requested by the <code>RelyingParty</code> within
+the session creation parameters. See section
+<a href="request_properties.html#ip_sharing" class="xref page">IP sharing</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_signature_body_for_raw_digest_signature_protocol"><a class="anchor" href="#_signature_body_for_raw_digest_signature_protocol"></a>Signature body for <code>RAW_DIGEST_SIGNATURE</code> protocol</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Signature body for RAW_DIGEST_SIGNATURE in session response</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signature value, base64 encoded.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signatureScheme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signature creation scheme  that was used for creating the signature. See <a href="signature_protocols.html#signature_schemes" class="xref page">Signature schemes</a>. <strong>NOTE: Some details <em>will</em> change for this field</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">digestAlgorithm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Digest algorithm that was used by RP to compute the digest. See <a href="signature_protocols.html#digest_algorithms" class="xref page">Digest algorithms</a>. <strong>NOTE: Some details <em>will</em> change for this field</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_signature_body_for_acsp_v1_protocol"><a class="anchor" href="#_signature_body_for_acsp_v1_protocol"></a>Signature body for <code>ACSP_V1</code> protocol</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following table describes the signature body for
+<code>ACSP_V1</code> protocol that the RP will receive in the session response. Notice that the actual
+object that was signed is not present&#8201;&#8212;&#8201;it needs to be compiled by the RP using the RP-provided
+<code>randomChallenge</code> and the <code>serverRandom</code> returned in this response. This re-constructed
+object must then be used to validate the signature. See <a href="signature_protocols.html#acsp_v1" class="xref page"><code>ACSP_V1</code></a> for details.</p>
+</div>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Signature body for ACSP_V1 in session response</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signature value, base64 encoded.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signatureScheme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signature creation scheme  that was used for creating the signature. See <a href="signature_protocols.html#signature_schemes" class="xref page">Signature schemes</a>. <strong>NOTE: Some details <em>will</em> change for this field</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">digestAlgorithm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Digest algorithm that was used by RP to compute the digest. See <a href="signature_protocols.html#digest_algorithms" class="xref page">Digest algorithms</a>. <strong>NOTE: Some details <em>will</em> change for this field</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">serverRandom</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A random value of bytes encoded with base64, which are generated at RP API service side.
+This value will be returned from RP API and RelyingParties must use it exactly as it was returned during the validation of signature.
+There are not any guarantees that the returned value length is the same in each call of the RP API.
+Expected length is in the range between 64 and 128 bytes,
+encoded as base64.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Successful response when still waiting for user&#8217;s response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "state": "RUNNING"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Successful response after completion, dynamic flow, protocol <code>ACSP_V1</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "state": "COMPLETE",
+  "result": {
+    "endResult": "OK",
+    "documentNumber": "PNOEE-372...."
+  },
+  "deviceProximityEnforcedToken": "4af7a759-d5f4-4db0-b14e-2a433e21c5af",
+  "deviceProximityEnforcedTokenValidity": 2592000,
+  "signatureProtocol": "ACSP_V1",
+  "signature": {
+    "value": "C+C9XVjIAZnCHH9vfBSv...",
+    "signatureScheme": "RSASSA-PKCS1-v1_5",
+    "digestAlgorithm": "SHA-512",
+    "serverRandom": "B+C9XVjIAZnCHH9vfBSv..."
+  },
+  "cert": {
+    "value": "B+C9XVjIAZnCHH9vfBSv...",
+    "certificateLevel": "QUALIFIED"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Successful response after completion, notification-based flow, protocol <code>RAW_DIGEST_SIGNATURE</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "state": "COMPLETE",
+  "result": {
+    "endResult": "OK",
+    "documentNumber": "PNOEE-372...."
+  },
+  "signatureProtocol": "RAW_DIGEST_SIGNATURE",
+  "signature": {
+    "value": "B+A9CfjIBZnDHHav3B4F...",
+    "signatureScheme": "RSASSA-PSS",
+    "digestAlgorithm": "SHA-256",
+  },
+  "cert": {
+    "value": "B+C9XVjIAZnCHH9vfBSv...",
+    "certificateLevel": "QUALIFIED"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_session_status_end_result_codes"><a class="anchor" href="#_session_status_end_result_codes"></a>Session status end result codes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>OK</code> - session was completed successfully, there is a certificate,
+document number and possibly signature in return structure.</p>
+</li>
+<li>
+<p><code>USER_REFUSED</code> - user refused the session.</p>
+</li>
+<li>
+<p><code>TIMEOUT</code> - there was a timeout, i.e. end user did not confirm or
+refuse the operation within given time frame.</p>
+</li>
+<li>
+<p><code>DOCUMENT_UNUSABLE</code> - for some reason, this RP request cannot be
+completed. User must either check his/her Smart-ID mobile application or
+turn to customer support for getting the exact reason.</p>
+</li>
+<li>
+<p><code>WRONG_VC</code> - in case the multiple-choice verification code was
+requested, the user did not choose the correct verification code.</p>
+</li>
+<li>
+<p><code>REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP</code> - user app version does
+not support any of the <code>allowedInteractionsOrder</code> interactions.</p>
+</li>
+<li>
+<p><code>USER_REFUSED_CERT_CHOICE</code> - user has multiple accounts and pressed
+Cancel on device choice screen on any device.</p>
+</li>
+<li>
+<p><code>USER_REFUSED_DISPLAYTEXTANDPIN</code> - user pressed Cancel on PIN screen.
+Can be from the most common <code>displayTextAndPIN</code> flow or from
+<code>verificationCodeChoice</code> flow when user chosen the right code and then
+pressed cancel on PIN screen.</p>
+</li>
+<li>
+<p><code>USER_REFUSED_VC_CHOICE</code> - user cancelled <code>verificationCodeChoice</code>
+screen.</p>
+</li>
+<li>
+<p><code>USER_REFUSED_CONFIRMATIONMESSAGE</code> - user cancelled on
+<code>confirmationMessage</code> screen.</p>
+</li>
+<li>
+<p><code>USER_REFUSED_CONFIRMATIONMESSAGE_WITH_VC_CHOICE</code> - user cancelled on
+<code>confirmationMessageAndVerificationCodeChoice</code> screen.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

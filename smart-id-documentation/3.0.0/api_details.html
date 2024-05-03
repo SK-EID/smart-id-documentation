@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>REST API details :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/smart-id-documentation/3.0.0/api_details.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance - DRAFT</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="smart-id-documentation" data-version="3.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="sessions.html">Session types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="signing_session.html">Signing session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session_status.html">Session status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="object_references.html">REST object references</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="request_properties.html">Additional request properties</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="api_details.html">REST API details</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">3.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="api_details.html">REST API details</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/api_details.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">REST API details</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Relying Party API is exposed over a REST interface. All messages are encoded using <code>UTF-8</code>. All requests only support
+<code>HTTP/1.1</code>, as described in <a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_http_status_codes"><a class="anchor" href="#_http_status_codes"></a>HTTP status codes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Normally, all positive responses are returned with HTTP status code
+<code>200</code>.</p>
+</div>
+<div class="paragraph">
+<p>In some cases, <code>400</code> series error codes are used, those cases are
+described per request.</p>
+</div>
+<div class="paragraph">
+<p>All <code>500</code> series error codes indicate some kind of fatal server error.</p>
+</div>
+<div class="paragraph">
+<p>In addition to standard HTTP error codes the following RP API specific codes are used:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>471</code> - No suitable account of requested type found, but user has some
+other accounts.</p>
+</li>
+<li>
+<p><code>472</code> - Person should view Smart-ID app or Smart-ID self-service
+portal now.</p>
+</li>
+<li>
+<p><code>480</code> - The RP API client is too old and not supported any more.</p>
+</li>
+<li>
+<p><code>580</code> - System is under maintenance, retry again later.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_idempotent_behaviour"><a class="anchor" href="#_idempotent_behaviour"></a>Idempotent behaviour</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Whenever an RP session creation request (POST to <code>certificatechoice/</code>,
+<code>signature/</code>, <code>authentication/</code>) is repeated inside a given timeframe
+with exactly the same parameters, session ID of an existing session can
+be returned as a result.</p>
+</div>
+<div class="paragraph">
+<p>This allows to retry RP POST requests in case of communication errors.</p>
+</div>
+<div class="paragraph">
+<p>Retry timeframe is 15 seconds.</p>
+</div>
+<div class="paragraph">
+<p>When the caller wants, it can override the idempotent behaviour inside of
+this timeframe using an optional <code>nonce</code> parameter present for all POST
+requests. Normally, that parameter can be omitted.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interface_authentication"><a class="anchor" href="#_interface_authentication"></a>Interface authentication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RP API clients are authenticated based on their originating IP-address
+and <code>relyingPartyUUID</code> protocol parameter combinations.</p>
+</div>
+<div class="paragraph">
+<p>When authentication fails, server responds with HTTP error <code>401</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>relyingPartyName</code> request field is case insensitive, must match one of
+the names configured for the calling RP. The names are limited to 32
+bytes in UTF-8 encoding and are displayed to the user in the Smart-ID application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_client_must_ignore_unknown_names_fields_in_json_response_object"><a class="anchor" href="#_api_client_must_ignore_unknown_names_fields_in_json_response_object"></a>API client must ignore unknown names (fields) in JSON response object</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Smart-ID service reserves the right to add new fields into responses
+of the current RP API version.</p>
+</div>
+<div class="paragraph">
+<p>Therefore the RP must ignore unknown
+names (fields) in JSON response objects at any location within the JSON
+structure.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rp_api_endpoint_authentication"><a class="anchor" href="#_rp_api_endpoint_authentication"></a>RP API endpoint authentication</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This section will be merged with Secure Implementation Guide.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It is essential that RP client performs all the required checks when connecting
+to the Smart-ID RP API HTTPS endpoint, to make sure that the connection
+endpoint is authentic and that the connection is secure.</p>
+</div>
+<div class="paragraph">
+<p>This is
+required to prevent Man-in-the-middle (MITM) attacks for the
+authentication and signature protocols.</p>
+</div>
+<div class="paragraph">
+<p>The RP must perform the following checks:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verify the HTTPS connection and the TLS handshake is performed with a
+secure TLS ciphersuite.</p>
+</li>
+<li>
+<p>Verify the X.509 certificate of the HTTPS endpoint belongs to the
+well-known public key of the Smart-ID API. The RP must implement HTTPS
+key (or certificate) pinning.</p>
+</li>
+<li>
+<p>Verify the X.509 certificate of the HTTPS endpoint is valid (not
+expired, signed by trusted CA and not revoked).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In case the RP fails to verify the connection is genuine and secure an
+attacker might be able to launch a AITM attack on the connection and
+either login as the user or have the user sign a forged
+document.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

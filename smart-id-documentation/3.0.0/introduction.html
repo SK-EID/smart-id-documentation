@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/smart-id-documentation/3.0.0/introduction.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance - DRAFT</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs" autofocus>
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="smart-id-documentation" data-version="3.0.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="sessions.html">Session types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="signing_session.html">Signing session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session_status.html">Session status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="object_references.html">REST object references</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="request_properties.html">Additional request properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_details.html">REST API details</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">3.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link is-current"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="introduction.html">Introduction</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/introduction.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Introduction</h1>
+<div class="paragraph">
+<p>This document describes the relying party service interface protocol of Smart-ID server and provides information
+for integration. The interface offers the entry point to Smart-ID main use cases, i.e. authentication and signing.</p>
+</div>
+<div class="paragraph">
+<p>The main Smart-ID use case is of a relying party to start a session
+by calling the Smart-ID server RP API with a challenge when the user wishes to authenticate with the relying party&#8217;s
+service or create a signature.</p>
+</div>
+<div class="paragraph">
+<p>The Smart-ID server either sends a push message notification to the user&#8217;s
+device where the user opens the Smart-ID application or the user must scan a QR code or
+in case of the same device use case click a link to launch the Smart-ID application.</p>
+</div>
+<div class="paragraph">
+<p>The the user checks the details of the transaction and enters a PIN code to confirm it.</p>
+</div>
+<div class="paragraph">
+<p>The application communicates with the Smart-ID server and once the final
+signature is created makes it available for the relying party to be fetched.</p>
+</div>
+<div class="paragraph">
+<p>Meanwhile the relying party has been waiting for a reply from the
+Smart-ID server using a long poll connection. In case of success it
+receives the signature and the user&#8217;s certificate to be able to
+validate the result.</p>
+</div>
+<div class="paragraph">
+<p>The service creates digital signatures as proof of authentication and signing. However to create
+electronic signatures the relying party must create the required document
+structure, calculate the hash and have that signed using this API.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The latest version of the API introduces new flows collectively referred to as <em>"dynamic flows"</em>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>for multi-device use cases&#8201;&#8212;&#8201;dynamic QR codes that the user must scan;</p>
+</li>
+<li>
+<p>for same-device use cases where the user is visiting an RP webpage using a mobile browser&#8201;&#8212;&#8201;dynamic links which the user must click;</p>
+</li>
+<li>
+<p>for same-device use cases where the user is using an RP app&#8201;&#8212;&#8201;dynamic links which the user must click.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The guiding principle in designing the API has been to unify those three afore-mentioned flows as much as possible to minimise the integration efforts for the RPs. Because of this, they share the same security mechanisms and principles, even though the medium of transmitting information is completely different.</p>
+</div>
+<div class="paragraph">
+<p>This also means that it is possible for an RP to offer alternative methods of authentication at the same time without doing multiple requests to RP-API. This is useful in the following situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The user is accessing RP website from a mobile device, for example a tablet device. RP wants to offer the user to authenticate either on the same device (via a Web2App link) or on a separate device (via a dynamic QR code).</p>
+</li>
+<li>
+<p>RP is unable to detect from the user agent whether the user is using a mobile device or a PC.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In RP API version 3, the notification-based flows will still be available, but they are intended to be used only after the user has been securely authenticated by one of the dynamic flows before.</p>
+</div>
+<div class="paragraph">
+<p>It is up to the RP to decide how often to require the user to perform a secure authentication (minimum recommended is once per 3 months for every device that user owns) in case of the multi-device. The RP should utilize client local storage (cookies) to keep track which clients have previously authenticated using the new flows.</p>
+</div>
+<div class="paragraph">
+<p>For same-device flows the new dynamic links based flows should always be used.</p>
+</div>
+<div class="paragraph">
+<p>Brokers of the Smart-ID service are treated similarly to relying parties and there is no extra configuration compared to previous RP API versions.</p>
+</div>
+<div class="paragraph">
+<p>These changes have not been finalized yet! This documentation is a work in progress.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg"><img src="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg" alt="flow"></a>
+</div>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-bc765f0b7d749a42edb8b680bb9d1cf4ee7c18b9.svg"><img src="_images/flow-bc765f0b7d749a42edb8b680bb9d1cf4ee7c18b9.svg" alt="flow"></a>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>
