@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Response verification :: RP API integration guidance - DRAFT</title>
-    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0/response_verification.html">
+    <title>Changes :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0_dev/changes.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -29,7 +29,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.0.0">
+<div class="nav-container" data-component="rp-api" data-version="3.0.0_dev">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -46,7 +46,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Terms and glossary</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
@@ -75,7 +75,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -104,14 +104,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">RP API documentation</span>
-    <span class="version">3.0.0</span>
+    <span class="version">3.0.0_dev</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <div class="title"><a href="introduction.html">RP API documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.0.0</a>
+          <a href="introduction.html">3.0.0_dev</a>
         </li>
       </ul>
     </li>
@@ -127,65 +127,111 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="response_verification.html">Response verification</a></li>
+    <li><a href="introduction.html">Introduction</a></li>
+    <li><a href="changes.html">Changes</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/response_verification.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/changes.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Response verification</h1>
-<div class="paragraph">
-<p>After receiving the transaction response from the Session status API
-call, the following algorithm must be used to decide, if the
-authentication result is trustworthy and what the identity of the
-authenticating end user is.</p>
+<h1 class="page">Changes</h1>
+<div class="sect1">
+<h2 id="_rp_api_version_3_changes_compared_to_version_2"><a class="anchor" href="#_rp_api_version_3_changes_compared_to_version_2"></a>RP API version 3 changes compared to version 2</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Each of the requests <code>certificatechoice</code>, <code>authentication</code>, <code>signing</code> has two counter-parts instead of one: <code>notification-based</code> (the existing one from RPv2, relying on push notifications) and <code>dynamic link based</code> (newly added flows, relying on QR codes / Web2App links / App2App links).</p>
+</li>
+<li>
+<p>Token-based mechanism for allowing notification-based endpoints to be accessed securely.</p>
+</li>
+<li>
+<p>Introduction of new signature protocols (<code>ACSP_V1</code> and <code>RAW_DIGEST_SIGNING</code>).</p>
+</li>
+<li>
+<p>For authentication and signing requests, VC codes are returned from the server.</p>
+</li>
+<li>
+<p>New VC codes formats.</p>
+</li>
+<li>
+<p>For notification-based requests, it is possible for the RP to indicate that the user is on a mobile device, causing a pre-configured delay for the push message sending.</p>
+</li>
+<li>
+<p>For authentication and signing requests, <code>RSA-PSS</code> signature format support is provided.</p>
+</li>
+</ul>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rp_api_version_2_changes_compared_to_version_1"><a class="anchor" href="#_rp_api_version_2_changes_compared_to_version_1"></a>RP API version 2 changes compared to version 1</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><code>result.endResult</code> has the value <code>OK</code>.</p>
+<p>Uses <code>v2</code> instead of <code>v1</code> in URL, for example
+<code><a href="https://example.com/rp/v2/" class="bare">https://example.com/rp/v2/</a></code> instead of <code><a href="https://example.com/rp/v1/" class="bare">https://example.com/rp/v1/</a></code>.</p>
 </li>
 <li>
-<p>The certificate from <code>cert.value</code> is valid:</p>
+<p>New interactions concept allowed interactions order.</p>
+</li>
+<li>
+<p>New parameter <code>allowedInteractionsOrder</code> added to authentication and
+signing requests. It replaces parameters <code>displayText</code> and
+<code>requestProperties.vcChoice</code>.</p>
+</li>
+<li>
+<p>New parameter <code>interactionFlowUsed</code> added into session status response
+message.</p>
+</li>
+<li>
+<p>New session status end result codes:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The certificate is trusted (signed by a trusted CA).</p>
+<p><code>REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP</code></p>
 </li>
 <li>
-<p>The certificate has not expired.</p>
+<p><code>USER_REFUSED_DISPLAYTEXTANDPIN</code></p>
+</li>
+<li>
+<p><code>USER_REFUSED_VC_CHOICE</code></p>
+</li>
+<li>
+<p><code>USER_REFUSED_CONFIRMATIONMESSAGE</code></p>
+</li>
+<li>
+<p><code>USER_REFUSED_CONFIRMATIONMESSAGE_WITH_VC_CHOICE</code></p>
+</li>
+<li>
+<p><code>USER_REFUSED_CERT_CHOICE</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>The person&#8217;s certificate given in the <code>cert.value</code> is of required or
-higher assurance level as requested.</p>
+<p>New parameter <code>requestProperties</code> for API <code>/v2/certificatechoice</code></p>
 </li>
 <li>
-<p>The identity of the authenticated person is in the <code>subject</code> field or
-<code>subjectAltName</code> extension of the X.509 certificate.</p>
+<p>New option <code>shareMdClientIpAddress</code> for parameter <code>requestProperties</code></p>
 </li>
 <li>
-<p><code>signature.value</code> is the valid signature over the expected hash as described in <a href="signature_protocols.html" class="xref page">Signature protocols</a>, which
-was submitted by the RP verified using the public key from <code>cert.value</code>.</p>
+<p>Previously deprecated object reference
+<code>pno/:country/:national-identity-number</code> removed, use
+<code>etsi/:semantics-identifier</code> instead.</p>
+</li>
+<li>
+<p>RP must ignore any unknown names (fields) in JSON response object.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>It is strongly recommended to have these steps performed using standard
-cryptographic libraries.</p>
 </div>
-<div class="paragraph">
-<p>After successful authentication, the RP must invalidate the old user&#8217;s
-browser or API session identifier and generate a new one.</p>
-</div>
-<div class="paragraph">
-<p>For further details and security considerations see also the <a href="secure.html" class="xref page">Secure implementation guide</a>.</p>
 </div>
 </article>
   </div>

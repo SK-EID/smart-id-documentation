@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Terms and glossary :: RP API integration guidance - DRAFT</title>
-    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0/glossary.html">
+    <title>Notification-based flows :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0_dev/notification_based_flows.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -29,7 +29,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.0.0">
+<div class="nav-container" data-component="rp-api" data-version="3.0.0_dev">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -43,7 +43,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="introduction.html">Introduction</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Terms and glossary</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -72,7 +72,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -104,14 +104,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">RP API documentation</span>
-    <span class="version">3.0.0</span>
+    <span class="version">3.0.0_dev</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <div class="title"><a href="introduction.html">RP API documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.0.0</a>
+          <a href="introduction.html">3.0.0_dev</a>
         </li>
       </ul>
     </li>
@@ -127,110 +127,72 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="introduction.html">Introduction</a></li>
-    <li><a href="glossary.html">Terms and glossary</a></li>
+    <li><a href="notification_based_flows.html">Notification-based flows</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/glossary.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/notification_based_flows.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Terms and glossary</h1>
-<div class="dlist glossary">
-<dl>
-<dt>Smart-ID account</dt>
-<dd>
-<p>A person has to register a Smart-ID account to use
-services provided by the Smart-ID system. Account binds a Smart-ID app
-instance (installed on a person&#8217;s mobile device) to a person&#8217;s identity
-in the Smart-ID system. In the course of account creation and
-registration, the identity of the account owner (person) is proofed by a
-Registration Authority (RA) and the relation between the identity and a
-key pair is certified by a Certificate Authority (CA). An account has a
-signature key pair and an authentication key pair.</p>
-</dd>
-<dt>Smart-ID app</dt>
-<dd>
-<p>A technical component of the Smart-ID system. A mobile
-app instance installed on a person&#8217;s mobile device that provides access
-to Smart-ID functionality for persons.</p>
-</dd>
-<dt>Smart-ID provider</dt>
-<dd>
-<p>An organization that is legally responsible for
-the Smart-ID system.</p>
-</dd>
-<dt>Smart-ID server</dt>
-<dd>
-<p>A technical component of the Smart-ID system.
-Server-side counterpart of the Smart-ID app. Handles backend operations
-and provides API-s to Relying Party (RP).</p>
-</dd>
-<dt>Smart-ID system</dt>
-<dd>
-<p>- A technical and organizational environment, which
-enables digital authentication and issuing of digital signatures of
-persons in an electronic environment. The Smart-ID system provides
-services that allow persons (Smart-ID account owners) to authenticate
-themselves to RPs, to give digital signatures requested by RPs, and to
-manage their Smart-ID accounts.</p>
-</dd>
-<dt>Authentication key pair (or authentication key)</dt>
-<dd>
-<p>Key pair, which is
-used to digitally authenticate a person.</p>
-</dd>
-<dt>Certificate Authority (CA)</dt>
-<dd>
-<p>An entity that issues certificates for
-Smart-ID account owners.</p>
-</dd>
-<dt>Key pair</dt>
-<dd>
-<p>Pair of keys, which are required for digital signature
-scheme. There are two kinds of key pairs (or shortly, keys) in the
-Smart-ID system, authentication key pair and signature key pair. The
-word pair refers to to the private and public keys of each key pair used
-in an asymmetric cryptographic algorithm, here RSA.</p>
-</dd>
-<dt>Mobile device</dt>
-<dd>
-<p>A tablet computer or smartphone that runs a mobile
-device operating system (Apple iOS, Google Android).</p>
-</dd>
-<dt>Person</dt>
-<dd>
-<p>A natural person who uses the Smart-ID system to authenticate
-herself to an RP and to issue digital signatures requested by RP.</p>
-</dd>
-<dt>Registration Authority (RA)</dt>
-<dd>
-<p>An entity responsible for recording or
-verifying some or all of the information (particularly the identities of
-subjects) needed by a CA to issue certificates and CRLs and to perform
-other certificate management functions.</p>
-</dd>
-<dt>Relying Party (RP)</dt>
-<dd>
-<p>An organization or service, for example a bank,
-which is using the Smart-ID service to authenticate its users and to get
-them to sign the documents.</p>
-</dd>
-<dt>Relying Party request</dt>
-<dd>
-<p>A request from an RP that requires some kind
-of operation in the Smart-ID backend system. It may or may not create a
-transaction.</p>
-</dd>
-<dt>Signature key pair (or signature key)</dt>
-<dd>
-<p>Key pair, which is used to
-give digital signatures of a person.</p>
-</dd>
-</dl>
+<h1 class="page">Notification-based flows</h1>
+<div class="sect1">
+<h2 id="vc-codes"><a class="anchor" href="#vc-codes"></a>VC codes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In RP API v3, VC codes are not generated by RP from DTBS, but are returned from the server to RP. VC codes are only relevant for the notification-based flows.</p>
+</div>
+<div class="paragraph">
+<p>Currently, there is only supported type of VC codes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>alphaNumeric4</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The returned VC code consists of 4 characters (numbers and upper-case latin letters). It should be shown to the user as received from the server.</p>
+</div>
+<div class="paragraph">
+<p>The primary motivation for the change was the fact that the previous VC code format was too similar for PIN1 code and caused confusion for some of the users. Also, the inclusion of letters improves the number of possible combinations, thus strengthening it as a security measure.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This functionality is work-in-progress and this section has not been finalized yet.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="delay-API-call"><a class="anchor" href="#delay-API-call"></a>Delay API call until user has seen verification code (for notification-based flows)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When Smart-ID is used to perform a transaction on the same device it is
+installed on (browser or RP app) via the notification-based flows, the push notification can arrive
+quickly and bring the Smart-ID app into the foreground before the user
+has had a chance to read the verification code presented by the RP.</p>
+</div>
+<div class="paragraph">
+<p>This is especially pronounced in the Verification Code Choice scenario
+as the user will not know the correct code when prompted to choose it.
+The exact behaviour depends on mobile device operating system version,
+screen state, app permissions and app configuration.</p>
+</div>
+<div class="paragraph">
+<p>To give the user time to read the verification code, the RP should include a parameter <code>delayApiCall</code> in the authentication and session requests when RP has detected that the user is intending to use the same-device flow.</p>
+</div>
+</div>
 </div>
 </article>
   </div>

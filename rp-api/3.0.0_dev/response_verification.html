@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Additional request properties :: RP API integration guidance - DRAFT</title>
-    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0/request_properties.html">
+    <title>Response verification :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0_dev/response_verification.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -29,7 +29,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.0.0">
+<div class="nav-container" data-component="rp-api" data-version="3.0.0_dev">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -75,7 +75,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -87,7 +87,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="request_properties.html">Additional request properties</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -104,14 +104,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">RP API documentation</span>
-    <span class="version">3.0.0</span>
+    <span class="version">3.0.0_dev</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <div class="title"><a href="introduction.html">RP API documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.0.0</a>
+          <a href="introduction.html">3.0.0_dev</a>
         </li>
       </ul>
     </li>
@@ -127,67 +127,65 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="request_properties.html">Additional request properties</a></li>
+    <li><a href="response_verification.html">Response verification</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/request_properties.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/response_verification.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Additional request properties</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Response verification</h1>
 <div class="paragraph">
-<p>The RP can include additional properties to some of the requests for requesting
-some desired behaviour using the request parameter <code>requestProperties</code>.</p>
-</div>
-<div class="paragraph">
-<p>Any unsupported property will be ignored and will be listed in the
-<code>ignoredProperties</code> parameter of the Session status response.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ip_sharing"><a class="anchor" href="#ip_sharing"></a>Mobile Device IP sharing</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Mobile device IP address is shared to authorized RP, who are able to use
-the data in their transaction monitoring mechanisms to detect
-unauthorized or fraudulent transactions by comparing this shared IP
-address with the IP address, that <code>person</code> represents to the RP during
-interaction with RP services.</p>
-</div>
-<div class="paragraph">
-<p>The IP address is saved to the RP session when <code>person</code> reacts to the
-<code>RpRequest</code> with one its mobile device. Saved IP address is returned to
-the RP in the session status response only if:</p>
+<p>After receiving the transaction response from the Session status API
+call, the following algorithm must be used to decide, if the
+authentication result is trustworthy and what the identity of the
+authenticating end user is.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The RP is allowed to receive it (default configuration does not allow
-the IP sharing).</p>
+<p><code>result.endResult</code> has the value <code>OK</code>.</p>
 </li>
 <li>
-<p>The RP is requested it via <code>requestProperties</code> of RP request. Property
-option <code>shareMdClientIpAddress</code> is used for it, and it is optional. It
-may allow or forbid to share IP address with <code>true</code> or <code>false</code> value
-accordingly. If property is not defined in the RP request IP address
-won&#8217;t be shared in session.</p>
+<p>The certificate from <code>cert.value</code> is valid:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The certificate is trusted (signed by a trusted CA).</p>
 </li>
 <li>
-<p>The RP session is complete.</p>
-</li>
-<li>
-<p>The mobile device IP address was successfully saved to the RP
-session.</p>
+<p>The certificate has not expired.</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>The person&#8217;s certificate given in the <code>cert.value</code> is of required or
+higher assurance level as requested.</p>
+</li>
+<li>
+<p>The identity of the authenticated person is in the <code>subject</code> field or
+<code>subjectAltName</code> extension of the X.509 certificate.</p>
+</li>
+<li>
+<p><code>signature.value</code> is the valid signature over the expected hash as described in <a href="signature_protocols.html" class="xref page">Signature protocols</a>, which
+was submitted by the RP verified using the public key from <code>cert.value</code>.</p>
+</li>
+</ul>
 </div>
+<div class="paragraph">
+<p>It is strongly recommended to have these steps performed using standard
+cryptographic libraries.</p>
+</div>
+<div class="paragraph">
+<p>After successful authentication, the RP must invalidate the old user&#8217;s
+browser or API session identifier and generate a new one.</p>
+</div>
+<div class="paragraph">
+<p>For further details and security considerations see also the <a href="secure.html" class="xref page">Secure implementation guide</a>.</p>
 </div>
 </article>
   </div>

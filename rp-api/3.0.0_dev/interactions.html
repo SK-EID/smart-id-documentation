@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>REST object references :: RP API integration guidance - DRAFT</title>
-    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0/object_references.html">
+    <title>Interactions :: RP API integration guidance - DRAFT</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0_dev/interactions.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -29,7 +29,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.0.0">
+<div class="nav-container" data-component="rp-api" data-version="3.0.0_dev">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -78,13 +78,13 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="object_references.html">REST object references</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -104,14 +104,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">RP API documentation</span>
-    <span class="version">3.0.0</span>
+    <span class="version">3.0.0_dev</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <div class="title"><a href="introduction.html">RP API documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.0.0</a>
+          <a href="introduction.html">3.0.0_dev</a>
         </li>
       </ul>
     </li>
@@ -127,116 +127,154 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="object_references.html">REST object references</a></li>
+    <li><a href="interactions.html">Interactions</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/object_references.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/interactions.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">REST object references</h1>
-<div class="sect1">
-<h2 id="_anonymous"><a class="anchor" href="#_anonymous"></a>anonymous</h2>
+<h1 class="page">Interactions</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>For dynamic link based flows anonymous REST API endpoints may used. Here the RP learns the identity of the user only when receiving the successful session result.</p>
+<p>An app can support different interaction types and a relying party can
+demand a particular interaction with or without a fall back possibility.
+Different interactions can support different amount of data to
+display information to user.</p>
 </div>
-<div class="paragraph">
-<p>Usage of the anonymous endpoint is optional.</p>
-</div>
-<div class="paragraph">
-<p>For the dynamic link based flows, the other REST object references may be used as well. In that case the check whether the identifiers match is done right after the user has interacted with the dynamic link (QR code, Web2App link, or App2App link), but before signature creation.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_etsisemantics_identifier"><a class="anchor" href="#_etsisemantics_identifier"></a>etsi/:semantics-identifier</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Objects referenced by <code>etsi/:semantics-identifier</code> are persons
-identified by their ETSI Natural Person Semantics Identifier specified in
-ETSI319412 - 1. Semantics identifier contain information using the
-following structure in the presented order:</p>
+<div id="available-interactions" class="paragraph">
+<p>Available interactions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>3 character natural identity type reference, that shall have one of
-the following defined values:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>PAS</code> for identification based on passport number.</p>
+<p><code>displayTextAndPIN</code> with <code>displayText60</code>. The simplest interaction
+with max 60 chars of text and PIN entry on a single screen.</p>
 </li>
 <li>
-<p><code>IDC</code> for identification based on national identity card number.</p>
+<p><code>verificationCodeChoice</code> with <code>displayText60</code>. Verification Code
+Choice interaction. First screen is for code choice and second screen is
+with max 60 chars text and PIN like <code>displayTextAndPIN</code> is.</p>
 </li>
 <li>
-<p><code>PNO</code> for identification based on (national) personal number
-(national civic registration number).</p>
-</li>
-</ul>
-</div>
+<p><code>confirmationMessage</code> with <code>displayText200</code>. First screen is for text
+only (max 200 chars) and has Confirm and Cancel buttons. Second screen
+is for PIN.</p>
 </li>
 <li>
-<p>2 character ISO 3166-1 alpha-2 country code (for example EE, LT, LV,
-KZ)</p>
-</li>
-<li>
-<p>hyphen-minus - (0x2D (ASCII), U+002D (UTF-8))</p>
-</li>
-<li>
-<p>identifier (according to country and identity type reference)</p>
+<p><code>confirmationMessageAndVerificationCodeChoice</code> with <code>displayText200</code>.
+First screen combines text and Verification Code choice. Second screen
+is for PIN.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Example values may be:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>etsi/PASKZ-987654321012</code></p>
-</li>
-<li>
-<p><code>etsi/PNOEE-48010010101</code></p>
-</li>
-<li>
-<p><code>etsi/IDCCZ-1234567890</code></p>
-</li>
-</ul>
+<p>RP uses <code>allowedInteractionsOrder</code> array to list interactions it
+allows for the current session. Not all app versions may support all
+interactions though. The Smart-ID server is aware of which app
+installations support which interactions.</p>
 </div>
 <div class="paragraph">
-<p>Please note:</p>
+<p>When processing an RP request
+the first interaction supported by the app is taken from
+<code>allowedInteractionsOrder</code> array and sent to the app.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>:semantics-identifier</code> value should be encoded according to the rules
-defined in ETSI 319 412-1</p>
-</li>
-<li>
-<p>the country code part in <code>:semantics-identifier</code> conforms to ISO
-3166-1 alpha-2 code and as such must be in upper case.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>The interaction that was actually used is reported back to RP with
+<code>interactionUsed</code> response parameter to the session request. If an app
+cannot support any interaction requested then the session is cancelled with
+reason code <code>REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>displayText60</code>, <code>displayText200</code> - Text to display for authentication
+consent dialogue on the mobile device. Limited to 60 and 200 characters
+respectively.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_documentdocumentnumber"><a class="anchor" href="#_documentdocumentnumber"></a>document/:documentnumber</h2>
+<h2 id="_example_allowedinteractionsorder_elements"><a class="anchor" href="#_example_allowedinteractionsorder_elements"></a>Example allowedInteractionsOrder elements</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Objects referenced by <code>document/:documentnumber</code> are particular
-documents (also known as user accounts) in the Smart-ID system.</p>
+<div class="listingblock">
+<div class="title">RP first choice is <code>confirmationMessage</code>, if not available then fall back to displayTextAndPIN.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "allowedInteractionsOrder": [
+    {
+      "type": "confirmationMessage",
+      "displayText200": "Up to 200 characters of text here.."
+    },
+    {
+      "type": "displayTextAndPIN",
+      "displayText60": "Up to 60 characters of text here.."
+    }
+  ]
+}</code></pre>
 </div>
-<div class="paragraph">
-<p>This is may be used for signing once a user has already authenticated,
-for re-authentication or for signing once the document is known from a
-certificate choice query.</p>
+</div>
+<div class="listingblock">
+<div class="title">RP first choice is <code>confirmationMessage</code>, if not available then verificationCodeChoice should used.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "allowedInteractionsOrder": [
+    {
+      "type": "confirmationMessage",
+      "displayText200": "Up to 200 characters of text here.."
+    },
+    {
+      "type": "verificationCodeChoice",
+      "displayText60": "Up to 60 characters of text here.."
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>displayTextAndPIN</code> only.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "allowedInteractionsOrder": [
+    {
+      "type": "displayTextAndPIN",
+      "displayText60": "Up to 60 characters of text here.."
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Use <code>verificationCodeChoice</code>, if not available then <code>displayTextAndPIN</code> should used.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "allowedInteractionsOrder": [
+    {
+      "type": "verificationCodeChoice",
+      "displayText60": "Up to 60 characters of text here.."
+    },
+    {
+      "type": "displayTextAndPIN",
+      "displayText60": "Up to 60 characters of text here.."
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Insists on <code>confirmationMessage</code>, if not available then fail.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "allowedInteractionsOrder": [
+    {
+      "type": "confirmationMessage",
+      "displayText200": "Up to 200 characters of text here.."
+    }
+  ]
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
