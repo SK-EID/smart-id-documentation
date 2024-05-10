@@ -130,7 +130,6 @@
     <li><a href="introduction.html">Introduction</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="file:///C:/Users/kristjan.jalukse/GIT-SK/sid-docs/docs/RP_API_documentation/modules/ROOT/pages/introduction.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -228,14 +227,505 @@ structure, calculate the hash and have that signed using this API.</p>
 </tr>
 </table>
 </div>
-<div class="imageblock sequence kroki-format-svg kroki">
+<div class="literalblock sequence kroki-error">
 <div class="content">
-<a class="image" href="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg"><img src="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg" alt="flow"></a>
+<pre>''
+'' Cyber theme based on the mars theme from future-architect/puml-themes
+''
+'' Original Author: [future-architect](https://github.com/future-architect)
+'' Source: [future-architect/puml-themes](https://github.com/future-architect/puml-themes/tree/master/themes)
+'' License: [Apache License, Version 2.0](https://github.com/future-architect/puml-themes/blob/master/LICENSE)
+''
+
+'' Cybernetica branding colors
+!$WHITE = "#FFFFFF"
+!$BLACK = "#202020"
+!$DARK_GREY = "#989898"
+!$GREY = "#DFDFDF"
+!$LIGHT_GREY = "#F2F2F2"
+!$GREEN = "#0C5F19"
+!$CYBER_GREEN = "#B7F6C1"
+!$GREEN_DARKER10 = "#91F1A0"
+!$GREEN_DARKER25 = "#58EA6F"
+!$GREEN_DARKER50 = "#18BF32"
+!$GREEN_DARKER75 = "#0C5F19"
+!$GREEN_DARKER90 = "#05260A"
+!$RED = "#AC0101"
+!$CYBER_RED = "#FE5D5D"
+!$RED_LIGHTER80 = "#FFDFDF"
+!$RED_LIGHTER60 = "#FFBEBE"
+!$RED_LIGHTER40 = "#FE9E9E"
+!$RED_DARKER25 = "#FD0707"
+!$RED_DARKER50 = "#AC0101"
+!$YELLOW = "#B38B00"
+!$CYBER_YELLOW = "#FFDD68"
+!$YELLOW_LIGHTER80 = "#FFF8E1"
+!$YELLOW_LIGHTER60 = "#FFF1C3"
+!$YELLOW_LIGHTER40 = "#FFEBA4"
+!$YELLOW_DARKER25 = "#FFC90E"
+!$YELLOW_DARKER50 = "#B38B00"
+!$PURPLE = "#5F1BFD"
+!$CYBER_PURPLE = "#A078FE"
+!$PURPLE_LIGHTER80 = "#ECE4FF"
+!$PURPLE_LIGHTER60 = "#D9C9FF"
+!$PURPLE_LIGHTER40 = "#C6AEFE"
+!$PURPLE_DARKER25 = "#5F1BFD"
+!$PURPLE_DARKER50 = "#3801BA"
+!$BLUE = "#2E75B6"
+!$CYBER_BLUE = "#2E75B6"
+!$BLUE_LIGHTER80 = "#D2E4F4"
+!$BLUE_LIGHTER60 = "#A5C8E8"
+!$BLUE_LIGHTER40 = "#78ADDD"
+!$BLUE_DARKER25 = "#235888"
+!$BLUE_DARKER50 = "#173B5B"
+!$ORANGE = "#E86600"
+!$CYBER_ORANGE = "#FF8F37"
+!$ORANGE_LIGHTER80 = "#FFE9D7"
+!$ORANGE_LIGHTER60 = "#FFD2AF"
+!$ORANGE_LIGHTER40 = "#FFBC87"
+!$ORANGE_DARKER25 = "#E86600"
+!$ORANGE_DARKER50 = "#9B4400"
+
+!$BACKGROUND = "transparent"
+!$PRIMARY = $BLUE_LIGHTER60
+!$PRIMARY_LIGHTER = $BLUE_LIGHTER80
+!$SECONDARY = $CYBER_BLUE
+!$SECONDARY_LIGHTER = $BLUE_LIGHTER60
+!$INFO_BG = $GREY
+!$BORDER = $BLACK
+!$BORDER_LIGHTER = $DARK_GREY
+!$FONT = $BLACK
+!$FONT_LIGHTER = $DARK_GREY
+!$SUCCESS = $GREEN_DARKER50
+!$DANGER = $RED_DARKER50
+!$WARNING = $CYBER_ORANGE
+!$INFO = $CYBER_BLUE
+
+''
+'' Called to make the text in the color of SUCCESS
+''
+!procedure $success($msg)
+  &lt;font color=$SUCCESS&gt;&lt;b&gt;$msg
+!endprocedure
+''
+'' Called to make the text in the color of DANGER
+''
+!procedure $failure($msg)
+  &lt;font color=$DANGER&gt;&lt;b&gt;$msg
+!endprocedure
+''
+'' Called to make the text in the color of WARNING
+''
+!procedure $warning($msg)
+  &lt;font color=$WARNING&gt;&lt;b&gt;$msg
+!endprocedure
+''
+'' Called to make the text in the color of INFO
+''
+!procedure $info($msg)
+  &lt;font color=$INFO&gt;&lt;b&gt;$msg
+!endprocedure
+
+
+skinparam defaultFontName Inter
+skinparam BackgroundColor $BACKGROUND
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor $BLACK
+skinparam FontColor $FONT
+
+skinparam sequence {
+    LifeLineBorderColor $BORDER_LIGHTER
+    LifeLineBackgroundColor $PRIMARY_LIGHTER
+    GroupHeaderFontColor $FONT
+    GroupFontColor $FONT_LIGHTER
+    GroupBorderColor $BORDER_LIGHTER
+    GroupBorderThickness 1
+
+    Divider {
+        BorderColor $BORDER
+        BorderThickness 1
+        FontColor $FONT
+    }
+}
+
+skinparam participant {
+    BackgroundColor $PRIMARY
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+
+skinparam database {
+    BackgroundColor $SECONDARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam entity {
+    BackgroundColor $PRIMARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam note {
+    BackgroundColor $INFO_BG
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+
+skinparam actor {
+    BackgroundColor $BLACK
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam boundary {
+    BackgroundColor $PRIMARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam control {
+    BackgroundColor $PRIMARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam collections {
+    BackgroundColor $PRIMARY
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+
+skinparam queue {
+    BackgroundColor $PRIMARY
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+@startuml Dynamic Link Based Authentication Flow
+
+hide footbox
+autonumber
+skinparam maxMessageSize 330
+' maxMessageSize is in pixels, we don't need to manually add \n in the text
+skinparam style strictuml
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+
+title Dynamic Link Based Authentication Flow
+
+participant "RP frontend" as rp_frontend
+participant "RP backend" as rp
+participant "RP API" as core
+participant "App" as splitkey_app
+
+activate rp_frontend
+activate rp
+
+note over rp_frontend
+User initiates a login on the RP frontend
+(website or mobile app). Inserting ID code is
+optional depending on the RP setup.
+end note
+
+rp_frontend -&gt; rp : Request new login
+
+note over rp
+RP generates a randomChallenge
+and sends it in the request.
+end note
+
+rp -&gt; core : ""POST /v3/authentication/dynamic-link/...""
+activate core
+rp &lt;-- core : ""sessionId"", ""sessionToken"", ""sessionSecret""
+
+loop until user interacts
+    rp_frontend -&gt; rp : Request for updated AuthCode
+    rp_frontend &lt;-- rp : Provide updated AuthCode
+
+    note over rp_frontend
+    RP frontend shows one or more
+    of the following to the user:
+    * **QR code**,
+    * **web2app link**,
+    * **app2app link**.
+    end note
+end
+
+rp_frontend -&gt; splitkey_app : User clicks on the same-device link or scans the QR code with the App
+activate splitkey_app
+splitkey_app -&gt; splitkey_app : App extracts the necessary\n parameters from the QR code,\n web2app link or app2app link
+
+splitkey_app -&gt; core : ""createDynamicLinkBasedTransaction(...)""
+splitkey_app &lt;-- core : ""transaction(...)""
+
+splitkey_app -&gt; splitkey_app : Display authentication UI
+note over splitkey_app
+User has to enter the PIN code as usual (but the
+verification code is not shown).
+end note
+
+loop until signature completed or error
+        rp -&gt; core : ""GET session/:sessionId""
+    alt signature pending
+        rp &lt;-- core : ""session status""
+    else error (or timeout)
+        rp &lt;-- core : ""error""
+    else signature completed
+        splitkey_app -&gt; core : Signature
+        deactivate splitkey_app
+        rp &lt;-- core : ""result""
+        deactivate core
+    end
+end
+
+note over rp
+The response contains serverRandom and the total
+challenge, which was signed by the end user. RP
+concatenates the randomChallenge from storage
+with the serverRandom from response and verifies
+that the provided signature is valid.
+end note
+rp_frontend &lt;-- rp  : User is authenticated
+
+@enduml</pre>
 </div>
 </div>
-<div class="imageblock sequence kroki-format-svg kroki">
+<div class="literalblock sequence kroki-error">
 <div class="content">
-<a class="image" href="_images/flow-bc765f0b7d749a42edb8b680bb9d1cf4ee7c18b9.svg"><img src="_images/flow-bc765f0b7d749a42edb8b680bb9d1cf4ee7c18b9.svg" alt="flow"></a>
+<pre>''
+'' Cyber theme based on the mars theme from future-architect/puml-themes
+''
+'' Original Author: [future-architect](https://github.com/future-architect)
+'' Source: [future-architect/puml-themes](https://github.com/future-architect/puml-themes/tree/master/themes)
+'' License: [Apache License, Version 2.0](https://github.com/future-architect/puml-themes/blob/master/LICENSE)
+''
+
+'' Cybernetica branding colors
+!$WHITE = "#FFFFFF"
+!$BLACK = "#202020"
+!$DARK_GREY = "#989898"
+!$GREY = "#DFDFDF"
+!$LIGHT_GREY = "#F2F2F2"
+!$GREEN = "#0C5F19"
+!$CYBER_GREEN = "#B7F6C1"
+!$GREEN_DARKER10 = "#91F1A0"
+!$GREEN_DARKER25 = "#58EA6F"
+!$GREEN_DARKER50 = "#18BF32"
+!$GREEN_DARKER75 = "#0C5F19"
+!$GREEN_DARKER90 = "#05260A"
+!$RED = "#AC0101"
+!$CYBER_RED = "#FE5D5D"
+!$RED_LIGHTER80 = "#FFDFDF"
+!$RED_LIGHTER60 = "#FFBEBE"
+!$RED_LIGHTER40 = "#FE9E9E"
+!$RED_DARKER25 = "#FD0707"
+!$RED_DARKER50 = "#AC0101"
+!$YELLOW = "#B38B00"
+!$CYBER_YELLOW = "#FFDD68"
+!$YELLOW_LIGHTER80 = "#FFF8E1"
+!$YELLOW_LIGHTER60 = "#FFF1C3"
+!$YELLOW_LIGHTER40 = "#FFEBA4"
+!$YELLOW_DARKER25 = "#FFC90E"
+!$YELLOW_DARKER50 = "#B38B00"
+!$PURPLE = "#5F1BFD"
+!$CYBER_PURPLE = "#A078FE"
+!$PURPLE_LIGHTER80 = "#ECE4FF"
+!$PURPLE_LIGHTER60 = "#D9C9FF"
+!$PURPLE_LIGHTER40 = "#C6AEFE"
+!$PURPLE_DARKER25 = "#5F1BFD"
+!$PURPLE_DARKER50 = "#3801BA"
+!$BLUE = "#2E75B6"
+!$CYBER_BLUE = "#2E75B6"
+!$BLUE_LIGHTER80 = "#D2E4F4"
+!$BLUE_LIGHTER60 = "#A5C8E8"
+!$BLUE_LIGHTER40 = "#78ADDD"
+!$BLUE_DARKER25 = "#235888"
+!$BLUE_DARKER50 = "#173B5B"
+!$ORANGE = "#E86600"
+!$CYBER_ORANGE = "#FF8F37"
+!$ORANGE_LIGHTER80 = "#FFE9D7"
+!$ORANGE_LIGHTER60 = "#FFD2AF"
+!$ORANGE_LIGHTER40 = "#FFBC87"
+!$ORANGE_DARKER25 = "#E86600"
+!$ORANGE_DARKER50 = "#9B4400"
+
+!$BACKGROUND = "transparent"
+!$PRIMARY = $BLUE_LIGHTER60
+!$PRIMARY_LIGHTER = $BLUE_LIGHTER80
+!$SECONDARY = $CYBER_BLUE
+!$SECONDARY_LIGHTER = $BLUE_LIGHTER60
+!$INFO_BG = $GREY
+!$BORDER = $BLACK
+!$BORDER_LIGHTER = $DARK_GREY
+!$FONT = $BLACK
+!$FONT_LIGHTER = $DARK_GREY
+!$SUCCESS = $GREEN_DARKER50
+!$DANGER = $RED_DARKER50
+!$WARNING = $CYBER_ORANGE
+!$INFO = $CYBER_BLUE
+
+''
+'' Called to make the text in the color of SUCCESS
+''
+!procedure $success($msg)
+  &lt;font color=$SUCCESS&gt;&lt;b&gt;$msg
+!endprocedure
+''
+'' Called to make the text in the color of DANGER
+''
+!procedure $failure($msg)
+  &lt;font color=$DANGER&gt;&lt;b&gt;$msg
+!endprocedure
+''
+'' Called to make the text in the color of WARNING
+''
+!procedure $warning($msg)
+  &lt;font color=$WARNING&gt;&lt;b&gt;$msg
+!endprocedure
+''
+'' Called to make the text in the color of INFO
+''
+!procedure $info($msg)
+  &lt;font color=$INFO&gt;&lt;b&gt;$msg
+!endprocedure
+
+
+skinparam defaultFontName Inter
+skinparam BackgroundColor $BACKGROUND
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor $BLACK
+skinparam FontColor $FONT
+
+skinparam sequence {
+    LifeLineBorderColor $BORDER_LIGHTER
+    LifeLineBackgroundColor $PRIMARY_LIGHTER
+    GroupHeaderFontColor $FONT
+    GroupFontColor $FONT_LIGHTER
+    GroupBorderColor $BORDER_LIGHTER
+    GroupBorderThickness 1
+
+    Divider {
+        BorderColor $BORDER
+        BorderThickness 1
+        FontColor $FONT
+    }
+}
+
+skinparam participant {
+    BackgroundColor $PRIMARY
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+
+skinparam database {
+    BackgroundColor $SECONDARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam entity {
+    BackgroundColor $PRIMARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam note {
+    BackgroundColor $INFO_BG
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+
+skinparam actor {
+    BackgroundColor $BLACK
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam boundary {
+    BackgroundColor $PRIMARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam control {
+    BackgroundColor $PRIMARY_LIGHTER
+    BorderColor $BORDER
+    FontColor $FONT
+}
+
+skinparam collections {
+    BackgroundColor $PRIMARY
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+
+skinparam queue {
+    BackgroundColor $PRIMARY
+    BorderColor $BORDER
+    FontColor $FONT
+    BorderThickness 1.5
+}
+@startuml Notification-Based Signing Flow
+
+hide footbox
+autonumber
+skinparam maxMessageSize 330
+' maxMessageSize is in pixels, we don't need to manually add \n in the text
+skinparam style strictuml
+skinparam responseMessageBelowArrow true
+skinparam sequenceMessageAlign center
+
+title Notification-Based Signing Flow
+
+participant "RP frontend" as rp_frontend
+participant "RP backend" as rp
+participant "RP API" as core
+participant "App" as splitkey_app
+
+activate rp_frontend
+activate rp
+
+note over rp_frontend
+User initiates signing on RP frontend
+(website or mobile app). Inserting ID code is
+optional depending on the RP setup.
+end note
+
+rp_frontend -&gt; rp : Request to sign
+
+rp -&gt; core : POST signature/[object reference]
+rp &lt;-- core : ""sessionId""
+
+core -&gt; splitkey_app : Request signature
+splitkey_app -&gt; splitkey_app : Display signature UI
+
+loop until signature completed or error
+        rp -&gt; core : ""GET session/:sessionId""
+        core -&gt; core : Poll
+    alt signature pending
+        rp &lt;-- core : ""session status""
+    else error (or timeout)
+        rp &lt;-- core : ""error""
+    else signature completed
+        splitkey_app -&gt; core : Signature
+        deactivate splitkey_app
+        rp &lt;-- core : ""signature""
+        deactivate core
+    end
+end
+
+rp_frontend &lt;-- rp  : User has signed
+
+@enduml</pre>
 </div>
 </div>
 </article>
