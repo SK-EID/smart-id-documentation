@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -149,7 +152,7 @@
 <p>User interacts with a RP frontend (which is a webpage or an app).</p>
 </li>
 <li>
-<p>RP backend makes a request to RP-API to create a dynamic link based authentication or signing session, obtaining security parameters that are necessary for generating dynamic links. This request may either be anonymous (no personal identifier is provided) or non-anonymous.</p>
+<p>RP backend makes a request to RP-API to create a dynamic link based <code>authentication</code> or <code>signature</code> session, obtaining security parameters that are necessary for generating dynamic links. This request may either be anonymous (no personal identifier is provided) or non-anonymous.</p>
 </li>
 <li>
 <p>RP starts dynamically creating dynamic links that update each second. The dynamic links are generated in RP backend and forwarded to RP frontend.</p>
@@ -182,11 +185,11 @@
 </ol>
 </div>
 <div class="paragraph">
-<p>The following diagram describes the dynamic link based flow for the authentication session. The flow for the signing session follows the same principles and has been omitted.</p>
+<p>The following diagram describes the dynamic link based flow for the <code>authentication</code> session. The flow for the <code>signature</code> session follows the same principles and has been omitted.</p>
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg"><img src="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg" alt="flow"></a>
+<a class="image" href="_images/flow-208fe1426526ff7bfbe0ce12173203ef83dde7bd.svg"><img src="_images/flow-208fe1426526ff7bfbe0ce12173203ef83dde7bd.svg" alt="flow"></a>
 </div>
 </div>
 </div>
@@ -277,7 +280,7 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p>The parameters for QR, web2app link and app2app link are the same except for the <code>dynLinkType</code> parameter, which contains one of the 3 possible values:</p>
+<p>The parameters for QR, Web2App link and App2App link are the same except for the <code>dynLinkType</code> parameter, which contains one of the 3 possible values:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -298,13 +301,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>'auth' - authentication session</p>
+<p>'auth' - <code>authentication</code> session</p>
 </li>
 <li>
-<p>'sign' - signing session</p>
+<p>'sign' - <code>signature</code> session</p>
 </li>
 <li>
-<p>'cert' - certificate-choice session</p>
+<p>'cert' - <code>certificatechoice</code> session</p>
 </li>
 </ul>
 </div>
@@ -448,13 +451,13 @@
 <p>The dynamic link for App2App and Web2App is similar to the QR URI string:</p>
 </div>
 <div class="paragraph">
-<p><code>https://mobile-api.smart-id.com/?sessionToken=<strong>session_token</strong>&amp;dynLinkType=<strong>dyn_link_type</strong>&amp;sessionType=<strong>session_type</strong>&amp;elapsedSeconds=<strong>elapsed_seconds</strong>&amp;authCode=<strong>authCode</strong></code></p>
+<p><code>https://smart-id.com/?sessionToken=<strong>session_token</strong>&amp;dynLinkType=<strong>dyn_link_type</strong>&amp;sessionType=<strong>session_type</strong>&amp;elapsedSeconds=<strong>elapsed_seconds</strong>&amp;authCode=<strong>authCode</strong></code></p>
 </div>
 <div class="paragraph">
 <p>Example of a Web2App link:</p>
 </div>
 <div class="paragraph">
-<p><code>https://mobile-api.smart-id.com/?sessionToken=<strong>01fbf533-846d-4fc2-8b45-d8871a27912c</strong>&amp;dynLinkType=<strong>Web2App</strong>&amp;sessionType=<strong>auth</strong>&amp;elapsedSeconds=<strong>2</strong>&amp;authCode=<strong>R5oiivdJIhfjJLBCA3AzijU2p8oH45fBKpcN59oSXboo</strong></code></p>
+<p><code>https://smart-id.com/?sessionToken=<strong>01fbf533-846d-4fc2-8b45-d8871a27912c</strong>&amp;dynLinkType=<strong>Web2App</strong>&amp;sessionType=<strong>auth</strong>&amp;elapsedSeconds=<strong>2</strong>&amp;authCode=<strong>R5oiivdJIhfjJLBCA3AzijU2p8oH45fBKpcN59oSXboo</strong></code></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -476,7 +479,7 @@ For all flows, the dynamic generation (every 1s) of the <code>authCode</code> pa
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In the App2App and Web2App flow it will be possible for the RP to also attach a callback URI that the Smart-ID App can call at the end of the transcation. This will allow for seamless navigation between RP apps and RP websites in the same-device use case.</p>
+<p>In the App2App and Web2App flow it will be possible for the RP to also attach a callback URI that the Smart-ID App can call at the end of the transcation. This will allow for seamless navigation between RP apps and RP websites in the single-device use case.</p>
 </div>
 <div class="paragraph">
 <p>Details for the this functionality are being worked on.</p>

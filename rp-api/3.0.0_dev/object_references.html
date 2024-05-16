@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -152,19 +155,23 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_etsisemantics_identifier"><a class="anchor" href="#_etsisemantics_identifier"></a>etsi/:semantics-identifier</h2>
+<h2 id="_etsiid_etsi_qcs_semanticsid_natural"><a class="anchor" href="#_etsiid_etsi_qcs_semanticsid_natural"></a>etsi/:id-etsi-qcs-SemanticsId-Natural</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Objects referenced by <code>etsi/:semantics-identifier</code> are persons
+<p>Objects referenced by <code>etsi/:id-etsi-qcs-SemanticsId-Natural</code> are persons
 identified by their ETSI Natural Person Semantics Identifier specified in
-ETSI319412 - 1. Semantics identifier contain information using the
+<a href="https://portal.etsi.org/webapp/workprogram/Report_WorkItem.asp?WKI_ID=64271">ETSI EN 319 412-1</a>
+in section <em>Natural person semantics identifier</em>.</p>
+</div>
+<div class="paragraph">
+<p>The identifier contains information using the
 following structure in the presented order:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>3 character natural identity type reference, that shall have one of
-the following defined values:</p>
+the following defined values (the standard supports more than these three references):</p>
 <div class="ulist">
 <ul>
 <li>
@@ -214,11 +221,11 @@ KZ)</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>:semantics-identifier</code> value should be encoded according to the rules
-defined in ETSI 319 412-1</p>
+<p><code>:id-etsi-qcs-SemanticsId-Natural</code> value should be encoded according to the rules
+defined in ETSI EN 319 412-1</p>
 </li>
 <li>
-<p>the country code part in <code>:semantics-identifier</code> conforms to ISO
+<p>the country code part in <code>:id-etsi-qcs-SemanticsId-Natural</code> conforms to ISO
 3166-1 alpha-2 code and as such must be in upper case.</p>
 </li>
 </ul>
@@ -235,7 +242,7 @@ documents (also known as user accounts) in the Smart-ID system.</p>
 <div class="paragraph">
 <p>This is may be used for signing once a user has already authenticated,
 for re-authentication or for signing once the document is known from a
-certificate choice query.</p>
+<code>certificatechoice</code> session query.</p>
 </div>
 </div>
 </div>

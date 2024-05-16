@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -140,154 +143,279 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The API provides four different types of endpoints. The first three are <code>POST</code> requests that return a <code>sessionID</code> and the fourth used is a <code>GET</code> used to query for the result based on the <code>sessionID</code>.</p>
+<p>The API provides four different types of endpoints. The first three are <code>POST</code> requests that return a <code>sessionID</code> and the fourth is a <code>GET</code> used to query for the result based on the <code>sessionID</code>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>authentication</code> session is used to log a user onto a system or otherwise verify the identity of a user;</p>
+<p>The <a href="authentication_session.html" class="xref page"><code>authentication</code> session</a> is used to log a user onto a system or otherwise verify the identity of a user;</p>
 </li>
 <li>
-<p>the <code>signing</code> session is used to to create digital signature;</p>
+<p>the <a href="signature_session.html" class="xref page"><code>signature</code> session</a> is used to to create digital signature;</p>
 </li>
 <li>
-<p>the <code>certificate choice</code> session is used immediately prior to the signing session when the User&#8217;s signing certificate is required to create the object that will be signed;</p>
+<p>the <a href="certificatechoice_session.html" class="xref page"><code>certificatechoice</code> session</a> is used immediately prior to the <code>signature</code> session when the user&#8217;s signing certificate is required to create the object that will be signed;</p>
 </li>
 <li>
-<p>finally, the <code>session status</code> endpoint provides the result of the above sessions.</p>
+<p>finally, the <a href="session_status.html" class="xref page"><code>session</code> status endpoint</a> provides the result of the above sessions.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Their implementation details are described in their respective subpages.</p>
+</div>
+<div class="paragraph">
+<p>There are two types of flows that can be used in each of the three sessions - the <a href="notification_based_flows.html" class="xref page">notification based flow</a> and the <a href="dynamic_link_flows.html" class="xref page">dynamic link based flow</a>.</p>
+</div>
+<div class="paragraph">
+<p>There are different ways to reference users - via their issued identifier, a document number linking a specific account or even not at all (in case of dynamic link based flows). The different object references are described on a <a href="object_references.html" class="xref page">dedicated page</a>.</p>
+</div>
+<div class="paragraph">
+<p>Before notification based flows can be requested, proximity of the client and the Smart-ID app must be established using dynamic link flows. This is enforced using the <a href="tokens.html" class="xref page">device proximity enforcement token</a> mechanism. The mechanism increases security and simplifies secure implementation of the RP API client.</p>
+</div>
+<div class="paragraph">
+<p>The main use cases and which sessions and flows to use are described below. Utilising the RP API as described below provides the best user experience and security.</p>
+</div>
+<div class="paragraph">
+<p>In the URL examples below and other pages <code>BASE</code> refers to the RP API base address <code>https://rp-api.smart-id.com</code></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_security_model_for_accessing_sessions"><a class="anchor" href="#_security_model_for_accessing_sessions"></a>Security model for accessing sessions</h2>
+<h2 id="_multi_device_use_cases"><a class="anchor" href="#_multi_device_use_cases"></a>Multi-device use cases</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This solution is still work-in-progress and has not been finalized yet.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p><strong>Use case:</strong> The RP session is on a separate device from the mobile phone where the Smart-ID app is installed.</p>
 </div>
 <div class="paragraph">
-<p>Push notification based flows do not link the location of the Smart-ID app to the location of the RP
-page/app (that the user is authenticating to) in any way. This means that attackers can
-launch remote authentication requests for unsuspecting users. They can combine these
-push requests with phone calls or emails, convincing users to complete an
-authentication for them. They can also launch a large number of requests, trying to
-exhaust the user and let them enter their PIN to get rid of the notifications.</p>
-</div>
-<div class="paragraph">
-<p>The main benefit of the new dynamic link based flows is that they solve this problem by helping to ensure that the location of the Smart-ID app
-coincides to the physical location of the RP page/app.</p>
-</div>
-<div class="paragraph">
-<p>Maximum security would be attained by making the dynamic link based flows mandatory. However, this solution might be deemed not reasonable by RPs
-and might face initial pushback from end users (at least until they have gotten used to it).</p>
-</div>
-<div class="paragraph">
-<p>On the other hand, if the authentication flow method would be up to the user to choose (dynamic or notification-based),
-then this could easily be exploited by the attackers to continue sending out the remote authentication requests for unsuspecting users, as has happened previously.</p>
-</div>
-<div class="paragraph">
-<p>The way to obtain simultaneously optimal security and optimal user experience is to:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Require dynamic link based login for the user for every new device that he uses;</p>
-</li>
-<li>
-<p>Allow for subsequent requests from the same device to be done in either way (dynamic or notification-based).
-It would be up to RP to decide how long this would be allowed for until they must re-validate using a dynamic flow
-(the recommended validity time window is 7-30 days (depending on RP security model), the longest allowable is 90 days).</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-For the same-device use case (Web2App and App2App), the new dynamic flows provide both enhanced security and user experience;
-thus, it is recommended to always use the new flows on the mobile device. However, push based flows are still available as previously,
-if deemed necessary by the RP (after the user has completed the dynamic link based flow at least once on that device).
-</td>
-</tr>
-</table>
+<p>For example, the user is using a PC browser to access an RP website or a tablet to access an RP application.</p>
 </div>
 <div class="sect2">
-<h3 id="_technical_details_of_the_solution_device_proximity_enforcement_tokens"><a class="anchor" href="#_technical_details_of_the_solution_device_proximity_enforcement_tokens"></a>Technical details of the solution (device proximity enforcement tokens)</h3>
+<h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
 <div class="paragraph">
-<p>Technically, this would be enabled by the use of tokens (called <code>deviceProximityEnforcedToken</code>).</p>
+<p>Using the dynamic link based flow with QR codes is the most secure:</p>
 </div>
 <div class="paragraph">
-<p>Whenever an RP makes a request to one of the dynamic link based flows (QR / Web2App / App2App), it can request for the token <code>deviceProximityEnforcedToken</code>.
-It is returned in the session status response upon successful transaction completion.
-The RP must then provide this token for any subsequent request made to the notification-based endpoints.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The security provided by the token mechanism is only achieved when implemented correctly by the RP. The token must be stored by the RP in a manner that
-is tied to the given user and device (or preferably, tied to the RP browser/app). For example, it may be saved in a cookie on the user&#8217;s browser for the
-RP webpage or app storage of the RP app.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Whenever an attacker tries to initiate an authentication session on behalf of a user, they
-will do so from a computer that does not have the token, which will trigger a
-stronger form of authentication, protecting the user against the attack.</p>
-</div>
-<div class="paragraph">
-<p>The token is only valid for that single user and can not be used with other users. In case of a
-token leak, the users will be able to revoke all of their tokens, similar to a "Forget me on all
-devices" functionality.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The token-based approach only provide the base minimum level of security; it is up to RPs to decide if they want to adopt a stricter policy or not.
-For example, RPs might instead:</p>
+<p>RP calls the anonymous dynamic link based <code>authentication</code> session endpoint and displays a QR code that the user must scan with the Smart-ID app.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Require dynamic links for every transaction.</p>
-</li>
-<li>
-<p>Require dynamic links at beginning of every session.</p>
-</li>
-<li>
-<p>Whenever there is anything suspicious or requiring a stricter authentication, ask for a dynamic link based authentication/signature.</p>
+<p><code>BASE/v3/authentication/dynamic-link/anonymous</code></p>
 </li>
 </ul>
 </div>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Instead of using the anonymous <code>authentication</code> session endpoint, the RP can request the user to enter their user identifier and utilise the non-anonymous <code>authentication</code> session endpoint. This may be beneficial when the RP utilises custom user names.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/authentication/dynamic-link/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The exact validity of the token will be configurable for each RP in the Smart-ID system.</p>
+<p>The RP also receives a <code>deviceProximityEnforcedToken</code> (if RP requests for it) that can be used for the notification based signing requests during the RP session.</p>
+</div>
+<div class="paragraph">
+<p>Using the same token, the RP can also call the notification based <code>authentication</code> session endpoint in the future, which will trigger a push notification to all the user&#8217;s devices instead of the user having to scan QR codes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/authentication/notification/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_signing_with_prior_authentication"><a class="anchor" href="#_signing_with_prior_authentication"></a>Signing with prior authentication</h3>
+<div class="sect3">
+<h4 id="_without_certificate_query"><a class="anchor" href="#_without_certificate_query"></a>Without certificate query</h4>
+<div class="paragraph">
+<p>If a user has already logged onto the RP app or website using Smart-ID authentication, the RP can call the notification based <code>signature</code> session endpoint to sign using the same Smart-ID account that was used for authentication. The <code>deviceProximityEnforcedToken</code> from a prior session is required.</p>
+</div>
+<div class="paragraph">
+<p>The document number is attained from the preceding authentication call.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/signature/notification/document/:documentnumber</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_with_certificate_query"><a class="anchor" href="#_with_certificate_query"></a>With certificate query</h4>
+<div class="paragraph">
+<p>In many cases, the user&#8217;s signing certificate is required before the <code>signature</code> session can be initiated. Call the notification based <code>certificatechoice</code> session endpoint to obtain it.</p>
+</div>
+<div class="paragraph">
+<p>As the document number is already known, no user interaction is required for the <code>certificatechoice</code> session and the RP API can immediately provide the certificate. The <code>deviceProximityEnforcedToken</code> from a prior session is required though.</p>
+</div>
+<div class="paragraph">
+<p>Then call the notification based <code>signature</code> session endpoint with the document number.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/certificatechoice/notification/document/:documentnumber</code></p>
+</li>
+<li>
+<p><code>BASE/v3/signature/notification/document/:documentnumber</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_signing_without_prior_authentication"><a class="anchor" href="#_signing_without_prior_authentication"></a>Signing without prior authentication</h3>
+<div class="sect3">
+<h4 id="_without_certificate_query_2"><a class="anchor" href="#_without_certificate_query_2"></a>Without certificate query</h4>
+<div class="paragraph">
+<p>In case no prior authentication has taken place, the dynamic link based <code>signature</code> session endpoint should be called.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/signature/dynamic-link/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_with_certificate_query_2"><a class="anchor" href="#_with_certificate_query_2"></a>With certificate query</h4>
+<div class="paragraph">
+<p>Often though the certificate is required prior to the signing request.</p>
+</div>
+<div class="paragraph">
+<p>The RP should call the anonymous dynamic link based <code>certificatechoice</code> session endpoint and also obtain the <code>deviceProximityEnforcedToken</code> from it.</p>
+</div>
+<div class="paragraph">
+<p>Immediately after that, RP should call the notification based <code>signature</code> session endpoint.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/certificatechoice/dynamic-link/anonymous</code></p>
+</li>
+<li>
+<p><code>BASE/v3/signature/notification/document/:documentnumber</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The combination of dynamic link based <code>certificatechoice</code> and notification based <code>signature</code> session endpoints provides the optimal user experience where Smart-ID app is launched only once.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_single_device_use_cases"><a class="anchor" href="#_single_device_use_cases"></a>Single-device use cases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Use case:</strong> The RP frontend (whether an RP app or website accessed by a mobile browser) resides on the same mobile device as the Smart-ID app.</p>
+</div>
+<div class="paragraph">
+<p>The client is using a mobile app or RP detects that the user is on a mobile browser so it can be assumed that the user intends to use the Smart-ID app on the same device.</p>
+</div>
+<div class="paragraph">
+<p>However, a fallback option should also be provided to switch to the separate device use case.</p>
+</div>
+<div class="sect2">
+<h3 id="_authentication_2"><a class="anchor" href="#_authentication_2"></a>Authentication</h3>
+<div class="paragraph">
+<p>Use the anonymous dynamic link based <code>authentication</code> session endpoint for App2App and Web2App flows.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/authentication/dynamic-link/anonymous</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternatively, the non-anonymous flow can be used to too.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/authentication/dynamic-link/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As a fallback (in case the Smart-ID app is on a separate account), RP should provide an option to use QR codes instead of the App2App or Web2App link. There is no need to query the RP API again for this.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_signing_with_prior_authentication_2"><a class="anchor" href="#_signing_with_prior_authentication_2"></a>Signing with prior authentication</h3>
+<div class="sect3">
+<h4 id="_without_certificate_query_3"><a class="anchor" href="#_without_certificate_query_3"></a>Without certificate query</h4>
+<div class="paragraph">
+<p>Call the dynamic link based <code>signature</code> session endpoint and provide the document number from the <code>authentication</code> session to ensure the same account is being used.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/signature/dynamic-link/document/:documentnumber</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_with_certificate_query_3"><a class="anchor" href="#_with_certificate_query_3"></a>With certificate query</h4>
+<div class="paragraph">
+<p>As the document number is already known, no user interaction is required for the <code>certificatechoice</code> session and the RP API can immediately provide the certificate. The <code>deviceProximityEnforcedToken</code> from a prior session is required though.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/certificatechoice/notification/document/:documentnumber</code></p>
+</li>
+<li>
+<p><code>BASE/v3/signature/dynamic-link/document/:documentnumber</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_signing_without_prior_authentication_2"><a class="anchor" href="#_signing_without_prior_authentication_2"></a>Signing without prior authentication</h3>
+<div class="sect3">
+<h4 id="_without_certificate_query_4"><a class="anchor" href="#_without_certificate_query_4"></a>Without certificate query</h4>
+<div class="paragraph">
+<p>In case no prior authentication has taken place, one should call the dynamic link based <code>signature</code> session endpoint.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/signature/dynamic-link/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_with_certificate_query_4"><a class="anchor" href="#_with_certificate_query_4"></a>With certificate query</h4>
+<div class="paragraph">
+<p>Often though the certificate is required prior to the signing request. Call the anonymous dynamic link based <code>certificatechoice</code> session endpoint and then immediately the notification based <code>signature</code> session endpoint.</p>
+</div>
+<div class="paragraph">
+<p>The Smart-ID app will wait for the <code>signature</code> session and return only after it has been completed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/certificatechoice/dynamic-link/anonymous</code></p>
+</li>
+<li>
+<p><code>BASE/v3/signature/notification/document/:documentnumber</code></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>

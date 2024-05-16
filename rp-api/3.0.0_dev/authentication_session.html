@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Authentication session :: RP API integration guidance - DRAFT</title>
+    <title>authentication session :: RP API integration guidance - DRAFT</title>
     <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0_dev/authentication_session.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -128,7 +131,7 @@
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
     <li><a href="sessions.html">Session types</a></li>
-    <li><a href="authentication_session.html">Authentication session</a></li>
+    <li><a href="authentication_session.html"><code>authentication</code> session</a></li>
   </ul>
 </nav>
 </div>
@@ -137,7 +140,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Authentication session</h1>
+<h1 class="page"><code>authentication</code> session</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -146,10 +149,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_notification_based_authentication_session"><a class="anchor" href="#_notification_based_authentication_session"></a>Notification-based authentication session</h2>
+<h2 id="_notification_based_authentication_session"><a class="anchor" href="#_notification_based_authentication_session"></a>Notification based <code>authentication</code> session</h2>
 <div class="sectionbody">
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Notification-based authentication endpoints</caption>
+<caption class="title">Notification based authentication endpoints</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 88.8889%;">
@@ -163,7 +166,7 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/authentication/notification/etsi/:semantics-identifier</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/authentication/notification/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
@@ -172,12 +175,12 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p>This method is the main entry point to authentication logic for the notification-based flows.
+<p>This method is the main entry point to authentication logic for the notification based flows.
 It selects user&#8217;s authentication key as the one to be used in the
 process.</p>
 </div>
 <div class="paragraph">
-<p>It is only possible to use the notification-based flow when the user has previously completed a transaction using one of the (more secure) dynamic link based flows on this device (and obtained a <code>deviceProximityEnforcedToken</code> as a response). This <code>deviceProximityEnforcedToken</code> must be provided by the RP when making a request to one of the notification-based flows.</p>
+<p>It is only possible to use the notification based flow when the user has previously completed a transaction using one of the (more secure) dynamic link based flows on this device (and obtained a <code>deviceProximityEnforcedToken</code> as a response). This <code>deviceProximityEnforcedToken</code> must be provided by the RP when making a request to one of the notification based flows.</p>
 </div>
 <div class="sect2">
 <h3 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>Error conditions</h3>
@@ -200,7 +203,7 @@ system.</p>
 <div class="sect2">
 <h3 id="_request_parameters"><a class="anchor" href="#_request_parameters"></a>Request parameters</h3>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Notification-based authentication request parameters</caption>
+<caption class="title">Notification based authentication request parameters</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 8.3333%;">
@@ -240,7 +243,7 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">deviceProximityEnforcedToken</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UUID token which must be provided to allow the use of notification-based flows for the combination of the given user and device. This token demonstrates that the device proximity check has been completed previously (by the prior use of the dynamic link flow).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID token which must be provided to allow the use of notification based flows for the combination of the given user and device. This token demonstrates that the device proximity check has been completed previously (by the prior use of the dynamic link flow).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signatureProtocol</p></td>
@@ -298,7 +301,7 @@ parameter.</p></td>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Notification-based authentication request example</div>
+<div class="title">Notification based authentication request example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "relyingPartyUUID": "1f1bfa89-4f8b-420a-a98e-fb3a161a30bc",
@@ -327,7 +330,7 @@ parameter.</p></td>
 <div class="sect2">
 <h3 id="_response_structure"><a class="anchor" href="#_response_structure"></a>Response structure</h3>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Notification-based authentication session creation response parameters</caption>
+<caption class="title">Notification based <code>authentication</code> session creation response parameters</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -370,7 +373,7 @@ parameter.</p></td>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Notification-based authentication session creation response</div>
+<div class="title">Notification based <code>authentication</code> session creation response</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546015",
@@ -385,11 +388,11 @@ parameter.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dynamic_link_based_authentication_session"><a class="anchor" href="#_dynamic_link_based_authentication_session"></a>Dynamic link based authentication session</h2>
+<h2 id="_dynamic_link_based_authentication_session"><a class="anchor" href="#_dynamic_link_based_authentication_session"></a>Dynamic link based <code>authentication</code> session</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This method is the main entry point to authentication logic for the dynamic link based flows.
-In contrast to the notification-based flows, an "anonymous" endpoint is provided. When that
+In contrast to the notification based flows, an "anonymous" endpoint is provided. When that
 endpoint is used, RP learns the user&#8217;s identity only after the signing has been completed and
 the session result is returned to the RP.</p>
 </div>
@@ -408,7 +411,7 @@ the session result is returned to the RP.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/authentication/dynamic-link/etsi/:semantics-identifier</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/authentication/dynamic-link/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
@@ -481,7 +484,7 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">requestProximityEnforcedToken</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If true, token <code>deviceProximityEnforcedToken</code> will be returned in the session status response. This token indicates that the proximity enforcement has taken place and enables the subsequent use of the notification-based flows for that user and device for a pre-configured time period. Default is false, token is not generated nor returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, token <code>deviceProximityEnforcedToken</code> will be returned in the session status response. This token indicates that the proximity enforcement has taken place and enables the subsequent use of the notification based flows for that user and device for a pre-configured time period. Default is false, token is not generated nor returned.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signatureProtocol</p></td>
@@ -561,7 +564,7 @@ parameter.</p></td>
 <div class="sect2">
 <h3 id="_response_structure_2"><a class="anchor" href="#_response_structure_2"></a>Response structure</h3>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Successful dynamic link based authentication session creation response parameters</caption>
+<caption class="title">Successful dynamic link based <code>authentication</code> session creation response parameters</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -599,7 +602,7 @@ result.</p></td>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Dynamic link based authentication session creation response</div>
+<div class="title">Dynamic link based <code>authentication</code> session creation response</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014",

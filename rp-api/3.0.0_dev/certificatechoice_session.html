@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Certificate choice session :: RP API integration guidance - DRAFT</title>
+    <title>certificatechoice session :: RP API integration guidance - DRAFT</title>
     <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0_dev/certificatechoice_session.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -128,7 +131,7 @@
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
     <li><a href="sessions.html">Session types</a></li>
-    <li><a href="certificatechoice_session.html">Certificate choice session</a></li>
+    <li><a href="certificatechoice_session.html"><code>certificatechoice</code> session</a></li>
   </ul>
 </nav>
 </div>
@@ -137,21 +140,20 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Certificate choice session</h1>
+<h1 class="page"><code>certificatechoice</code> session</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This method initiates certificate choice between multiple signing certificates the
-user may hold on his/her different mobile devices.</p>
+<p>This method returns the signing certificate of the user and if needed queries the user which device they intend to use in the following <code>signature</code> session.</p>
 </div>
 <div class="paragraph">
 <p>Having a correct certificate is needed for giving signatures under <code>*AdES</code>
-schemes. The method can be ignored if the signature scheme does not
-mandate presence of certificate in the document structure that is to be
+schemes. The method should not be used if the signature scheme does not
+mandate presence of the certificate in the document structure that is to be
 signed.</p>
 </div>
 <div class="paragraph">
-<p>In practice, the user is the one who confirms which device (and therefore signing certificate) she will use for the upcoming signing operation. How this is done depends on which endpoint/flow the RP has chosen:</p>
+<p>The user must confirm which device (and therefore signing certificate) they will use for the upcoming signing operation. How this is done depends on which endpoint/flow the RP has chosen:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -159,7 +161,7 @@ signed.</p>
 <p>in the dynamic link flow (the dynamic link based endpoint), the user interacts with the dynamic link (QR code, Web2App link, or App2App link) on a certain device, thereby indicating that this is the device that she intends to use.</p>
 </li>
 <li>
-<p>in the notification-based flow (the notification-based endpoint), a certificate (device) choice dialogue is initiated on the user&#8217;s devices. The user interacts with one of the devices.</p>
+<p>in the notification based flow (the notification based endpoint), a certificate (device) choice dialogue is initiated on the user&#8217;s devices. The user interacts with one of the devices.</p>
 </li>
 </ul>
 </div>
@@ -173,28 +175,26 @@ signed.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In the notification-based flow, if the user has only one account, the certificate is returned to the RP without involving the mobile device at all.
+In the notification based flow, if the user has only one account or the request references a <code>:documentnumber</code>, the certificate is returned to the RP without involving the mobile device at all.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The <code>signature</code> session that follows <code>certificatechoice</code> must always use the notification based endpoint. When the Smart-ID app receives a <code>certificatechoice</code> session it will service the request and then stay in the foreground and wait for the notification based <code>signature</code> session.</p>
 </div>
 <div class="paragraph">
 <p>The method accepts <code>QSCD</code> as a certificate level parameter. This is a
 shortcut marking a certificate of <code>QUALIFIED</code> level which is also
 QSCD-capable. <code>ADVANCED</code> certificates cannot be QSCD-capable.</p>
 </div>
-<div class="paragraph">
-<p><strong>Warning</strong>. This method initiates a certificate (device) choice dialogue on end
-user&#8217;s devices, so it may not be called without explicit need (i.e. it
-may be called only as the first step in the signing process).</p>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_certificate_choice_session_endpoints"><a class="anchor" href="#_certificate_choice_session_endpoints"></a>Certificate choice session endpoints</h2>
+<h2 id="_certificatechoice_session_endpoints"><a class="anchor" href="#_certificatechoice_session_endpoints"></a><code>certificatechoice</code> session endpoints</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For the certificate choice requests, the API descriptions practically coincide. The only differences are:</p>
+<p>For the <code>certificatechoice</code> session requests, the API descriptions practically coincide. The only differences are:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -207,10 +207,10 @@ may be called only as the first step in the signing process).</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>In below, only the differing parts are described separately.</p>
+<p>Only the differing parts are described separately.</p>
 </div>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Dynamic link based certificate choice endpoints</caption>
+<caption class="title">Dynamic link based <code>certificatechoice</code> session endpoints</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 88.8889%;">
@@ -224,16 +224,12 @@ may be called only as the first step in the signing process).</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/dynamic-link/etsi/:semantics-identifier</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/dynamic-link/document/:documentnumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/dynamic-link/anonymous</code></p></td>
 </tr>
 </tbody>
 </table>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Notification-based certificate choice endpoints</caption>
+<caption class="title">Notification based <code>certificatechoice</code> session endpoints</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 88.8889%;">
@@ -247,7 +243,7 @@ may be called only as the first step in the signing process).</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/notification/etsi/:semantics-identifier</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/certificatechoice/notification/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
@@ -285,7 +281,7 @@ system.</p>
 <div class="sect2">
 <h3 id="_request_parameters"><a class="anchor" href="#_request_parameters"></a>Request parameters</h3>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Certificate choice request parameters</caption>
+<caption class="title"><code>certificatechoice</code> session request parameters</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 8.3333%;">
@@ -346,7 +342,7 @@ name/value pairs. <a href="request_properties.html#ip_sharing" class="xref page"
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Certificate choice request example</div>
+<div class="title"><code>certificatechoice</code> session request example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "relyingPartyUUID": "1f1bfa89-4f8b-420a-a98e-fb3a161a30bc",
@@ -359,7 +355,7 @@ name/value pairs. <a href="request_properties.html#ip_sharing" class="xref page"
 <div class="sect2">
 <h3 id="_example_response"><a class="anchor" href="#_example_response"></a>Example response</h3>
 <div class="listingblock">
-<div class="title">Certificate choice response</div>
+<div class="title"><code>certificatechoice</code> session response</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014"
@@ -373,10 +369,10 @@ name/value pairs. <a href="request_properties.html#ip_sharing" class="xref page"
 <h2 id="_response_on_successful_session_creation"><a class="anchor" href="#_response_on_successful_session_creation"></a>Response on successful session creation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The response depends on whether the notification-based or dynamic link based endpoint was called.</p>
+<p>The response depends on whether the notification based or dynamic link based endpoint was called.</p>
 </div>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Successful notification-based certificate choice session creation response parameters</caption>
+<caption class="title">Successful notification based <code>certificatechoice</code> session creation response parameters</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -402,7 +398,7 @@ result.</p></td>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Successful notification-based session creation response</div>
+<div class="title">Successful notification based session creation response</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014"
@@ -410,7 +406,7 @@ result.</p></td>
 </div>
 </div>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Successful dynamic link based certificate choice session creation response parameters</caption>
+<caption class="title">Successful dynamic link based <code>certificatechoice</code> session creation response parameters</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Session status :: RP API integration guidance - DRAFT</title>
+    <title>session status :: RP API integration guidance - DRAFT</title>
     <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.0.0_dev/session_status.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -128,7 +131,7 @@
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
     <li><a href="sessions.html">Session types</a></li>
-    <li><a href="session_status.html">Session status</a></li>
+    <li><a href="session_status.html"><code>session</code> status</a></li>
   </ul>
 </nav>
 </div>
@@ -137,11 +140,11 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Session status</h1>
+<h1 class="page"><code>session</code> status</h1>
 <div id="preamble">
 <div class="sectionbody">
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Session status endpoint</caption>
+<caption class="title"><code>session</code> status endpoint</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 88.8889%;">
@@ -160,12 +163,12 @@
 </tbody>
 </table>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Session status query parameter</caption>
+<caption class="title"><code>session</code> status query parameter</caption>
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 8.3333%;">
-<col style="width: 4.1666%;">
-<col style="width: 62.5001%;">
+<col style="width: 13.7931%;">
+<col style="width: 13.7931%;">
+<col style="width: 3.4482%;">
+<col style="width: 68.9656%;">
 </colgroup>
 <thead>
 <tr>
@@ -199,12 +202,8 @@ service operator.</p>
 <div class="paragraph">
 <p>Example URL:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>https://example.com/rp/v3/session/de305d54-75b4-431b-adb2-eb6b9e546016?timeoutMs=10000</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><code>https://rp-api.smart-id.com/v3/session/de305d54-75b4-431b-adb2-eb6b9e546016?timeoutMs=10000</code></p>
 </div>
 </div>
 </div>
@@ -224,7 +223,7 @@ service operator.</p>
 <h2 id="_response_structure"><a class="anchor" href="#_response_structure"></a>Response structure</h2>
 <div class="sectionbody">
 <table class="tableblock frame-none grid-none stripes-odd stretch">
-<caption class="title">Session status response</caption>
+<caption class="title"><code>session</code> status response</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -244,36 +243,31 @@ service operator.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">State of request. <code>RUNNING</code>/<code>COMPLETE</code>. There are
-only two possible status codes for now.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">State of request. <code>RUNNING</code>/<code>COMPLETE</code>. There are only two possible status codes for now.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">result</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing end result, may be empty or
-missing when still running.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing end result, may be empty or missing when still running.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">result.endResult</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">End result of the transaction. Refer to
-the subsection below.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">End result of the transaction. Refer to the subsection below.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">result.documentNumber</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">for <code>OK</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Document number, can be used
-in further signature and authentication requests to target the same
-device.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Document number, can be used in further signature and authentication requests to target the same device.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">deviceProximityEnforcedToken</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UUID token which is returned to the RP after successfully completing a transaction via a dynamic flow if RP has requested for it in the initial request. This token indicates that the proximity check has been completed for that user and that device. It allows RP to use the notification-based endpoints for a certain pre-configured time for the combination of the given user and device.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID token which is returned to the RP after successfully completing a transaction via a dynamic flow if RP has requested for it in the initial request. This token indicates that the proximity check has been completed for that user and that device. It allows RP to use the notification based endpoints for a certain pre-configured time for the combination of the given user and device.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">deviceProximityEnforcedTokenValidity</p></td>
@@ -286,25 +280,21 @@ device.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol. Possible values:</p>
-<p class="tableblock">* <code>ACSP_V1</code> - signature protocol used
-for the authentication sessions.</p>
-<p class="tableblock">* <code>RAW_DIGEST_SIGNATURE</code> - signature protocol used for the
-signing sessions.</p>
+<p class="tableblock">* <code>ACSP_V1</code> - signature protocol used for the <code>authentication</code> sessions.</p>
+<p class="tableblock">* <code>RAW_DIGEST_SIGNATURE</code> - signature protocol used for the <code>signature</code> sessions.</p>
 <p class="tableblock">See <a href="signature_protocols.html" class="xref page">Signature protocols</a> for additional details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">signature</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing the signature result, if any. The structure depends on
-the signature protocol used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing the signature result, if any. The structure depends on the signature protocol used.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cert</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">for OK</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing the certificate related to
-the request.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Structure describing the certificate related to the request.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cert.value</p></td>
@@ -481,7 +471,7 @@ encoded as base64.</p></td>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Successful response after completion, notification-based flow, protocol <code>RAW_DIGEST_SIGNATURE</code></div>
+<div class="title">Successful response after completion, notification based flow, protocol <code>RAW_DIGEST_SIGNATURE</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "state": "COMPLETE",
@@ -505,7 +495,7 @@ encoded as base64.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_session_status_end_result_codes"><a class="anchor" href="#_session_status_end_result_codes"></a>Session status end result codes</h2>
+<h2 id="_session_status_end_result_codes"><a class="anchor" href="#_session_status_end_result_codes"></a><code>session</code> status end result codes</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>

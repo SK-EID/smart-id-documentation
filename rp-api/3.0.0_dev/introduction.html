@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -149,7 +152,7 @@ service or create a signature.</p>
 <div class="paragraph">
 <p>The Smart-ID server either sends a push message notification to the user&#8217;s
 device where the user opens the Smart-ID application or the user must scan a QR code or
-in case of the same device use case click a link to launch the Smart-ID application.</p>
+in case of the single-device use case click a link to launch the Smart-ID application.</p>
 </div>
 <div class="paragraph">
 <p>The the user checks the details of the transaction and enters a PIN code to confirm it.</p>
@@ -185,10 +188,10 @@ structure, calculate the hash and have that signed using this API.</p>
 <p>for multi-device use cases&#8201;&#8212;&#8201;dynamic QR codes that the user must scan;</p>
 </li>
 <li>
-<p>for same-device use cases where the user is visiting an RP webpage using a mobile browser&#8201;&#8212;&#8201;dynamic links which the user must click;</p>
+<p>for single-device use cases where the user is visiting an RP webpage using a mobile browser&#8201;&#8212;&#8201;dynamic links which the user must click;</p>
 </li>
 <li>
-<p>for same-device use cases where the user is using an RP app&#8201;&#8212;&#8201;dynamic links which the user must click.</p>
+<p>for single-device use cases where the user is using an RP app&#8201;&#8212;&#8201;dynamic links which the user must click.</p>
 </li>
 </ul>
 </div>
@@ -196,26 +199,16 @@ structure, calculate the hash and have that signed using this API.</p>
 <p>The guiding principle in designing the API has been to unify those three afore-mentioned flows as much as possible to minimise the integration efforts for the RPs. Because of this, they share the same security mechanisms and principles, even though the medium of transmitting information is completely different.</p>
 </div>
 <div class="paragraph">
-<p>This also means that it is possible for an RP to offer alternative methods of authentication at the same time without doing multiple requests to RP-API. This is useful in the following situations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The user is accessing RP website from a mobile device, for example a tablet device. RP wants to offer the user to authenticate either on the same device (via a Web2App link) or on a separate device (via a dynamic QR code).</p>
-</li>
-<li>
-<p>RP is unable to detect from the user agent whether the user is using a mobile device or a PC.</p>
-</li>
-</ul>
+<p>This also means that it is possible for an RP to offer alternative methods of authentication at the same time without doing multiple requests to RP-API.</p>
 </div>
 <div class="paragraph">
-<p>In RP API version 3, the notification-based flows will still be available, but they are intended to be used only after the user has been securely authenticated by one of the dynamic flows before.</p>
+<p>In RP API version 3, the notification based flows will still be available, but they are intended to be used only after the user has been securely authenticated by one of the dynamic flows before.</p>
 </div>
 <div class="paragraph">
-<p>It is up to the RP to decide how often to require the user to perform a secure authentication (minimum recommended is once per 3 months for every device that user owns) in case of the multi-device. The RP should utilize client local storage (cookies) to keep track which clients have previously authenticated using the new flows.</p>
+<p>It is up to the RP to decide how often to require the user to perform a secure authentication (minimum recommended is once per 3 months for every device that user owns) in the multi-device use case. The RP should utilize client local storage (cookies) to keep track which clients have previously authenticated using the new flows.</p>
 </div>
 <div class="paragraph">
-<p>For same-device flows the new dynamic links based flows should always be used.</p>
+<p>For single-device use case the new dynamic links based flows should always be used.</p>
 </div>
 <div class="paragraph">
 <p>Brokers of the Smart-ID service are treated similarly to relying parties and there is no extra configuration compared to previous RP API versions.</p>
@@ -229,7 +222,7 @@ structure, calculate the hash and have that signed using this API.</p>
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg"><img src="_images/flow-300c4a9cffd27e64ff391835627cc734959a70f1.svg" alt="flow"></a>
+<a class="image" href="_images/flow-208fe1426526ff7bfbe0ce12173203ef83dde7bd.svg"><img src="_images/flow-208fe1426526ff7bfbe0ce12173203ef83dde7bd.svg" alt="flow"></a>
 </div>
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">

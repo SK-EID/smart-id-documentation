@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -144,10 +147,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Each of the requests <code>certificatechoice</code>, <code>authentication</code>, <code>signing</code> has two counter-parts instead of one: <code>notification-based</code> (the existing one from RPv2, relying on push notifications) and <code>dynamic link based</code> (newly added flows, relying on QR codes / Web2App links / App2App links).</p>
+<p>Each of the requests <code>certificatechoice</code>, <code>authentication</code>, <code>signing</code> has two counter-parts instead of one: <code>notification based</code> (the existing one from RPv2, relying on push notifications) and <code>dynamic link based</code> (newly added flows, relying on QR codes / Web2App links / App2App links).</p>
 </li>
 <li>
-<p>Token-based mechanism for allowing notification-based endpoints to be accessed securely.</p>
+<p>Device proximity enforcement token based mechanism for allowing notification based endpoints to be accessed securely.</p>
 </li>
 <li>
 <p>Introduction of new signature protocols (<code>ACSP_V1</code> and <code>RAW_DIGEST_SIGNING</code>).</p>
@@ -159,7 +162,7 @@
 <p>New VC codes formats.</p>
 </li>
 <li>
-<p>For notification-based requests, it is possible for the RP to indicate that the user is on a mobile device, causing a pre-configured delay for the push message sending.</p>
+<p>For notification based requests, it is possible for the RP to indicate that the user is on a mobile device, causing a pre-configured delay for the push message sending.</p>
 </li>
 <li>
 <p>For authentication and signing requests, <code>RSA-PSS</code> signature format support is provided.</p>
@@ -175,7 +178,7 @@
 <ul>
 <li>
 <p>Uses <code>v2</code> instead of <code>v1</code> in URL, for example
-<code><a href="https://example.com/rp/v2/" class="bare">https://example.com/rp/v2/</a></code> instead of <code><a href="https://example.com/rp/v1/" class="bare">https://example.com/rp/v1/</a></code>.</p>
+<code>https://rp-api.smart-id.com/v2/</code> instead of <code>https://rp-api.smart-id.com/v1/</code>.</p>
 </li>
 <li>
 <p>New interactions concept allowed interactions order.</p>
@@ -223,7 +226,7 @@ message.</p>
 <li>
 <p>Previously deprecated object reference
 <code>pno/:country/:national-identity-number</code> removed, use
-<code>etsi/:semantics-identifier</code> instead.</p>
+<code>etsi/:id-etsi-qcs-SemanticsId-Natural</code> instead.</p>
 </li>
 <li>
 <p>RP must ignore any unknown names (fields) in JSON response object.</p>

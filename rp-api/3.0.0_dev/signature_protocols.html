@@ -56,24 +56,27 @@
     <a class="nav-link" href="sessions.html">Session types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authentication_session.html">Authentication session</a>
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signing_session.html">Signing session</a>
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="certificatechoice_session.html">Certificate choice session</a>
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="session_status.html">Session status</a>
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tokens.html">Device proximity enforcement tokens</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="notification_based_flows.html">Notification-based flows</a>
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="response_verification.html">Response verification</a>
@@ -157,7 +160,7 @@
 <p>The RP must provide the digest algorithm to use as well a challenge it needs signed. The challenge must be generated anew for every single authentication request.</p>
 </div>
 <div class="paragraph">
-<p>It must be remembered by the RP for the duration of the authentication session, and later it is used to reconstruct and validate the signed authentication data structure.</p>
+<p>It must be remembered by the RP for the duration of the <code>authentication</code> session, and later it is used to reconstruct and validate the signed authentication data structure.</p>
 </div>
 <div class="paragraph">
 <p>The recommended way of generating the challenge this is to use the Java SecureRandom
@@ -209,7 +212,7 @@ session for later comparison.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">randomChallenge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is a random value of 64 bytes encoded with base64, which is generated per each authentication session at the RP side. See above for details.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is a random value of 64 bytes encoded with base64, which is generated per each <code>authentication</code> session at the RP side. See above for details.</p></td>
 </tr>
 </tbody>
 </table>
