@@ -250,12 +250,12 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
-Describes the algorithm how signature is produced and the <code>signatureParameters</code> object.
+Describes the algorithm how signature is produced and the <code>signatureProtocolParameters</code> object.
 Currently the only allowed value is:</p>
 <p class="tableblock">* <code>ACSP_V1</code> - Data structure V1 with authentication context to be signed. See section <a href="signature_protocols.html#acsp_v1" class="xref page"><code>ACSP_V1</code></a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">signatureParameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signatureProtocolParameters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
@@ -309,7 +309,7 @@ parameter.</p></td>
   "certificateLevel": "QUALIFIED",
   "deviceProximityEnforcedToken": "4af7a759-d5f4-4db0-b14e-2a433e21c5af",
   "signatureProtocol": "ACSP_V1",
-  "signatureParameters": {
+  "signatureProtocolParameters": {
     "digestAlgorithm": "SHA256",
     "randomChallenge": "ZHNmYmhkZmdoZGcgZmRmMTQ0NTM..."
   },
@@ -491,12 +491,12 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
-Describes the algorithm how signature is produced and the <code>signatureParameters</code> object.
+Describes the algorithm how signature is produced and the <code>signatureProtocolParameters</code> object.
 Currently the only allowed value is:</p>
 <p class="tableblock">* <code>ACSP_V1</code> - Data structure V1 with authentication context to be signed. See section <a href="signature_protocols.html#acsp_v1" class="xref page"><code>ACSP_V1</code></a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">signatureParameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signatureProtocolParameters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
@@ -544,7 +544,7 @@ parameter.</p></td>
   "certificateLevel": "QUALIFIED",
   "requestProximityEnforcedToken": true,
   "signatureProtocol": "ACSP_V1",
-  "signatureParameters": {
+  "signatureProtocolParameters": {
     "digestAlgorithm": "SHA256",
     "randomChallenge": "ZHNmYmhkZmdoZGcgZmRmMTQ0NTM..."
   },

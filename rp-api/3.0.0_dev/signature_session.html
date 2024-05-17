@@ -283,12 +283,12 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
-Describes the <code>signatureParameters</code> object.
+Describes the <code>signatureProtocolParameters</code> object.
 Currently the only allowed value is:</p>
 <p class="tableblock">* <code>RAW_DIGEST_SIGNATURE</code> - scheme where user-provided digest is signed directly (similarly to RP-API v1 and v2). For more details see section <a href="signature_protocols.html#raw_digest_signing" class="xref page"><code>RAW_DIGEST_SIGNING</code></a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">signatureParameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signatureProtocolParameters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An object describing the parameters for the signature algorithm. Its structure depends on the <code>signatureProtocol</code> used. See <a href="signature_protocols.html#raw_digest_signing_param" class="xref page"><code>RAW_DIGEST_SIGNING</code> parameters table</a>.</p></td>
@@ -339,7 +339,7 @@ parameter.</p></td>
   "certificateLevel": "QUALIFIED",
   "deviceProximityEnforcedToken": "4af7a759-d5f4-4db0-b14e-2a433e21c5af",
   "signatureProtocol": "RAW_DIGEST_SIGNATURE",
-  "signatureParameters": {
+  "signatureProtocolParameters": {
       "digest": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
       "appliedDigestAlgorithm": "SHA-512",
   },
@@ -527,12 +527,12 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
-Describes the <code>signatureParameters</code> object.
+Describes the <code>signatureProtocolParameters</code> object.
 Currently the only allowed value is:</p>
 <p class="tableblock">* <code>RAW_DIGEST_SIGNATURE</code> - scheme where user-provided digest is signed directly (similarly to RP-API v1 and v2). For more details see section <a href="signature_protocols.html#raw_digest_signing" class="xref page"><code>RAW_DIGEST_SIGNING</code></a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">signatureParameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signatureProtocolParameters</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An object describing the parameters for the signature algorithm. Its structure depends on the <code>signatureProtocol</code> used. See <a href="signature_protocols.html#raw_digest_signing_param" class="xref page"><code>RAW_DIGEST_SIGNING</code> parameters table</a>.</p></td>
@@ -577,7 +577,7 @@ parameter.</p></td>
   "certificateLevel": "QUALIFIED",
   "requestProximityEnforcedToken": false,
   "signatureProtocol": "RAW_DIGEST_SIGNATURE",
-  "signatureParameters": {
+  "signatureProtocolParameters": {
       "digest": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
       "appliedDigestAlgorithm": "SHA-512",
   },
