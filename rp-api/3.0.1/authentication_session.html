@@ -29,7 +29,7 @@
     </div>
   </nav>
 </header><div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.0.0">
+<div class="nav-container" data-component="rp-api" data-version="3.0.1">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -104,17 +104,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">RP API documentation</span>
-    <span class="version">3.0.0</span>
+    <span class="version">3.0.1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="../3.0.1/introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
       <ul class="versions">
-        <li class="version is-latest">
-          <a href="../3.0.1/introduction.html">3.0.1</a>
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.1</a>
         </li>
-        <li class="version is-current">
-          <a href="introduction.html">3.0.0</a>
+        <li class="version">
+          <a href="../3.0.0/introduction.html">3.0.0</a>
         </li>
       </ul>
     </li>
@@ -126,7 +126,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../3.0.1/introduction.html" class="home-link"></a>
+  <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
@@ -135,10 +135,10 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">3.0.0</button>
+  <button class="version-menu-toggle" title="Show other versions of page">3.0.1</button>
   <div class="version-menu">
-    <a class="version" href="../3.0.1/authentication_session.html">3.0.1</a>
-    <a class="version is-current" href="authentication_session.html">3.0.0</a>
+    <a class="version is-current" href="authentication_session.html">3.0.1</a>
+    <a class="version" href="../3.0.0/authentication_session.html">3.0.0</a>
   </div>
 </div>
 </div>
@@ -185,8 +185,19 @@
 <p>This method is the main entry point to authentication logic for the notification based flows.
 It selects user&#8217;s authentication key as the one to be used in the process.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>In order to improve security and prevent phishing attacks, it is recommended to only allow notification based flows on devices and browsers that have successfully completed a dynamic link based flow. Setting up a unique device identifier is up to RP to implement.</p>
+<p>In order to improve security and prevent phishing attacks, it is recommended to only allow notification based flows on devices and browsers that have successfully completed a dynamic link based flow. Setting up a unique device identifier is left to the RP to implement.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>Error conditions</h3>
@@ -251,7 +262,7 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
 Describes the algorithm how signature is produced and the <code>signatureProtocolParameters</code> object.
-Currently the only allowed value is:</p>
+Currently, the only allowed value is:</p>
 <p class="tableblock">* <code>ACSP_V1</code> - Data structure V1 with authentication context to be signed. See section <a href="signature_protocols.html#acsp_v1" class="xref page"><code>ACSP_V1</code></a>.</p></td>
 </tr>
 <tr>
@@ -354,7 +365,7 @@ parameter.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vc.type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type of the VC code. Currently the only allowed type is <code>alphaNumeric4</code>. Note that the type is "alphaNumeric4" to refer to the fact that in the future the 4-symbol code might also contain letters. For the time being, only numeric values are returned for technical reasons. This may change in the future, so RPs should make no assumptions about it containing numeric data only!</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of the VC code. Currently, the only allowed type is <code>alphaNumeric4</code>. Note that the type is "alphaNumeric4" to refer to the fact that in the future the 4-symbol code might also contain letters. For the time being, only numeric values are returned for technical reasons. This may change in the future, so RPs should make no assumptions about it containing numeric data only!</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vc.value</code></p></td>
@@ -478,7 +489,7 @@ for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Signature protocol.
 Describes the algorithm how signature is produced and the <code>signatureProtocolParameters</code> object.
-Currently the only allowed value is:</p>
+Currently, the only allowed value is:</p>
 <p class="tableblock">* <code>ACSP_V1</code> - Data structure V1 with authentication context to be signed. See section <a href="signature_protocols.html#acsp_v1" class="xref page"><code>ACSP_V1</code></a>.</p></td>
 </tr>
 <tr>

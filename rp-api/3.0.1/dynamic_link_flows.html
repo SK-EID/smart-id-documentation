@@ -29,7 +29,7 @@
     </div>
   </nav>
 </header><div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.0.0">
+<div class="nav-container" data-component="rp-api" data-version="3.0.1">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -104,17 +104,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">RP API documentation</span>
-    <span class="version">3.0.0</span>
+    <span class="version">3.0.1</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="../3.0.1/introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
       <ul class="versions">
-        <li class="version is-latest">
-          <a href="../3.0.1/introduction.html">3.0.1</a>
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.0.1</a>
         </li>
-        <li class="version is-current">
-          <a href="introduction.html">3.0.0</a>
+        <li class="version">
+          <a href="../3.0.0/introduction.html">3.0.0</a>
         </li>
       </ul>
     </li>
@@ -126,7 +126,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../3.0.1/introduction.html" class="home-link"></a>
+  <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">RP API documentation</a></li>
@@ -134,10 +134,10 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">3.0.0</button>
+  <button class="version-menu-toggle" title="Show other versions of page">3.0.1</button>
   <div class="version-menu">
-    <a class="version" href="../3.0.1/dynamic_link_flows.html">3.0.1</a>
-    <a class="version is-current" href="dynamic_link_flows.html">3.0.0</a>
+    <a class="version is-current" href="dynamic_link_flows.html">3.0.1</a>
+    <a class="version" href="../3.0.0/dynamic_link_flows.html">3.0.0</a>
   </div>
 </div>
 </div>
@@ -156,7 +156,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User interacts with a RP frontend (which is a webpage or an app).</p>
+<p>User interacts with an RP frontend (which is a webpage or an app).</p>
 </li>
 <li>
 <p>RP backend makes a request to RP-API to create a dynamic link based <code>authentication</code> or <code>signature</code> session, obtaining security parameters that are necessary for generating dynamic links. This request may either be anonymous (no personal identifier is provided) or non-anonymous.</p>
@@ -175,10 +175,10 @@
 <p>Using a native camera app to scan a QR code (not supported by all camera apps);</p>
 </li>
 <li>
-<p>Clicking on a Web2App link in a RP webpage, thus opening the Smart-ID app;</p>
+<p>Clicking on a Web2App link in an RP webpage, thus opening the Smart-ID app;</p>
 </li>
 <li>
-<p>Clicking on an App2App link in a RP app, thus opening the Smart-ID app.</p>
+<p>Clicking on an App2App link in an RP app, thus opening the Smart-ID app.</p>
 </li>
 </ol>
 </div>
@@ -199,7 +199,7 @@
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-208fe1426526ff7bfbe0ce12173203ef83dde7bd.svg"><img src="_images/flow-208fe1426526ff7bfbe0ce12173203ef83dde7bd.svg" alt="flow"></a>
+<a class="image" href="_images/flow-ac1a9766b64d324a16757668fd43fd567053b8ed.svg"><img src="_images/flow-ac1a9766b64d324a16757668fd43fd567053b8ed.svg" alt="flow"></a>
 </div>
 </div>
 </div>
@@ -240,7 +240,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The next table lists all of the parameters and definitions used in the dynamic link generation. They are all explained in more detail below.</p>
+<p>The next table lists all the parameters and definitions used in the dynamic link generation. They are all explained in more detail below.</p>
 </div>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
 <caption class="title">Parameters used for dynamic link generation</caption>
@@ -281,7 +281,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>payload</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dynamicLinkType.sessionType.time</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A concatenating of the following 3 values in string form, separated by periods: <code>dynamicLinkType.sessionType.elapsedSeconds</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>authCode</code></p></td>
@@ -316,17 +316,31 @@
 <p>The <code>elapsedSeconds</code> parameters is seconds since receiving the response from the initial request to RP API. Notice that <code>authCode</code> must be re-calculated every 1s.</p>
 </div>
 <div class="paragraph">
-<p>As the next step, RP calculates:</p>
+<p>As the next step, RP calculates <code>payload</code> using string concatenation and then uses it in HMACSHA256 calculation (explained below):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>payload</code> := <code>dynamicLinkType.sessionType.time</code></p>
+<p><code>payload</code> := <code>dynamicLinkType.sessionType.elapsedSeconds</code></p>
 </li>
 <li>
 <p><code>authCode</code> := HMACSHA256(<code>sessionSecret</code>, <code>payload</code>)</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The calculation of payload must be done in the RP backend. <code>dynamicLinkType</code>, <code>sessionType</code> and <code>elapsedSeconds</code> must all be generated in the RP backend and RP frontend must not be able to change these parameters.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Details about formatting the <code>payload</code> and <code>sessionSecret</code> parameters as byte strings for HMACSHA256 calculation:</p>
@@ -472,7 +486,7 @@ For all flows, the dynamic generation (every 1s) of the <code>authCode</code> pa
 <p>In the App2App and Web2App flow it will be possible for the RP to also attach a callback URI that the Smart-ID App can call at the end of the transcation. This will allow for seamless navigation between RP apps and RP websites in the single-device use case.</p>
 </div>
 <div class="paragraph">
-<p>Details for the this functionality are being worked on.</p>
+<p>Details for this functionality are being worked on.</p>
 </div>
 <div class="paragraph">
 <p>The callback URL will also be part of the <code>payload</code> and as such protected by the <code>authCode</code> parameter.</p>
