@@ -170,7 +170,7 @@ Technically authentication and signing are very similar, the difference is in th
 certificate) used. For authentication the hash to be signed should be generated randomly by
 the relying party service while for signing the hash is calculated from the content to be signed.
 
-![Figure 1. RP API sequence diagram.](images/RP_API_sequences_REST.png "Figure 1. RP API seuqence diagram.")
+![Figure 1. RP API sequence diagram.](images/RP_API_sequences_REST_v2.svg "Figure 1. RP API seuqence diagram.")
 
 ### 2.2.1 REST interface patterns
 
