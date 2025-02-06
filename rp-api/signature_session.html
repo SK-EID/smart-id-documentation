@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>signature session :: RP API integration guidance</title>
+    <link rel="canonical" href="https://www.example.com/rp-api/signature_session.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <link rel="stylesheet" href="../_/css/vendor/tabs.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.example.com">RP API integration guidance</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rp-api" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="sessions.html">Session types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authentication_session.html"><code>authentication</code> session</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="signature_session.html"><code>signature</code> session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="certificatechoice_session.html"><code>certificatechoice</code> session</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="session_status.html"><code>session</code> status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="dynamic_link_flows.html">Dynamic link flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="object_references.html">REST object references</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="request_properties.html">Additional request properties</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_details.html">REST API details</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">master</a>
+        </li>
+        <li class="version">
+          <a href="3.0.3/introduction.html">3.0.3</a>
+        </li>
+        <li class="version">
+          <a href="3.0.2/introduction.html">3.0.2</a>
+        </li>
+        <li class="version">
+          <a href="3.0.1/introduction.html">3.0.1</a>
+        </li>
+        <li class="version">
+          <a href="3.0.0/introduction.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="sessions.html">Session types</a></li>
+    <li><a href="signature_session.html"><code>signature</code> session</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">master</button>
+  <div class="version-menu">
+    <a class="version is-current" href="signature_session.html">master</a>
+    <a class="version" href="3.0.3/signature_session.html">3.0.3</a>
+    <a class="version" href="3.0.2/signature_session.html">3.0.2</a>
+    <a class="version" href="3.0.1/signature_session.html">3.0.1</a>
+    <a class="version" href="3.0.0/signature_session.html">3.0.0</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="file:///antora/RP_API_documentation/modules/ROOT/pages/signature_session.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><code>signature</code> session</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two main modes of <code>signature</code> session and Relying Party must choose carefully between them. They look like the ones used in case of the <code>authentication</code> session, but there are important differences.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Signature by document number.</strong> This is the main and common usage scenario. Document number can be obtained from result of <code>certificatechoice</code> session or previous <code>authentication</code> session result. Signatures utilizing any of the *AdES signature schemes that include the certificate as part of signature must use this method. Otherwise, the signature may be given by the person specified, but not using the key pair corresponding to the certificate chosen by Relying Party.</p>
+</li>
+<li>
+<p><strong>Signature by person&#8217;s identifier.</strong> This method should only be used if it is acceptable that the end user gives the signature using any of the Smart-ID devices in their possession.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>signature</code> session creation requests accept QSCD (Qualified Signature Creation Device) as a certificate level parameter. This is a shortcut marking a certificate of <code>QUALIFIED</code> level which is also QSCD-capable. <code>ADVANCED</code> certificates cannot be QSCD-capable.</p>
+</div>
+<div class="paragraph">
+<p>The signature protocol <a href="signature_protocols.html#raw_digest_signature" class="xref page"><code>RAW_DIGEST_SIGNATURE</code></a> must be used for signing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_notification_based_signature_session"><a class="anchor" href="#_notification_based_signature_session"></a>Notification based <code>signature</code> session</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Signing endpoints</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 88.8889%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/signature/notification/private/:issuer/:encoded-identifier</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/signature/notification/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/signature/notification/document/:documentnumber</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This method is the main entry point to signature logic for the notification based flows.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In order to improve security and prevent phishing attacks, it is recommended to only allow notification based flows on devices and browsers that have successfully completed a dynamic link based flow. Setting up a unique device identifier is left to the RP to implement.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_error_conditions"><a class="anchor" href="#_error_conditions"></a>Error conditions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>HTTP error code <code>403</code> - Relying Party has no permission to issue the request. This may happen when:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Relying Party has no permission to invoke operations on accounts with <code>ADVANCED</code> certificates.</p>
+</li>
+<li>
+<p>Relying Party has no permission to use requested capability.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>HTTP error code <code>404</code> - object described in URL was not found, essentially meaning that the user does not have an account in Smart-ID system.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_request_parameters"><a class="anchor" href="#_request_parameters"></a>Request parameters</h3>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Notification based signature request parameters</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 8.3333%;">
+<col style="width: 4.1666%;">
+<col style="width: 62.5001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relyingPartyUUID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID of Relying Party.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relyingPartyName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificateLevel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level of certificate requested. <code>ADVANCED</code>/<code>QUALIFIED</code>/<code>QSCD</code>, <code>QUALIFIED</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>signatureProtocol</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Signature protocol. Describes the <code>signatureProtocolParameters</code> object. Currently, the only allowed value is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RAW_DIGEST_SIGNATURE</code> - scheme where user-provided digest is signed directly (similarly to RP-API v1 and v2). For more details see section <a href="signature_protocols.html#raw_digest_signature" class="xref page"><code>RAW_DIGEST_SIGNATURE</code></a>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>signatureProtocolParameters</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An object describing the parameters for the signature algorithm. Its structure depends on the <code>signatureProtocol</code> used. See <a href="signature_protocols.html#raw_digest_signature_param" class="xref page"><code>RAW_DIGEST_SIGNATURE</code> parameters table</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nonce</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Random string, up to 30 characters. If present, must have at least 1 character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allowedInteractionsOrder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See section <a href="interactions.html#available-interactions" class="xref page">available interactions</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestProperties</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A request properties object. See section <a href="interactions.html#available-interactions" class="xref page">available interactions</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>capabilities</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used only when agreed with Smart-ID provider. When omitted request capabilities are derived from <code>certificateLevel</code> parameter.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Notification based signature request example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "relyingPartyUUID": "1f1bfa89-4f8b-420a-a98e-fb3a161a30bc",
+  "relyingPartyName": "DEMO",
+  "certificateLevel": "QUALIFIED",
+  "signatureProtocol": "RAW_DIGEST_SIGNATURE",
+  "signatureProtocolParameters": {
+    "digest": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
+    "signatureAlgorithm": "sha512WithRSAEncryption"
+  },
+  "allowedInteractionsOrder": [
+    {
+      "type": "confirmationMessage",
+      "displayText200": "Up to 200 characters of text here.."
+    },
+    {
+      "type": "displayTextAndPIN",
+      "displayText60": "Up to 60 characters of text here.."
+    }
+  ],
+  "requestProperties": {
+    "shareMdClientIpAddress": false
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_response_structure"><a class="anchor" href="#_response_structure"></a>Response structure</h3>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Notification based <code>signature</code> session creation response parameters</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A string that can be used to request the operation result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Object describing the VC code to be displayed by RP. See section <a href="notification_based_flows.html#vc-codes" class="xref page">VC codes</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vc.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of the VC code. Currently, the only allowed type is <code>alphaNumeric4</code>. Note that the type is "alphaNumeric4" to refer to the fact that in the future the 4-symbol code might also contain letters. For the time being, only numeric values are returned for technical reasons. This may change in the future, so RPs should make no assumptions about it containing numeric data only!</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vc.value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of the VC code.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Notification based <code>signature</code> session creation response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "sessionID": "ce305d54-45b4-a31b-2db2-fb6b9e546015",
+  "vc": {
+    "type": "alphaNumeric4",
+    "value": "4927"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dynamic_link_based_flow_signature_session"><a class="anchor" href="#_dynamic_link_based_flow_signature_session"></a>Dynamic link based flow <code>signature</code> session</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Signing endpoints</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 88.8889%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/signature/dynamic-link/private/:issuer/:encoded-identifier</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/signature/dynamic-link/etsi/:id-etsi-qcs-SemanticsId-Natural</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BASE/v3/signature/dynamic-link/document/:documentnumber</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This method is the main entry point to signature logic for the dynamic link based flows.</p>
+</div>
+<div class="sect2">
+<h3 id="_error_conditions_2"><a class="anchor" href="#_error_conditions_2"></a>Error conditions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>HTTP error code <code>403</code> - Relying Party has no permission to issue the request. This may happen when:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Relying Party has no permission to invoke operations on accounts with <code>ADVANCED</code> certificates.</p>
+</li>
+<li>
+<p>Relying Party has no permission to use requested capability.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>HTTP error code <code>404</code> - object described in URL was not found, essentially meaning that the user does not have an account in Smart-ID system.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_request_parameters_2"><a class="anchor" href="#_request_parameters_2"></a>Request parameters</h3>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Dynamic link based flow signature request parameters</caption>
+<colgroup>
+<col style="width: 24%;">
+<col style="width: 12%;">
+<col style="width: 4%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relyingPartyUUID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID of Relying Party.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relyingPartyName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RP friendly name, one of those configured for particular RP. Limited to 32 bytes in UTF-8 encoding.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificateLevel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level of certificate requested. <code>ADVANCED</code>/<code>QUALIFIED</code>/<code>QSCD</code>, <code>QUALIFIED</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>signatureProtocol</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Signature protocol. Describes the <code>signatureProtocolParameters</code> object. Currently, the only allowed value is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RAW_DIGEST_SIGNATURE</code> - scheme where user-provided digest is signed directly (similarly to RP-API v1 and v2). For more details see section <a href="signature_protocols.html#raw_digest_signature" class="xref page"><code>RAW_DIGEST_SIGNATURE</code></a>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>signatureProtocolParameters</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An object describing the parameters for the signature algorithm. Its structure depends on the <code>signatureProtocol</code> used. See <a href="signature_protocols.html#raw_digest_signature_param" class="xref page"><code>RAW_DIGEST_SIGNATURE</code> parameters table</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allowedInteractionsOrder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See section <a href="interactions.html#available-interactions" class="xref page">available interactions</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nonce</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Random string, up to 30 characters. If present, must have at least 1 character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestProperties</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A request properties object. See section <a href="request_properties.html#ip_sharing" class="xref page">IP sharing</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>capabilities</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used only when agreed with Smart-ID provider. When omitted request capabilities are derived from <code>certificateLevel</code> parameter.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Dynamic link based flow signature request example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "relyingPartyUUID": "1f1bfa89-4f8b-420a-a98e-fb3a161a30bc",
+  "relyingPartyName": "DEMO",
+  "certificateLevel": "QUALIFIED",
+  "signatureProtocol": "RAW_DIGEST_SIGNATURE",
+  "signatureProtocolParameters": {
+    "digest": "ZHNmYmhkZmdoZGcgZmRmMTM0NTM...",
+    "signatureAlgorithm": "sha512WithRSAEncryption"
+  },
+  "allowedInteractionsOrder": [
+    {
+      "type": "confirmationMessage",
+      "displayText200": "Up to 200 characters of text here.."
+    },
+    {
+      "type": "displayTextAndPIN",
+      "displayText60": "Up to 60 characters of text here.."
+    }
+  ],
+  "requestProperties": {
+    "shareMdClientIpAddress": false
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_response_structure_2"><a class="anchor" href="#_response_structure_2"></a>Response structure</h3>
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<caption class="title">Dynamic link based <code>signature</code> session creation response parameters</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A string that can be used to request the operation result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionToken</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique random value that will be used to connect this signature attempt between the relevant parties (RP, RP-API, mobile app).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionSecret</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base64-encoded random key value that should be kept in secret and should be shared only between the RP backend and RP-API server.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Dynamic link based <code>signature</code> session creation response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "sessionID": "de305d54-75b4-431b-adb2-eb6b9e546014",
+  "sessionToken": "hyBdQYUeQtvXEPqWC7K8a97L",
+  "sessionSecret": "dztL7Ur49D/YYgUzYl4sMg=="
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script async src="../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../_/js/vendor/lunr.js"></script>
+<script src="../_/js/search-ui.js" id="search-ui-script" data-site-root-path=".." data-snippet-length="100" data-stylesheet="../_/css/search.css"></script>
+<script async src="../search-index.js"></script>
+  </body>
+</html>
