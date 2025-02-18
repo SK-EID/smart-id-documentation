@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Signature protocols :: RP API integration guidance</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/signature_protocols.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <link rel="stylesheet" href="../../_/css/vendor/tabs.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item logo" href="https://www.skidsolutions.eu/"><svg viewBox="0 0 250 59.99"><defs><style>.sk-logo{fill:#fff;}</style></defs><g><g><path class="sk-logo" d="M30,0A30,30,0,1,0,60,30,30,30,0,0,0,30,0m0,56.56A26.57,26.57,0,1,1,56.56,30,26.56,26.56,0,0,1,30,56.56m-5.89-29a5.89,5.89,0,0,1,4.68,5.93,8.52,8.52,0,0,1-.17,1.63c-.84,3.68-4.1,5.32-7.44,5.32a13.51,13.51,0,0,1-1.5-.09c-2.32-.3-6.76-2.49-6.76-5.48a2.75,2.75,0,0,1,.27-1.17,1.87,1.87,0,0,1,1.71-1.1c1.21,0,1.93,1.13,2.6,2a3.14,3.14,0,0,0,1,.78,4.65,4.65,0,0,0,2,.69l.56,0h.35c1.41,0,3.14-.72,3.14-2.48a1.6,1.6,0,0,0-.72-1.47,2.82,2.82,0,0,0-.92-.38l-.79-.22-2.69-.65-.75-.19c-3.1-.89-5.09-2.73-5.09-5.69a6.92,6.92,0,0,1,.3-2,5.91,5.91,0,0,1,2.48-3.32,8,8,0,0,1,4.48-1.25h.55a6.44,6.44,0,0,1,1,.11,7.15,7.15,0,0,1,2.21.62,8.24,8.24,0,0,1,1.79,1c1.14.92,2.34,2.13,1.39,3.77a2,2,0,0,1-1.37,1,2.08,2.08,0,0,1-1.52-.32l-.72-.6-.43-.32a4.39,4.39,0,0,0-3-1c-1,0-2.4.3-2.75,1.45a2,2,0,0,0-.1.56c0,.48.29,1.15,2.05,1.68l.55.16.38.1.84.21,1.17.3.5.07.81.22M46.68,37a2.42,2.42,0,0,1,.4,1.29,2.17,2.17,0,0,1-1.46,2.1,3.51,3.51,0,0,1-.65.09,2.35,2.35,0,0,1-1.72-.8l-6.71-7.15v5.31c0,1.22-.45,2.7-2,2.7a2.18,2.18,0,0,1-2.13-2.36v-17c0-1.27.49-2.73,2.09-2.73a1.94,1.94,0,0,1,2.09,1.83V26l6.13-6.48a2.93,2.93,0,0,1,1.43-.89,2.07,2.07,0,0,1,2.32,1.62,2.57,2.57,0,0,1-.84,2.45l-6.36,6.51,7,7.22Zm25.49,2.71c0,.45-.12.64-.57.64H69.65c-.41,0-.57-.19-.57-.64V19.34c0-.44.16-.63.57-.63H71.6c.45,0,.57.19.57.63Zm5.74.64c-.38,0-.51-.22-.51-.64V19.34c0-.44.16-.63.58-.63h6.66c5.46,0,7.27,2.29,7.27,4.91V35.48c0,2.61-1.81,4.91-7.27,4.91Zm2.59-19V37.74h4.14c2.87,0,4.15-1.05,4.15-2.77V24.13c0-1.73-1.28-2.78-4.15-2.78Zm34.92,1.79c0-1.91-1-3.25-4.75-3.25s-4.76,1.34-4.76,3.25v1.18a2.84,2.84,0,0,0,2,2.71l6.13,2.33c1.59.6,3.19,1.81,3.19,4v2.81c0,2.49-1.53,4.5-6.61,4.5s-6.63-2-6.63-4.5V34.49c0-.29.13-.41.38-.41h.93c.25,0,.38.12.38.41V36c0,1.91,1.18,3.25,4.91,3.25s5-1.34,5-3.25V33.69c0-1.72-1.41-2.48-2.65-3L107,28.43a4.07,4.07,0,0,1-2.74-3.76V23c0-2.49,1.4-4.5,6.41-4.5s6.41,2,6.41,4.5v1.56c0,.25-.1.38-.39.38h-.92c-.26,0-.35-.13-.35-.38Zm6.82-.19c0-2.49,1.53-4.5,6.64-4.5s6.69,2,6.69,4.5v13.2c0,2.49-1.56,4.5-6.69,4.5s-6.64-2-6.64-4.5Zm11.61.25c0-1.94-1.24-3.28-5-3.28s-4.95,1.34-4.95,3.28V35.89c0,2,1.25,3.29,4.95,3.29s5-1.34,5-3.29ZM143,38.92h9.44c.26,0,.39.1.39.39V40c0,.29-.13.38-.39.38H141.63c-.19,0-.32-.13-.32-.38V19.09a.34.34,0,0,1,.39-.39h1c.26,0,.35.13.35.39Zm15.57-3c0,2,1.24,3.29,5,3.29s5-1.34,5-3.29V19.09a.33.33,0,0,1,.38-.38h1c.25,0,.35.12.35.38V36.15c0,2.49-1.53,4.5-6.67,4.5s-6.66-2-6.66-4.5V19.09a.33.33,0,0,1,.38-.38h1c.25,0,.35.12.35.38Zm28.8-17.18c.25,0,.38.09.38.38v.7c0,.29-.13.38-.38.38h-5.81V40c0,.25-.09.38-.35.38h-1c-.28,0-.38-.13-.38-.38V20.17H174.1c-.29,0-.38-.09-.38-.38v-.7c0-.29.09-.38.38-.38ZM193.14,40c0,.25-.1.38-.35.38h-1a.34.34,0,0,1-.38-.38V19.09a.33.33,0,0,1,.38-.38h1c.25,0,.35.12.35.38ZM198.91,23c0-2.49,1.53-4.5,6.63-4.5s6.7,2,6.7,4.5v13.2c0,2.49-1.56,4.5-6.7,4.5s-6.63-2-6.63-4.5Zm11.61.25c0-1.94-1.25-3.28-5-3.28s-4.94,1.34-4.94,3.28V35.89c0,2,1.24,3.29,4.94,3.29s5-1.34,5-3.29ZM231.28,40c0,.25-.1.38-.35.38h-.86a.33.33,0,0,1-.35-.19L220.6,24a17.53,17.53,0,0,1-1-1.92V40c0,.25-.1.38-.35.38h-.87A.34.34,0,0,1,218,40V19.09a.33.33,0,0,1,.38-.38h.87a.35.35,0,0,1,.31.15l9.22,16.36c.29.52.93,1.82.93,1.82V19.09a.33.33,0,0,1,.38-.38h.86c.25,0,.35.12.35.38Zm16.9-16.87c0-1.91-1.05-3.25-4.75-3.25s-4.75,1.34-4.75,3.25v1.18a2.84,2.84,0,0,0,2,2.71l6.12,2.33c1.6.6,3.19,1.81,3.19,4v2.81c0,2.49-1.53,4.5-6.6,4.5s-6.63-2-6.63-4.5V34.49c0-.29.12-.41.38-.41h.92c.26,0,.39.12.39.41V36c0,1.91,1.18,3.25,4.91,3.25s5-1.34,5-3.25V33.69c0-1.72-1.4-2.48-2.64-3l-5.94-2.3A4.09,4.09,0,0,1,237,24.67V23c0-2.49,1.4-4.5,6.41-4.5s6.41,2,6.41,4.5v1.56c0,.25-.09.38-.38.38h-.93c-.25,0-.35-.13-.35-.38Z"></path></g></g></svg></a>
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">RP API integration guidance</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header><div class="body">
+<div class="nav-container" data-component="rp-api" data-version="3.1_DRAFT">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="api_details.html">RP API details</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RP API documentation</span>
+    <span class="version">3.1_DRAFT</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.1_DRAFT</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="introduction.html">RP API documentation</a></li>
+    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
+    <li><a href="api_details.html">RP API details</a></li>
+    <li><a href="signature_protocols.html">Signature protocols</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Signature protocols</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The primary use case of RP API is to provide digital signatures. In RP API v3, new signature protocols for authentication and signing use cases have been introduced in order to maximize the security benefits for each use case:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#acsp_v2_signature_protocol">Signature protocol <code>ACSP_V2</code></a> - for authentication requests,</p>
+</li>
+<li>
+<p><a href="#raw_digest_signature_protocol">Signature protocol <code>RAW_DIGEST_SIGNATURE</code></a> - for signing requests.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The primary reason why different signature protocols are needed is that for signing requests (<a href="#raw_digest_signature_protocol"><code>RAW_DIGEST_SIGNATURE</code> protocol</a>), the data-to-be-signed object cannot be modified in any way. On the other hand, for authentication requests, the final data-to-be-signed object in <a href="#acsp_v2_signature_protocol"><code>ACSP_V2</code> protocol</a> contains multiple factors, including (but not limited to) a challenge provided by RP (<code>rpChallenge</code>), random factor provided by the server (<code>serverRandom</code>) and a random factor provided by the mobile device (<code>userChallenge</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="acsp_v2_signature_protocol"><a class="anchor" href="#acsp_v2_signature_protocol"></a><code>ACSP_V2</code> signature protocol</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="acsp_v2_signature_request_parameters"><a class="anchor" href="#acsp_v2_signature_request_parameters"></a><code>ACSP_V2</code> signature request parameters</h3>
+<div class="paragraph">
+<p>For <code>ACSP_V2</code> <code>signatureProtocol</code> and <code>signatureProtocolParameters</code> parameters in the authentication requests and examples, see the <a href="api_specification.html" class="xref page">API spec authentication request parameters</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_rpchallenge_generation"><a class="anchor" href="#_rpchallenge_generation"></a><code>rpChallenge</code> generation</h4>
+<div class="paragraph">
+<p>Generation of <code>rpChallenge</code> can be done as follows:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">rpChallenge := BASE64-ENCODE(CRYPTO-RANDOM(64))</code></pre>
+</div>
+</div>
+<div id="_tabs_1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_1_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_1_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_1_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_1_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_1_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_1_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_1_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_1_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_java--panel" class="tabpanel" aria-labelledby="_tabs_1_java">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.security.SecureRandom;
+import java.util.Base64;
+
+public class RandomGenerateBase64Encode {
+  public static void main(String[] args) {
+    byte[] rpChallengeBytes = new byte[64];
+
+    new SecureRandom().nextBytes(rpChallengeBytes);
+
+    String rpChallenge = Base64.getEncoder()
+      .encodeToString(rpChallengeBytes);
+
+    System.out.println(rpChallenge);
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_php--panel" class="tabpanel" aria-labelledby="_tabs_1_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$rpChallengeBytes = random_bytes(64);
+$rpChallenge = base64_encode($rpChallengeBytes);
+echo $rpChallenge;
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_python--panel" class="tabpanel" aria-labelledby="_tabs_1_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import os
+import base64
+
+rp_challenge_bytes = os.urandom(64)
+rp_challenge = base64.b64encode(rp_challenge_bytes)
+print(rp_challenge)</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_go--panel" class="tabpanel" aria-labelledby="_tabs_1_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"crypto/rand"
+	"encoding/base64"
+	"fmt"
+)
+
+func main() {
+	var rpChallengeBytes []byte = make([]byte, 64)
+	_, err := rand.Read(rpChallengeBytes)
+	if err != nil {
+		fmt.Printf("error: %s\n", err)
+		return
+	}
+	var rpChallenge []byte = []byte(base64.StdEncoding.EncodeToString([]byte(rpChallengeBytes)))
+	fmt.Printf("%q\n", rpChallenge)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
+use rand::RngCore;
+use rand::rngs::OsRng;
+
+fn main() {
+    let mut rp_challenge_bytes: [u8; 64] = [0u8; 64];
+    OsRng.fill_bytes(&amp;mut rp_challenge_bytes);
+    let rp_challenge_string: String = base64::engine::general_purpose::STANDARD.encode(rp_challenge_bytes);
+    let rp_challenge: &amp;[u8] = rp_challenge_string.as_bytes();
+    println!("{:?}\n{}", rp_challenge, rp_challenge_string);
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_1_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.security.SecureRandom
+import java.util.Base64
+
+fun main() {
+    val random = SecureRandom()
+    val rpChallengeBytes: ByteArray = ByteArray(64)
+
+    random.nextBytes(rpChallengeBytes)
+    val rpChallenge: String = Base64.getEncoder()
+      .encodeToString(rpChallengeBytes)
+
+    println(rpChallenge)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_c--panel" class="tabpanel" aria-labelledby="_tabs_1_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+
+public class RandomGenerateBase64Encode
+{
+    public static void Main(string[] args)
+    {
+        byte[] rpChallengeBytes = new byte[64];
+        new Random().NextBytes(rpChallengeBytes);
+        string rpChallenge = Convert.ToBase64String(rpChallengeBytes);
+        Console.WriteLine(rpChallenge);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_node_js--panel" class="tabpanel" aria-labelledby="_tabs_1_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const crypto = require('crypto');
+
+const rpChallengeBytes = crypto.randomBytes(64);
+const rpChallenge = rpChallengeBytes.toString('base64');
+
+console.log(rp_challenge);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_ruby--panel" class="tabpanel" aria-labelledby="_tabs_1_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
+require 'securerandom'
+
+rp_challenge_bytes = SecureRandom.random_bytes(64)
+rp_challenge = Base64.strict_encode64(rp_challenge_bytes)
+puts rp_challenge</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_acsp_v2_signature_response_parameters"><a class="anchor" href="#_acsp_v2_signature_response_parameters"></a><code>ACSP_V2</code> signature response parameters</h3>
+<div class="paragraph">
+<p>For <code>ACSP_V2</code> <code>signature</code> parameter in the authentication response and examples, see the <a href="api_specification.html" class="xref page">API spec session status response parameters</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="acsp_v2_digest_calculation"><a class="anchor" href="#acsp_v2_digest_calculation"></a><code>ACSP_V2</code> digest calculation</h3>
+<div class="paragraph">
+<p>To verify the <code>signature.value</code> the RP must first reconstruct its input digest (hash). The digest is calculated over the <code>ACSP_V2_payload</code>, and <code>ACSP_V2_payload</code> is assembled using vertical bar <code>'|' (U+007C)</code> as a separator.</p>
+</div>
+<div class="paragraph">
+<p>Rules of generating the <code>digest</code> value:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in case <code>callbackUrl</code> does not exist (for QR and Notification flows), this field <strong>must be empty</strong> and the separator must still be used, i.e. <code>||</code>;</p>
+</li>
+<li>
+<p>the digest must be calculated from <code>UTF-8</code> encoded byte array that consists of the described elements joined in the <strong>specified order</strong> with vertical bar <code>'|' (U+007C)</code> as a separator, this also applies to Base64 encoded values, they must be used as is without Base64 decoding;</p>
+</li>
+<li>
+<p>the hash algorithm to use is specified in <code>signature.signatureAlgorithmParameters.hashAlgorithm</code>. The signature scheme that was used to generate the signature based on the digest is specified in <code>signature.signatureAlgorithm</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">message := STR-CONCAT(
+        'smart-id', '|',
+        'ACSP_V2', '|',
+        serverRandom, '|',
+        rpChallenge, '|',
+        userChallenge, '|',
+        BASE64-ENCODE(relyingPartyName), '|',
+        BASE64-ENCODE(SHA-256(interactions)), '|',
+        interactionTypeUsed, '|',
+        callbackUrl, '|',
+        flowType)
+
+digest := HASH(UTF8-ENCODE(message))</code></pre>
+</div>
+</div>
+<div id="_tabs_2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_2_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_2_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_2_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_2_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_2_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_2_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_2_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_2_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_java--panel" class="tabpanel" aria-labelledby="_tabs_2_java">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Base64;
+
+public class AcspV2DigestCalculator {
+
+  public static void main(String[] args) throws Exception {
+    String separator = "|";
+    String schemeName = "smart-id";
+    String signatureProtocol = "ACSP_V2";
+    String serverRandom = "MTlop6EXCrQ6FOErcKjxUhbV";
+    String rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+    String userChallenge = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=";
+    String relyingPartyNameBase64 = "REVNTw==";
+    String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
+    String interactionTypeUsed = "confirmationMessage";
+    String callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    String flowType = "Web2App";
+
+    MessageDigest md256 = MessageDigest.getInstance("SHA-256");
+    md256.update(interactions.getBytes(StandardCharsets.UTF_8));
+    byte[] interactionsHash = md256.digest();
+    String interactionsBase64 = Base64.getEncoder().encodeToString(interactionsHash);
+
+    String[] payloadParts = {
+      schemeName,
+      signatureProtocol,
+      serverRandom,
+      rpChallenge,
+      userChallenge,
+      relyingPartyNameBase64,
+      interactionsBase64,
+      interactionTypeUsed,
+      callbackUrl,
+      flowType
+    };
+
+    byte[] acspV2Payload = String
+      .join(separator, payloadParts)
+      .getBytes(StandardCharsets.UTF_8);
+
+    MessageDigest md512 = MessageDigest.getInstance("SHA-512");
+    md512.update(acspV2Payload);
+    byte[] digest = md512.digest();
+
+    System.out.println(Base64.getEncoder().encodeToString(digest));
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_php--panel" class="tabpanel" aria-labelledby="_tabs_2_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$separator = '|';
+$hashAlgorithm = 'sha512';
+
+$schemeName = 'smart-id';
+$signatureProtocol = 'ACSP_V2';
+$serverRandom = 'MTlop6EXCrQ6FOErcKjxUhbV';
+$rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
+$userChallenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=';
+$relyingPartyNameBase64 = 'REVNTw==';
+$interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
+$interactionTypeUsed = 'confirmationMessage';
+$callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+$flowType = 'Web2App';
+
+$interactionsHash = hash('sha256', $interactions, true);
+$interactionsBase64 = base64_encode($interactionsHash);
+
+$acspV2Payload = implode($separator, [
+    $schemeName,
+    $signatureProtocol,
+    $serverRandom,
+    $rpChallenge,
+    $userChallenge,
+    $relyingPartyNameBase64,
+    $interactionsBase64,
+    $interactionTypeUsed,
+    $callbackUrl,
+    $flowType
+]);
+
+$digest = hash($hashAlgorithm, $acspV2Payload, true);
+echo base64_encode($digest);
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_python--panel" class="tabpanel" aria-labelledby="_tabs_2_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import base64
+import hashlib
+
+separator = '|'
+
+scheme_name = 'smart-id'
+signature_protocol = 'ACSP_V2'
+server_random = 'MTlop6EXCrQ6FOErcKjxUhbV'
+rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
+user_challenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM='
+relying_party_name_base64 = 'REVNTw=='
+interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
+interaction_type_used = 'confirmationMessage'
+callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+flow_type = 'Web2App'
+
+interactions_hash = hashlib.sha256(interactions.encode('utf-8')).digest()
+interactions_base64 = base64.b64encode(interactions_hash).decode('utf-8')
+
+acsp_v2_payload = separator.join([
+    scheme_name,
+    signature_protocol,
+    server_random,
+    rp_challenge,
+    user_challenge,
+    relying_party_name_base64,
+    interactions_base64,
+    interaction_type_used,
+    callback_url,
+    flow_type
+]).encode('utf-8')
+
+digest = hashlib.sha512(acsp_v2_payload).digest()
+print(base64.b64encode(digest))</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_go--panel" class="tabpanel" aria-labelledby="_tabs_2_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"bytes"
+	"crypto/sha512"
+	"encoding/base64"
+	"fmt"
+)
+
+func main() {
+	var separator string = "|"
+
+	var schemeName string = "smart-id"
+	var signatureProtocol string = "ACSP_V2"
+	var serverRandom string = "MTlop6EXCrQ6FOErcKjxUhbV"
+	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var userChallenge string = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM="
+	var relyingPartyNameBase64 string = "REVNTw=="
+	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var interactionTypeUsed string = "confirmationMessage"
+	var callbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var flowType string = "Web2App"
+
+    var interactionsHash [32]byte = sha256.Sum256([]byte(interactions))
+    var interactionsBase64 string = base64.StdEncoding.EncodeToString(interactionsHash[:])
+
+	var acspv2Payload string = strings.Join([]string{
+		schemeName,
+		signatureProtocol,
+		serverRandom,
+		rpChallenge,
+		userChallenge,
+		relyingPartyNameBase64,
+		interactionsBase64,
+		interactionTypeUsed,
+		callbackUrl,
+		flowType,
+	}, separator)
+
+	var digest [64]byte = sha512.Sum512([]byte(acspv2Payload))
+	fmt.Printf("%q\n", base64.StdEncoding.EncodeToString(digest[:]))
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_rust--panel" class="tabpanel" aria-labelledby="_tabs_2_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
+use sha2::{Sha256, Sha512, Digest};
+
+fn main() {
+    let separator: &amp;str = "|";
+
+    let scheme_name: &amp;str = "smart-id";
+    let signature_protocol: &amp;str = "ACSP_V2";
+    let server_random: &amp;str = "MTlop6EXCrQ6FOErcKjxUhbV";
+    let rp_challenge: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+    let user_challenge: &amp;str = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
+    let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
+    let interaction_type_used: &amp;str = "confirmationMessage";
+    let callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    let flow_type: &amp;str = "Web2App";
+
+    let interactions_hash = Sha256::digest(interactions.as_bytes());
+    let interactions_base64 = &amp;base64::engine::general_purpose::STANDARD.encode(interactions_hash);
+
+    let acsp_v2_payload_parts: [&str; 10] = [
+        scheme_name,
+        signature_protocol,
+        server_random,
+        rp_challenge,
+        user_challenge,
+        relying_party_name_base64,
+        interactions_base64,
+        interaction_type_used,
+        callback_url,
+        flow_type
+    ];
+
+    let acsp_v2_payload: String = acsp_v2_payload_parts.join(separator);
+
+    let mut hasher = Sha512::new();
+    hasher.update(acsp_v2_payload.as_bytes());
+    let digest: Vec&lt;u8&gt; = hasher.finalize().to_vec();
+    println!("{:?}", base64::engine::general_purpose::STANDARD.encode(digest))
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_2_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.nio.charset.StandardCharsets
+import java.security.MessageDigest
+import java.util.Base64
+
+fun main() {
+    val separator: String = "|"
+
+    val schemeName: String = "smart-id"
+    val signatureProtocol: String = "ACSP_V2"
+    val serverRandom: String = "MTlop6EXCrQ6FOErcKjxUhbV"
+    val rpChallenge: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+    val userChallenge: String = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM="
+    val relyingPartyNameBase64: String = "REVNTw=="
+    val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+    val interactionTypeUsed: String = "confirmationMessage"
+    val callbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+    val flowType: String = "Web2App"
+
+    val interactionsHash: ByteArray = MessageDigest
+        .getInstance("SHA-256")
+        .digest(interactions.toByteArray(StandardCharsets.UTF_8))
+
+    val interactionsBase64: String = Base64
+        .getEncoder()
+        .encodeToString(interactionsHash)
+
+    val acspV2Payload: ByteArray = listOf(
+        schemeName,
+        signatureProtocol,
+        serverRandom,
+        rpChallenge,
+        userChallenge,
+        relyingPartyNameBase64,
+        interactionsBase64,
+        interactionTypeUsed,
+        callbackUrl,
+        flowType
+    )
+        .joinToString(separator)
+        .toByteArray(StandardCharsets.UTF_8)
+
+    val acspV2Digest: ByteArray = MessageDigest
+        .getInstance("SHA-512")
+        .digest(acspV2Payload)
+
+    println(Base64.getEncoder().encodeToString(acspV2Digest))
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_c--panel" class="tabpanel" aria-labelledby="_tabs_2_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+using System.Security.Cryptography;
+using System.Text;
+
+public class AcspV2DigestCalculator
+{
+    public static void Main(string[] args)
+    {
+        string separator = "|";
+
+        string schemeName = "smart-id";
+        string signatureProtocol = "ACSP_V2";
+        string serverRandom = "MTlop6EXCrQ6FOErcKjxUhbV";
+        string rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+        string userChallenge = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=";
+        string relyingPartyNameBase64 = "REVNTw==";
+        string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
+        string interactionTypeUsed = "confirmationMessage";
+        string callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+        string flowType = "Web2App";
+
+        byte[] interactionsHash = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(interactions));
+        string interactionsBase64 = Convert.ToBase64String(interactionsHash);
+
+        string[] payloadParts = {
+            schemeName,
+            signatureProtocol,
+            serverRandom,
+            rpChallenge,
+            userChallenge,
+            relyingPartyNameBase64,
+            interactionsBase64,
+            interactionTypeUsed,
+            callbackUrl,
+            flowType
+        };
+
+        byte[] acspV2Payload = Encoding.UTF8.GetBytes(
+            string.Join(separator, payloadParts)
+        );
+
+        byte[] digest = SHA512.Create().ComputeHash(acspV2Payload);
+        string base64Digest = Convert.ToBase64String(digest);
+        Console.WriteLine(base64Digest);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_node_js--panel" class="tabpanel" aria-labelledby="_tabs_2_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const crypto = require('crypto');
+
+const separator = '|';
+
+const schemeName = 'smart-id';
+const signatureProtocol = 'ACSP_V2';
+const serverRandom = 'MTlop6EXCrQ6FOErcKjxUhbV';
+const rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
+const userChallenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=';
+const relyingPartyNameBase64 = 'REVNTw==';
+const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
+const interactionTypeUsed = 'confirmationMessage';
+const callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+const flowType = 'Web2App';
+
+const interactionsBase64 = crypto.createHash('sha256').update(interactions).digest('base64');
+
+const acspV2Payload = [
+    schemeName,
+    signatureProtocol,
+    serverRandom,
+    rpChallenge,
+    userChallenge,
+    relyingPartyNameBase64,
+    interactionsBase64,
+    interactionTypeUsed,
+    callbackUrl,
+    flowType
+].join(separator);
+
+const digest = crypto.createHash('sha512').update(acspV2Payload).digest('base64');
+console.log(digest);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_ruby--panel" class="tabpanel" aria-labelledby="_tabs_2_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
+require 'digest'
+
+separator = '|'
+
+scheme_name = 'smart-id'
+signature_protocol = 'ACSP_V2'
+server_random = 'MTlop6EXCrQ6FOErcKjxUhbV'
+rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
+user_challenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM='
+relying_party_name_base64 = 'REVNTw=='
+interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
+interaction_type_used = 'confirmationMessage'
+callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+flow_type = 'Web2App'
+
+interactions_hash = Digest::SHA256.digest(interactions)
+interactions_base64 = Base64.strict_encode64(interactions_hash)
+
+acsp_v2_payload = [
+    scheme_name,
+    signature_protocol,
+    server_random,
+    rp_challenge,
+    user_challenge,
+    relying_party_name_base64,
+    interactions_base64,
+    interaction_type_used,
+    callback_url,
+    flow_type
+].join(separator)
+
+digest = Digest::SHA512.digest(acsp_v2_payload)
+puts Base64.strict_encode64(digest)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. <code>ACSP_V2</code> signature digest (in Base64 format)</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">dBzt10nr57SnijziLw3k4DeTp3yKAGflwgcc5VgP6HKluu5YVxzozHxF+aTgwlA0OI00geZo9zk7J7TF/dhnqg==</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Full verification of the signature and response is described in <a href="response_verification.html" class="xref page">Response verification</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="raw_digest_signature_protocol"><a class="anchor" href="#raw_digest_signature_protocol"></a><code>RAW_DIGEST_SIGNATURE</code> signature protocol</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="raw_digest_signature_request_parameters"><a class="anchor" href="#raw_digest_signature_request_parameters"></a><code>RAW_DIGEST_SIGNATURE</code> signature request parameters</h3>
+<div class="paragraph">
+<p>For <code>RAW_DIGEST_SIGNATURE</code> <code>signatureProtocol</code> and <code>signatureProtocolParameters</code> parameters in the signature requests and examples, see the <a href="api_specification.html" class="xref page">API spec signature request parameters</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="raw_digest_signature_digest_calculation"><a class="anchor" href="#raw_digest_signature_digest_calculation"></a><code>RAW_DIGEST_SIGNATURE</code> digest value</h4>
+<div class="paragraph">
+<p>The <code>digest</code> value sent with the initial RP request is the digest value of the data-to-be-signed. One of the supported hash algorithms must be used. The signature is directly generated on the <code>digest</code> value and the verification must be done using the data-to-be-signed.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_raw_digest_signature_signature_response_parameters"><a class="anchor" href="#_raw_digest_signature_signature_response_parameters"></a><code>RAW_DIGEST_SIGNATURE</code> signature response parameters</h3>
+<div class="paragraph">
+<p>For <code>RAW_DIGEST_SIGNATURE</code> <code>signature</code> parameter in the signature response and examples, see the <a href="api_specification.html" class="xref page">API spec session status response parameters</a>.</p>
+</div>
+<div class="paragraph">
+<p>Full verification of the signature and response is described in <a href="response_verification.html" class="xref page">Response verification</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>
