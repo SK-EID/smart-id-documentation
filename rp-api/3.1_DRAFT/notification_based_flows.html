@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,8 +117,7 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
     <li><a href="notification_based_flows.html">Notification based flows</a></li>
   </ul>
 </nav>
@@ -135,18 +130,6 @@
 <h1 class="page">Notification based flows</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO: Describe the notification based flow and when and how to use it. Work in progress.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>In general, notification based flows are similar to the flows from RP API v2 in the sense that they rely on the push notifications mechanism. The main differences with regard to RP API v2 are:</p>
 </div>
@@ -159,18 +142,6 @@ TODO: Describe the notification based flow and when and how to use it. Work in p
 <p>There are changes to the <a href="signature_protocols.html" class="xref page">signature protocols</a> of authentication and signature requests.</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO: Should we add anything else to the list here?
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>Below, sequence diagrams are given along with explanations of the differences.</p>
@@ -185,7 +156,7 @@ TODO: Should we add anything else to the list here?
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-768f84b044e39544b25820cdde678a84e6810e51.svg"><img src="_images/flow-768f84b044e39544b25820cdde678a84e6810e51.svg" alt="flow"></a>
+<a class="image" href="_images/flow-93692ae68c61d534f90f2849ef8a5694ef91cc49.svg"><img src="_images/flow-93692ae68c61d534f90f2849ef8a5694ef91cc49.svg" alt="flow"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -193,7 +164,15 @@ TODO: Should we add anything else to the list here?
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-6842af68280039e2fce45759dcff39f4a477b163.svg"><img src="_images/flow-6842af68280039e2fce45759dcff39f4a477b163.svg" alt="flow"></a>
+<a class="image" href="_images/flow-0e7cb1307813c9cfed4f5ad360af241c1adbdf72.svg"><img src="_images/flow-0e7cb1307813c9cfed4f5ad360af241c1adbdf72.svg" alt="flow"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates the device link based certificate choice flow being linked to a notification based signing flow.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-216644239dfadce71569cdd65b364997c4234ca5.svg"><img src="_images/flow-216644239dfadce71569cdd65b364997c4234ca5.svg" alt="flow"></a>
 </div>
 </div>
 </div>
@@ -210,8 +189,19 @@ TODO: Should we add anything else to the list here?
 <h2 id="verification_codes_for_authentication_requests"><a class="anchor" href="#verification_codes_for_authentication_requests"></a>Verification codes for authentication requests</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In RP API v3 notification based authentication requests, RP must compute verification codes (VC) for each authentication request, so the user can bind together the session on the browser or RP app and the authentication request on the Smart-ID app.
-The VC is computed as follows:</p>
+<p>In RP API v3 notification based authentication requests, RP must compute verification codes (VC) for each authentication request, so the user can bind together the session on the browser or RP app and the authentication request on the Smart-ID app.</p>
+</div>
+<div class="paragraph">
+<p>The VC is computed as follows:</p>
+</div>
+<div class="paragraph">
+<p>Calculate <code>SHA-256</code> from the <code>rpChallenge</code>, extract 2 rightmost bytes from the result, interpret them as a big-endian unsigned integer and take the last 4 digits in decimal form for display. <code>SHA-256</code> must be used to calculate the VC.</p>
+</div>
+<div class="paragraph">
+<p>Please keep in mind that the rpChallenge is the real rpChallenge byte value (for example, the byte array returned from the <code>SecureRandom()</code> or equivalent method), not the Base64 encoded form used for transport or the popular hexadecimal representation.</p>
+</div>
+<div class="paragraph">
+<p>The VC value must be displayed to the user in the browser together with a message asking the end user to verify the code matches with the one displayed on their mobile device. The user must not proceed if these don&#8217;t match.</p>
 </div>
 <div class="listingblock wrap">
 <div class="content">
@@ -276,7 +266,7 @@ public class NotificationVerificationCode {
 
         BigInteger result = new BigInteger(sha256Hash)
             .and(LAST_2_BYTES_BITMASK)
-            .mod(new BigInteger(10000));
+            .mod(new BigInteger("10000"));
 
         String verificationCode = String.format("%04d", result);
 
@@ -464,22 +454,13 @@ puts result</code></pre>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>Calculate <code>SHA-256</code> from the <code>rpChallenge</code>, extract 2 rightmost bytes from the result, interpret them as a big-endian unsigned integer and take the last 4 digits in decimal form for display. <code>SHA-256</code> must be used to calculate the VC.</p>
-</div>
-<div class="paragraph">
-<p>Please keep in mind that the rpChallenge is the real rpChallenge byte value (for example, the byte array returned from the <code>SecureRandom()</code> or equivalent method), not the Base64 encoded form used for transport or the popular hexadecimal representation.</p>
-</div>
-<div class="paragraph">
-<p>The VC value must be displayed to the user in the browser together with a message asking the end user to verify the code matches with the one displayed on their mobile device. The user must not proceed if these don&#8217;t match.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="verification_codes_for_signature_requests"><a class="anchor" href="#verification_codes_for_signature_requests"></a>Verification codes for signature requests</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In RP API v3 notification based signature requests, verification codes (VC) are not generated by RP based on the DTBS (data-to-be-signed), but are returned from the server to RP. Verification codes are only relevant for the notification based flows.</p>
+<p>In RP API v3 notification based signature requests, verification codes (VC) are not generated by RP based on the DTBS (data-to-be-signed), but are returned from the server to RP for security reasons. Verification codes are only relevant for the notification based flows.</p>
 </div>
 <div class="paragraph">
 <p>Currently, there is only one supported verification code type:</p>
@@ -487,24 +468,12 @@ puts result</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>alphaNumeric4</code></p>
+<p><code>numeric4</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The returned verification code consists of 4 characters. It must be shown to the user as it is received from the server. Note that the type is "alphaNumeric4" and this refers to the fact that in the future the 4-symbol code might also contain letters. For the time being, only numeric values are returned for technical reasons. This may change in the future, so RPs should make no assumptions about it containing numeric data only!</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Motivation for adding non-numeric data in future: In the previous API versions the numeric only codes were similar to the users' PIN codes and caused confusion for some of the users. The inclusion of letters also improves the total number of possible combinations, thus strengthening it as a security measure.
-</td>
-</tr>
-</table>
+<p>The returned verification code consists of 4 numbers. It must be shown to the user as it is received from the server.</p>
 </div>
 </div>
 </div>

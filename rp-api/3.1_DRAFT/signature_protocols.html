@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,9 +117,7 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
-    <li><a href="api_details.html">RP API details</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
     <li><a href="signature_protocols.html">Signature protocols</a></li>
   </ul>
 </nav>
@@ -160,7 +154,7 @@
 <div class="sect2">
 <h3 id="acsp_v2_signature_request_parameters"><a class="anchor" href="#acsp_v2_signature_request_parameters"></a><code>ACSP_V2</code> signature request parameters</h3>
 <div class="paragraph">
-<p>For <code>ACSP_V2</code> <code>signatureProtocol</code> and <code>signatureProtocolParameters</code> parameters in the authentication requests and examples, see the <a href="api_specification.html" class="xref page">API spec authentication request parameters</a>.</p>
+<p>For <code>ACSP_V2</code> <code>signatureProtocol</code> and <code>signatureProtocolParameters</code> parameters in the authentication requests and examples, see the <a href="api_specification.html" class="xref page">OpenAPI specification authentication request parameters</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_rpchallenge_generation"><a class="anchor" href="#_rpchallenge_generation"></a><code>rpChallenge</code> generation</h4>
@@ -374,10 +368,16 @@ puts rp_challenge</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>in case <code>callbackUrl</code> does not exist (for QR and Notification flows), this field <strong>must be empty</strong> and the separator must still be used, i.e. <code>||</code>;</p>
+<p>in case <code>initialCallbackUrl</code> does not exist (for QR and Notification flows), this field <strong>must be empty</strong> and the separator must still be used, i.e. <code>||</code>;</p>
+</li>
+<li>
+<p>in case the RP is not acting as a broker, the <code>brokeredRpName</code> <strong>must be empty</strong> and the separator must still be used, i.e. <code>||</code>;</p>
 </li>
 <li>
 <p>the digest must be calculated from <code>UTF-8</code> encoded byte array that consists of the described elements joined in the <strong>specified order</strong> with vertical bar <code>'|' (U+007C)</code> as a separator, this also applies to Base64 encoded values, they must be used as is without Base64 decoding;</p>
+</li>
+<li>
+<p>Base64 encoding <strong>must</strong> also make sure that the unused bits are set to <code>0</code> and that the resulting values are correctly padded with <code>=</code> signs;</p>
 </li>
 <li>
 <p>the hash algorithm to use is specified in <code>signature.signatureAlgorithmParameters.hashAlgorithm</code>. The signature scheme that was used to generate the signature based on the digest is specified in <code>signature.signatureAlgorithm</code>.</p>
@@ -393,9 +393,10 @@ puts rp_challenge</code></pre>
         rpChallenge, '|',
         userChallenge, '|',
         BASE64-ENCODE(relyingPartyName), '|',
+        BASE64-ENCODE(brokeredRpName), '|',
         BASE64-ENCODE(SHA-256(interactions)), '|',
         interactionTypeUsed, '|',
-        callbackUrl, '|',
+        initialCallbackUrl, '|',
         flowType)
 
 digest := HASH(UTF8-ENCODE(message))</code></pre>
@@ -450,10 +451,11 @@ public class AcspV2DigestCalculator {
     String serverRandom = "MTlop6EXCrQ6FOErcKjxUhbV";
     String rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
     String userChallenge = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=";
-    String relyingPartyNameBase64 = "REVNTw==";
+    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     String interactionTypeUsed = "confirmationMessage";
-    String callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     String flowType = "Web2App";
 
     MessageDigest md256 = MessageDigest.getInstance("SHA-256");
@@ -468,9 +470,10 @@ public class AcspV2DigestCalculator {
       rpChallenge,
       userChallenge,
       relyingPartyNameBase64,
+      brokeredRpNameBase64,
       interactionsBase64,
       interactionTypeUsed,
-      callbackUrl,
+      initialCallbackUrl,
       flowType
     };
 
@@ -501,10 +504,11 @@ $signatureProtocol = 'ACSP_V2';
 $serverRandom = 'MTlop6EXCrQ6FOErcKjxUhbV';
 $rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
 $userChallenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=';
-$relyingPartyNameBase64 = 'REVNTw==';
+$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 $interactionTypeUsed = 'confirmationMessage';
-$callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+$initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
 $flowType = 'Web2App';
 
 $interactionsHash = hash('sha256', $interactions, true);
@@ -517,9 +521,10 @@ $acspV2Payload = implode($separator, [
     $rpChallenge,
     $userChallenge,
     $relyingPartyNameBase64,
+    $brokeredRpNameBase64,
     $interactionsBase64,
     $interactionTypeUsed,
-    $callbackUrl,
+    $initialCallbackUrl,
     $flowType
 ]);
 
@@ -543,10 +548,11 @@ signature_protocol = 'ACSP_V2'
 server_random = 'MTlop6EXCrQ6FOErcKjxUhbV'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
 user_challenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM='
-relying_party_name_base64 = 'REVNTw=='
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 interaction_type_used = 'confirmationMessage'
-callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
 flow_type = 'Web2App'
 
 interactions_hash = hashlib.sha256(interactions.encode('utf-8')).digest()
@@ -559,9 +565,10 @@ acsp_v2_payload = separator.join([
     rp_challenge,
     user_challenge,
     relying_party_name_base64,
+    brokered_rp_name_base64,
     interactions_base64,
     interaction_type_used,
-    callback_url,
+    initial_callback_url,
     flow_type
 ]).encode('utf-8')
 
@@ -590,10 +597,11 @@ func main() {
 	var serverRandom string = "MTlop6EXCrQ6FOErcKjxUhbV"
 	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
 	var userChallenge string = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM="
-	var relyingPartyNameBase64 string = "REVNTw=="
+	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 	var interactionTypeUsed string = "confirmationMessage"
-	var callbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
 	var flowType string = "Web2App"
 
     var interactionsHash [32]byte = sha256.Sum256([]byte(interactions))
@@ -606,9 +614,10 @@ func main() {
 		rpChallenge,
 		userChallenge,
 		relyingPartyNameBase64,
+		brokeredRpNameBase64,
 		interactionsBase64,
 		interactionTypeUsed,
-		callbackUrl,
+		initialCallbackUrl,
 		flowType,
 	}, separator)
 
@@ -632,10 +641,11 @@ fn main() {
     let server_random: &amp;str = "MTlop6EXCrQ6FOErcKjxUhbV";
     let rp_challenge: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
     let user_challenge: &amp;str = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=";
-    let relying_party_name_base64: &amp;str = "REVNTw==";
+    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     let interaction_type_used: &amp;str = "confirmationMessage";
-    let callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     let flow_type: &amp;str = "Web2App";
 
     let interactions_hash = Sha256::digest(interactions.as_bytes());
@@ -648,9 +658,10 @@ fn main() {
         rp_challenge,
         user_challenge,
         relying_party_name_base64,
+        brokered_rp_name_base64,
         interactions_base64,
         interaction_type_used,
-        callback_url,
+        initial_callback_url,
         flow_type
     ];
 
@@ -679,10 +690,11 @@ fun main() {
     val serverRandom: String = "MTlop6EXCrQ6FOErcKjxUhbV"
     val rpChallenge: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
     val userChallenge: String = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM="
-    val relyingPartyNameBase64: String = "REVNTw=="
+    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
     val interactionTypeUsed: String = "confirmationMessage"
-    val callbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+    val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
     val flowType: String = "Web2App"
 
     val interactionsHash: ByteArray = MessageDigest
@@ -700,9 +712,10 @@ fun main() {
         rpChallenge,
         userChallenge,
         relyingPartyNameBase64,
+        brokeredRpNameBase64,
         interactionsBase64,
         interactionTypeUsed,
-        callbackUrl,
+        initialCallbackUrl,
         flowType
     )
         .joinToString(separator)
@@ -735,10 +748,11 @@ public class AcspV2DigestCalculator
         string serverRandom = "MTlop6EXCrQ6FOErcKjxUhbV";
         string rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
         string userChallenge = "9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=";
-        string relyingPartyNameBase64 = "REVNTw==";
+        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
         string interactionTypeUsed = "confirmationMessage";
-        string callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+        string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
         string flowType = "Web2App";
 
         byte[] interactionsHash = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(interactions));
@@ -751,9 +765,10 @@ public class AcspV2DigestCalculator
             rpChallenge,
             userChallenge,
             relyingPartyNameBase64,
+            brokeredRpNameBase64,
             interactionsBase64,
             interactionTypeUsed,
-            callbackUrl,
+            initialCallbackUrl,
             flowType
         };
 
@@ -781,10 +796,11 @@ const signatureProtocol = 'ACSP_V2';
 const serverRandom = 'MTlop6EXCrQ6FOErcKjxUhbV';
 const rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
 const userChallenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM=';
-const relyingPartyNameBase64 = 'REVNTw==';
+const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 const interactionTypeUsed = 'confirmationMessage';
-const callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
 const flowType = 'Web2App';
 
 const interactionsBase64 = crypto.createHash('sha256').update(interactions).digest('base64');
@@ -796,9 +812,10 @@ const acspV2Payload = [
     rpChallenge,
     userChallenge,
     relyingPartyNameBase64,
+    brokeredRpNameBase64,
     interactionsBase64,
     interactionTypeUsed,
-    callbackUrl,
+    initialCallbackUrl,
     flowType
 ].join(separator);
 
@@ -820,10 +837,11 @@ signature_protocol = 'ACSP_V2'
 server_random = 'MTlop6EXCrQ6FOErcKjxUhbV'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
 user_challenge = '9AQoVe5HS1hRYQRUgWh4P5mc0h2JKkLUAqKW7eRKejM='
-relying_party_name_base64 = 'REVNTw=='
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 interaction_type_used = 'confirmationMessage'
-callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
 flow_type = 'Web2App'
 
 interactions_hash = Digest::SHA256.digest(interactions)
@@ -836,9 +854,10 @@ acsp_v2_payload = [
     rp_challenge,
     user_challenge,
     relying_party_name_base64,
+    brokered_rp_name_base64,
     interactions_base64,
     interaction_type_used,
-    callback_url,
+    initial_callback_url,
     flow_type
 ].join(separator)
 
@@ -854,7 +873,7 @@ puts Base64.strict_encode64(digest)</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">dBzt10nr57SnijziLw3k4DeTp3yKAGflwgcc5VgP6HKluu5YVxzozHxF+aTgwlA0OI00geZo9zk7J7TF/dhnqg==</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">xf2BomgjRkQFRqCwhJTHTlPp60tukLu5A8rmR15wjEn4jUxjTdOkkPTOoGMn4+RnvGGdQAAjMHLIsKtYE34FAA==</code></pre>
 </div>
 </div>
 </div>

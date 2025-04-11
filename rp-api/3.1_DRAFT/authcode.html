@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,8 +117,7 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
     <li><a href="device_link_flows.html">Device link flows</a></li>
     <li><a href="authcode.html"><code>authCode</code> calculation</a></li>
   </ul>
@@ -155,13 +150,49 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The order of the fields in the <code>authCodePayload</code> must be the same as specified in the examples below. All values are required and must be non-empty with the exception of <code>callbackUrl</code> in QR flows and <code>elapsedSeconds</code> within <code>unprotectedDeviceLink</code> in same-device flows.
+<div class="paragraph">
+<p>The order of the fields in the <code>authCodePayload</code> must be the same as specified in the examples below.</p>
+</div>
+<div class="paragraph">
+<p>All values are required and must be non-empty; the only exceptions to this are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in certificate-choice session requests parameters <code>digest</code>, <code>interactions</code> and <code>signatureProtocol</code> must be included as empty fields;</p>
+</li>
+<li>
+<p>in QR flows, <code>initialCallbackUrl</code> must be included as an empty field;</p>
+</li>
+<li>
+<p>in same-device flows, <code>elapsedSeconds</code> parameter must be missing from <code>unprotectedDeviceLink</code>.</p>
+</li>
+</ul>
+</div>
 </td>
 </tr>
 </table>
 </div>
+<div id="_tabs_1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_authentication_session" class="tab">
+<p>Authentication Session</p>
+</li>
+<li id="_tabs_1_signature_session" class="tab">
+<p>Signature Session</p>
+</li>
+<li id="_tabs_1_certificate_choice_session" class="tab">
+<p>Certificate-choice Session</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_authentication_session--panel" class="tabpanel" aria-labelledby="_tabs_1_authentication_session">
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
-<p>For authentication flow device links:</p>
+<p>For authentication session device links <code>signatureProtocol</code> value is <code>ACSP_V2</code>:</p>
 </div>
 <div class="listingblock wrap">
 <div class="content">
@@ -170,336 +201,9 @@ The order of the fields in the <code>authCodePayload</code> must be the same as 
         'ACSP_V2', '|',
         rpChallenge, '|',
         BASE64-ENCODE(relyingPartyName), '|',
+        BASE64-ENCODE(brokeredRpName), '|',
         interactions, '|',
-        callbackUrl, '|',
-        unprotectedDeviceLink))</code></pre>
-</div>
-</div>
-<div id="_tabs_1" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="_tabs_1_java" class="tab">
-<p>Java</p>
-</li>
-<li id="_tabs_1_php" class="tab">
-<p>PHP</p>
-</li>
-<li id="_tabs_1_python" class="tab">
-<p>Python</p>
-</li>
-<li id="_tabs_1_go" class="tab">
-<p>Go</p>
-</li>
-<li id="_tabs_1_rust" class="tab">
-<p>Rust</p>
-</li>
-<li id="_tabs_1_kotlin" class="tab">
-<p>Kotlin</p>
-</li>
-<li id="_tabs_1_c" class="tab">
-<p>C#</p>
-</li>
-<li id="_tabs_1_node_js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="_tabs_1_ruby" class="tab">
-<p>Ruby</p>
-</li>
-</ul>
-</div>
-<div id="_tabs_1_java--panel" class="tabpanel" aria-labelledby="_tabs_1_java">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class AuthCodePayload {
-
-  public static void main(String[] args) throws Exception {
-    String separator = "|";
-    String schemeName = "smart-id";
-    String signatureProtocol = "ACSP_V2";
-    String rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    String relyingPartyNameBase64 = "REVNTw==";
-    String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-    String callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng";
-
-    String[] payloadParts = {
-      schemeName,
-      signatureProtocol,
-      rpChallenge,
-      relyingPartyNameBase64,
-      interactions,
-      callbackUrl,
-      unprotectedDeviceLink
-    };
-
-    String authCodePayload = String.join(separator, payloadParts);
-    System.out.println(authCodePayload);
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_php--panel" class="tabpanel" aria-labelledby="_tabs_1_php">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
-
-$separator = '|';
-
-$schemeName = 'smart-id';
-$signatureProtocol = 'ACSP_V2';
-$rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-$relyingPartyNameBase64 = 'REVNTw==';
-$interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
-$callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng';
-
-$authCodePayload = implode($separator, [
-    $schemeName,
-    $signatureProtocol,
-    $rpChallenge,
-    $relyingPartyNameBase64,
-    $interactions,
-    $callbackUrl,
-    $unprotectedDeviceLink
-]);
-
-echo $authCodePayload;
-
-?&gt;</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_python--panel" class="tabpanel" aria-labelledby="_tabs_1_python">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">separator = '|'
-
-scheme_name = 'smart-id'
-signature_protocol = 'ACSP_V2'
-rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'REVNTw=='
-interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
-callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng'
-
-auth_code_payload = separator.join([
-    scheme_name,
-    signature_protocol,
-    rp_challenge,
-    relying_party_name_base64,
-    interactions,
-    callback_url,
-    unprotected_device_link
-])
-
-print(auth_code_payload)</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_go--panel" class="tabpanel" aria-labelledby="_tabs_1_go">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	var separator string = "|"
-
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "ACSP_V2"
-	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var callbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng"
-
-	var payloadParts = []string{
-		schemeName,
-		signatureProtocol,
-		rpChallenge,
-		relyingPartyNameBase64,
-		interactions,
-		callbackUrl,
-		unprotectedDeviceLink,
-	}
-
-	var authCodePayload string = strings.Join(payloadParts, separator)
-
-	fmt.Printf("%q\n", authCodePayload)
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let separator: &amp;str = "|";
-    let scheme_name: &amp;str = "smart-id";
-    let signature_protocol: &amp;str = "ACSP_V2";
-    let rp_challenge: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    let relying_party_name_base64: &amp;str = "REVNTw==";
-    let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-    let callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng";
-
-    let auth_code_payload_parts: [&str; 7] = [
-        scheme_name,
-        signature_protocol,
-        rp_challenge,
-        relying_party_name_base64,
-        interactions,
-        callback_url,
-        unprotected_device_link
-    ];
-
-    let auth_code_payload: String = auth_code_payload_parts.join(separator);
-
-    println!("{}", auth_code_payload)
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_1_kotlin">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
-    val separator: String = "|"
-
-    val schemeName: String = "smart-id"
-    val signatureProtocol: String = "ACSP_V2"
-    val rpChallenge: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-    val relyingPartyNameBase64: String = "REVNTw=="
-    val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-    val callbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng"
-
-    val payloadParts: List&lt;String&gt; = listOf(
-        schemeName,
-        signatureProtocol,
-        rpChallenge,
-        relyingPartyNameBase64,
-        interactions,
-        callbackUrl,
-        unprotectedDeviceLink
-    )
-
-    val authCodePayload: String = payloadParts.joinToString(separator)
-
-    println(authCodePayload)
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_c--panel" class="tabpanel" aria-labelledby="_tabs_1_c">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
-
-public class AuthCodePayload
-{
-    public static void Main()
-    {
-        string separator = "|";
-
-        string schemeName = "smart-id";
-        string signatureProtocol = "ACSP_V2";
-        string rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-        string relyingPartyNameBase64 = "REVNTw==";
-        string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-        string callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng";
-
-        string[] payloadParts = {
-            schemeName,
-            signatureProtocol,
-            rpChallenge,
-            relyingPartyNameBase64,
-            interactions,
-            callbackUrl,
-            unprotectedDeviceLink
-        };
-
-        string authCodePayload = string.Join(separator, payloadParts);
-        Console.WriteLine(authCodePayload);
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_node_js--panel" class="tabpanel" aria-labelledby="_tabs_1_node_js">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const separator = '|';
-
-const schemeName = 'smart-id';
-const signatureProtocol = 'ACSP_V2';
-const rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-const relyingPartyNameBase64 = 'REVNTw==';
-const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
-const callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng';
-
-const authCodePayload = [
-    schemeName,
-    signatureProtocol,
-    rpChallenge,
-    relyingPartyNameBase64,
-    interactions,
-    callbackUrl,
-    unprotectedDeviceLink
-].join(separator);
-
-console.log(authCodePayload);</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_ruby--panel" class="tabpanel" aria-labelledby="_tabs_1_ruby">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">separator = '|'
-
-scheme_name = 'smart-id'
-signature_protocol = 'ACSP_V2'
-rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'REVNTw=='
-interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
-callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng'
-
-auth_code_payload = [
-    scheme_name,
-    signature_protocol,
-    rp_challenge,
-    relying_party_name_base64,
-    interactions,
-    callback_url,
-    unprotected_device_link
-].join(separator)
-
-puts auth_code_payload</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>For signature flow device links <code>digest</code> value replaces the <code>rpChallenge</code>:</p>
-</div>
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">authCodePayload := UTF8-ENCODE(STR-CONCAT(
-        'smart-id', '|',
-        'RAW_DIGEST_SIGNATURE', '|',
-        digest, '|',
-        BASE64-ENCODE(relyingPartyName), '|',
-        interactions, '|',
-        callbackUrl, '|',
+        initialCallbackUrl, '|',
         unprotectedDeviceLink))</code></pre>
 </div>
 </div>
@@ -544,20 +248,22 @@ puts auth_code_payload</code></pre>
   public static void main(String[] args) throws Exception {
     String separator = "|";
     String schemeName = "smart-id";
-    String signatureProtocol = "RAW_DIGEST_SIGNATURE";
-    String digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    String relyingPartyNameBase64 = "REVNTw==";
+    String signatureProtocol = "ACSP_V2";
+    String rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-    String callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng";
+    String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
       signatureProtocol,
-      digest,
+      rpChallenge,
       relyingPartyNameBase64,
+      brokeredRpNameBase64,
       interactions,
-      callbackUrl,
+      initialCallbackUrl,
       unprotectedDeviceLink
     };
 
@@ -576,20 +282,22 @@ puts auth_code_payload</code></pre>
 $separator = '|';
 
 $schemeName = 'smart-id';
-$signatureProtocol = 'RAW_DIGEST_SIGNATURE';
-$digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-$relyingPartyNameBase64 = 'REVNTw==';
+$signatureProtocol = 'ACSP_V2';
+$rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
+$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
-$callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng';
+$initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
     $signatureProtocol,
-    $digest,
+    $rpChallenge,
     $relyingPartyNameBase64,
+    $brokeredRpNameBase64,
     $interactions,
-    $callbackUrl,
+    $initialCallbackUrl,
     $unprotectedDeviceLink
 ]);
 
@@ -605,20 +313,22 @@ echo $authCodePayload;
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">separator = '|'
 
 scheme_name = 'smart-id'
-signature_protocol = 'RAW_DIGEST_SIGNATURE'
-digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'REVNTw=='
+signature_protocol = 'ACSP_V2'
+rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
-callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng'
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
     signature_protocol,
-    digest,
+    rp_challenge,
     relying_party_name_base64,
+    brokered_rp_name_base64,
     interactions,
-    callback_url,
+    initial_callback_url,
     unprotected_device_link
 ])
 
@@ -639,20 +349,22 @@ func main() {
 	var separator string = "|"
 
 	var schemeName string = "smart-id"
-	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
-	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-	var relyingPartyNameBase64 string = "REVNTw=="
+	var signatureProtocol string = "ACSP_V2"
+	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var callbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng"
+	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
 		signatureProtocol,
-		digest,
+		rpChallenge,
 		relyingPartyNameBase64,
+		brokeredRpNameBase64,
 		interactions,
-		callbackUrl,
+		initialCallbackUrl,
 		unprotectedDeviceLink,
 	}
 
@@ -669,20 +381,22 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
     let separator: &amp;str = "|";
     let scheme_name: &amp;str = "smart-id";
-    let signature_protocol: &amp;str = "RAW_DIGEST_SIGNATURE";
-    let digest: &amp;str = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    let relying_party_name_base64: &amp;str = "REVNTw==";
+    let signature_protocol: &amp;str = "ACSP_V2";
+    let rp_challenge: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-    let callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng";
+    let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
         signature_protocol,
-        digest,
+        rp_challenge,
         relying_party_name_base64,
+        brokered_rp_name_base64,
         interactions,
-        callback_url,
+        initial_callback_url,
         unprotected_device_link
     ];
 
@@ -700,20 +414,22 @@ func main() {
     val separator: String = "|"
 
     val schemeName: String = "smart-id"
-    val signatureProtocol: String = "RAW_DIGEST_SIGNATURE"
-    val digest: String = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-    val relyingPartyNameBase64: String = "REVNTw=="
+    val signatureProtocol: String = "ACSP_V2"
+    val rpChallenge: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-    val callbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng"
+    val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
         signatureProtocol,
-        digest,
+        rpChallenge,
         relyingPartyNameBase64,
+        brokeredRpNameBase64,
         interactions,
-        callbackUrl,
+        initialCallbackUrl,
         unprotectedDeviceLink
     )
 
@@ -736,20 +452,22 @@ public class AuthCodePayload
         string separator = "|";
 
         string schemeName = "smart-id";
-        string signatureProtocol = "RAW_DIGEST_SIGNATURE";
-        string digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-        string relyingPartyNameBase64 = "REVNTw==";
+        string signatureProtocol = "ACSP_V2";
+        string rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-        string callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng";
+        string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
             signatureProtocol,
-            digest,
+            rpChallenge,
             relyingPartyNameBase64,
+            brokeredRpNameBase64,
             interactions,
-            callbackUrl,
+            initialCallbackUrl,
             unprotectedDeviceLink
         };
 
@@ -766,20 +484,22 @@ public class AuthCodePayload
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const separator = '|';
 
 const schemeName = 'smart-id';
-const signatureProtocol = 'RAW_DIGEST_SIGNATURE';
-const digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-const relyingPartyNameBase64 = 'REVNTw==';
+const signatureProtocol = 'ACSP_V2';
+const rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
+const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
-const callbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng';
+const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
     signatureProtocol,
-    digest,
+    rpChallenge,
     relyingPartyNameBase64,
+    brokeredRpNameBase64,
     interactions,
-    callbackUrl,
+    initialCallbackUrl,
     unprotectedDeviceLink
 ].join(separator);
 
@@ -793,20 +513,22 @@ console.log(authCodePayload);</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">separator = '|'
 
 scheme_name = 'smart-id'
-signature_protocol = 'RAW_DIGEST_SIGNATURE'
-digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'REVNTw=='
+signature_protocol = 'ACSP_V2'
+rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
-callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng'
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
     signature_protocol,
-    digest,
+    rp_challenge,
     relying_party_name_base64,
+    brokered_rp_name_base64,
     interactions,
-    callback_url,
+    initial_callback_url,
     unprotected_device_link
 ].join(separator)
 
@@ -816,26 +538,26 @@ puts auth_code_payload</code></pre>
 </div>
 </div>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If QR flow is used, the <code>callbackUrl</code> is empty and the field <strong>must</strong> be included as an empty byte array.</p>
 </div>
-</td>
-</tr>
-</table>
 </div>
+</div>
+<div id="_tabs_1_signature_session--panel" class="tabpanel" aria-labelledby="_tabs_1_signature_session">
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
-<p>After the RP assembles the <code>authCodePayload</code>, <code>authCode</code> can be calculated as follows:</p>
+<p>For signature session device links <code>digest</code> value replaces the <code>rpChallenge</code>, and <code>signatureProtocol</code> value is <code>RAW_DIGEST_SIGNATURE</code>:</p>
 </div>
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">authCode := BASE64URL-ENCODE(HMAC-SHA256(sessionSecret, authCodePayload))</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">authCodePayload := UTF8-ENCODE(STR-CONCAT(
+        'smart-id', '|',
+        'RAW_DIGEST_SIGNATURE', '|',
+        digest, '|',
+        BASE64-ENCODE(relyingPartyName), '|',
+        BASE64-ENCODE(brokeredRpName), '|',
+        interactions, '|',
+        initialCallbackUrl, '|',
+        unprotectedDeviceLink))</code></pre>
 </div>
 </div>
 <div id="_tabs_3" class="openblock tabs is-sync is-loading">
@@ -874,6 +596,717 @@ puts auth_code_payload</code></pre>
 <div id="_tabs_3_java--panel" class="tabpanel" aria-labelledby="_tabs_3_java">
 <div class="listingblock wrap">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class AuthCodePayload {
+
+  public static void main(String[] args) throws Exception {
+    String separator = "|";
+    String schemeName = "smart-id";
+    String signatureProtocol = "RAW_DIGEST_SIGNATURE";
+    String digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
+    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
+    String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
+    String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng";
+
+    String[] payloadParts = {
+      schemeName,
+      signatureProtocol,
+      digest,
+      relyingPartyNameBase64,
+      brokeredRpNameBase64,
+      interactions,
+      initialCallbackUrl,
+      unprotectedDeviceLink
+    };
+
+    String authCodePayload = String.join(separator, payloadParts);
+    System.out.println(authCodePayload);
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_php--panel" class="tabpanel" aria-labelledby="_tabs_3_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$separator = '|';
+
+$schemeName = 'smart-id';
+$signatureProtocol = 'RAW_DIGEST_SIGNATURE';
+$digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
+$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
+$interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
+$initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng';
+
+$authCodePayload = implode($separator, [
+    $schemeName,
+    $signatureProtocol,
+    $digest,
+    $relyingPartyNameBase64,
+    $brokeredRpNameBase64,
+    $interactions,
+    $initialCallbackUrl,
+    $unprotectedDeviceLink
+]);
+
+echo $authCodePayload;
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_python--panel" class="tabpanel" aria-labelledby="_tabs_3_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">separator = '|'
+
+scheme_name = 'smart-id'
+signature_protocol = 'RAW_DIGEST_SIGNATURE'
+digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
+interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng'
+
+auth_code_payload = separator.join([
+    scheme_name,
+    signature_protocol,
+    digest,
+    relying_party_name_base64,
+    brokered_rp_name_base64,
+    interactions,
+    initial_callback_url,
+    unprotected_device_link
+])
+
+print(auth_code_payload)</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_go--panel" class="tabpanel" aria-labelledby="_tabs_3_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var separator string = "|"
+
+	var schemeName string = "smart-id"
+	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
+	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
+	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
+	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng"
+
+	var payloadParts = []string{
+		schemeName,
+		signatureProtocol,
+		digest,
+		relyingPartyNameBase64,
+		brokeredRpNameBase64,
+		interactions,
+		initialCallbackUrl,
+		unprotectedDeviceLink,
+	}
+
+	var authCodePayload string = strings.Join(payloadParts, separator)
+
+	fmt.Printf("%q\n", authCodePayload)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_rust--panel" class="tabpanel" aria-labelledby="_tabs_3_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
+    let separator: &amp;str = "|";
+    let scheme_name: &amp;str = "smart-id";
+    let signature_protocol: &amp;str = "RAW_DIGEST_SIGNATURE";
+    let digest: &amp;str = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
+    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
+    let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
+    let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng";
+
+    let auth_code_payload_parts: [&str; 7] = [
+        scheme_name,
+        signature_protocol,
+        digest,
+        relying_party_name_base64,
+        brokered_rp_name_base64,
+        interactions,
+        initial_callback_url,
+        unprotected_device_link
+    ];
+
+    let auth_code_payload: String = auth_code_payload_parts.join(separator);
+
+    println!("{}", auth_code_payload)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_3_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val separator: String = "|"
+
+    val schemeName: String = "smart-id"
+    val signatureProtocol: String = "RAW_DIGEST_SIGNATURE"
+    val digest: String = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
+    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
+    val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+    val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng"
+
+    val payloadParts: List&lt;String&gt; = listOf(
+        schemeName,
+        signatureProtocol,
+        digest,
+        relyingPartyNameBase64,
+        brokeredRpNameBase64,
+        interactions,
+        initialCallbackUrl,
+        unprotectedDeviceLink
+    )
+
+    val authCodePayload: String = payloadParts.joinToString(separator)
+
+    println(authCodePayload)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_c--panel" class="tabpanel" aria-labelledby="_tabs_3_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+
+public class AuthCodePayload
+{
+    public static void Main()
+    {
+        string separator = "|";
+
+        string schemeName = "smart-id";
+        string signatureProtocol = "RAW_DIGEST_SIGNATURE";
+        string digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
+        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
+        string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
+        string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng";
+
+        string[] payloadParts = {
+            schemeName,
+            signatureProtocol,
+            digest,
+            relyingPartyNameBase64,
+            brokeredRpNameBase64,
+            interactions,
+            initialCallbackUrl,
+            unprotectedDeviceLink
+        };
+
+        string authCodePayload = string.Join(separator, payloadParts);
+        Console.WriteLine(authCodePayload);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_node_js--panel" class="tabpanel" aria-labelledby="_tabs_3_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const separator = '|';
+
+const schemeName = 'smart-id';
+const signatureProtocol = 'RAW_DIGEST_SIGNATURE';
+const digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
+const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
+const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
+const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng';
+
+const authCodePayload = [
+    schemeName,
+    signatureProtocol,
+    digest,
+    relyingPartyNameBase64,
+    brokeredRpNameBase64,
+    interactions,
+    initialCallbackUrl,
+    unprotectedDeviceLink
+].join(separator);
+
+console.log(authCodePayload);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_ruby--panel" class="tabpanel" aria-labelledby="_tabs_3_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">separator = '|'
+
+scheme_name = 'smart-id'
+signature_protocol = 'RAW_DIGEST_SIGNATURE'
+digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
+interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng'
+
+auth_code_payload = [
+    scheme_name,
+    signature_protocol,
+    digest,
+    relying_party_name_base64,
+    brokered_rp_name_base64,
+    interactions,
+    initial_callback_url,
+    unprotected_device_link
+].join(separator)
+
+puts auth_code_payload</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="_tabs_1_certificate_choice_session--panel" class="tabpanel" aria-labelledby="_tabs_1_certificate_choice_session">
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>For certificate-choice session device links, <code>digest</code>, <code>interactions</code> and <code>signatureProtocol</code> values are omitted:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">authCodePayload := UTF8-ENCODE(STR-CONCAT(
+        'smart-id', '|',
+        '', '|',
+        digest, '|',
+        BASE64-ENCODE(relyingPartyName), '|',
+        BASE64-ENCODE(brokeredRpName), '|',
+        interactions, '|',
+        initialCallbackUrl, '|',
+        unprotectedDeviceLink))</code></pre>
+</div>
+</div>
+<div id="_tabs_4" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_4_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_4_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_4_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_4_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_4_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_4_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_4_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_4_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_4_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_4_java--panel" class="tabpanel" aria-labelledby="_tabs_4_java">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class AuthCodePayload {
+
+  public static void main(String[] args) throws Exception {
+    String separator = "|";
+    String schemeName = "smart-id";
+    String signatureProtocol = "";
+    String digest = "";
+    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
+    String interactions = "";
+    String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng";
+
+    String[] payloadParts = {
+      schemeName,
+      signatureProtocol,
+      digest,
+      relyingPartyNameBase64,
+      brokeredRpNameBase64,
+      interactions,
+      initialCallbackUrl,
+      unprotectedDeviceLink
+    };
+
+    String authCodePayload = String.join(separator, payloadParts);
+    System.out.println(authCodePayload);
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_php--panel" class="tabpanel" aria-labelledby="_tabs_4_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$separator = '|';
+
+$schemeName = 'smart-id';
+$signatureProtocol = '';
+$digest = '';
+$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
+$interactions = '';
+$initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng';
+
+$authCodePayload = implode($separator, [
+    $schemeName,
+    $signatureProtocol,
+    $digest,
+    $relyingPartyNameBase64,
+    $brokeredRpNameBase64,
+    $interactions,
+    $initialCallbackUrl,
+    $unprotectedDeviceLink
+]);
+
+echo $authCodePayload;
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_python--panel" class="tabpanel" aria-labelledby="_tabs_4_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">separator = '|'
+
+scheme_name = 'smart-id'
+signature_protocol = ''
+digest = ''
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
+interactions = ''
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng'
+
+auth_code_payload = separator.join([
+    scheme_name,
+    signature_protocol,
+    digest,
+    relying_party_name_base64,
+    brokered_rp_name_base64,
+    interactions,
+    initial_callback_url,
+    unprotected_device_link
+])
+
+print(auth_code_payload)</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_go--panel" class="tabpanel" aria-labelledby="_tabs_4_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var separator string = "|"
+
+	var schemeName string = "smart-id"
+	var signatureProtocol string = ""
+	var digest string = ""
+	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
+	var interactions string = ""
+	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng"
+
+	var payloadParts = []string{
+		schemeName,
+		signatureProtocol,
+		digest,
+		relyingPartyNameBase64,
+		brokeredRpNameBase64,
+		interactions,
+		initialCallbackUrl,
+		unprotectedDeviceLink,
+	}
+
+	var authCodePayload string = strings.Join(payloadParts, separator)
+
+	fmt.Printf("%q\n", authCodePayload)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_rust--panel" class="tabpanel" aria-labelledby="_tabs_4_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
+    let separator: &amp;str = "|";
+    let scheme_name: &amp;str = "smart-id";
+    let signature_protocol: &amp;str = "";
+    let digest: &amp;str = "";
+    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
+    let interactions: &amp;str = "";
+    let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng";
+
+    let auth_code_payload_parts: [&str; 7] = [
+        scheme_name,
+        signature_protocol,
+        digest,
+        relying_party_name_base64,
+        brokered_rp_name_base64,
+        interactions,
+        initial_callback_url,
+        unprotected_device_link
+    ];
+
+    let auth_code_payload: String = auth_code_payload_parts.join(separator);
+
+    println!("{}", auth_code_payload)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_4_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val separator: String = "|"
+
+    val schemeName: String = "smart-id"
+    val signatureProtocol: String = ""
+    val digest: String = ""
+    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
+    val interactions: String = ""
+    val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng"
+
+    val payloadParts: List&lt;String&gt; = listOf(
+        schemeName,
+        signatureProtocol,
+        digest,
+        relyingPartyNameBase64,
+        brokeredRpNameBase64,
+        interactions,
+        initialCallbackUrl,
+        unprotectedDeviceLink
+    )
+
+    val authCodePayload: String = payloadParts.joinToString(separator)
+
+    println(authCodePayload)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_c--panel" class="tabpanel" aria-labelledby="_tabs_4_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+
+public class AuthCodePayload
+{
+    public static void Main()
+    {
+        string separator = "|";
+
+        string schemeName = "smart-id";
+        string signatureProtocol = "";
+        string digest = "";
+        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
+        string interactions = "";
+        string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng";
+
+        string[] payloadParts = {
+            schemeName,
+            signatureProtocol,
+            digest,
+            relyingPartyNameBase64,
+            brokeredRpNameBase64,
+            interactions,
+            initialCallbackUrl,
+            unprotectedDeviceLink
+        };
+
+        string authCodePayload = string.Join(separator, payloadParts);
+        Console.WriteLine(authCodePayload);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_node_js--panel" class="tabpanel" aria-labelledby="_tabs_4_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const separator = '|';
+
+const schemeName = 'smart-id';
+const signatureProtocol = '';
+const digest = '';
+const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
+const interactions = '';
+const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng';
+
+const authCodePayload = [
+    schemeName,
+    signatureProtocol,
+    digest,
+    relyingPartyNameBase64,
+    brokeredRpNameBase64,
+    interactions,
+    initialCallbackUrl,
+    unprotectedDeviceLink
+].join(separator);
+
+console.log(authCodePayload);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_ruby--panel" class="tabpanel" aria-labelledby="_tabs_4_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">separator = '|'
+
+scheme_name = 'smart-id'
+signature_protocol = ''
+digest = ''
+relying_party_name_base64 = 'QmFuayAxMjM='
+brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
+interactions = ''
+initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng'
+
+auth_code_payload = [
+    scheme_name,
+    signature_protocol,
+    digest,
+    relying_party_name_base64,
+    brokered_rp_name_base64,
+    interactions,
+    initial_callback_url,
+    unprotected_device_link
+].join(separator)
+
+puts auth_code_payload</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If QR flow is used, the <code>initialCallbackUrl</code> is empty and the field <strong>must</strong> be included as an empty byte array.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After the RP assembles the <code>authCodePayload</code>, <code>authCode</code> can be calculated as follows:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">authCode := BASE64URL-ENCODE(HMAC-SHA256(sessionSecret, authCodePayload))</code></pre>
+</div>
+</div>
+<div id="_tabs_5" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_5_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_5_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_5_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_5_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_5_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_5_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_5_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_5_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_5_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_5_java--panel" class="tabpanel" aria-labelledby="_tabs_5_java">
+<div class="listingblock wrap">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
@@ -888,7 +1321,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng"
+    byte[] authCodePayload = "smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -907,7 +1340,7 @@ public class AuthCodeCalculator {
 </div>
 </div>
 </div>
-<div id="_tabs_3_php--panel" class="tabpanel" aria-labelledby="_tabs_3_php">
+<div id="_tabs_5_php--panel" class="tabpanel" aria-labelledby="_tabs_5_php">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
@@ -915,7 +1348,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = 'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng';
+$authCodePayload = 'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -926,7 +1359,7 @@ echo $authCode;
 </div>
 </div>
 </div>
-<div id="_tabs_3_python--panel" class="tabpanel" aria-labelledby="_tabs_3_python">
+<div id="_tabs_5_python--panel" class="tabpanel" aria-labelledby="_tabs_5_python">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import hmac
@@ -936,7 +1369,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng'
+auth_code_payload = b'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -945,7 +1378,7 @@ print(auth_code)</code></pre>
 </div>
 </div>
 </div>
-<div id="_tabs_3_go--panel" class="tabpanel" aria-labelledby="_tabs_3_go">
+<div id="_tabs_5_go--panel" class="tabpanel" aria-labelledby="_tabs_5_go">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
@@ -959,7 +1392,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng")
+	var authCodePayload []byte = []byte("smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -976,7 +1409,7 @@ func main() {
 </div>
 </div>
 </div>
-<div id="_tabs_3_rust--panel" class="tabpanel" aria-labelledby="_tabs_3_rust">
+<div id="_tabs_5_rust--panel" class="tabpanel" aria-labelledby="_tabs_5_rust">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
@@ -987,7 +1420,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -1001,7 +1434,7 @@ fn main() {
 </div>
 </div>
 </div>
-<div id="_tabs_3_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_3_kotlin">
+<div id="_tabs_5_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_5_kotlin">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import javax.crypto.Mac;
@@ -1014,7 +1447,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng"
+  val authCodePayload: ByteArray = "smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -1032,7 +1465,7 @@ fun main() {
 </div>
 </div>
 </div>
-<div id="_tabs_3_c--panel" class="tabpanel" aria-labelledby="_tabs_3_c">
+<div id="_tabs_5_c--panel" class="tabpanel" aria-labelledby="_tabs_5_c">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
@@ -1045,7 +1478,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -1060,7 +1493,7 @@ public class AuthCodeCalculator
 </div>
 </div>
 </div>
-<div id="_tabs_3_node_js--panel" class="tabpanel" aria-labelledby="_tabs_3_node_js">
+<div id="_tabs_5_node_js--panel" class="tabpanel" aria-labelledby="_tabs_5_node_js">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const crypto = require('crypto');
@@ -1068,7 +1501,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = 'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng';
+const authCodePayload = 'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -1080,7 +1513,7 @@ console.log(authCode);</code></pre>
 </div>
 </div>
 </div>
-<div id="_tabs_3_ruby--panel" class="tabpanel" aria-labelledby="_tabs_3_ruby">
+<div id="_tabs_5_ruby--panel" class="tabpanel" aria-labelledby="_tabs_5_ruby">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
@@ -1089,7 +1522,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = 'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|REVNTw==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng'
+auth_code_payload = 'smart-id|ACSP_V2|GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==|QmFuayAxMjM=|RXhhbXBsZSBSUA==|W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d|https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ|https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -1107,7 +1540,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs</code></pre>
 </div>
 </div>
 </div>
@@ -1119,11 +1552,11 @@ puts auth_code</code></pre>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1188,7 +1621,10 @@ puts auth_code</code></pre>
 <p><code>ACSP_V2</code> - for authentication session,</p>
 </li>
 <li>
-<p><code>RAW_DIGEST_SIGNATURE</code> - for signature session.</p>
+<p><code>RAW_DIGEST_SIGNATURE</code> - for signature session,</p>
+</li>
+<li>
+<p>empty - for certificate-choice session.</p>
 </li>
 </ul>
 </div></div></td>
@@ -1202,8 +1638,7 @@ puts auth_code</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>digest</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>digest</code> used in the initial signature request. For more details, see <a href="signature_protocols.html#raw_digest_signature_request_parameters" class="xref page"><code>RAW_DIGEST_SIGNATURE</code> signature request parameters</a>.
-<strong>TODO</strong>: FIXME add some explanation on how the <code>digest</code> value should be given in case of certificate-choice flows. (or recommend the notification flows) (SID-12044)</p>
+<p><code>digest</code> used in the initial signature request. For more details, see <a href="signature_protocols.html#raw_digest_signature_request_parameters" class="xref page"><code>RAW_DIGEST_SIGNATURE</code> signature request parameters</a>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1213,15 +1648,21 @@ puts auth_code</code></pre>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interactions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brokeredRpName</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>interactions</code> used in the initial authentication or signature request in Base64 encoded form.</p>
+<p><code>brokeredRpName</code> used in the initial authentication or signature requests in Base64 encoded form. This is only used by those RPs that act as a broker for other RPs. Otherwise <strong>must be empty</strong>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>callbackUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interactions</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Callback URL the Smart-ID app will launch after successful signature has been given (only in Web2App and App2App flows). Must use <code>HTTPS</code> scheme.</p>
+<p><code>interactions</code> used in the initial authentication or signature request in Base64 encoded form. Empty for certificate-choice session request.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialCallbackUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Callback URL the Smart-ID app will add parameters to and launch after a successful signature has been given (only in Web2App and App2App flows). Must use <code>HTTPS</code> scheme.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1248,40 +1689,40 @@ puts auth_code</code></pre>
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">sessionSecret := BASE64-DECODE(sessionSecret)</code></pre>
 </div>
 </div>
-<div id="_tabs_4" class="openblock tabs is-sync is-loading">
+<div id="_tabs_6" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
 <ul>
-<li id="_tabs_4_java" class="tab">
+<li id="_tabs_6_java" class="tab">
 <p>Java</p>
 </li>
-<li id="_tabs_4_php" class="tab">
+<li id="_tabs_6_php" class="tab">
 <p>PHP</p>
 </li>
-<li id="_tabs_4_python" class="tab">
+<li id="_tabs_6_python" class="tab">
 <p>Python</p>
 </li>
-<li id="_tabs_4_go" class="tab">
+<li id="_tabs_6_go" class="tab">
 <p>Go</p>
 </li>
-<li id="_tabs_4_rust" class="tab">
+<li id="_tabs_6_rust" class="tab">
 <p>Rust</p>
 </li>
-<li id="_tabs_4_kotlin" class="tab">
+<li id="_tabs_6_kotlin" class="tab">
 <p>Kotlin</p>
 </li>
-<li id="_tabs_4_c" class="tab">
+<li id="_tabs_6_c" class="tab">
 <p>C#</p>
 </li>
-<li id="_tabs_4_node_js" class="tab">
+<li id="_tabs_6_node_js" class="tab">
 <p>Node.js</p>
 </li>
-<li id="_tabs_4_ruby" class="tab">
+<li id="_tabs_6_ruby" class="tab">
 <p>Ruby</p>
 </li>
 </ul>
 </div>
-<div id="_tabs_4_java--panel" class="tabpanel" aria-labelledby="_tabs_4_java">
+<div id="_tabs_6_java--panel" class="tabpanel" aria-labelledby="_tabs_6_java">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.util.Base64;
@@ -1300,7 +1741,7 @@ public class Base64Decode {
 </div>
 </div>
 </div>
-<div id="_tabs_4_php--panel" class="tabpanel" aria-labelledby="_tabs_4_php">
+<div id="_tabs_6_php--panel" class="tabpanel" aria-labelledby="_tabs_6_php">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
@@ -1312,7 +1753,7 @@ $sessionSecret = base64_decode($sessionSecretBase64);
 </div>
 </div>
 </div>
-<div id="_tabs_4_python--panel" class="tabpanel" aria-labelledby="_tabs_4_python">
+<div id="_tabs_6_python--panel" class="tabpanel" aria-labelledby="_tabs_6_python">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import base64
@@ -1322,7 +1763,7 @@ session_secret_bytes = base64.b64decode(session_secret_base64)</code></pre>
 </div>
 </div>
 </div>
-<div id="_tabs_4_go--panel" class="tabpanel" aria-labelledby="_tabs_4_go">
+<div id="_tabs_6_go--panel" class="tabpanel" aria-labelledby="_tabs_6_go">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
@@ -1346,7 +1787,7 @@ func main() {
 </div>
 </div>
 </div>
-<div id="_tabs_4_rust--panel" class="tabpanel" aria-labelledby="_tabs_4_rust">
+<div id="_tabs_6_rust--panel" class="tabpanel" aria-labelledby="_tabs_6_rust">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
@@ -1359,7 +1800,7 @@ fn main() {
 </div>
 </div>
 </div>
-<div id="_tabs_4_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_4_kotlin">
+<div id="_tabs_6_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_6_kotlin">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.util.Base64
@@ -1372,7 +1813,7 @@ fun main() {
 </div>
 </div>
 </div>
-<div id="_tabs_4_c--panel" class="tabpanel" aria-labelledby="_tabs_4_c">
+<div id="_tabs_6_c--panel" class="tabpanel" aria-labelledby="_tabs_6_c">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
@@ -1388,7 +1829,7 @@ public class Base64Decode
 </div>
 </div>
 </div>
-<div id="_tabs_4_node_js--panel" class="tabpanel" aria-labelledby="_tabs_4_node_js">
+<div id="_tabs_6_node_js--panel" class="tabpanel" aria-labelledby="_tabs_6_node_js">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
@@ -1396,7 +1837,7 @@ const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');</code></pre>
 </div>
 </div>
 </div>
-<div id="_tabs_4_ruby--panel" class="tabpanel" aria-labelledby="_tabs_4_ruby">
+<div id="_tabs_6_ruby--panel" class="tabpanel" aria-labelledby="_tabs_6_ruby">
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
@@ -1436,156 +1877,6 @@ session_secret = Base64.decode64(session_secret_base64)</code></pre>
 <div class="paragraph">
 <p>Scheme name that ties the link to the Smart-ID context. Only one value is allowed <code>smart-id</code>.</p>
 </div>
-<div class="paragraph">
-<p>The string value must be <code>UTF-8</code> encoded into a byte array before use in <code>authCodePayload</code> assembly:</p>
-</div>
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">schemeName := UTF8-ENCODE(schemeName)</code></pre>
-</div>
-</div>
-<div id="_tabs_5" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="_tabs_5_java" class="tab">
-<p>Java</p>
-</li>
-<li id="_tabs_5_php" class="tab">
-<p>PHP</p>
-</li>
-<li id="_tabs_5_python" class="tab">
-<p>Python</p>
-</li>
-<li id="_tabs_5_go" class="tab">
-<p>Go</p>
-</li>
-<li id="_tabs_5_rust" class="tab">
-<p>Rust</p>
-</li>
-<li id="_tabs_5_kotlin" class="tab">
-<p>Kotlin</p>
-</li>
-<li id="_tabs_5_c" class="tab">
-<p>C#</p>
-</li>
-<li id="_tabs_5_node_js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="_tabs_5_ruby" class="tab">
-<p>Ruby</p>
-</li>
-</ul>
-</div>
-<div id="_tabs_5_java--panel" class="tabpanel" aria-labelledby="_tabs_5_java">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.nio.charset.StandardCharsets;
-
-public class Utf8Encode {
-
-    public static void main(String[] args) {
-        String schemeName = "smart-id";
-        byte[] schemeNameBytes = schemeName.getBytes(StandardCharsets.UTF_8);
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_php--panel" class="tabpanel" aria-labelledby="_tabs_5_php">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
-
-$schemeName = "smart-id";
-$schemeNameBytes = mb_convert_encoding($schemeName, 'UTF-8');
-
-?&gt;</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_python--panel" class="tabpanel" aria-labelledby="_tabs_5_python">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">scheme_name = "smart-id"
-scheme_name_bytes = scheme_name.encode('utf-8')</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_go--panel" class="tabpanel" aria-labelledby="_tabs_5_go">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	var schemeName string = "smart-id"
-	var schemeNameBytes []byte = []byte(schemeName)
-
-	fmt.Printf("%q\n", schemeNameBytes)
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_rust--panel" class="tabpanel" aria-labelledby="_tabs_5_rust">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let scheme_name: &amp;str = "smart-id";
-    let scheme_name_bytes: &amp;[u8] = scheme_name.as_bytes();
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_5_kotlin">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.nio.charset.Charset
-
-fun main() {
-  val schemeName: String = "smart-id"
-  val schemeNameBytes: ByteArray = schemeName.toByteArray(Charsets.UTF_8)
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_c--panel" class="tabpanel" aria-labelledby="_tabs_5_c">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System.Text;
-
-public class Utf8Encode
-{
-    public static void Main()
-    {
-        string schemeName = "smart-id";
-        byte[] schemeNameBytes = Encoding.UTF8.GetBytes(schemeName);
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_node_js--panel" class="tabpanel" aria-labelledby="_tabs_5_node_js">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let schemeName = "smart-id";
-let schemeNameBytes = Buffer.from(schemeName, 'utf-8');</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_5_ruby--panel" class="tabpanel" aria-labelledby="_tabs_5_ruby">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">scheme_name = "smart-id"
-scheme_name_bytes = scheme_name.encode('UTF-8')</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="exampleblock">
 <div class="title">Example 3. <code>schemeName</code> parameter</div>
 <div class="content">
@@ -1620,164 +1911,12 @@ scheme_name_bytes = scheme_name.encode('UTF-8')</code></pre>
 <p><code>ACSP_V2</code> for authentication,</p>
 </li>
 <li>
-<p><code>RAW_DIGEST_SIGNATURE</code> for signature requests.</p>
+<p><code>RAW_DIGEST_SIGNATURE</code> for signature requests,</p>
+</li>
+<li>
+<p>empty - for certificate-choice session.</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>The string value must be <code>UTF-8</code> encoded into a byte array before use in <code>authCodePayload</code> assembly:</p>
-</div>
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">signatureProtocol := UTF8-ENCODE(signatureProtocol)</code></pre>
-</div>
-</div>
-<div id="_tabs_6" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="_tabs_6_java" class="tab">
-<p>Java</p>
-</li>
-<li id="_tabs_6_php" class="tab">
-<p>PHP</p>
-</li>
-<li id="_tabs_6_python" class="tab">
-<p>Python</p>
-</li>
-<li id="_tabs_6_go" class="tab">
-<p>Go</p>
-</li>
-<li id="_tabs_6_rust" class="tab">
-<p>Rust</p>
-</li>
-<li id="_tabs_6_kotlin" class="tab">
-<p>Kotlin</p>
-</li>
-<li id="_tabs_6_c" class="tab">
-<p>C#</p>
-</li>
-<li id="_tabs_6_node_js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="_tabs_6_ruby" class="tab">
-<p>Ruby</p>
-</li>
-</ul>
-</div>
-<div id="_tabs_6_java--panel" class="tabpanel" aria-labelledby="_tabs_6_java">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.nio.charset.StandardCharsets;
-
-public class Utf8Encode {
-
-    public static void main(String[] args) {
-        String signatureProtocol = "ACSP_V2";
-        byte[] signatureProtocolBytes = signatureProtocol.getBytes(StandardCharsets.UTF_8);
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_php--panel" class="tabpanel" aria-labelledby="_tabs_6_php">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
-
-$signatureProtocol = "ACSP_V2";
-$signatureProtocolBytes = mb_convert_encoding($signatureProtocol, 'UTF-8');
-
-?&gt;</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_python--panel" class="tabpanel" aria-labelledby="_tabs_6_python">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">signature_protocol = "ACSP_V2"
-signature_protocol_bytes = signature_protocol.encode('utf-8')</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_go--panel" class="tabpanel" aria-labelledby="_tabs_6_go">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	var signatureProtocol string = "ACSP_V2"
-	var signatureProtocolBytes []byte = []byte(signatureProtocol)
-
-	fmt.Printf("%q\n", signatureProtocolBytes)
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_rust--panel" class="tabpanel" aria-labelledby="_tabs_6_rust">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let signature_protocol: &amp;str = "ACSP_V2";
-    let signature_protocol_bytes: &amp;[u8] = signature_protocol.as_bytes();
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_6_kotlin">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.nio.charset.Charset
-
-fun main() {
-  val signatureProtocol: String = "ACSP_V2"
-  val signatureProtocolBytes: ByteArray = signatureProtocol.toByteArray(Charsets.UTF_8)
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_c--panel" class="tabpanel" aria-labelledby="_tabs_6_c">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System.Text;
-
-public class Utf8Encode
-{
-    public static void Main()
-    {
-        string signatureProtocol = "ACSP_V2";
-        byte[] signatureProtocolBytes = Encoding.UTF8.GetBytes(signatureProtocol);
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_node_js--panel" class="tabpanel" aria-labelledby="_tabs_6_node_js">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let signatureProtocol = "ACSP_V2";
-let signatureProtocolBytes = Buffer.from(signatureProtocol, 'utf-8');</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_6_ruby--panel" class="tabpanel" aria-labelledby="_tabs_6_ruby">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">signature_protocol = "ACSP_V2"
-signature_protocol_bytes = signature_protocol.encode('UTF-8')</code></pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="exampleblock">
 <div class="title">Example 4. <code>signatureProtocol</code> parameter</div>
@@ -1791,20 +1930,13 @@ signature_protocol_bytes = signature_protocol.encode('UTF-8')</code></pre>
 </div>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 <div class="sidebarblock">
 <div class="content">
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO: decide on the naming of this parameter. Maybe related to certificate-choice flow.
-</td>
-</tr>
-</table>
-</div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><code>rpChallenge</code> or <code>digest</code> parameter</dt>
@@ -1812,19 +1944,7 @@ TODO: decide on the naming of this parameter. Maybe related to certificate-choic
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The same <code>rpChallenge</code> value or <code>digest</code> value that was sent in the initial authentication or signature request, respectively.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO: FIXME add some explanation on how the <code>digest</code> value should be given in case of certificate-choice flows. (or recommend the notification flows) (SID-12044)
-</td>
-</tr>
-</table>
+<p>The same <code>rpChallenge</code> value or <code>digest</code> value that was sent in the initial authentication or signature request, respectively. This value must be empty for certificate-choice session request.</p>
 </div>
 <div class="paragraph">
 <p><code>rpChallenge</code> and <code>digest</code> parameters are sent to RP API by RPs in Base64 encoded form. They <strong>must</strong> be used in Base64 form.</p>
@@ -1917,7 +2037,7 @@ import java.util.Base64;
 public class Base64Encode {
 
   public static void main(String[] args) {
-    String relyingPartyName = "DEMO";
+    String relyingPartyName = "Bank 123";
     String relyingPartyNameBase64 =
       Base64.getEncoder().encodeToString(
         relyingPartyName.getBytes(StandardCharsets.UTF_8)
@@ -1934,7 +2054,7 @@ public class Base64Encode {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$relyingPartyName = "DEMO";
+$relyingPartyName = "Bank 123";
 $relyingPartyNameBase64 = base64_encode($relyingPartyName);
 echo $relyingPartyNameBase64;
 
@@ -1947,7 +2067,7 @@ echo $relyingPartyNameBase64;
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import base64
 
-relying_party_name = "DEMO"
+relying_party_name = "Bank 123"
 relying_party_name_base64 = base64.b64encode(relying_party_name.encode('utf-8'))
 print(relying_party_name_base64)</code></pre>
 </div>
@@ -1964,7 +2084,7 @@ import (
 )
 
 func main() {
-	var relyingPartyName string = "DEMO"
+	var relyingPartyName string = "Bank 123"
 	var relyingPartyNameBase64 []byte = []byte(base64.StdEncoding.EncodeToString([]byte(relyingPartyName)))
 	fmt.Printf("%q\n", relyingPartyNameBase64)
 }</code></pre>
@@ -1977,7 +2097,7 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
 
 fn main() {
-    let relying_party_name: &amp;str = "DEMO";
+    let relying_party_name: &amp;str = "Bank 123";
     let relying_party_name_base64_string: String = base64::engine::general_purpose::STANDARD.encode(relying_party_name.as_bytes());
     let relying_party_name_base64: &amp;[u8] = relying_party_name_base64_string.as_bytes();
     println!("{:?}\n{}", relying_party_name_base64, relying_party_name_base64_string);
@@ -1991,7 +2111,7 @@ fn main() {
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.util.Base64
 
 fun main() {
-    val relyingPartyName: String = "DEMO"
+    val relyingPartyName: String = "Bank 123"
     val relyingPartyNameBase64: String = Base64.getEncoder()
       .encodeToString(relyingPartyName.toByteArray(Charsets.UTF_8))
     println(relyingPartyNameBase64)
@@ -2009,7 +2129,7 @@ public class Base64Encode
 {
     public static void Main(string[] args)
     {
-        string relyingPartyName = "DEMO";
+        string relyingPartyName = "Bank 123";
         byte[] relyingPartyNameBytes =
             Encoding.UTF8.GetBytes(relyingPartyName);
         string relyingPartyNameBase64 =
@@ -2024,7 +2144,7 @@ public class Base64Encode
 <div id="_tabs_7_node_js--panel" class="tabpanel" aria-labelledby="_tabs_7_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let relyingPartyName = 'DEMO';
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let relyingPartyName = 'Bank 123';
 let relyingPartyNameBase64 = Buffer.from(relyingPartyName, 'utf-8')
   .toString('base64');
 console.log(relyingPartyNameBase64);</code></pre>
@@ -2036,7 +2156,7 @@ console.log(relyingPartyNameBase64);</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
 
-relying_party_name = "DEMO"
+relying_party_name = "Bank 123"
 relying_party_name_base64 = Base64.strict_encode64(relying_party_name.encode('UTF-8'))
 puts relying_party_name_base64</code></pre>
 </div>
@@ -2049,7 +2169,7 @@ puts relying_party_name_base64</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">REVNTw==</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">QmFuayAxMjM=</code></pre>
 </div>
 </div>
 </div>
@@ -2063,21 +2183,21 @@ puts relying_party_name_base64</code></pre>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div id="interactions_parameter" class="dlist">
+<div class="dlist">
 <dl>
-<dt class="hdlist1"><code>interactions</code> parameter</dt>
+<dt class="hdlist1"><code>brokeredRpName</code> parameter</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The parameter <code>interactions</code> as described in <a href="interactions.html" class="xref page">interactions</a> section.</p>
+<p>The parameter <code>brokeredRpName</code> describes the RP name as specified in the initial authentication, signature or certificate-choice request. <strong>Must only be used by RPs that act as a broker and for other RPs otherwise must be empty</strong>.</p>
 </div>
 <div class="paragraph">
-<p>The Base64 string value must be <code>UTF-8</code> encoded into a byte array before use in <code>authCodePayload</code> assembly:</p>
+<p>The string value must be <code>UTF-8</code> encoded into a byte array and Base64 encoded before use in <code>authCodePayload</code> assembly:</p>
 </div>
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">interactions := UTF8-ENCODE(interactions)</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">brokeredRpName := BASE64-ENCODE(UTF8-ENCODE(brokeredRpName))</code></pre>
 </div>
 </div>
 <div id="_tabs_8" class="openblock tabs is-sync is-loading">
@@ -2117,13 +2237,19 @@ puts relying_party_name_base64</code></pre>
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
-public class Utf8Encode {
+public class Base64Encode {
 
-    public static void main(String[] args) {
-        String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-        byte[] interactionsBytes = interactions.getBytes(StandardCharsets.UTF_8);
-    }
+  public static void main(String[] args) {
+    String brokeredRpName = "Example RP";
+    String brokeredRpNameBase64 =
+      Base64.getEncoder().encodeToString(
+        brokeredRpName.getBytes(StandardCharsets.UTF_8)
+      );
+
+    System.out.println(brokeredRpNameBase64);
+  }
 }</code></pre>
 </div>
 </div>
@@ -2133,8 +2259,9 @@ public class Utf8Encode {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-$interactionsBytes = mb_convert_encoding($interactions, 'UTF-8');
+$brokeredRpName = "Example RP";
+$brokeredRpNameBase64 = base64_encode($brokeredRpName);
+echo $brokeredRpNameBase64;
 
 ?&gt;</code></pre>
 </div>
@@ -2143,8 +2270,11 @@ $interactionsBytes = mb_convert_encoding($interactions, 'UTF-8');
 <div id="_tabs_8_python--panel" class="tabpanel" aria-labelledby="_tabs_8_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-interactions_bytes = interactions.encode('utf-8')</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import base64
+
+brokered_rp_name = "Example RP"
+brokered_rp_name_base64 = base64.b64encode(brokered_rp_name.encode('utf-8'))
+print(brokered_rp_name_base64)</code></pre>
 </div>
 </div>
 </div>
@@ -2154,14 +2284,14 @@ interactions_bytes = interactions.encode('utf-8')</code></pre>
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
 
 import (
+	"encoding/base64"
 	"fmt"
 )
 
 func main() {
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var interactionsBytes []byte = []byte(interactions)
-
-	fmt.Printf("%q\n", interactionsBytes)
+	var brokeredRpName string = "Example RP"
+	var brokeredRpNameBase64 []byte = []byte(base64.StdEncoding.EncodeToString([]byte(brokeredRpName)))
+	fmt.Printf("%q\n", brokeredRpNameBase64)
 }</code></pre>
 </div>
 </div>
@@ -2169,9 +2299,13 @@ func main() {
 <div id="_tabs_8_rust--panel" class="tabpanel" aria-labelledby="_tabs_8_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-    let interactions_bytes: &amp;[u8] = interactions.as_bytes();
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
+
+fn main() {
+    let brokered_rp_name: &amp;str = "Example RP";
+    let brokered_rp_name_base64_string: String = base64::engine::general_purpose::STANDARD.encode(brokered_rp_name.as_bytes());
+    let brokered_rp_name_base64: &amp;[u8] = brokered_rp_name_base64_string.as_bytes();
+    println!("{:?}\n{}", brokered_rp_name_base64, brokered_rp_name_base64_string);
 }</code></pre>
 </div>
 </div>
@@ -2179,11 +2313,13 @@ func main() {
 <div id="_tabs_8_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_8_kotlin">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.nio.charset.Charset
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.util.Base64
 
 fun main() {
-  val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-  val interactionsBytes: ByteArray = interactions.toByteArray(Charsets.UTF_8)
+    val brokeredRpName: String = "Example RP"
+    val brokeredRpNameBase64: String = Base64.getEncoder()
+      .encodeToString(brokeredRpName.toByteArray(Charsets.UTF_8))
+    println(brokeredRpNameBase64)
 }</code></pre>
 </div>
 </div>
@@ -2191,14 +2327,20 @@ fun main() {
 <div id="_tabs_8_c--panel" class="tabpanel" aria-labelledby="_tabs_8_c">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System.Text;
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+using System.Text;
 
-public class Utf8Encode
+public class Base64Encode
 {
-    public static void Main()
+    public static void Main(string[] args)
     {
-        string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-        byte[] interactionsBytes = Encoding.UTF8.GetBytes(interactions);
+        string brokeredRpName = "Example RP";
+        byte[] brokeredRpNameBytes =
+            Encoding.UTF8.GetBytes(brokeredRpName);
+        string brokeredRpNameBase64 =
+            Convert.ToBase64String(brokeredRpNameBytes);
+
+        Console.WriteLine(brokeredRpNameBase64);
     }
 }</code></pre>
 </div>
@@ -2207,23 +2349,56 @@ public class Utf8Encode
 <div id="_tabs_8_node_js--panel" class="tabpanel" aria-labelledby="_tabs_8_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
-let interactionsBytes = Buffer.from(interactions, 'utf-8');</code></pre>
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let brokeredRpName = 'Example RP';
+let brokeredRpNameBase64 = Buffer.from(brokeredRpName, 'utf-8')
+  .toString('base64');
+console.log(brokeredRpNameBase64);</code></pre>
 </div>
 </div>
 </div>
 <div id="_tabs_8_ruby--panel" class="tabpanel" aria-labelledby="_tabs_8_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-interactions_bytes = interactions.encode('UTF-8')</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
+
+brokered_rp_name = "Example RP"
+brokered_rp_name_base64 = Base64.strict_encode64(brokered_rp_name.encode('UTF-8'))
+puts brokered_rp_name_base64</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 8. <code>interactions</code> parameter</div>
+<div class="title">Example 8. <code>brokeredRpName</code> parameter</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">RXhhbXBsZSBSUA==</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div id="interactions_parameter" class="dlist">
+<dl>
+<dt class="hdlist1"><code>interactions</code> parameter</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>The parameter <code>interactions</code> as described in <a href="interactions.html" class="xref page">interactions</a> section. Empty for certificate-choice session request.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 9. <code>interactions</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
@@ -2241,14 +2416,14 @@ interactions_bytes = interactions.encode('UTF-8')</code></pre>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div id="callbackUrl_parameter" class="dlist">
+<div id="initialCallbackUrl_parameter" class="dlist">
 <dl>
-<dt class="hdlist1"><code>callbackUrl</code> parameter</dt>
+<dt class="hdlist1"><code>initialCallbackUrl</code> parameter</dt>
 <dd>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>callbackUrl</code> parameter specified by the RP in the initial request. Must use <code>HTTPS</code> scheme. In case of QR flows, must be empty. RPs <strong>must</strong> append a unique parameter to each session in the callback URL to make the URL unpredictable.</p>
+<p>The <code>initialCallbackUrl</code> parameter specified by the RP in the initial request. Must use <code>HTTPS</code> scheme. In case of QR flows, must be empty. RPs <strong>must</strong> append a unique parameter to each session in the callback URL to make the URL unpredictable.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2257,7 +2432,7 @@ interactions_bytes = interactions.encode('UTF-8')</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The Smart-ID app will launch the Callback URL after a successful signature has been obtained in Web2App and App2App flows. For verifying the callback URL once the user successfully completes the flow, see <a href="response_verification.html#callback_url_verification" class="xref page">callback URL verification</a>.
+The Smart-ID app will launch the callback URL after a successful signature has been obtained in Web2App and App2App flows. For verifying the callback URL once the user successfully completes the flow, see <a href="response_verification.html#callback_url_verification" class="xref page">callback URL verification</a>.
 </td>
 </tr>
 </table>
@@ -2267,7 +2442,7 @@ The Smart-ID app will launch the Callback URL after a successful signature has b
 </div>
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">callbackUrl := UTF8-ENCODE(callbackUrl)</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">initialCallbackUrl := UTF8-ENCODE(initialCallbackUrl)</code></pre>
 </div>
 </div>
 <div id="_tabs_9" class="openblock tabs is-sync is-loading">
@@ -2311,8 +2486,8 @@ The Smart-ID app will launch the Callback URL after a successful signature has b
 public class Utf8Encode {
 
     public static void main(String[] args) {
-        String callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        byte[] callbackUrlBytes = callbackUrl.getBytes(StandardCharsets.UTF_8);
+        String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+        byte[] initialCallbackUrlBytes = initialCallbackUrl.getBytes(StandardCharsets.UTF_8);
     }
 }</code></pre>
 </div>
@@ -2323,8 +2498,8 @@ public class Utf8Encode {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-$callbackUrlBytes = mb_convert_encoding($callbackUrl, 'UTF-8');
+$initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+$initialCallbackUrlBytes = mb_convert_encoding($initialCallbackUrl, 'UTF-8');
 
 ?&gt;</code></pre>
 </div>
@@ -2333,8 +2508,8 @@ $callbackUrlBytes = mb_convert_encoding($callbackUrl, 'UTF-8');
 <div id="_tabs_9_python--panel" class="tabpanel" aria-labelledby="_tabs_9_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">callback_url = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-callback_url_bytes = callback_url.encode('utf-8')</code></pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">initial_callback_url = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+initial_callback_url_bytes = initial_callback_url.encode('utf-8')</code></pre>
 </div>
 </div>
 </div>
@@ -2348,10 +2523,10 @@ import (
 )
 
 func main() {
-	var callbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var callbackUrlBytes []byte = []byte(callbackUrl)
+	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var initialCallbackUrlBytes []byte = []byte(initialCallbackUrl)
 
-	fmt.Printf("%q\n", callbackUrlBytes)
+	fmt.Printf("%q\n", initialCallbackUrlBytes)
 }</code></pre>
 </div>
 </div>
@@ -2360,8 +2535,8 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let callback_url_bytes: &amp;[u8] = callback_url.as_bytes();
+    let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+    let initial_callback_url_bytes: &amp;[u8] = initial_callback_url.as_bytes();
 }</code></pre>
 </div>
 </div>
@@ -2372,8 +2547,8 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.nio.charset.Charset
 
 fun main() {
-  val callbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-  val callbackUrlBytes: ByteArray = callbackUrl.toByteArray(Charsets.UTF_8)
+  val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+  val initialCallbackUrlBytes: ByteArray = initialCallbackUrl.toByteArray(Charsets.UTF_8)
 }</code></pre>
 </div>
 </div>
@@ -2387,8 +2562,8 @@ public class Utf8Encode
 {
     public static void Main()
     {
-        string callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        byte[] callbackUrlBytes = Encoding.UTF8.GetBytes(callbackUrl);
+        string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+        byte[] initialCallbackUrlBytes = Encoding.UTF8.GetBytes(initialCallbackUrl);
     }
 }</code></pre>
 </div>
@@ -2397,23 +2572,23 @@ public class Utf8Encode
 <div id="_tabs_9_node_js--panel" class="tabpanel" aria-labelledby="_tabs_9_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let callbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-let callbackUrlBytes = Buffer.from(callbackUrl, 'utf-8');</code></pre>
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
+let initialCallbackUrlBytes = Buffer.from(initialCallbackUrl, 'utf-8');</code></pre>
 </div>
 </div>
 </div>
 <div id="_tabs_9_ruby--panel" class="tabpanel" aria-labelledby="_tabs_9_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">callback_url = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-callback_url_bytes = callback_url.encode('UTF-8')</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">initial_callback_url = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+initial_callback_url_bytes = initial_callback_url.encode('UTF-8')</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 9. <code>callbackUrl</code> parameter</div>
+<div class="title">Example 10. <code>initialCallbackUrl</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
@@ -2438,21 +2613,21 @@ callback_url_bytes = callback_url.encode('UTF-8')</code></pre>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The final device link URL without the <code>authCode</code> field. Including <code>unprotectedDeviceLink</code> in <code>authCodePayload</code> calculation ensures that the link can&#8217;t be changed by any malicious party. RP must use <code>deviceLinkType</code> <code>Web2App</code> for flows that start from a browser, <code>App2App</code> for flows that start from an RP app, and <code>QR</code> for cross-device flows.</p>
+<p>The final device link URL without the <code>authCode</code> field. RP must use <code>deviceLinkType = Web2App</code> for flows that start from a browser, <code>deviceLinkType = App2App</code> for flows that start from an RP app, and <code>deviceLinkType = QR</code> for cross-device flows.</p>
 </div>
 <div class="paragraph">
-<p>The string value must be <code>UTF-8</code> encoded into a byte array before use in <code>authCodePayload</code> assembly:</p>
+<p><code>unprotectedDeviceLink</code> must be assembled as follows to be used in <code>authCodePayload</code> calculation:</p>
 </div>
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">unprotectedDeviceLink := UTF8-ENCODE(STR-CONCAT(
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">unprotectedDeviceLink := STR-CONCAT(
         deviceLinkBase, "?",
         "deviceLinkType=", deviceLinkType,
         "&amp;elapsedSeconds=", TO-STRING(elapsedSeconds),
         "&amp;sessionToken=", sessionToken,
         "&amp;sessionType=", sessionType,
         "&amp;version=", version,
-        "&amp;lang=", lang))</code></pre>
+        "&amp;lang=", lang)</code></pre>
 </div>
 </div>
 <div id="_tabs_10" class="openblock tabs is-sync is-loading">
@@ -2491,10 +2666,7 @@ callback_url_bytes = callback_url.encode('UTF-8')</code></pre>
 <div id="_tabs_10_java--panel" class="tabpanel" aria-labelledby="_tabs_10_java">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
-public class UnprotectedDeviceLink {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class UnprotectedDeviceLink {
 
   public static void main(String[] args) {
 
@@ -2503,10 +2675,10 @@ public class UnprotectedDeviceLink {
     int elapsedSeconds = 22;
     String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
     String sessionType = "auth";
-    String version = "1";
+    String version = "1.0";
     String lang = "eng";
 
-    String unprotectedDeviceLinkStr = deviceLinkBase + "?" +
+    String unprotectedDeviceLink = deviceLinkBase + "?" +
       "deviceLinkType=" + deviceLinkType +
       "&amp;elapsedSeconds=" + elapsedSeconds +
       "&amp;sessionToken=" + sessionToken +
@@ -2514,14 +2686,7 @@ public class UnprotectedDeviceLink {
       "&amp;version=" + version +
       "&amp;lang=" + lang;
 
-    byte[] unprotectedDeviceLink =
-      unprotectedDeviceLinkStr.getBytes(StandardCharsets.UTF_8);
-
-    System.out.println(unprotectedDeviceLinkStr);
-    System.out.println("Base64: ");
-    System.out.println(
-      Base64.getEncoder().encodeToString(unprotectedDeviceLink)
-    );
+    System.out.println(unprotectedDeviceLink);
   }
 }</code></pre>
 </div>
@@ -2537,10 +2702,10 @@ $deviceLinkType = "QR";
 $elapsedSeconds = 22;
 $sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
 $sessionType = "auth";
-$version = "1";
+$version = "1.0";
 $lang = "eng";
 
-$unprotectedDeviceLinkStr = $deviceLinkBase . "?" .
+$unprotectedDeviceLink = $deviceLinkBase . "?" .
 'deviceLinkType=' . $deviceLinkType .
 '&amp;elapsedSeconds=' . $elapsedSeconds .
 '&amp;sessionToken=' . $sessionToken .
@@ -2548,10 +2713,6 @@ $unprotectedDeviceLinkStr = $deviceLinkBase . "?" .
 '&amp;version=' . $version .
 '&amp;lang=' . $lang;
 
-$unprotectedDeviceLink = base64_encode($unprotectedDeviceLinkStr);
-
-echo $unprotectedDeviceLinkStr . PHP_EOL;
-echo "Base64: " . PHP_EOL;
 echo $unprotectedDeviceLink . PHP_EOL;
 
 ?&gt;</code></pre>
@@ -2561,27 +2722,22 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div id="_tabs_10_python--panel" class="tabpanel" aria-labelledby="_tabs_10_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import base64
-
-device_link_base = "https://smart-id.com"
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "QR" # One of "Web2App", "App2App", "QR"
 elapsed_seconds = 22
 session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
 session_type = "auth"
-version = "1"
+version = "1.0"
 lang = "eng"
-unprotected_device_link_str = device_link_base + "?" + \
+unprotected_device_link = device_link_base + "?" + \
   "deviceLinkType=" + device_link_type + \
   "&amp;elapsedSeconds=" + str(elapsed_seconds) + \
   "&amp;sessionToken=" + session_token + \
   "&amp;sessionType=" + session_type + \
   "&amp;version=" + version + \
   "&amp;lang=" + lang
-unprotected_device_link = unprotected_device_link_str.encode('utf-8')
 
-print(unprotected_device_link)
-print("Base64: ")
-print(base64.b64encode(unprotected_device_link))</code></pre>
+print(unprotected_device_link)</code></pre>
 </div>
 </div>
 </div>
@@ -2591,7 +2747,6 @@ print(base64.b64encode(unprotected_device_link))</code></pre>
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
 
 import (
-	"encoding/base64"
 	"fmt"
 	"strconv"
 )
@@ -2602,10 +2757,10 @@ func main() {
 	var elapsedSeconds int = 22
 	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
 	var sessionType string = "auth"
-	var version string = "1"
+	var version string = "1.0"
 	var lang string = "eng"
 
-	var unprotectedDeviceLinkString string = deviceLinkBase + "?" +
+	var unprotectedDeviceLink string = deviceLinkBase + "?" +
 		"deviceLinkType=" + deviceLinkType +
 		"&amp;elapsedSeconds=" + strconv.Itoa(elapsedSeconds) +
 		"&amp;sessionToken=" + sessionToken +
@@ -2613,10 +2768,7 @@ func main() {
 		"&amp;version=" + version +
 		"&amp;lang=" + lang
 
-	var unprotectedDeviceLink []byte = []byte(unprotectedDeviceLinkString)
 	fmt.Printf("%q\n", unprotectedDeviceLink)
-	fmt.Printf("Base64:\n")
-	fmt.Printf("%q\n", base64.StdEncoding.EncodeToString([]byte(unprotectedDeviceLink)))
 }</code></pre>
 </div>
 </div>
@@ -2624,23 +2776,18 @@ func main() {
 <div id="_tabs_10_rust--panel" class="tabpanel" aria-labelledby="_tabs_10_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
-
-fn main() {
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
     let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "QR"; // One of "Web2App", "App2App", "QR"
     let elapsed_seconds: i32 = 22;
     let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
     let session_type: &amp;str = "auth";
-    let version: &amp;str = "1";
+    let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
 
-    let unprotected_device_link_string: String = format!("{}?deviceLinkType={}&amp;elapsedSeconds={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}", device_link_base, device_link_type, elapsed_seconds, session_token, session_type, version, lang);
+    let unprotected_device_link: String = format!("{}?deviceLinkType={}&amp;elapsedSeconds={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}", device_link_base, device_link_type, elapsed_seconds, session_token, session_type, version, lang);
 
-    let unprotected_device_link: &amp;[u8] = unprotected_device_link_string.as_bytes();
-    println!("{:?}", unprotected_device_link);
-    println!("Base64:");
-    println!("{:?}", base64::engine::general_purpose::STANDARD.encode(unprotected_device_link));
+    println!("{}", unprotected_device_link);
 }</code></pre>
 </div>
 </div>
@@ -2650,19 +2797,16 @@ fn main() {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">package main
 
-import java.nio.charset.StandardCharsets
-import java.util.Base64
-
 fun main() {
     val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "QR"
     val elapsedSeconds: Int = 22
     val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
     val sessionType: String = "auth"
-    val version: String = "1"
+    val version: String = "1.0"
     val lang: String = "eng"
 
-    val unprotectedDeviceLinkStr: String = "$deviceLinkBase" + "?" +
+    val unprotectedDeviceLink: String = "$deviceLinkBase" + "?" +
       "deviceLinkType=$deviceLinkType" +
       "&amp;elapsedSeconds=$elapsedSeconds" +
       "&amp;sessionToken=$sessionToken" +
@@ -2670,12 +2814,6 @@ fun main() {
       "&amp;version=$version" +
       "&amp;lang=$lang"
 
-    val unprotectedDeviceLink: String = Base64.getEncoder().encodeToString(
-      unprotectedDeviceLinkStr.toByteArray(StandardCharsets.UTF_8)
-    )
-
-    println(unprotectedDeviceLinkStr)
-    println("Base64:")
     println(unprotectedDeviceLink)
 }</code></pre>
 </div>
@@ -2685,7 +2823,6 @@ fun main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
-using System.Text;
 
 public class UnprotectedDeviceLink
 {
@@ -2696,10 +2833,10 @@ public class UnprotectedDeviceLink
         int elapsedSeconds = 22;
         string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
         string sessionType = "auth";
-        string version = "1";
+        string version = "1.0";
         string lang = "eng";
 
-        string unprotectedDeviceLinkStr = deviceLinkBase + "?" +
+        string unprotectedDeviceLink = deviceLinkBase + "?" +
           "deviceLinkType=" + deviceLinkType +
           "&amp;elapsedSeconds=" + elapsedSeconds.ToString() +
           "&amp;sessionToken=" + sessionToken +
@@ -2707,11 +2844,7 @@ public class UnprotectedDeviceLink
           "&amp;version=" + version +
           "&amp;lang=" + lang;
 
-        byte[] unprotectedDeviceLink = Encoding.UTF8.GetBytes(unprotectedDeviceLinkStr);
-
-        Console.WriteLine(unprotectedDeviceLinkStr);
-        Console.WriteLine("Base64: ");
-        Console.WriteLine(Convert.ToBase64String(unprotectedDeviceLink));
+        Console.WriteLine(unprotectedDeviceLink);
     }
 }</code></pre>
 </div>
@@ -2725,10 +2858,10 @@ const deviceLinkType = "QR";
 const elapsedSeconds = 22;
 const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
 const sessionType = "auth";
-const version = "1";
+const version = "1.0";
 const lang = "eng";
 
-const unprotectedDeviceLinkStr = deviceLinkBase + '?' +
+const unprotectedDeviceLink = deviceLinkBase + '?' +
   'deviceLinkType=' + deviceLinkType +
   '&amp;elapsedSeconds=' + elapsedSeconds +
   '&amp;sessionToken=' + sessionToken +
@@ -2736,10 +2869,6 @@ const unprotectedDeviceLinkStr = deviceLinkBase + '?' +
   '&amp;version=' + version +
   '&amp;lang=' + lang;
 
-const unprotectedDeviceLink = Buffer.from(unprotectedDeviceLinkStr, 'utf8').toString('base64');
-
-console.log(unprotectedDeviceLinkStr);
-console.log("Base64: ");
 console.log(unprotectedDeviceLink);</code></pre>
 </div>
 </div>
@@ -2747,17 +2876,15 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div id="_tabs_10_ruby--panel" class="tabpanel" aria-labelledby="_tabs_10_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
-
-device_link_base = "https://smart-id.com"
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "QR" # One of "Web2App", "App2App", "QR"
 elapsed_seconds = 22
 session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
 session_type = "auth"
-version = "1"
+version = "1.0"
 lang = "eng"
 
-unprotected_device_link_str = device_link_base + "?" +
+unprotected_device_link = device_link_base + "?" +
   "deviceLinkType=" + device_link_type +
   "&amp;elapsedSeconds=" + elapsed_seconds.to_s +
   "&amp;sessionToken=" + session_token +
@@ -2765,22 +2892,18 @@ unprotected_device_link_str = device_link_base + "?" +
   "&amp;version=" + version +
   "&amp;lang=" + lang
 
-unprotected_device_link = unprotected_device_link_str.encode('UTF-8')
-
-puts unprotected_device_link
-puts "Base64: "
-puts Base64.strict_encode64(unprotected_device_link)</code></pre>
+puts unprotected_device_link</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 10. <code>unprotectedDeviceLink</code> parameter</div>
+<div class="title">Example 11. <code>unprotectedDeviceLink</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>

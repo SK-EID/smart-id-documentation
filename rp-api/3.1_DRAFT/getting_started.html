@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Getting started with RP API v3 :: RP API integration guidance</title>
+    <title>Overview :: RP API integration guidance</title>
     <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/getting_started.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,8 +117,8 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
+    <li><a href="getting_started.html">Overview</a></li>
   </ul>
 </nav>
 </div>
@@ -131,11 +127,11 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Getting started with RP API v3</h1>
+<h1 class="page">Overview</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The API provides five different types of endpoints. The first three are <code>POST</code> requests that return a <code>sessionID</code>, the fourth is a <code>GET</code> request used to query the signing certificate using <code>document-number</code> and the fifth is a <code>GET</code> request used to query for the result based on the <code>sessionID</code>.</p>
+<p>The Relying Party API provides five different types of endpoints. The first four are <code>POST</code> requests that return a <code>sessionID</code> and the fifth is a <code>GET</code> request used to query for the result based on the <code>sessionID</code>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -146,10 +142,10 @@
 <p>the <code>POST v3/signature/*</code> session endpoints are used to create digital signatures;</p>
 </li>
 <li>
-<p>the <code>GET v3/signature/certificate/{document-number}</code> session endpoint is used to obtain the signing certificate of the requested document number;</p>
+<p>the <code>POST v3/signature/certificate-choice/*</code> session endpoints are used when the document number is not known immediately prior to the <code>signature</code> session and the user&#8217;s signing certificate is required to create the object that will be signed;</p>
 </li>
 <li>
-<p>the <code>POST v3/signature/certificate-choice/*</code> session endpoints are used when the document number is not known immediately prior to the <code>signature</code> session when the user&#8217;s signing certificate is required to create the object that will be signed;</p>
+<p>the <code>POST v3/signature/certificate/{document-number}</code> endpoint is used to obtain the signing certificate of the requested document number;</p>
 </li>
 <li>
 <p>finally, the <code>GET v3/session/{sessionID}</code> status endpoint provides the result of the above sessions.</p>
@@ -160,17 +156,20 @@
 <p>The implementation details are described on the <a href="api_specification.html" class="xref page">OpenAPI specification</a> page.</p>
 </div>
 <div class="paragraph">
-<p>There are two types of flows that can be used in each of the three sessions - the <a href="device_link_flows.html" class="xref page">device link based flow</a> and the <a href="notification_based_flows.html" class="xref page">notification based flow</a>.</p>
+<p>There are two types of flows that can be used in <code>v3/authentication/*</code>, <code>v3/signature/*</code> and <code>v3/signature/certificate-choice/*</code> sessions - the <a href="device_link_flows.html" class="xref page">device link based flow</a> and the <a href="notification_based_flows.html" class="xref page">notification based flow</a>.</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock highrisk">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-highrisk" title="HIGH RISK"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In order to improve security and prevent phishing attacks, it is recommended to only allow notification based flows on devices and browsers that have successfully completed a device link based flow beforehand. It is up to RP to decide how to identify such devices/browsers (e.g. by setting up a unique device identifier and storing it in the browser&#8217;s cookies).</p>
+<p>In order to improve security and prevent phishing attacks, it is recommended to only use device link based flows or only allow notification based flows on devices and browsers that have successfully completed a device link based flow beforehand. It is up to the RP to decide how to <strong>securely</strong> identify such devices/browsers and tie them to the Smart-ID <code>document-number</code> by utilizing browser cookies, local app storage or other means. For example using the User-Agent field is <strong>not secure</strong> and should be avoided as it can be easily spoofed by a malicious party.</p>
+</div>
+<div class="paragraph">
+<p>If the RP employs call centers, notification based flows should be used only for the call center use cases and device link based flows should be used in all other cases.</p>
 </div>
 </td>
 </tr>
@@ -212,7 +211,7 @@
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-60af3a8bf0bba3f585e452bf86494d449a4508c9.svg"><img src="_images/flow-60af3a8bf0bba3f585e452bf86494d449a4508c9.svg" alt="flow"></a>
+<a class="image" href="_images/flow-63b556b43e2c39a39cfc8f4d7b822a7e4a1c296a.svg"><img src="_images/flow-63b556b43e2c39a39cfc8f4d7b822a7e4a1c296a.svg" alt="flow"></a>
 </div>
 </div>
 </div>
@@ -226,15 +225,30 @@
 <div class="paragraph">
 <p>For example, the user is using a PC browser to access an RP website or a tablet to access an RP application.</p>
 </div>
-<div class="sect2">
-<h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
-<div class="sect3">
-<h4 id="_device_link_based_flow"><a class="anchor" href="#_device_link_based_flow"></a>Device Link Based Flow</h4>
+</div>
+</div>
+<div class="sect1">
+<h2 id="same_device_use_cases"><a class="anchor" href="#same_device_use_cases"></a>Same-device use cases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Use case:</strong> The RP frontend (whether an RP app or website accessed by a mobile browser) resides on the same mobile device as the Smart-ID app.</p>
+</div>
+<div class="paragraph">
+<p>The end user is using a mobile app or RP detects that the user is on a mobile browser so it can be assumed that the user intends to use the Smart-ID app on a same device.</p>
+</div>
+<div class="paragraph">
+<p>However, a fallback option should also be provided to switch to the <a href="#cross_device_use_cases">cross-device use cases</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Using the device link based flow with QR codes is the most secure option and should be preferred.</p>
 </div>
 <div class="paragraph">
-<p>RP calls the anonymous device link based <code>authentication</code> session endpoint and displays a QR code that the user must scan with the Smart-ID app.</p>
+<p>RP may call the anonymous device link based <code>authentication</code> session endpoint and display a dynamic QR code that the user must scan with the Smart-ID app or show a same-device (Web2App, App2App) link the user can interact with.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -244,7 +258,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Instead of using the anonymous <code>authentication</code> session endpoint, the RP can request the user to enter their user identifier and utilize the non-anonymous <code>authentication</code> session endpoint. This may be beneficial when the RP utilizes custom usernames and has the users' identifiers stored internally. The RP may simply always ask the user for the identifier as well.</p>
+<p>Instead of using the anonymous <code>authentication</code> session endpoint, the RP may request the user to enter their user identifier and utilize the non-anonymous <code>authentication</code> session endpoint. This may be beneficial when the RP utilizes custom usernames and has the users' identifiers stored internally. The RP may simply always ask the user for the identifier as well.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -254,7 +268,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>If there is a need to re-authenticate the user, the following endpoint can be used with the previously obtained <code>document-number</code> instead:</p>
+<p>If there is a need to re-authenticate the user, the following endpoint should be used with the previously obtained <code>document-number</code> instead:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -263,14 +277,12 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_notification_based_flow"><a class="anchor" href="#_notification_based_flow"></a>Notification Based Flow</h4>
+<hr>
 <div class="paragraph">
 <p>Notification based <code>authentication</code> session endpoint can also be used for the same purpose.</p>
 </div>
 <div class="paragraph">
-<p>Using a notification based <code>authentication</code> session endpoint triggers a push notification to all the user&#8217;s devices instead of the user having to scan QR codes.</p>
+<p>Using a notification based <code>authentication</code> session endpoint triggers a push notification to all the user&#8217;s devices instead of the user scanning the QR code or clicking the same-device link.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -291,40 +303,13 @@
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_signing"><a class="anchor" href="#_signing"></a>Signing</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_signing_with_prior_smart_id_authentication"><a class="anchor" href="#_signing_with_prior_smart_id_authentication"></a>Signing with prior Smart-ID authentication</h3>
-<div class="sect3">
-<h4 id="_without_certificate_query"><a class="anchor" href="#_without_certificate_query"></a>Without certificate query</h4>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO, I think it&#8217;s better to recommend device link flows even if there was a prior Smart-ID authentication. Notification flows are a last resort.
-</td>
-</tr>
-</table>
-</div>
+<h3 id="signing_with_prior_authentication"><a class="anchor" href="#signing_with_prior_authentication"></a>Signing with prior Smart-ID authentication</h3>
 <div class="paragraph">
-<p>If a user has already logged onto the RP app or website using Smart-ID authentication, the RP can call the notification based <code>signature</code> session endpoint to sign using the same Smart-ID account that was used for authentication.</p>
-</div>
-<div class="paragraph">
-<p>The document number is attained from the preceding authentication call.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>BASE/v3/signature/notification/document/{document-number}</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_with_certificate_query"><a class="anchor" href="#_with_certificate_query"></a>With certificate query</h4>
-<div class="paragraph">
-<p>In many cases, the user&#8217;s signing certificate is required before the <code>signature</code> session can be initiated. Calling the notification based <code>certificate-choice</code> session endpoint allows obtaining it. As the document number is already known, no user interaction is required for the <code>certificate-choice</code> session and the RP API can immediately provide the certificate.</p>
+<p>If a user has already logged onto the RP app or website using Smart-ID authentication, the RP can call the <code>certificate</code> session endpoint to obtain the user&#8217;s signing certificate. As the document number is attained from the preceding authentication call, no user interaction is required for the <code>certificate-choice</code> session and the RP API can immediately provide the certificate.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -334,7 +319,18 @@ TODO, I think it&#8217;s better to recommend device link flows even if there was
 </ul>
 </div>
 <div class="paragraph">
-<p>Immediately after receiving the response with the certificate, RP must call the notification based <code>signature</code> session endpoint. The Smart-ID app will wait for the <code>signature</code> session and return only after it has been completed.</p>
+<p>The RP can then call the device link based <code>signature</code> session endpoint to sign using the same Smart-ID account that was used for authentication.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/signature/device-link/document/{document-number}</code></p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="paragraph">
+<p>The notification based <code>signature</code> session endpoint can also be used for the same purpose.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -343,42 +339,14 @@ TODO, I think it&#8217;s better to recommend device link flows even if there was
 </li>
 </ul>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO Do we recommend using the QR here still for added security?
-</td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_signing_without_prior_smart_id_authentication"><a class="anchor" href="#_signing_without_prior_smart_id_authentication"></a>Signing without prior Smart-ID authentication</h3>
-<div class="sect3">
-<h4 id="_without_certificate_query_2"><a class="anchor" href="#_without_certificate_query_2"></a>Without certificate query</h4>
 <div class="paragraph">
-<p>In case no prior Smart-ID authentication has taken place, the device link based <code>signature</code> session endpoint should be called.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>BASE/v3/signature/device-link/etsi/{id-etsi-qcs-SemanticsId-Natural}</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_with_certificate_query_2"><a class="anchor" href="#_with_certificate_query_2"></a>With certificate query</h4>
-<div class="paragraph">
-<p>Often though the certificate is required prior to the signing request.</p>
+<p>If possible, the Smart-ID authentication should be performed before signing and (and after that is completed, instructions in <a href="#signing_with_prior_authentication">Signing with prior Smart-ID authentication</a> should be followed).</p>
 </div>
 <div class="paragraph">
-<p>It is recommended for the RP to first call the anonymous device link based <code>certificate-choice</code> session endpoint on a new device for improved security and phishing-resistance.</p>
+<p>In case no prior Smart-ID authentication has taken place, and certificate is required, the anonymous device link based <code>certificate-choice</code> session endpoint should be used.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -388,110 +356,32 @@ TODO Do we recommend using the QR here still for added security?
 </ul>
 </div>
 <div class="paragraph">
-<p>Immediately after receiving the response with the certificate, RP must call the notification based <code>signature</code> session endpoint.</p>
+<p>Immediately after receiving the response with the certificate, RP must call the notification based linked <code>signature</code> session endpoint and provide the <strong>mandatory</strong> <code>linkedSessionID</code> parameter (session ID of the previous <code>certificate-choice</code> session) to connect the <code>signature</code> and <code>certificate-choice</code> sessions.</p>
 </div>
-<div class="admonitionblock warning">
+<div class="ulist">
+<ul>
+<li>
+<p><code>BASE/v3/signature/notification/linked/{document-number}</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The combination of device link based <code>certificate-choice</code> and notification based linked <code>signature</code> session endpoints provides the optimal user experience where Smart-ID app is launched only once and a VC code is not shown. If the <code>certificate-choice</code> session was completed using a same-device device link, after the flow is completed, the Smart-ID app will launch the <code>callbackUrl</code> <strong>given in the device link based <code>certificate-choice</code></strong>.</p>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-TODO Shouldn&#8217;t we here too utilise the in SID-12044 token to ensure the sessions are tied together? Yes, the VC is visible in this case, but nobody looks at those anyway unless forced.
+In the flow described above, it is recommended to stop showing the QR code, Web2App or App2App link in the RP UI after the certificate is obtained.
 </td>
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>BASE/v3/signature/notification/document/{document-number}</code></p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
-<p>The combination of device link based <code>certificate-choice</code> and notification based <code>signature</code> session endpoints provides the optimal user experience where Smart-ID app is launched only once.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="same_device_use_cases"><a class="anchor" href="#same_device_use_cases"></a>Same-device use cases</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Use case:</strong> The RP frontend (whether an RP app or website accessed by a mobile browser) resides on the same mobile device as the Smart-ID app.</p>
-</div>
-<div class="paragraph">
-<p>The end user is using a mobile app or RP detects that the user is on a mobile browser so it can be assumed that the user intends to use the Smart-ID app on a same device.</p>
-</div>
-<div class="paragraph">
-<p>However, a fallback option should also be provided to switch to the <a href="#cross_device_use_cases">cross-device use cases</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="_authentication_2"><a class="anchor" href="#_authentication_2"></a>Authentication</h3>
-<div class="paragraph">
-<p>Use the anonymous device link based <code>authentication</code> session endpoint for App2App and Web2App flows.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>BASE/v3/authentication/device-link/anonymous</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Alternatively, the non-anonymous flow can be used to too.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>BASE/v3/authentication/device-link/etsi/{id-etsi-qcs-SemanticsId-Natural}</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>As a fallback (in case the Smart-ID app is on a separate account), RP should provide an option to use QR codes instead of the App2App or Web2App link. There is no need to query the RP API again for this.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_signing_with_prior_smart_id_authentication_2"><a class="anchor" href="#_signing_with_prior_smart_id_authentication_2"></a>Signing with prior Smart-ID authentication</h3>
-<div class="sect3">
-<h4 id="_without_certificate_query_3"><a class="anchor" href="#_without_certificate_query_3"></a>Without certificate query</h4>
-<div class="paragraph">
-<p>Call the device link based <code>signature</code> session endpoint and provide the document number from the <code>authentication</code> session to ensure the same account is being used.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>BASE/v3/signature/device-link/document/{document-number}</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_with_certificate_query_3"><a class="anchor" href="#_with_certificate_query_3"></a>With certificate query</h4>
-<div class="paragraph">
-<p>As the document number is already known, no user interaction is required for the <code>certificate-choice</code> session and the RP API can immediately provide the certificate.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>BASE/v3/signature/certificate/{document-number}</code></p>
-</li>
-<li>
-<p><code>BASE/v3/signature/device-link/document/{document-number}</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_signing_without_prior_smart_id_authentication_2"><a class="anchor" href="#_signing_without_prior_smart_id_authentication_2"></a>Signing without prior Smart-ID authentication</h3>
-<div class="sect3">
-<h4 id="_without_certificate_query_4"><a class="anchor" href="#_without_certificate_query_4"></a>Without certificate query</h4>
-<div class="paragraph">
-<p>In case no prior Smart-ID authentication has taken place, one should call the device link based <code>signature</code> session endpoint for App2App and Web2App flows.</p>
+<p>If the certificate is not required, or is already known, the device link based <code>signature</code> session endpoint should be called instead.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -503,37 +393,38 @@ TODO Shouldn&#8217;t we here too utilise the in SID-12044 token to ensure the se
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_with_certificate_query_4"><a class="anchor" href="#_with_certificate_query_4"></a>With certificate query</h4>
+<hr>
 <div class="paragraph">
-<p>Often though the certificate is required prior to the signing request. Call the anonymous device link based <code>certificate-choice</code> session endpoint and then immediately after receiving the response with the certificate, call the notification based <code>signature</code> session endpoint.</p>
-</div>
-<div class="paragraph">
-<p>The Smart-ID app will wait for the <code>signature</code> session and return only after it has been completed.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO This where we might need to add the token mechanism being discussed in SID-12044
-</td>
-</tr>
-</table>
+<p>Notification based <code>certificate-choice</code> session endpoint can also be used for the same purpose but <strong>is not</strong> recommended.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>BASE/v3/signature/certificate-choice/device-link/anonymous</code></p>
+<p><code>BASE/v3/signature/certificate-choice/notification/etsi/{id-etsi-qcs-SemanticsId-Natural}</code></p>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Immediately after receiving the response with the certificate, RP must display the VC and call notification based <code>signature</code> session endpoint.</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p><code>BASE/v3/signature/notification/document/{document-number}</code></p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Notification based <code>certificate-choice</code> <strong>cannot</strong> be connected to notification based linked <code>signature</code> session endpoint with <code>linkedSessionID</code>. If notification based <code>certificate-choice</code> is used, VC code must still be shown to the user, and in same-device use cases, there might be usability issues with VC being shown too fast or not being shown at all (this is especially problematic for interactions involving <code>verificationCodeChoice</code>).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

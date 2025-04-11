@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../_/css/site.css">
     <link rel="stylesheet" href="../../_/css/vendor/tabs.css">
   </head>
-  <body class="article">
+  <body class="article -toc">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,9 +117,7 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
-    <li><a href="api_details.html">RP API details</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
     <li><a href="interactions.html">Interactions</a></li>
   </ul>
 </nav>
@@ -155,7 +149,7 @@
 <th class="tableblock halign-left valign-top">Interaction type &amp; extra parameter</th>
 <th class="tableblock halign-left valign-top">Description</th>
 <th class="tableblock halign-center valign-top">Device link flows</th>
-<th class="tableblock halign-center valign-top">Notification based flows</th>
+<th class="tableblock halign-center valign-top">Notification based flows*</th>
 </tr>
 </thead>
 <tbody>
@@ -193,8 +187,28 @@
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">*Remark about notification based flows</div>
 <div class="paragraph">
-<p>RP uses <code>interactions</code> parameter to list interactions it allows for the current session. The <code>interactions</code> parameter is a JSON array that is Base64 encoded. Not all app versions may support all interactions. The order of the array items are significant as the Smart-ID server is aware of which app installations support which interactions and will try to send the interactions to the Smart-ID app in the same order as they are in the <code>interactions</code> array.</p>
+<p>There is one exception to interactions in notification based flows&#8201;&#8212;&#8201;the endpoint <code>BASE/v3/signature/notification/linked</code> acts as a device link based endpoint (since it is linked to a device link based certificate-choice request with no VC shown) and therefore only <code>displayTextAndPIN</code> and <code>confirmationMessage</code> interaction types are available.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requirements_for_interactions_object"><a class="anchor" href="#_requirements_for_interactions_object"></a>Requirements for <code>interactions</code> object</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RP uses <code>interactions</code> parameter to list interactions it allows for the current session. The <code>interactions</code> parameter is a JSON array that is Base64 encoded. Not all app versions may support all interactions. The order of the array items are significant as the Smart-ID server is aware of which app installations support which interactions and will send the interactions to the Smart-ID app in the same order as they are in the <code>interactions</code> array.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -212,10 +226,10 @@
 <p>For each interaction, the <code>type</code> and the corresponding displayText (either <code>displayText60</code> or <code>displayText200</code>) parameters are mandatory. Meaning that each interaction must include a <strong>non-empty</strong> <code>displayText60</code> or <code>displayText200</code> parameter.</p>
 </li>
 <li>
-<p>It is forbidden to provide both displayText60 and displayText200 parameters.</p>
+<p>It is forbidden to provide both <code>displayText60</code> and <code>displayText200</code> parameters.</p>
 </li>
 <li>
-<p>It is not allowed to have more than one interaction with the same type value as only the first would ever be used.</p>
+<p>It is not allowed to have more than one interaction with the same type value.</p>
 </li>
 <li>
 <p>In addition, it is not allowed to list interaction types not meant for the flow (device link flow or notification based flow).</p>
@@ -231,6 +245,39 @@
 </div>
 <div class="paragraph">
 <p>The interaction that was actually used is reported back to RP with <code>interactionTypeUsed</code> response parameter to the session request. If an app cannot support any interaction requested then the session is cancelled with reason code <code>REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_guidance_for_writing_display_texts"><a class="anchor" href="#_guidance_for_writing_display_texts"></a>Guidance for writing display texts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>displayText60</code> and <code>displayText200</code> parameters are used by the Smart-ID app to display text on the screen. These parameters must be short and clear. The preferred way of writing <code>displayText60</code> and <code>displayText200</code> is to explain the action user is taking. Interaction type must also be considered when writing a good display text.</p>
+</div>
+<div class="paragraph">
+<p>The following are a few examples of good <code>displayText60</code> and <code>displayText200</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You are logging in to internet bank</p>
+</li>
+<li>
+<p>Log in to mobile banking</p>
+</li>
+<li>
+<p>Sign internet banking contract</p>
+</li>
+<li>
+<p>Sign document Contract.asice</p>
+</li>
+<li>
+<p>Transfer 1000€ to Jane Doe</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>the RP name is not written explicitly as for all interaction types, the RP name is always displayed to the user together with the display text.</p>
 </div>
 </div>
 </div>
@@ -470,9 +517,169 @@ puts interactions_base64</code></pre>
 <h2 id="_interactions_elements_examples"><a class="anchor" href="#_interactions_elements_examples"></a><code>interactions</code> elements examples</h2>
 <div class="sectionbody">
 <div class="exampleblock">
-<div class="title">Example 2. RP first choice is <code>confirmationMessage</code>, if not available then fall back to <code>displayTextAndPIN</code> (device link flow).</div>
+<div class="title">Example 2. <code>confirmationMessage</code> only, if not available then fail (device link flow).</div>
 <div class="content">
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 70%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock wrap">
+<div class="title">Before encoding</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "type": "confirmationMessage",
+    "displayText200": "Longer description of the transaction context"
+  }
+]</code></pre>
+</div>
+</div>
 <div class="listingblock wrap">
+<div class="title">Base64 encoded</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "interactions": "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9XQ=="
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-none grid-none stretch">
+<caption class="title">App visualization - confirmation message</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_1.png" alt="confirmationMessage 1">
+</div>
+<div class="title">Initial screen</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_2.png" alt="confirmationMessage 2">
+</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stretch">
+<caption class="title">Watch visualization - confirmation message</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_1_watch.png" alt="confirmationMessage 1 watch">
+</div>
+<div class="title">Initial screen (scrolls down)</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_2_watch.png" alt="confirmationMessage 2 watch">
+</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. <code>displayTextAndPIN</code> only, if not available then fail (device link flow).</div>
+<div class="content">
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 70%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock wrap">
+<div class="title">Before encoding</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "type": "displayTextAndPIN",
+    "displayText60": "Short description of the transaction context"
+  }
+]</code></pre>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">Base64 encoded</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "interactions": "W3sidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-none grid-none stretch">
+<caption class="title">App visualization - display text and PIN</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/displayTextAndPIN_1.png" alt="displayTextAndPIN 1">
+</div>
+<div class="title">Initial screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stretch">
+<caption class="title">Watch visualization - display text and PIN</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/displayTextAndPIN_1_watch.png" alt="displayTextAndPIN 1 watch">
+</div>
+<div class="title">Initial screen (scrolls down)</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/displayTextAndPIN_2_watch.png" alt="displayTextAndPIN 2 watch">
+</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 4. RP first choice is <code>confirmationMessage</code>, if not available then fall back to <code>displayTextAndPIN</code> (device link flow).</div>
+<div class="content">
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 70%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock wrap">
 <div class="title">Before encoding</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
@@ -494,18 +701,74 @@ puts interactions_base64</code></pre>
   "interactions": "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 }</code></pre>
 </div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-none grid-none stretch">
+<caption class="title">App visualization - confirmation message</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_1.png" alt="confirmationMessage 1">
 </div>
+<div class="title">Initial screen</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_2.png" alt="confirmationMessage 2">
+</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stretch">
+<caption class="title">Watch visualization - confirmation message</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_1_watch.png" alt="confirmationMessage 1 watch">
+</div>
+<div class="title">Initial screen (scrolls down)</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessage_2_watch.png" alt="confirmationMessage 2 watch">
+</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 3. <code>displayTextAndPIN</code> only (device link flow).</div>
+<div class="title">Example 5. <code>verificationCodeChoice</code> only, if not available then fail (notification based flow).</div>
 <div class="content">
-<div class="listingblock wrap">
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 70%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock wrap">
 <div class="title">Before encoding</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
   {
-    "type": "displayTextAndPIN",
+    "type": "verificationCodeChoice",
     "displayText60": "Short description of the transaction context"
   }
 ]</code></pre>
@@ -515,40 +778,72 @@ puts interactions_base64</code></pre>
 <div class="title">Base64 encoded</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "interactions": "W3sidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+  "interactions": "W3sidHlwZSI6InZlcmlmaWNhdGlvbkNvZGVDaG9pY2UiLCJkaXNwbGF5VGV4dDYwIjoiU2hvcnQgZGVzY3JpcHRpb24gb2YgdGhlIHRyYW5zYWN0aW9uIGNvbnRleHQifV0="
 }</code></pre>
 </div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-none grid-none stretch">
+<caption class="title">App visualization - verification code choice</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/verificationCodeChoice_1.png" alt="verificationCodeChoice 1">
 </div>
+<div class="title">Initial screen</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/verificationCodeChoice_2.png" alt="verificationCodeChoice 2">
+</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stretch">
+<caption class="title">Watch visualization - verification code choice</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/verificationCodeChoice_1_watch.png" alt="verificationCodeChoice 1 watch">
+</div>
+<div class="title">Initial screen (scrolls down)</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/verificationCodeChoice_2_watch.png" alt="verificationCodeChoice 2 watch">
+</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 4. <code>confirmationMessage</code> only, if not available then fail (device link flow).</div>
+<div class="title">Example 6. RP first choice is <code>confirmationMessageAndVerificationCodeChoice</code>, if not available then fall back to <code>verificationCodeChoice</code> (notification based flow).</div>
 <div class="content">
-<div class="listingblock wrap">
-<div class="title">Before encoding</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
-  {
-    "type": "confirmationMessage",
-    "displayText200": "Longer description of the transaction context"
-  }
-]</code></pre>
-</div>
-</div>
-<div class="listingblock wrap">
-<div class="title">Base64 encoded</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "interactions": "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9XQ=="
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 5. RP first choice is <code>confirmationMessageAndVerificationCodeChoice</code>, if not available then fall back to <code>verificationCodeChoice</code> (notification based flow).</div>
-<div class="content">
-<div class="listingblock wrap">
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 70%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock wrap">
 <div class="title">Before encoding</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
@@ -570,31 +865,56 @@ puts interactions_base64</code></pre>
   "interactions": "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2VBbmRWZXJpZmljYXRpb25Db2RlQ2hvaWNlIiwiZGlzcGxheVRleHQyMDAiOiJMb25nZXIgZGVzY3JpcHRpb24gb2YgdGhlIHRyYW5zYWN0aW9uIGNvbnRleHQifSx7InR5cGUiOiJ2ZXJpZmljYXRpb25Db2RlQ2hvaWNlIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 }</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 6. <code>confirmationMessageAndVerificationCodeChoice</code> only, if not available then fail (notification based flow).</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-none grid-none stretch">
+<caption class="title">App visualization - confirmation message and VC choice</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<div class="listingblock wrap">
-<div class="title">Before encoding</div>
+<img src="_images/confirmationMessageAndVerificationCodeChoice_1.png" alt="confirmationMessageAndVerificationCodeChoice 1">
+</div>
+<div class="title">Initial screen</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
-  {
-    "type": "confirmationMessageAndVerificationCodeChoice",
-    "displayText200": "Longer description of the transaction context"
-  }
-]</code></pre>
+<img src="_images/confirmationMessageAndVerificationCodeChoice_2.png" alt="confirmationMessageAndVerificationCodeChoice 2">
 </div>
-</div>
-<div class="listingblock wrap">
-<div class="title">Base64 encoded</div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none stretch">
+<caption class="title">Watch visualization - confirmation message and VC choice</caption>
+<colgroup>
+<col style="width: 50%;">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "interactions": "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2VBbmRWZXJpZmljYXRpb25Db2RlQ2hvaWNlIiwiZGlzcGxheVRleHQyMDAiOiJMb25nZXIgZGVzY3JpcHRpb24gb2YgdGhlIHRyYW5zYWN0aW9uIGNvbnRleHQifV0="
-}</code></pre>
+<img src="_images/confirmationMessageAndVerificationCodeChoice_1_watch.png" alt="confirmationMessageAndVerificationCodeChoice 1 watch">
 </div>
+<div class="title">Initial screen (scrolls down)</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="_images/confirmationMessageAndVerificationCodeChoice_2_watch.png" alt="confirmationMessageAndVerificationCodeChoice 2 watch">
 </div>
+<div class="title">PIN entry screen</div>
+</div></div></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

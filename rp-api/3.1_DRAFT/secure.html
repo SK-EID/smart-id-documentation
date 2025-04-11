@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,7 +117,6 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
     <li><a href="secure.html">Secure Implementation Guide</a></li>
   </ul>
 </nav>
@@ -167,30 +162,7 @@ This document has not been updated for RP version 3. After the updates it will b
 <p>Guidelines are written in affirmative and imperative mood, however, not all security measures are considered mandatory for all RPs. Nevertheless, there&#8217;s nobody else, who can implement those defences and security measures on their behalf. It is the relying party&#8217;s opportunity and responsibility to carefully assess these risks and select appropriate countermeasures.</p>
 </div>
 <div class="sect2">
-<h3 id="_terms_and_concepts"><a class="anchor" href="#_terms_and_concepts"></a>1.1. Terms and concepts</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Relying Party (RP, e-service provider)</dt>
-<dd>
-<p>Organisation developing and managing the website and providing some service to its users. The organisation may bear financial losses in case cybercriminals are successful with their attacks.</p>
-</dd>
-<dt class="hdlist1">Website (e-service)</dt>
-<dd>
-<p>Information system built by RP and uses Mobile-ID or Smart-ID service to authenticate users and to create digital signatures. The website is integrated with the Mobile-ID RP API (<a href="https://github.com/SK-EID/MID" class="bare">https://github.com/SK-EID/MID</a>) or the Smart-ID RP API (<a href="https://github.com/SK-EID/smart-id-documentation" class="bare">https://github.com/SK-EID/smart-id-documentation</a>).</p>
-</dd>
-<dt class="hdlist1">App</dt>
-<dd>
-<p>RP&#8217;s mobile application running on a user&#8217;s device. The app is used to interact with the RP&#8217;s e-service and in the background, the app is communicating to the RP&#8217;s backend or website.</p>
-</dd>
-<dt class="hdlist1">Users</dt>
-<dd>
-<p>Natural persons with registered Mobile-ID/Smart-ID accounts. Users authenticate to the RP&#8217;s e-service and create digital signatures with the browser or the RP&#8217;s app.</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.2. Feedback</h3>
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.1. Feedback</h3>
 <div class="paragraph">
 <p>All feedback to this document and proposed security measures is much appreciated. Please send it to the e-mail address <a href="mailto:support@sk.ee?subject=Feedback">support@sk.ee</a> on the Secure Implementation Guidance.</p>
 </div>

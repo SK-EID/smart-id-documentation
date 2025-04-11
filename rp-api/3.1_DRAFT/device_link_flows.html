@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,8 +117,7 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
     <li><a href="device_link_flows.html">Device link flows</a></li>
   </ul>
 </nav>
@@ -133,22 +128,21 @@
 </aside>
 <article class="doc">
 <h1 class="page">Device link flows</h1>
-<div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>On a high level, the device link flow consists of the following steps:</p>
+<p>The device link flow are the primary flow to be used for iniatiating Smart-ID transactions. It consists of the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User interacts with an RP frontend (which is a webpage or an app).</p>
+<p>User interacts with an RP frontend (a webpage or an app).</p>
 </li>
 <li>
-<p>RP backend makes a request to RP API to create a device link based <code>authentication</code> or <code>signature</code> session, obtaining security parameters that are necessary for generating device links. This request may either be anonymous (no personal identifier is provided) or non-anonymous.</p>
+<p>RP backend makes a request to RP API to create a device link based session (<code>authentication</code>, <code>signature</code>, or <code>certificate-choice</code>) to obtain security parameters that are necessary for generating device links. The request may either be anonymous (no personal identifier is provided) or non-anonymous.</p>
 </li>
 <li>
-<p>RP starts creating device links that are updated each second. The device links are generated in the RP backend and forwarded to the RP frontend.</p>
+<p>RP starts creating device links. In case of QR codes, but not Web2App nor App2App links, the links must be updated each second. The device links  must be generated in the RP backend and then forwarded to the RP frontend each time.</p>
 </li>
 <li>
 <p>RP frontend displays QR codes / Web2App links / App2App links. The user interacts with one of them by either:</p>
@@ -170,16 +164,16 @@
 </div>
 </li>
 <li>
-<p>Smart-ID app extracts the necessary parameters and makes a request to the Smart-ID backend to check the integrity, validity and freshness of the device link. If the request was non-anonymous, it is verified that the provided personal identifier agrees with the actual user&#8217;s identity. Backend responds by creating a transaction and returning the transaction data.</p>
+<p>Smart-ID app extracts the necessary parameters and makes a request to the Smart-ID backend to check the integrity, validity and freshness of the device link. If the request was non-anonymous, it is verified that the provided personal identifier agrees with the actual user&#8217;s identity.</p>
 </li>
 <li>
-<p>Signing protocol continues in the usual way (user enters the PIN code).</p>
+<p>The user is asked to verify the transaction details and enter their PIN.</p>
 </li>
 <li>
-<p>After the signature has been given, the RP receives the success result via the session status endpoint. In the case of anonymous flow, RP learns the identity of the user only at this point (via the user&#8217;s certificate).</p>
+<p>After the signature has been given, the RP receives the result via the session status endpoint. In the case of anonymous flow, RP learns the identity of the user only at this point (via the user&#8217;s certificate).</p>
 </li>
 <li>
-<p>User is redirected back to the RP with the given callback URL in same-device flows.</p>
+<p>User is redirected back to the RP with the given callback URL in same-device flows and <a href="callback_url_verification.html" class="xref page">RP performs the callback URL verification</a>.</p>
 </li>
 </ol>
 </div>
@@ -193,7 +187,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>For device link flows, a single request must be sent. For a single session that displays a dynamic QR code and a Web2App or App2App link, multiple requests <strong>must not</strong> be sent. Some examples:</p>
+<p>For device link flows, a single request must be sent. For a single session that displays both a dynamic QR code and a Web2App or App2App link, multiple requests <strong>must not</strong> be sent. Some examples:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -209,7 +203,7 @@
 </div>
 </li>
 <li>
-<p>In same-device flow, it may be easier for RP to send a request to session status endpoint only after the callback has been received. Please note that this can only be done for flows where the RP does not display the QR codes.</p>
+<p>In same-device flow, it may be easier for RP to send a request to session status endpoint only after the callback has been received. This is only relevant when the QR code flow is not provided.</p>
 </li>
 </ol>
 </div>
@@ -218,23 +212,27 @@
 </table>
 </div>
 <div class="paragraph">
-<p>The following diagram describes the device link based flow for the <code>authentication</code> session. The flow for the <code>signature</code> session follows the same principles and has been omitted.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO, Device link signing flow with <code>RAW_DIGEST_SIGNATURE</code>? Decide in SID-12310 Update RP API v3 diagrams to reflect the latest changes (Baltics version)
-</td>
-</tr>
-</table>
+<p>The following diagram describes the device link based flow for the <code>authentication</code> session.</p>
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-2e38dbcc71fd4492befb19ce028e6145e7924624.svg"><img src="_images/flow-2e38dbcc71fd4492befb19ce028e6145e7924624.svg" alt="flow"></a>
+<a class="image" href="_images/flow-ced238cd0ea2ebe0222d1c65bba446478a2c7579.svg"><img src="_images/flow-ced238cd0ea2ebe0222d1c65bba446478a2c7579.svg" alt="flow"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The following diagram describes the device link based flow for the <code>signature</code> session.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-e54e984b775b301fc2bcdd09ee7100c47386f689.svg"><img src="_images/flow-e54e984b775b301fc2bcdd09ee7100c47386f689.svg" alt="flow"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The following diagram describes the device link based flow for the <code>certificateChoice</code> session.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-0daf83a1da2d253c900a716ca3cdbdd258449d97.svg"><img src="_images/flow-0daf83a1da2d253c900a716ca3cdbdd258449d97.svg" alt="flow"></a>
 </div>
 </div>
 </div>
@@ -243,7 +241,7 @@ TODO, Device link signing flow with <code>RAW_DIGEST_SIGNATURE</code>? Decide in
 <h2 id="_device_link_calculation"><a class="anchor" href="#_device_link_calculation"></a>Device link calculation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When RP backend makes a request to RP API to create a new device link based session, Smart-ID server generates and returns the following parameters as a response:</p>
+<p>When RP backend makes a request to RP API to create a new device link based session, RP-API server generates and returns the following parameters as a response:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -262,10 +260,10 @@ TODO, Device link signing flow with <code>RAW_DIGEST_SIGNATURE</code>? Decide in
 </ul>
 </div>
 <div class="paragraph">
-<p>RP then starts calculating and showing the QR code image dynamically (it must be updated regularly with the interval of 1 second).</p>
+<p>RP then calculates the Web2App or App2App device link and dynamic QR code and shows it to the end user. The dynamic QR code must be updated regularly with the interval of 1 second.</p>
 </div>
 <div class="paragraph">
-<p>It is recommended that RP offers multiple options, QR image and Web2App link, to the user at the same time if:</p>
+<p>It is recommended that RP offers multiple options, QR image and Web2App link, to the user at the same time if either:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -277,18 +275,6 @@ TODO, Device link signing flow with <code>RAW_DIGEST_SIGNATURE</code>? Decide in
 </li>
 </ol>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO: Add mockup / wireframe image how to offer two choices (similarly how Bank-ID does it).
-</td>
-</tr>
-</table>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -297,10 +283,20 @@ TODO: Add mockup / wireframe image how to offer two choices (similarly how Bank-
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The device link structure is similar for both same-device and cross-device flows. The differences between them are:
-. The value of <code>deviceLinkType</code> is different (<code>Web2App</code>, <code>App2App</code> vs <code>QR</code>),
-. same-device links do not have <code>elapsedSeconds</code> and should not be dynamically regenerated,
-. the final representation of the link to the user is different (a clickable web link vs a dynamic QR code).</p>
+<p>The device link structure is similar for both same-device and cross-device flows. The differences between them are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The value of <code>deviceLinkType</code> is different (<code>Web2App</code>, <code>App2App</code> vs <code>QR</code>),</p>
+</li>
+<li>
+<p>same-device links do not have <code>elapsedSeconds</code> and should not be dynamically regenerated,</p>
+</li>
+<li>
+<p>the final representation of the link to the user is different (a clickable HTTPS link vs a dynamic QR code).</p>
+</li>
+</ol>
 </div>
 </td>
 </tr>
@@ -378,9 +374,9 @@ The order of the path parameters in the device link must be the same as specifie
     String deviceLinkType = "Web2App";
     String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
     String sessionType = "auth";
-    String version = "1";
+    String version = "1.0";
     String lang = "eng";
-    String authCode = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs";
+    String authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
 
     String deviceLink = deviceLinkBase + "?" +
       "deviceLinkType=" + deviceLinkType +
@@ -405,9 +401,9 @@ $deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "Web2App";
 $sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
 $sessionType = "auth";
-$version = "1";
+$version = "1.0";
 $lang = "eng";
-$authCode = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs";
+$authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
 
 $deviceLink = $deviceLinkBase . "?"
   . "deviceLinkType=" . $deviceLinkType
@@ -430,9 +426,9 @@ echo $deviceLink;
 device_link_type = "Web2App" # One of "Web2App", "App2App"
 session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
 session_type = "auth"
-version = "1"
+version = "1.0"
 lang = "eng"
-auth_code = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs"
+auth_code = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
 device_link = device_link_base + "?" + "deviceLinkType=" + device_link_type + "&amp;sessionToken=" + session_token + "&amp;sessionType=" + session_type + "&amp;version=" + version + "&amp;lang=" + lang + "&amp;authCode=" + auth_code
 print(device_link)</code></pre>
 </div>
@@ -453,9 +449,9 @@ func main() {
 	var deviceLinkType string = "Web2App" // One of "Web2App", "App2App"
 	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
 	var sessionType string = "auth"
-	var version string = "1"
+	var version string = "1.0"
 	var lang string = "eng"
-	var authCode string = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs"
+	var authCode string = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
 
 	var deviceLink string = deviceLinkBase + "?" + "deviceLinkType=" + deviceLinkType +
 		"&amp;sessionToken=" + sessionToken +
@@ -477,9 +473,9 @@ func main() {
     let device_link_type: &amp;str = "Web2App"; // One of "Web2App", "App2App"
     let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
     let session_type: &amp;str = "auth";
-    let version: &amp;str = "1";
+    let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
-    let auth_code: &amp;str = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs";
+    let auth_code: &amp;str = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
 
     let device_link: String = format!("{}?deviceLinkType={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}&amp;authCode={}", device_link_base, device_link_type, session_token, session_type, version, lang, auth_code);
 
@@ -496,9 +492,9 @@ func main() {
     val deviceLinkType: String = "Web2App"
     val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
     val sessionType: String = "auth"
-    val version: String = "1"
+    val version: String = "1.0"
     val lang: String = "eng"
-    val authCode: String = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs"
+    val authCode: String = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
 
     val deviceLink: String = "$deviceLinkBase" + "?" +
         "deviceLinkType=$deviceLinkType&amp;" +
@@ -526,9 +522,9 @@ public class DeviceLinkGenerator
         string deviceLinkType = "Web2App";
         string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
         string sessionType = "auth";
-        string version = "1";
+        string version = "1.0";
         string lang = "eng";
-        string authCode = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs";
+        string authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
 
         string deviceLink = deviceLinkBase + "?" +
             "deviceLinkType=" + deviceLinkType +
@@ -551,9 +547,9 @@ public class DeviceLinkGenerator
 const deviceLinkType = "Web2App";
 const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
 const sessionType = "auth";
-const version = "1";
+const version = "1.0";
 const lang = "eng";
-const authCode = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs";
+const authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
 
 const deviceLink = deviceLinkBase + "?" +
   "deviceLinkType=" + deviceLinkType +
@@ -574,9 +570,9 @@ console.log(deviceLink);</code></pre>
 device_link_type = "Web2App" # One of "Web2App", "App2App"
 session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
 session_type = "auth"
-version = "1"
+version = "1.0"
 lang = "eng"
-auth_code = "Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs"
+auth_code = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
 device_link = device_link_base + "?" +
   "deviceLinkType=" + device_link_type +
   "&amp;sessionToken=" + session_token +
@@ -591,21 +587,31 @@ puts device_link</code></pre>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 1. Web2App link (authentication flow)</div>
+<div class="title">Example 1. Web2App link (authentication session)</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng&amp;authCode=Y0GcQj2Apo8FoUZe5JAoMAgHzvlNinyX28IZ7a2MWZs</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 2. App2App link (signature flow)</div>
+<div class="title">Example 2. App2App link (signature session)</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=signature&amp;version=1.0&amp;lang=eng&amp;authCode=JhJqtVc7xatWJTuQB8foLUXFsz3epRuv_IoUUYavwEs</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng&amp;authCode=1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Web2App link (certificate-choice session)</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng&amp;authCode=jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo</code></pre>
 </div>
 </div>
 </div>
@@ -673,9 +679,9 @@ puts device_link</code></pre>
     int elapsedSeconds = 22;
     String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
     String sessionType = "auth";
-    String version = "1";
+    String version = "1.0";
     String lang = "eng";
-    String authCode = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs";
+    String authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
 
     String deviceLink = deviceLinkBase + "?" +
       "deviceLinkType=" + deviceLinkType +
@@ -702,9 +708,9 @@ $deviceLinkType = "QR";
 $elapsedSeconds = 22;
 $sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
 $sessionType = "auth";
-$version = "1";
+$version = "1.0";
 $lang = "eng";
-$authCode = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs";
+$authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
 
 $deviceLink = $deviceLinkBase . "?"
   . "deviceLinkType=" . $deviceLinkType
@@ -729,9 +735,9 @@ device_link_type = "QR" # "QR"
 elapsed_seconds = 22
 session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
 session_type = "auth"
-version = "1"
+version = "1.0"
 lang = "eng"
-auth_code = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs"
+auth_code = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
 device_link = device_link_base + "?" + "deviceLinkType=" + device_link_type + "&amp;elapsedSeconds=" + str(elapsed_seconds) + "&amp;sessionToken=" + session_token + "&amp;sessionType=" + session_type + "&amp;version=" + version + "&amp;lang=" + lang + "&amp;authCode=" + auth_code
 print(device_link)</code></pre>
 </div>
@@ -753,9 +759,9 @@ func main() {
 	var elapsedSeconds int = 22
 	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
 	var sessionType string = "auth"
-	var version string = "1"
+	var version string = "1.0"
 	var lang string = "eng"
-	var authCode string = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs"
+	var authCode string = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
 
 	var deviceLink string = deviceLinkBase + "?" + "deviceLinkType=" + deviceLinkType +
 		"&amp;elapsedSeconds=" + strconv.Itoa(elapsedSeconds) +
@@ -779,9 +785,9 @@ func main() {
     let elapsed_seconds: i32 = 22;
     let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
     let session_type: &amp;str = "auth";
-    let version: &amp;str = "1";
+    let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
-    let auth_code: &amp;str = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs";
+    let auth_code: &amp;str = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
 
     let device_link: String = format!("{}?deviceLinkType={}&amp;elapsedSeconds={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}&amp;authCode={}", device_link_base, device_link_type, elapsed_seconds, session_token, session_type, version, lang, auth_code);
 
@@ -799,9 +805,9 @@ func main() {
     val elapsedSeconds: Int = 22
     val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
     val sessionType: String = "auth"
-    val version: String = "1"
+    val version: String = "1.0"
     val lang: String = "eng"
-    val authCode: String = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs"
+    val authCode: String = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
 
     val deviceLink: String = "$deviceLinkBase" + "?" +
         "deviceLinkType=$deviceLinkType&amp;" +
@@ -831,9 +837,9 @@ public class DeviceLinkGenerator
         int elapsedSeconds = 22;
         string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
         string sessionType = "auth";
-        string version = "1";
+        string version = "1.0";
         string lang = "eng";
-        string authCode = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs";
+        string authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
 
         string deviceLink = deviceLinkBase + "?" +
             "deviceLinkType=" + deviceLinkType +
@@ -858,9 +864,9 @@ const deviceLinkType = "QR";
 const elapsedSeconds = 22;
 const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
 const sessionType = "auth";
-const version = "1";
+const version = "1.0";
 const lang = "eng";
-const authCode = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs";
+const authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
 
 const deviceLink = deviceLinkBase + "?" +
   "deviceLinkType=" + deviceLinkType +
@@ -883,9 +889,9 @@ device_link_type = "QR" # "QR"
 elapsed_seconds = 22
 session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
 session_type = "auth"
-version = "1"
+version = "1.0"
 lang = "eng"
-auth_code = "qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs"
+auth_code = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
 device_link = device_link_base + "?" +
   "deviceLinkType=" + device_link_type +
   "&amp;elapsedSeconds=" + elapsed_seconds.to_s +
@@ -901,21 +907,21 @@ puts device_link</code></pre>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 3. QR link (authentication flow)</div>
+<div class="title">Example 4. QR link (authentication session)</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng&amp;authCode=qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 4. QR code (authentication flow)</div>
+<div class="title">Example 5. QR code (authentication session)</div>
 <div class="content">
 <div class="imageblock">
 <div class="content">
-<img src="_images/qr.svg" alt="https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=authentication&amp;version=1.0&amp;lang=eng&amp;authCode=qkH4CbKKJICaABKdJwtgPKvhJGOw993-x3RNhv0_WLs" width="610" height="610">
+<img src="_images/qr.svg" alt="alt=https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk" width="610" height="610">
 </div>
 </div>
 </div>
@@ -945,7 +951,7 @@ puts device_link</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A pre-defined version value, currently <code>1</code>.</p>
+<p>A pre-defined version value, currently <code>1.0</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -995,7 +1001,7 @@ puts device_link</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>elapsedSeconds</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Seconds since receiving the response from the initial request to RP API. Only used in same-device flows (dynamic QR code).</p>
+<p>Seconds since receiving the response from the initial request to RP API. Only used in cross-device flows (dynamic QR code).</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1025,7 +1031,7 @@ puts device_link</code></pre>
 <p>The calculation of device links must be performed in the RP backend. All values (including <code>elapsedSeconds</code>) <strong>must</strong> all be generated in the RP backend and the RP frontend must not be able to change or affect these parameters.</p>
 </li>
 <li>
-<p>For dynamic QR code flows, the dynamic generation (every 1s) of the <code>authCode</code> parameter must be done in the RP backend, <strong>NOT</strong> in the RP frontend or RP app so as not to not leak the <code>sessionSecret</code> parameter. Also, it is forbidden to generate values of <code>authCode</code> parameter ahead of time and forward them to the RP frontend/app.</p>
+<p>For dynamic QR code flows, the dynamic generation (every 1s) of the <code>authCode</code> parameter must be done in the RP backend, <strong>NOT</strong> in the RP frontend or RP app so as not to leak the <code>sessionSecret</code> parameter. Also, it is forbidden to generate values of <code>authCode</code> parameter ahead of time and forward them to the RP frontend/app.</p>
 </li>
 </ul>
 </div>
@@ -1042,14 +1048,14 @@ puts device_link</code></pre>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p><code>version</code> parameter is a pre-defined value. Currently, only <code>1</code> is supported. It must be used in <code>string</code> form in device links.</p>
+<p><code>version</code> parameter is a pre-defined value. Currently, only <code>1.0</code> is supported. It must be used in <code>string</code> form in device links.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 5. <code>version</code> parameter</div>
+<div class="title">Example 6. <code>version</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"1"</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"1.0"</code></pre>
 </div>
 </div>
 </div>
@@ -1073,7 +1079,7 @@ puts device_link</code></pre>
 <p>RP API returns <code>sessionToken</code>. It is a URL safe value and it must be used as is (in <code>string</code> form) in device links.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 6. <code>sessionToken</code> parameter</div>
+<div class="title">Example 7. <code>sessionToken</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
@@ -1117,7 +1123,7 @@ puts device_link</code></pre>
 <p>The string value must be used as is (in <code>string</code> form) in device links.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 7. <code>deviceLinkType</code> parameter</div>
+<div class="title">Example 8. <code>deviceLinkType</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
@@ -1144,18 +1150,6 @@ puts device_link</code></pre>
 <div class="paragraph">
 <p>The parameter <code>sessionType</code> describes the session type:</p>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO maybe we don&#8217;t need certificate-choice at all here (<a href="https://jira.sk.ee/browse/SID-12044" class="bare">https://jira.sk.ee/browse/SID-12044</a>)
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1173,7 +1167,7 @@ TODO maybe we don&#8217;t need certificate-choice at all here (<a href="https://
 <p>The string value must be used as is (in <code>string</code> form) in device links.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 8. <code>sessionType</code> parameter</div>
+<div class="title">Example 9. <code>sessionType</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
@@ -1201,7 +1195,7 @@ TODO maybe we don&#8217;t need certificate-choice at all here (<a href="https://
 <p>The <code>elapsedSeconds</code> parameters is seconds since receiving the response from the initial session creation request to RP API. Notice that dynamic QR code link must be re-calculated each second because the <code>elapsedSeconds</code> value changes.</p>
 </div>
 <div class="paragraph">
-<p><code>elapsedSeconds</code> value must be converted to string value to be used in QR code links.:</p>
+<p><code>elapsedSeconds</code> value must be converted to string value to be used in QR code links:</p>
 </div>
 <div class="listingblock wrap">
 <div class="content">
@@ -1355,7 +1349,7 @@ puts elapsed_seconds_str</code></pre>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 9. <code>elapsedSeconds</code> parameter</div>
+<div class="title">Example 10. <code>elapsedSeconds</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
@@ -1383,7 +1377,7 @@ puts elapsed_seconds_str</code></pre>
 <p>The <code>lang</code> parameter defines the interface language for the HTTPS fallback page that is shown to the user when there are technical problems regarding opening device links (for example, if user&#8217;s browser does not support Web2App links and needs to be configured to allow them or if Smart-ID app is not installed on the phone). Its format must be ISO 639-2 three-letter language code. It is recommended that for consistent user experience, RP provides here the same language that the user was already using in the RP UI. This parameter only affects the language of the <a href="#fallback_page">fallback page</a>, not the Smart-ID app itself.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 10. <code>lang</code> parameter</div>
+<div class="title">Example 11. <code>lang</code> parameter</div>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
@@ -1418,7 +1412,7 @@ puts elapsed_seconds_str</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The following table aims to clarify which of the parameters involved in device link construction should be accessible by which parties (see legend below).</p>
+<p>The following table aims to clarify which of the parameters involved in device link construction should be accessible by which parties (see legend below). The table also includes parameters which are used for <code>authCode</code> calculation (e.g. <code>unprotectedDeviceLink</code>)&#8201;&#8212;&#8201;for their descriptions, see <a href="authcode.html" class="xref page">authCode calculation</a> page.</p>
 </div>
 <table class="tableblock frame-none grid-none stripes-odd stretch">
 <caption class="title">Visibility of device link parameters to different parties</caption>
@@ -1498,13 +1492,19 @@ puts elapsed_seconds_str</code></pre>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brokeredRpName</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interactions</code></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>callbackUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialCallbackUrl</code></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/no-entry-emoji-26D4.svg" alt="no entry emoji 26D4" width="40"></span></p></td>
@@ -1576,18 +1576,18 @@ puts elapsed_seconds_str</code></pre>
 <div class="paragraph">
 <p>When QR code is displayed on a mobile device, it is recommended to show the QR code as big as possible, up to 10 pixels per block.</p>
 </div>
-<div class="admonitionblock warning">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
 <p>The actual generation of the QR <em>image</em> can be done both in the backend or the frontend, however the device link embedded in the QR code <strong>must</strong> only be generated by the PR backend.</p>
 </div>
 <div class="paragraph">
-<p>Keep in mind that regardless of the approach chosen, sensitive parameters such as <code>sessionSecret</code> <strong>must never</strong> be sent to the RP frontend itself.</p>
+<p>Keep in mind that regardless of the approach chosen, sensitive parameters such as <code>sessionSecret</code> <strong>must never be sent</strong> to the RP frontend itself.</p>
 </div>
 </td>
 </tr>

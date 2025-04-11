@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>RP API details :: RP API integration guidance</title>
+    <title>API technical description :: RP API integration guidance</title>
     <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/api_details.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,9 +117,8 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="getting_started.html">Getting started with RP API v3</a></li>
-    <li><a href="api_details.html">RP API details</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
+    <li><a href="api_details.html">API technical description</a></li>
   </ul>
 </nav>
 </div>
@@ -132,11 +127,17 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">RP API details</h1>
+<h1 class="page">API technical description</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Relying Party API is exposed over a REST interface. All messages are encoded using <code>UTF-8</code>. All requests only support <code>HTTP/1.1</code>, as described in <a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a>.</p>
+<p>Relying Party API is exposed over a REST interface.</p>
+</div>
+<div class="paragraph">
+<p>All messages are encoded using <code>UTF-8</code>.</p>
+</div>
+<div class="paragraph">
+<p>All requests only support <code>HTTP/1.1</code>, as described in <a href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a>.</p>
 </div>
 </div>
 </div>
@@ -158,7 +159,7 @@
 <h2 id="_idempotent_behaviour"><a class="anchor" href="#_idempotent_behaviour"></a>Idempotent behaviour</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Whenever an RP session creation request (POST to <code>signature/certificate-choice/</code>, <code>signature/</code>) is repeated inside a 15 second timeframe with exactly the same parameters, session ID of an existing session can be returned as a result.</p>
+<p>Whenever an RP session creation request (POST to <code>signature/certificate-choice/</code> or <code>signature/</code>) is repeated inside a 15 second timeframe with exactly the same parameters, session ID of an existing session can be returned as a result.</p>
 </div>
 <div class="paragraph">
 <p>This allows to retry RP POST requests in case of communication errors.</p>
@@ -173,7 +174,7 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Providing <code>nonce</code> parameter is not allowed for <code>authentication</code> requests, since each authentication request <strong>must</strong> provide a unique value for <code>rpChallenge</code>, making each authentication request unique.
+Providing <code>nonce</code> parameter is not allowed for <code>authentication</code> requests, since each authentication request <strong>must</strong> provide a randomly generated value for <code>rpChallenge</code>, making each authentication request already unique.
 </td>
 </tr>
 </table>
@@ -208,35 +209,11 @@ Providing <code>nonce</code> parameter is not allowed for <code>authentication</
 <div class="sect1">
 <h2 id="_rp_api_endpoint_authentication"><a class="anchor" href="#_rp_api_endpoint_authentication"></a>RP API endpoint authentication</h2>
 <div class="sectionbody">
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO FIXME
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section will be merged with Secure Implementation Guide.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>It is essential that RP client performs all the required checks when connecting to the Smart-ID RP API HTTPS endpoint, to make sure that the connection endpoint is authentic and that the connection is secure.</p>
 </div>
 <div class="paragraph">
-<p>This is required to prevent Man-in-the-middle (MITM) attacks for the authentication and signature protocols.</p>
+<p>This is required to prevent man-in-the-middle (MITM) attacks for the authentication and signature protocols.</p>
 </div>
 <div class="paragraph">
 <p>The RP must perform the following checks:</p>
@@ -255,7 +232,10 @@ This section will be merged with Secure Implementation Guide.
 </ol>
 </div>
 <div class="paragraph">
-<p>In case the RP fails to verify the connection is genuine and secure an attacker might be able to launch a AITM attack on the connection and either login as the user or have the user sign a forged document.</p>
+<p>In case the RP fails to verify the connection is genuine and secure an attacker might be able to launch an MITM attack on the connection and either login as the user or have the user sign a forged document.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="secure.html" class="xref page">Secure implementation guide</a> for more information.</p>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Terms and glossary :: RP API integration guidance</title>
+    <title>Glossary :: RP API integration guidance</title>
     <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/glossary.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -36,26 +36,19 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="introduction.html">RP API documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="introduction.html">Relying Party API</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="glossary.html">Terms and glossary</a>
-  </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="getting_started.html">Overview</a>
   </li>
-</ul>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="getting_started.html">Getting started with RP API v3</a>
-<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -72,19 +65,22 @@
     <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api_details.html">RP API details</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="interactions.html">Interactions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="changes.html">Changes</a>
   </li>
 </ul>
   </li>
@@ -98,12 +94,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RP API documentation</span>
+    <span class="title">RP API Documentation</span>
     <span class="version">3.1_DRAFT</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API documentation</a></div>
+      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="introduction.html">3.1_DRAFT</a>
@@ -121,9 +117,8 @@
   <a href="introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">RP API documentation</a></li>
-    <li><a href="introduction.html">Introduction</a></li>
-    <li><a href="glossary.html">Terms and glossary</a></li>
+    <li><a href="introduction.html">Relying Party API</a></li>
+    <li><a href="glossary.html">Glossary</a></li>
   </ul>
 </nav>
 </div>
@@ -132,7 +127,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Terms and glossary</h1>
+<h1 class="page">Glossary</h1>
 <div class="dlist glossary">
 <dl>
 <dt>Smart-ID account</dt>
@@ -187,6 +182,18 @@
 <dd>
 <p>An organization or service, for example a bank, that uses the Smart-ID service to authenticate its users and to get them to sign the documents.</p>
 </dd>
+<dt>Website (e-service)</dt>
+<dd>
+<p>Information system built by RP and uses Mobile-ID or Smart-ID service to authenticate users and to create digital signatures. The website is integrated with the Mobile-ID RP API (<a href="https://github.com/SK-EID/MID" class="bare">https://github.com/SK-EID/MID</a>) or the Smart-ID RP API (<a href="https://github.com/SK-EID/smart-id-documentation" class="bare">https://github.com/SK-EID/smart-id-documentation</a>).</p>
+</dd>
+<dt>App</dt>
+<dd>
+<p>RP&#8217;s mobile application running on a user&#8217;s device. The app is used to interact with the RP&#8217;s e-service and in the background, the app is communicating to the RP&#8217;s backend or website.</p>
+</dd>
+<dt>Users</dt>
+<dd>
+<p>Natural persons with registered Mobile-ID/Smart-ID accounts. Users authenticate to the RP&#8217;s e-service and create digital signatures with the browser or the RP&#8217;s app.</p>
+</dd>
 <dt>Relying Party request</dt>
 <dd>
 <p>A request from an RP that requires some kind of operation in the Smart-ID backend system. It may or may not create a transaction.</p>
@@ -201,21 +208,9 @@
 </dd>
 <dt>Verification Code (VC)</dt>
 <dd>
-<p>Verification codes are 4 alphanumeric characters shown to the user for notification based (authentication and signature) flows to let the user bind together the session on the browser or RP app and the authentication request on the Smart-ID app.</p>
+<p>Verification codes are 4 numbers shown to the user for notification based (authentication and signature) flows to let the user bind together the session on the browser or RP app and the authentication request on the Smart-ID app.</p>
 </dd>
 </dl>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-TODO add terms from security guidance doc here and remove from there
-</td>
-</tr>
-</table>
 </div>
 </article>
   </div>

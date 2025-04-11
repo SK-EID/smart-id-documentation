@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Response verification :: RP API integration guidance</title>
-    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/response_verification.html">
+    <title>Callback URL verification :: RP API integration guidance</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/callback_url_verification.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <link rel="stylesheet" href="../../_/css/vendor/tabs.css">
@@ -73,10 +73,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -118,7 +118,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="introduction.html">Relying Party API</a></li>
-    <li><a href="response_verification.html">Response verification</a></li>
+    <li><a href="callback_url_verification.html">Callback URL verification</a></li>
   </ul>
 </nav>
 </div>
@@ -127,158 +127,166 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Response verification</h1>
+<h1 class="page">Callback URL verification</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>After receiving the transaction response from the Session status API call the following algorithm must be used to decide if the authentication result is trustworthy and what the identity of the authenticating end user is. In App2App and Web2App flows, this verification can only be performed after the user has returned via the callback URL, as described in <a href="callback_url_verification.html" class="xref page"><code>Callback URL verification</code></a>.</p>
+<p>For device link flows that use a callback URL (Web2App and App2App links), the callback URL handling is very important to achieve a secure and phishing-resistant flow.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web2app_callback_url"><a class="anchor" href="#_web2app_callback_url"></a>Web2App callback URL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For Web2App callback URLs, the following steps must be followed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user initiates authentication or signing flow on RP website.</p>
+</li>
+<li>
+<p>RP website backend has to set a session cookie to the user&#8217;s browser. This cookie must be set as <code>SameSite=Lax</code> because later, the Smart-ID app will launch the callback URL using top-level navigation and the request type will be <code>GET</code>.</p>
+</li>
+<li>
+<p>RP website backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
+</li>
+<li>
+<p>Once the user has signed (or rejected the transaction), they are redirected to the callback URL address of RP website and their browser will have the same session cookie. Some aspects to take into account are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User will end up on a new browser tab;</p>
+</li>
+<li>
+<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> (SHA-256 digest of the <code>sessionSecret</code>); and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>RP website sends the callback URL to RP website backend.</p>
+</li>
+<li>
+<p>RP website backend polls RP API <code>/v3/session/{sessionID}</code> endpoint for the session API response. Note that this can be done before or after the user has returned to the RP website via the callback URL.</p>
+</li>
+<li>
+<p>RP website backend performs the following checks:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that the user&#8217;s session cookie matches with the random parameter attached in the callback URL;</p>
+</li>
+<li>
+<p>In authentication flows, verify that after applying the SHA-256 hashing function to <code>userChallengeVerifier</code> the result equals to the <code>userChallenge</code> within the <code>ACSP_V2</code> signature sent by the RP API in the session API response;</p>
+</li>
+<li>
+<p>Perform the response verification steps described in <a href="response_verification.html" class="xref page"><code>Response verification</code></a>. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
+</li>
+<li>
+<p>Invalidate the old user session and generate a new one.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If any of these steps fail to verify, deny the authentication attempt.</p>
+</div>
+<div class="sect2">
+<h3 id="_multiple_browser_challenges"><a class="anchor" href="#_multiple_browser_challenges"></a>Multiple browser challenges</h3>
+<div class="paragraph">
+<p>In cases where user initiated the authentication/signing flow on a mobile browser that was not their default browser, the HTTPS callback URL will probably be opened in the default browser which will not have the session cookie and thus the verification <strong>must</strong> fail.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_app2app_callback_url"><a class="anchor" href="#_app2app_callback_url"></a>App2App callback URL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The protocol steps for handling App2App callback URLs are functionally the same as for Web2App;
+however, there are also some differences in the steps below due to fundamental differences between webpages and apps.</p>
+</div>
+<div class="paragraph">
+<p>For App2App callback URLs, the following steps must be followed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user initiates authentication or signing flow on RP app.</p>
+</li>
+<li>
+<p>RP app has to save a session identifier in the app&#8217;s storage.</p>
+</li>
+<li>
+<p>RP app backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter which it also saves in the backend and associates it with the session identifier. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
+</li>
+<li>
+<p>Once the user has signed (or rejected the transaction), they are redirected to the callback URL, which will cause RP app to open (for this to work, RP app has to be configured to handle that domain and path of the URL).</p>
+</li>
+<li>
+<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> (SHA-256 digest of the <code>sessionSecret</code>); and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code>.</p>
+</li>
+<li>
+<p>RP app sends the callback URL together with the session identifier from storage to RP app backend.</p>
+</li>
+<li>
+<p>RP website backend polls RP API <code>/v3/session/{sessionID}</code> endpoint for the session API response. Note that this can be done before or after the user has returned to the RP website via the callback URL.</p>
+</li>
+<li>
+<p>RP app backend performs the following checks:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that the user&#8217;s session identifier matches with the random parameter attached in the callback URL;</p>
+</li>
+<li>
+<p>In authentication flows, verify that after applying the SHA-256 hashing function to <code>userChallengeVerifier</code> the result equals to the <code>userChallenge</code> within the <code>ACSP_V2</code> signature sent by the RP API in the session API response;</p>
+</li>
+<li>
+<p>Perform the response verification steps described in <a href="response_verification.html" class="xref page"><code>Response verification</code></a>. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
+</li>
+<li>
+<p>Invalidate the old user session and generate a new one.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If any of these steps fail to verify, deny the authentication attempt.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_callback_url_examples"><a class="anchor" href="#_callback_url_examples"></a>Callback URL examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the initial callback URL provided by RP backend is: <code><a href="https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ" class="bare">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ</a></code></p>
+</div>
+<div class="paragraph">
+<p>then in the <code>authentication</code> flow the full callback URL could be:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>result.endResult</code> has the value <code>OK</code>.</p>
-</li>
-<li>
-<p>The certificate from <code>cert.value</code> is valid:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The certificate is trusted (signed by a trusted CA).</p>
-</li>
-<li>
-<p>The certificate has not expired.</p>
+<p><a href="https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=8b51f26195ad8985de15b28ce03a5404663f907e0cc43930c439fddd78e9d48e&amp;userChallengeVerifier=JbLWxhLwXZ9nGxhUe8qDxw==" class="bare">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=8b51f26195ad8985de15b28ce03a5404663f907e0cc43930c439fddd78e9d48e&amp;userChallengeVerifier=JbLWxhLwXZ9nGxhUe8qDxw==</a></p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>In the <code>signature</code> flow the full callback URL could be:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The person&#8217;s certificate given in the <code>cert.value</code> is of required or higher assurance level as requested.</p>
-</li>
-<li>
-<p>The identity of the authenticated person is in the <code>subject</code> field or <code>subjectAltName</code> extension of the X.509 certificate and matches with what is expected.</p>
-</li>
-<li>
-<p><code>signature.value</code> is the valid signature over the expected hash submitted by the RP (as described in <a href="signature_protocols.html#acsp_v2_signature_protocol" class="xref page"><code>ACSP_V2</code> signature protocol</a> or <a href="signature_protocols.html#raw_digest_signature_protocol" class="xref page"><code>RAW_DIGEST_SIGNATURE</code> signature protocol</a>). It is verified by using the public key from <code>cert.value</code>.</p>
+<p><a href="https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=8b51f26195ad8985de15b28ce03a5404663f907e0cc43930c439fddd78e9d48e" class="bare">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=8b51f26195ad8985de15b28ce03a5404663f907e0cc43930c439fddd78e9d48e</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>These steps should be performed using standard cryptographic libraries.</p>
-</div>
-<div class="paragraph">
-<p>After successful authentication, the RP must invalidate the old user&#8217;s browser or API session identifier and generate a new one.</p>
-</div>
-<div class="paragraph">
-<p>Example response verification:</p>
-</div>
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">1. TODO
-2. TODO
-3. TODO</code></pre>
-</div>
-</div>
-<div id="_tabs_1" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="_tabs_1_java" class="tab">
-<p>Java</p>
-</li>
-<li id="_tabs_1_php" class="tab">
-<p>PHP</p>
-</li>
-<li id="_tabs_1_python" class="tab">
-<p>Python</p>
-</li>
-<li id="_tabs_1_go" class="tab">
-<p>Go</p>
-</li>
-<li id="_tabs_1_rust" class="tab">
-<p>Rust</p>
-</li>
-<li id="_tabs_1_kotlin" class="tab">
-<p>Kotlin</p>
-</li>
-<li id="_tabs_1_c" class="tab">
-<p>C#</p>
-</li>
-<li id="_tabs_1_node_js" class="tab">
-<p>Node.js</p>
-</li>
-<li id="_tabs_1_ruby" class="tab">
-<p>Ruby</p>
-</li>
-</ul>
-</div>
-<div id="_tabs_1_java--panel" class="tabpanel" aria-labelledby="_tabs_1_java">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_php--panel" class="tabpanel" aria-labelledby="_tabs_1_php">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_python--panel" class="tabpanel" aria-labelledby="_tabs_1_python">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_go--panel" class="tabpanel" aria-labelledby="_tabs_1_go">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_1_kotlin">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_c--panel" class="tabpanel" aria-labelledby="_tabs_1_c">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_node_js--panel" class="tabpanel" aria-labelledby="_tabs_1_node_js">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">TODO</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_1_ruby--panel" class="tabpanel" aria-labelledby="_tabs_1_ruby">
-<div class="listingblock wrap">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">TODO</code></pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -286,37 +294,13 @@
 <h2 id="_phishing_resistance"><a class="anchor" href="#_phishing_resistance"></a>Phishing resistance</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In addition, for <code>Web2App</code> and <code>App2App</code> flows that utilize <code>ACSP_V2</code> signature protocol, the following checks must be done:</p>
-</div>
-<div class="admonitionblock highrisk">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-highrisk" title="HIGH RISK"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Together with the <code>SHA-256(sessionSecret)</code> parameter, retrieve <code>userChallengeVerifier</code> parameter from the callback URL the user visited;</p>
-</li>
-<li>
-<p>check that the <code>SHA-256(userChallengeVerifier)</code> equals to the <code>userChallenge</code> within the <code>ACSP_V2</code> signature sent by the RP API.</p>
-</li>
-</ul>
+<p>For both Web2App and App2App callback URLs, the two extra checks described above provide complete phishing resistance. Always prefer device link flows if possible.</p>
 </div>
 <div class="paragraph">
-<p>If any these steps fail to verify, deny the authentication attempt.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>In case of Web2App/App2App authentication flows there are some additional checks that must be done. Those checks are described on the following page: <a href="response_verification.html#_phishing_resistance" class="xref page"><code>Response verification</code></a>.</p>
 </div>
 <div class="paragraph">
-<p>The two extra checks above provide complete phishing resistance. Always prefer these flows if possible.</p>
-</div>
-<div class="paragraph">
-<p>For further details and security considerations see also the <a href="secure.html" class="xref page">Secure implementation guide</a>.</p>
+<p>Also, for further details and security considerations, consult the <a href="secure.html" class="xref page">Secure implementation guide</a>.</p>
 </div>
 </div>
 </div>

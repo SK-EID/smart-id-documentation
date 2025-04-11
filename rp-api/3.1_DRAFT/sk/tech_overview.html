@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>OpenAPI specification :: RP API integration guidance</title>
-    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/api_specification.html">
+    <title>Technical overview :: RP API integration guidance</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/3.1_DRAFT/sk/tech_overview.html">
     <meta name="generator" content="Antora 3.1.7">
-    <link rel="stylesheet" href="../../_/css/site.css">
-    <link rel="stylesheet" href="../../_/css/vendor/tabs.css">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <link rel="stylesheet" href="../../../_/css/vendor/tabs.css">
   </head>
   <body class="article">
 <header class="header">
@@ -41,51 +41,51 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="introduction.html">Relying Party API</a>
+    <a class="nav-link" href="../introduction.html">Relying Party API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting_started.html">Overview</a>
+    <a class="nav-link" href="../getting_started.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="glossary.html">Glossary</a>
+    <a class="nav-link" href="../glossary.html">Glossary</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="device_link_flows.html">Device link flows</a>
+    <a class="nav-link" href="../device_link_flows.html">Device link flows</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="authcode.html"><code>authCode</code> calculation</a>
+    <a class="nav-link" href="../authcode.html"><code>authCode</code> calculation</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
+    <a class="nav-link" href="../notification_based_flows.html">Notification based flows</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="api_details.html">API technical description</a>
+    <a class="nav-link" href="../api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="interactions.html">Interactions</a>
+    <a class="nav-link" href="../api_details.html">API technical description</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+    <a class="nav-link" href="../interactions.html">Interactions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="response_verification.html">Response verification</a>
+    <a class="nav-link" href="../signature_protocols.html">Signature protocols</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="callback_url_verification.html">Callback URL verification</a>
+    <a class="nav-link" href="../response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="../callback_url_verification.html">Callback URL verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../changes.html">Changes</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="../secure.html">Secure Implementation Guide</a>
   </li>
 </ul>
   </li>
@@ -99,10 +99,10 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="introduction.html">RP API Documentation</a></div>
+      <div class="title"><a href="../introduction.html">RP API Documentation</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1_DRAFT</a>
+          <a href="../introduction.html">3.1_DRAFT</a>
         </li>
       </ul>
     </li>
@@ -114,11 +114,10 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="introduction.html" class="home-link"></a>
+  <a href="../introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="introduction.html">Relying Party API</a></li>
-    <li><a href="api_specification.html">OpenAPI specification</a></li>
+    <li><a href="tech_overview.html">Technical overview</a></li>
   </ul>
 </nav>
 </div>
@@ -127,35 +126,10 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">OpenAPI specification</h1>
-<style>
-.doc {
-    max-width: none;
-    margin: none;
-}
-rapi-doc {
-    height: fit-content;
-}
-</style>
-<rapi-doc
-    spec-url="../../_/static/RP-API_V3.yml"
-    render-style="view"
-    theme="light"
-    show-info="false"
-    allow-authentication="false"
-    allow-spec-file-download="false"
-    allow-spec-url-load="false"
-    allow-spec-file-load="false"
-    allow-server-selection="false"
-    show-curl-before-try="true"
-    allow-search="false"
-    allow-try="false"
-    server-url="https://sid.demo.sk.ee/smart-id-rp/"
->
-    <div slot="logo"></div>
-    <div slot="nav-logo"></div>
-</rapi-doc>
-<script async src="../../_/js/vendor/rapidoc-min.js"></script>
+<h1 class="page">Technical overview</h1>
+<div class="paragraph">
+<p><a href="https://github.com/SK-EID/smart-id-documentation/wiki/Technical-overview" class="bare">https://github.com/SK-EID/smart-id-documentation/wiki/Technical-overview</a></p>
+</div>
 </article>
   </div>
 </main>
@@ -163,11 +137,11 @@ rapi-doc {
 <footer class="footer">
   <p>© 2024 SK ID Solutions AS</p>
 </footer>
-<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
-<script async src="../../_/js/vendor/highlight.js"></script>
-<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
-<script src="../../_/js/vendor/lunr.js"></script>
-<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
-<script async src="../../search-index.js"></script>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script async src="../../../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>
