@@ -1,0 +1,46 @@
+= Implementing HTTPS pinning
+
+Anyone who is using Smart-ID API needs to make sure that the connection endpoint is authentic and that the connection is secure. This is required to prevent MITM attacks for the authentication and signature protocols. This requirement is described also here:
+xref:rp-api:ROOT:api_details.adoc[RP API endpoint authentication]
+
+== rp-api.smart-id.com certificates
+
+[cols="2,1,1,1"]
+[options="header", stripes=odd, grid=none, frame=none]
+|===
+| Serial number (HEX) | Validity | Status | Download 
+| 0E20714E18D8C3BEE183CC07F74EA14E | 2024.09.18 00:00.00 +
+2025.10.20 23:59:59 | in use from 10.10.2024 |​ link:_images/rp-api_smart-id_com_2024_DER.crt[DER], link:_images/rp-api_smart-id_com_2024_PEM.crt[PEM]  
+|===
+
+[IMPORTANT]
+New certificate is issued by new intermediate certificate (DigiCert Global G2 TLS RSA SHA256 2020 CA1), which itself is issued by new root (DigiCert Global Root G2) certificate. Certificates are found https://www.digicert.com/kb/digicert-root-certificates.htm[here].
+
+
+== sid.demo.sk.ee certificates
+
+[cols="2,1,1,1"]
+[options="header", stripes=odd, grid=none, frame=none]
+|===
+| Serial number (HEX) | Validity | Status | Download 
+| 07FFF49BD963A210A7F0B079283704D6 | 2024.10.03 00:00.00 +
+2025.10.15 23:59:59 | in use from 03.10.2024 |​ link:_images/sid_demo_sk_ee_2024_DER.crt[DER], link:_images/sid_demo_sk_ee_2024_PEM.crt[PEM] 
+|===
+
+== smart-id-java-client
+ 
+Using smart-id-java-client one can comply with the requirement without importing anything directly to Java.
+But it requires changes in the code.
+ 
+Samples:
+https://github.com/SK-EID/smart-id-java-client/blob/master/README.md#verifying-the-ssl-connection-to-application-provider-sk
+
+== smart-id-php-client
+
+Same functionality as Smart-ID-Java-Client is available with the new smart-id-php-client. 
+
+https://github.com/SK-EID/smart-id-php-client/blob/master/README.md#configure-client-details-and-https-pinning
+ 
+== Other means
+
+Systems running on other platforms must achieve the same result using methods suitable for these particular platforms. SK ID Solutions is not providing sample client libraries for other platforms besides Java and PHP.

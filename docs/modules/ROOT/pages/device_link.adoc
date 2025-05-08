@@ -1,0 +1,19 @@
+= Device-link fallback page
+
+In some cases user may endup in device-link fallback page.
+
+For better user experience there is possibility to view that page in different laguages.
+
+Page supports ISO 639-2 codes with _lang_ parameter: 
+----
+'eng' - English (default)
+'est' - Estonian
+'rus' - Russian
+'lit' - Lithuanian
+'lav' - Latvian
+'nld' - Dutch
+'fra' - French
+'deu' - German
+----
+
+More info how-to construct device-link URL xref:rp-api:ROOT:device_link_flows.adoc[here]

@@ -1,0 +1,6 @@
+== Smart-ID integration
+
+Use following specification for integrating Smart-ID into your system::
+xref:rp-api:ROOT:introduction.adoc[RP-API Implementation guide] +
+xref:environments.adoc[Environment technical parameters] +
+xref:client_libraries.adoc[Client libraries]

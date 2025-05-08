@@ -1,0 +1,33 @@
+
+= Client libraries
+
+[IMPORTANT]
+We do not have client libraries available for latest RP API v3 yet!
+
+[NOTE]
+New documentation includes many code samples in different languages.
+
+See xref:rp-api:ROOT:device_link_flows.adoc#_same-device_flows[same-device flows], xref:rp-api:ROOT:device_link_flows.adoc#_cross-device_flows[cross-device flows]
+
+
+== Available examples
+
+. https://github.com/SK-EID/smart-id-php-client[Smart-ID PHP client - authentication]
+[NOTE]
+This PHP client cannot be used to create digitally signed containers because PHP does not have a library like DigiDoc4J.
+
+. https://github.com/SK-EID/smart-id-php-demo[Smart-ID PHP demo application - authentication]
+. https://github.com/SK-EID/smart-id-java-client[Smart-ID JAVA client]
+. https://github.com/SK-EID/smart-id-java-demo[Smart-ID JAVA demo application]
+. https://github.com/SK-EID/digidoc4j-smart-id-adapter[Smart-ID JAVA (DigiDoc4J Smart-ID adapter) - sign documents]
+
+== 3rd Party libraries
+. Smart-ID Ruby client - authentication https://github.com/zippyvision/smart-id-ruby
+. Smart-ID NET client https://github.com/bogatykh/smart-id-net-client
+. Smart-ID Go Library https://github.com/dknight/go-smartid
+. Smart-ID Rust client https://crates.io/crates/smart-id-rust-client
+
+== Verification code calculation examples
+. https://github.com/SK-EID/smart-id-documentation/blob/master/files/verify.java[Smart-ID signature verification and verification code calculation example in java]
+. https://github.com/SK-EID/smart-id-documentation/blob/master/files/control_code.php[Smart-ID verification code calculation example in php]
+. https://github.com/SK-EID/smart-id-documentation/blob/master/files/main.c[Smart-ID verification code calculation example in C]
