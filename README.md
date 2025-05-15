@@ -532,7 +532,7 @@ structure in [Session status end result codes](#23125-session-status-end-result-
   IP address with `true` or `false` value accordingly. If property is not defined in the
   RP request IP address won't be shared in session.
 - The RP session is complete.
-- The mobile device IP address was successfully saved to the \gls{rp} session.
+- The mobile device IP address was successfully saved to the RP session.
 
 ### 2.3.9 Certificate choice session
 
