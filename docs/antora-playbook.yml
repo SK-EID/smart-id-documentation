@@ -1,6 +1,6 @@
 site:
-  title: Smart-ID
-  start_page: docs::index.adoc
+  title: Smart-ID documentation
+  start_page: ROOT::index.adoc
 content:
   sources:
   - url: ./../

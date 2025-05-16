@@ -1,10 +1,14 @@
 = Test accounts for automated testing
 
-[NOTE] 
-Only notification flow is currently supported
+[IMPORTANT]
+====
+These test numbers work only with  RP API v1/v2!
+====
 
-[NOTE]  
+[NOTE]
+====
 Account numbers with EndResult!=OK have changed on 05.11.2024 (New CA chains!)
+====
 
 [cols="3,1,3,3"]
 [options="header", stripes=odd, grid=none, frame=none]

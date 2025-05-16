@@ -1,6 +1,11 @@
 == Smart-ID integration
 
 Use following specification for integrating Smart-ID into your system::
+ifeval::["{service-name}" != ""]
 xref:rp-api:ROOT:introduction.adoc[RP-API Implementation guide] +
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/[RP-API Implementation guide] +
+endif::[]
 xref:environments.adoc[Environment technical parameters] +
 xref:client_libraries.adoc[Client libraries]

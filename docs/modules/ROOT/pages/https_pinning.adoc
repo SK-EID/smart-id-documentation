@@ -1,7 +1,13 @@
 = Implementing HTTPS pinning
 
 Anyone who is using Smart-ID API needs to make sure that the connection endpoint is authentic and that the connection is secure. This is required to prevent MITM attacks for the authentication and signature protocols. This requirement is described also here:
+ifeval::["{service-name}" != ""]
 xref:rp-api:ROOT:api_details.adoc[RP API endpoint authentication]
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/api_details.html#_rp_api_endpoint_authentication[RP API endpoint authentication]
+endif::[]
+
 
 == rp-api.smart-id.com certificates
 

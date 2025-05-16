@@ -16,4 +16,10 @@ Page supports ISO 639-2 codes with _lang_ parameter:
 'deu' - German
 ----
 
-More info how-to construct device-link URL xref:rp-api:ROOT:device_link_flows.adoc[here]
+More info how-to construct device-link URL 
+ifeval::["{service-name}" != ""]
+xref:rp-api:ROOT:device_link_flows.adoc[here]
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html#_device_link_calculation[here]
+endif::[]

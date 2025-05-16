@@ -1,4 +1,4 @@
-image::Smart-ID_login_btn.png[title="For developers, demos and testing ",caption=""]
+image::Smart-ID_login_btn_round.png[title="For developers, demos and testing",caption=""]
 
 == Try out
 If you are here to get full experience how Smart-ID works, then try it out by starting xref:demo.adoc[here]
