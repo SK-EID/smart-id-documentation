@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Device link flows :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../_/css/site.css">
+
+<link rel="icon" href="../_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="../_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="introduction.html">Relying Party API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../device_link.html">Device-link fallback page</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../https_pinning.html">Implementing HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../logos.html">Logos</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../test_accounts.html">Test accounts</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="changes.html">Changes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Relying Party API</span>
+    <span class="version">3.1.3</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../index.html">Documentation</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="introduction.html">3.1.3</a>
+        </li>
+        <li class="version">
+          <a href="3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="On this page" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Device link flows</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The device link flows are the primary flows to be used for initiating Smart-ID transactions. It consists of the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User interacts with an RP frontend (a webpage or an app).</p>
+</li>
+<li>
+<p>RP backend makes a request to RP API to create a device link based session (<code>authentication</code>, <code>signature</code>, or <code>certificate-choice</code>) to obtain security parameters that are necessary for generating device links. For <code>authentication</code> and <code>certificate-choice</code> sessions, the request may either be anonymous (no personal identifier is provided) or non-anonymous (<code>signature</code> session can&#8217;t be anonymous).</p>
+</li>
+<li>
+<p>RP starts creating device links. In case of QR codes, but not Web2App nor App2App links, the links must be updated each second. The device links  must be generated in the RP backend and then forwarded to the RP frontend each time.</p>
+</li>
+<li>
+<p>RP frontend displays QR codes / Web2App links / App2App links. The user interacts with one of them by either:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Opening Smart-ID app and scanning the dynamic QR code (preferred option for QR codes);</p>
+</li>
+<li>
+<p>Using a native camera app to scan the dynamic QR code (not supported by all camera apps) which opens the Smart-ID app where user has to scan the QR code again.</p>
+</li>
+<li>
+<p>Clicking on the Web2App link in an RP webpage, thus opening the Smart-ID app;</p>
+</li>
+<li>
+<p>Clicking on the App2App link in an RP app, thus opening the Smart-ID app.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Smart-ID app extracts the necessary parameters and makes a request to the Smart-ID backend to check the integrity, validity and freshness of the device link. If the request was non-anonymous, it is verified that the provided personal identifier agrees with the actual user&#8217;s identity.</p>
+</li>
+<li>
+<p>The user is asked to verify the transaction details and enter their PIN.</p>
+</li>
+<li>
+<p>After the signature has been given, the RP receives the result via the session status endpoint. In case of anonymous flow, RP learns the identity of the user only at this point (via the user&#8217;s certificate).</p>
+</li>
+<li>
+<p>User is redirected back to the RP with the given callback URL in same-device flows and RP performs the callback URL verification steps described in <a href="callback_urls.html" class="xref page">Callback URLs</a> page.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>For device link flows, a single request must be sent. For a single session that displays both a dynamic QR code and a Web2App or App2App link, multiple requests <strong>must not</strong> be sent. Some examples:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If an RP would like to display a Web2App or App2App link without a dynamic QR code, a device link flow with a callback URL must be started.</p>
+</li>
+<li>
+<p>If an RP would like to display a dynamic QR code without the option for Web2App or App2App links, a device link flow can be started without a callback URL.</p>
+</li>
+<li>
+<p>If an RP would like to display both, a dynamic QR code and a Web2App or App2App link, a device link flow with a callback URL must be started (but the callback URL will only be relevant if the user interacts with the Web2App/App2App link, not the QR code).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In same-device flow, it may be easier for RP to send a request to session status endpoint only after the callback has been received. This is only relevant when the QR code flow is not provided.</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following diagram describes the device link based flow for the <code>authentication</code> session.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-ced238cd0ea2ebe0222d1c65bba446478a2c7579.svg"><img src="_images/flow-ced238cd0ea2ebe0222d1c65bba446478a2c7579.svg" alt="flow"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The following diagram describes the device link based flow for the <code>signature</code> session.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-0a16fd2fa11bdb00c298a9870217608782129f2c.svg"><img src="_images/flow-0a16fd2fa11bdb00c298a9870217608782129f2c.svg" alt="flow"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The following diagram describes the device link based flow for the <code>certificateChoice</code> session.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-0daf83a1da2d253c900a716ca3cdbdd258449d97.svg"><img src="_images/flow-0daf83a1da2d253c900a716ca3cdbdd258449d97.svg" alt="flow"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_device_link_calculation"><a class="anchor" href="#_device_link_calculation"></a>Device link calculation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When RP backend makes a request to RP API to create a new device link based session, RP-API server generates and returns the following parameters as a response:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sessionID</code> - session ID (RP UUID);</p>
+</li>
+<li>
+<p><code>sessionToken</code> - unique value that is used to connect this authentication/signing attempt between the relevant parties (RP, RP API, Smart-ID app);</p>
+</li>
+<li>
+<p><code>sessionSecret</code> - Base64 encoded key value that must be kept secret and must not be shared with any other party (including RP frontend);</p>
+</li>
+<li>
+<p><code>deviceLinkBase</code> - the base URL to be used to generate the QR/Web2App/App2App device links.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>RP then calculates the Web2App or App2App device link and dynamic QR code and shows it to the end user. The dynamic QR code must be updated regularly with the interval of 1 second.</p>
+</div>
+<div class="paragraph">
+<p>It is recommended that RP offers multiple options, QR image and Web2App link, to the user at the same time if either:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>RP is unable to detect from the user agent whether the user is using a mobile device or a PC,</p>
+</li>
+<li>
+<p>The user is accessing RP website from a mobile device, for example a tablet device, and might want to authenticate using a separate mobile device.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">NOTE</div>
+<div class="paragraph">
+<p>The device link structure is similar for both same-device and cross-device flows. The differences between them are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The value of <code>deviceLinkType</code> is different (<code>Web2App</code>, <code>App2App</code> vs <code>QR</code>),</p>
+</li>
+<li>
+<p>same-device links do not have <code>elapsedSeconds</code> and should not be dynamically regenerated,</p>
+</li>
+<li>
+<p>the final representation of the link to the user is different (a clickable HTTPS link vs a dynamic QR code).</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All values in the <code>deviceLink</code> are case-sensitive. The resulting <code>deviceLink</code> must match bit by bit with the expected <code>deviceLink</code> in the Smart-ID backend.</p>
+</li>
+<li>
+<p>There must not be URL encoding in the <code>deviceLink</code>.</p>
+</li>
+<li>
+<p>There must not be URL fragment (<code>#</code>) in the <code>deviceLink</code>.</p>
+</li>
+<li>
+<p>The order of the path parameters in the device link must be the same as specified in the examples below. All values are required and must be non-empty; the only exceptions to this are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>in certificate-choice session requests parameters <code>digest</code>, <code>interactions</code> and <code>signatureProtocol</code> must be included as empty fields;</p>
+</li>
+<li>
+<p>in QR flows, <code>callbackUrl</code> must be included as an empty field;</p>
+</li>
+<li>
+<p>in same-device flows, <code>elapsedSeconds</code> parameter must be missing from <code>unprotectedDeviceLink</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="same_device_flows"><a class="anchor" href="#same_device_flows"></a>Same-device flows</h3>
+<div class="paragraph">
+<p>The device link for App2App and Web2App is a URL:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">deviceLink := STR-CONCAT(
+        deviceLinkBase, "?",
+        "deviceLinkType=", deviceLinkType,
+        "&amp;sessionToken=", sessionToken,
+        "&amp;sessionType=", sessionType,
+        "&amp;version=", version,
+        "&amp;lang=", lang,
+        "&amp;authCode=", authCode)</code></pre>
+</div>
+</div>
+<div id="_tabs_1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_1_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_1_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_1_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_1_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_1_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_1_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_1_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_1_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_java--panel" class="tabpanel" aria-labelledby="_tabs_1_java">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class DeviceLinkGenerator {
+
+  public static void main(String[] args) {
+    String deviceLinkBase = "https://smart-id.com";
+    String deviceLinkType = "Web2App";
+    String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    String sessionType = "auth";
+    String version = "1.0";
+    String lang = "eng";
+    String authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
+
+    String deviceLink = deviceLinkBase + "?" +
+      "deviceLinkType=" + deviceLinkType +
+      "&amp;sessionToken=" + sessionToken +
+      "&amp;sessionType=" + sessionType +
+      "&amp;version=" + version +
+      "&amp;lang=" + lang +
+      "&amp;authCode=" + authCode;
+
+    System.out.println(deviceLink);
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_php--panel" class="tabpanel" aria-labelledby="_tabs_1_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$deviceLinkBase = "https://smart-id.com";
+$deviceLinkType = "Web2App";
+$sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+$sessionType = "auth";
+$version = "1.0";
+$lang = "eng";
+$authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
+
+$deviceLink = $deviceLinkBase . "?"
+  . "deviceLinkType=" . $deviceLinkType
+  . "&amp;sessionToken=" . $sessionToken
+  . "&amp;sessionType=" . $sessionType
+  . "&amp;version=" . $version
+  . "&amp;lang=" . $lang
+  . "&amp;authCode=" . $authCode;
+
+echo $deviceLink;
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_python--panel" class="tabpanel" aria-labelledby="_tabs_1_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
+device_link_type = "Web2App" # One of "Web2App", "App2App"
+session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_type = "auth"
+version = "1.0"
+lang = "eng"
+auth_code = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
+device_link = device_link_base + "?" + "deviceLinkType=" + device_link_type + "&amp;sessionToken=" + session_token + "&amp;sessionType=" + session_type + "&amp;version=" + version + "&amp;lang=" + lang + "&amp;authCode=" + auth_code
+print(device_link)</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_go--panel" class="tabpanel" aria-labelledby="_tabs_1_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var deviceLinkBase string = "https://smart-id.com"
+	var deviceLinkType string = "Web2App" // One of "Web2App", "App2App"
+	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
+	var sessionType string = "auth"
+	var version string = "1.0"
+	var lang string = "eng"
+	var authCode string = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
+
+	var deviceLink string = deviceLinkBase + "?" + "deviceLinkType=" + deviceLinkType +
+		"&amp;sessionToken=" + sessionToken +
+		"&amp;sessionType=" + sessionType +
+		"&amp;version=" + version +
+		"&amp;lang=" + lang +
+		"&amp;authCode=" + authCode
+
+	fmt.Printf("%s\n", deviceLink)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
+    let device_link_base: &amp;str = "https://smart-id.com";
+    let device_link_type: &amp;str = "Web2App"; // One of "Web2App", "App2App"
+    let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    let session_type: &amp;str = "auth";
+    let version: &amp;str = "1.0";
+    let lang: &amp;str = "eng";
+    let auth_code: &amp;str = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
+
+    let device_link: String = format!("{}?deviceLinkType={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}&amp;authCode={}", device_link_base, device_link_type, session_token, session_type, version, lang, auth_code);
+
+    println!("{}", device_link);
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_1_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val deviceLinkBase: String = "https://smart-id.com"
+    val deviceLinkType: String = "Web2App"
+    val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
+    val sessionType: String = "auth"
+    val version: String = "1.0"
+    val lang: String = "eng"
+    val authCode: String = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
+
+    val deviceLink: String = "$deviceLinkBase" + "?" +
+        "deviceLinkType=$deviceLinkType&amp;" +
+        "sessionToken=$sessionToken&amp;" +
+        "sessionType=$sessionType&amp;" +
+        "version=$version&amp;" +
+        "lang=$lang&amp;" +
+        "authCode=$authCode"
+
+    println(deviceLink)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_c--panel" class="tabpanel" aria-labelledby="_tabs_1_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+
+public class DeviceLinkGenerator
+{
+    public static void Main(string[] args)
+    {
+        string deviceLinkBase = "https://smart-id.com";
+        string deviceLinkType = "Web2App";
+        string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+        string sessionType = "auth";
+        string version = "1.0";
+        string lang = "eng";
+        string authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
+
+        string deviceLink = deviceLinkBase + "?" +
+            "deviceLinkType=" + deviceLinkType +
+            "&amp;sessionToken=" + sessionToken +
+            "&amp;sessionType=" + sessionType +
+            "&amp;version=" + version +
+            "&amp;lang=" + lang +
+            "&amp;authCode=" + authCode;
+
+        Console.WriteLine(deviceLink);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_node_js--panel" class="tabpanel" aria-labelledby="_tabs_1_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
+const deviceLinkType = "Web2App";
+const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+const sessionType = "auth";
+const version = "1.0";
+const lang = "eng";
+const authCode = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs";
+
+const deviceLink = deviceLinkBase + "?" +
+  "deviceLinkType=" + deviceLinkType +
+  "&amp;sessionToken=" + sessionToken +
+  "&amp;sessionType=" + sessionType +
+  "&amp;version=" + version +
+  "&amp;lang=" + lang +
+  "&amp;authCode=" + authCode;
+
+console.log(deviceLink);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_ruby--panel" class="tabpanel" aria-labelledby="_tabs_1_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
+device_link_type = "Web2App" # One of "Web2App", "App2App"
+session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_type = "auth"
+version = "1.0"
+lang = "eng"
+auth_code = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
+device_link = device_link_base + "?" +
+  "deviceLinkType=" + device_link_type +
+  "&amp;sessionToken=" + session_token +
+  "&amp;sessionType=" + session_type +
+  "&amp;version=" + version +
+  "&amp;lang=" + lang +
+  "&amp;authCode=" + auth_code
+puts device_link</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Web2App link (authentication session)</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. App2App link (signature session)</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng&amp;authCode=1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Web2App link (certificate-choice session)</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng&amp;authCode=jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cross_device_flows"><a class="anchor" href="#cross_device_flows"></a>Cross-device (dynamic QR code) flows</h3>
+<div class="paragraph">
+<p>QR message itself is defined as a URL, just like App2App and Web2App links.</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">deviceLink := STR-CONCAT(
+        deviceLinkBase, "?",
+        "deviceLinkType=", deviceLinkType,
+        "&amp;elapsedSeconds=", TO-STRING(elapsedSeconds),
+        "&amp;sessionToken=", sessionToken,
+        "&amp;sessionType=", sessionType,
+        "&amp;version=", version,
+        "&amp;lang=", lang,
+        "&amp;authCode=", authCode)</code></pre>
+</div>
+</div>
+<div id="_tabs_2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_2_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_2_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_2_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_2_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_2_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_2_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_2_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_2_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_java--panel" class="tabpanel" aria-labelledby="_tabs_2_java">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class DeviceLinkGenerator {
+
+  public static void main(String[] args) {
+    String deviceLinkBase = "https://smart-id.com";
+    String deviceLinkType = "QR";
+    int elapsedSeconds = 22;
+    String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    String sessionType = "auth";
+    String version = "1.0";
+    String lang = "eng";
+    String authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
+
+    String deviceLink = deviceLinkBase + "?" +
+      "deviceLinkType=" + deviceLinkType +
+      "&amp;elapsedSeconds=" + elapsedSeconds +
+      "&amp;sessionToken=" + sessionToken +
+      "&amp;sessionType=" + sessionType +
+      "&amp;version=" + version +
+      "&amp;lang=" + lang +
+      "&amp;authCode=" + authCode;
+
+    System.out.println(deviceLink);
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_php--panel" class="tabpanel" aria-labelledby="_tabs_2_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$deviceLinkBase = "https://smart-id.com";
+$deviceLinkType = "QR";
+$elapsedSeconds = 22;
+$sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+$sessionType = "auth";
+$version = "1.0";
+$lang = "eng";
+$authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
+
+$deviceLink = $deviceLinkBase . "?"
+  . "deviceLinkType=" . $deviceLinkType
+  . "&amp;elapsedSeconds=" . $elapsedSeconds
+  . "&amp;sessionToken=" . $sessionToken
+  . "&amp;sessionType=" . $sessionType
+  . "&amp;version=" . $version
+  . "&amp;lang=" . $lang
+  . "&amp;authCode=" . $authCode;
+
+echo $deviceLink;
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_python--panel" class="tabpanel" aria-labelledby="_tabs_2_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
+device_link_type = "QR" # "QR"
+elapsed_seconds = 22
+session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_type = "auth"
+version = "1.0"
+lang = "eng"
+auth_code = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
+device_link = device_link_base + "?" + "deviceLinkType=" + device_link_type + "&amp;elapsedSeconds=" + str(elapsed_seconds) + "&amp;sessionToken=" + session_token + "&amp;sessionType=" + session_type + "&amp;version=" + version + "&amp;lang=" + lang + "&amp;authCode=" + auth_code
+print(device_link)</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_go--panel" class="tabpanel" aria-labelledby="_tabs_2_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var deviceLinkBase string = "https://smart-id.com"
+	var deviceLinkType string = "QR" // "QR"
+	var elapsedSeconds int = 22
+	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
+	var sessionType string = "auth"
+	var version string = "1.0"
+	var lang string = "eng"
+	var authCode string = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
+
+	var deviceLink string = deviceLinkBase + "?" + "deviceLinkType=" + deviceLinkType +
+		"&amp;elapsedSeconds=" + strconv.Itoa(elapsedSeconds) +
+		"&amp;sessionToken=" + sessionToken +
+		"&amp;sessionType=" + sessionType +
+		"&amp;version=" + version +
+		"&amp;lang=" + lang +
+		"&amp;authCode=" + authCode
+
+	fmt.Printf("%s\n", deviceLink)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_rust--panel" class="tabpanel" aria-labelledby="_tabs_2_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
+    let device_link_base: &amp;str = "https://smart-id.com";
+    let device_link_type: &amp;str = "QR"; // "QR"
+    let elapsed_seconds: i32 = 22;
+    let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    let session_type: &amp;str = "auth";
+    let version: &amp;str = "1.0";
+    let lang: &amp;str = "eng";
+    let auth_code: &amp;str = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
+
+    let device_link: String = format!("{}?deviceLinkType={}&amp;elapsedSeconds={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}&amp;authCode={}", device_link_base, device_link_type, elapsed_seconds, session_token, session_type, version, lang, auth_code);
+
+    println!("{}", device_link);
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_2_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val deviceLinkBase: String = "https://smart-id.com"
+    val deviceLinkType: String = "QR"
+    val elapsedSeconds: Int = 22
+    val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
+    val sessionType: String = "auth"
+    val version: String = "1.0"
+    val lang: String = "eng"
+    val authCode: String = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
+
+    val deviceLink: String = "$deviceLinkBase" + "?" +
+        "deviceLinkType=$deviceLinkType&amp;" +
+        "elapsedSeconds=$elapsedSeconds&amp;" +
+        "sessionToken=$sessionToken&amp;" +
+        "sessionType=$sessionType&amp;" +
+        "version=$version&amp;" +
+        "lang=$lang&amp;" +
+        "authCode=$authCode"
+
+    println(deviceLink)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_c--panel" class="tabpanel" aria-labelledby="_tabs_2_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+
+public class DeviceLinkGenerator
+{
+    public static void Main(string[] args)
+    {
+        string deviceLinkBase = "https://smart-id.com";
+        string deviceLinkType = "QR";
+        int elapsedSeconds = 22;
+        string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+        string sessionType = "auth";
+        string version = "1.0";
+        string lang = "eng";
+        string authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
+
+        string deviceLink = deviceLinkBase + "?" +
+            "deviceLinkType=" + deviceLinkType +
+            "&amp;elapsedSeconds=" + elapsedSeconds.ToString() +
+            "&amp;sessionToken=" + sessionToken +
+            "&amp;sessionType=" + sessionType +
+            "&amp;version=" + version +
+            "&amp;lang=" + lang +
+            "&amp;authCode=" + authCode;
+
+        Console.WriteLine(deviceLink);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_node_js--panel" class="tabpanel" aria-labelledby="_tabs_2_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
+const deviceLinkType = "QR";
+const elapsedSeconds = 22;
+const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+const sessionType = "auth";
+const version = "1.0";
+const lang = "eng";
+const authCode = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk";
+
+const deviceLink = deviceLinkBase + "?" +
+  "deviceLinkType=" + deviceLinkType +
+  "&amp;elapsedSeconds=" + elapsedSeconds +
+  "&amp;sessionToken=" + sessionToken +
+  "&amp;sessionType=" + sessionType +
+  "&amp;version=" + version +
+  "&amp;lang=" + lang +
+  "&amp;authCode=" + authCode;
+
+console.log(deviceLink);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_ruby--panel" class="tabpanel" aria-labelledby="_tabs_2_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
+device_link_type = "QR" # "QR"
+elapsed_seconds = 22
+session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_type = "auth"
+version = "1.0"
+lang = "eng"
+auth_code = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
+device_link = device_link_base + "?" +
+  "deviceLinkType=" + device_link_type +
+  "&amp;elapsedSeconds=" + elapsed_seconds.to_s +
+  "&amp;sessionToken=" + session_token +
+  "&amp;sessionType=" + session_type +
+  "&amp;version=" + version +
+  "&amp;lang=" + lang +
+  "&amp;authCode=" + auth_code
+puts device_link</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 4. QR link (authentication session)</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. QR code (authentication session)</div>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/qr.svg" alt="alt=https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk" width="610" height="610">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>For more details on how the dynamic QR code or other device links should be presented in the RP frontend, see <a href="#device_link_and_qr_presentation">Device link and QR presentation section</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_device_link_parameters"><a class="anchor" href="#_device_link_parameters"></a>Device link parameters</h3>
+<div class="paragraph">
+<p>The table below explains the parameters that are included in the device link calculation.</p>
+</div>
+<table id="device_link_parameters" class="tableblock frame-all grid-none stripes-odd stretch">
+<colgroup>
+<col style="width: 10%;">
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A pre-defined version value, currently <code>1.0</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionToken</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Generated by RP API. It is a URL safe value and it must be used as is.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deviceLinkType</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Allowed values:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>QR</code> - for dynamic QR codes,</p>
+</li>
+<li>
+<p><code>Web2App</code> - for non-dynamic Web2App device links,</p>
+</li>
+<li>
+<p><code>App2App</code> - for non-dynamic App2App device links.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionType</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Allowed values:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>auth</code> - for authentication session,</p>
+</li>
+<li>
+<p><code>sign</code> - signature session,</p>
+</li>
+<li>
+<p><code>cert</code> - certificate-choice session.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elapsedSeconds</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Seconds since receiving the response from the initial request to RP API. Only used in cross-device flows (dynamic QR code).</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lang</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>An ISO 639-2 three-letter language code. It should match the language that the user was seeing in the RP UI previously. This only affects the language of the fallback page, not the Smart-ID app itself.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authCode</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Calculated using <code>HMAC-SHA256</code> algorithm, using <code>sessionSecret</code> as the key, <code>authCodePayload</code> as the payload, and represented in Base64URL encoding. Explained in a separate <a href="authcode.html" class="xref page">page</a>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The calculation of device links must be performed in the RP backend. All values (including <code>elapsedSeconds</code>) <strong>must</strong> all be generated in the RP backend and the RP frontend must not be able to change or affect these parameters.</p>
+</li>
+<li>
+<p>For dynamic QR code flows, the dynamic generation (every 1s) of the <code>authCode</code> parameter must be done in the RP backend, <strong>NOT</strong> in the RP frontend or RP app so as not to leak the <code>sessionSecret</code> parameter. Also, it is forbidden to generate values of <code>authCode</code> parameter ahead of time and forward them to the RP frontend/app.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_version_parameter"><a class="anchor" href="#_version_parameter"></a><code>version</code> parameter</h4>
+<div class="paragraph">
+<p><code>version</code> parameter is a pre-defined value. Currently, only <code>1.0</code> is supported. It must be used in <code>string</code> form in device links.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. <code>version</code> parameter</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"1.0"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sessiontoken_parameter"><a class="anchor" href="#_sessiontoken_parameter"></a><code>sessionToken</code> parameter</h4>
+<div class="paragraph">
+<p>RP API returns <code>sessionToken</code>. It is a URL safe value and it must be used as is (in <code>string</code> form) in device links.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. <code>sessionToken</code> parameter</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"tw1hOWNAcw0wd-e9OalXV-Sr"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_devicelinktype_parameter"><a class="anchor" href="#_devicelinktype_parameter"></a><code>deviceLinkType</code> parameter</h4>
+<div class="paragraph">
+<p>The parameter <code>deviceLinkType</code> describes the device link type:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>QR</code> - for dynamic QR codes,</p>
+</li>
+<li>
+<p><code>Web2App</code> - for non-dynamic Web2App device links,</p>
+</li>
+<li>
+<p><code>App2App</code> - for non-dynamic App2App device links.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The string value must be used as is (in <code>string</code> form) in device links.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. <code>deviceLinkType</code> parameter</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"QR"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sessiontype_parameter"><a class="anchor" href="#_sessiontype_parameter"></a><code>sessionType</code> parameter</h4>
+<div class="paragraph">
+<p>The parameter <code>sessionType</code> describes the session type:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>auth</code> - for authentication session,</p>
+</li>
+<li>
+<p><code>sign</code> - for signature session,</p>
+</li>
+<li>
+<p><code>cert</code> - for certificate-choice session.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The string value must be used as is (in <code>string</code> form) in device links.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 9. <code>sessionType</code> parameter</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"auth"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_elapsedseconds_parameter"><a class="anchor" href="#_elapsedseconds_parameter"></a><code>elapsedSeconds</code> parameter</h4>
+<div class="paragraph">
+<p>The <code>elapsedSeconds</code> parameters is seconds since receiving the response from the initial session creation request to RP API. Notice that dynamic QR code link must be re-calculated each second because the <code>elapsedSeconds</code> value changes.</p>
+</div>
+<div class="paragraph">
+<p><code>elapsedSeconds</code> value must be converted to string value to be used in QR code links:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">elapsedSeconds := TO-STRING(elapsedSeconds)</code></pre>
+</div>
+</div>
+<div id="_tabs_3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_3_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_3_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_3_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_3_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_3_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_3_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_3_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_3_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_3_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_3_java--panel" class="tabpanel" aria-labelledby="_tabs_3_java">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Int2Str {
+
+    public static void main(String[] args) {
+        int elapsedSeconds = 22;
+        String elapsedSecondsStr = Integer.toString(elapsedSeconds);
+        System.out.println(elapsedSecondsStr);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_php--panel" class="tabpanel" aria-labelledby="_tabs_3_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$elapsedSeconds = 22;
+$elapsedSecondsStr = strval($elapsedSeconds);
+echo $elapsedSecondsStr;
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_python--panel" class="tabpanel" aria-labelledby="_tabs_3_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">elapsed_seconds = 22
+elapsed_seconds_str = str(elapsed_seconds)
+print(elapsed_seconds_str)</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_go--panel" class="tabpanel" aria-labelledby="_tabs_3_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var elapsedSeconds int = 22
+	var elapsedSecondsStr string = strconv.Itoa(elapsedSeconds)
+	fmt.Printf("%s\n", elapsedSecondsStr)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_rust--panel" class="tabpanel" aria-labelledby="_tabs_3_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
+    let elapsed_seconds: i32 = 22;
+    let elapsed_seconds_str: String = elapsed_seconds.to_string();
+    println!("{}", elapsed_seconds_str)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_3_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val elapsedSeconds: Int = 22
+    val elapsedSecondsStr: String = elapsedSeconds.toString()
+    println(elapsedSecondsStr)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_c--panel" class="tabpanel" aria-labelledby="_tabs_3_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+
+public class Int2Str
+{
+    public static void Main()
+    {
+        int elapsedSeconds = 22;
+        string elapsedSecondsStr = elapsedSeconds.ToString();
+        Console.WriteLine(elapsedSecondsStr);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_node_js--panel" class="tabpanel" aria-labelledby="_tabs_3_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let elapsedSeconds = 22;
+let elapsedSecondsStr = elapsedSeconds.toString();
+console.log(elapsedSecondsStr);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_3_ruby--panel" class="tabpanel" aria-labelledby="_tabs_3_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">elapsed_seconds = 22
+elapsed_seconds_str = elapsed_seconds.to_s
+puts elapsed_seconds_str</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 10. <code>elapsedSeconds</code> parameter</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"22"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lang_parameter"><a class="anchor" href="#_lang_parameter"></a><code>lang</code> parameter</h4>
+<div class="paragraph">
+<p>The <code>lang</code> parameter defines the interface language for the HTTPS fallback page that is shown to the user when there are technical problems regarding opening device links (for example, if user&#8217;s browser does not support Web2App links and needs to be configured to allow them or if Smart-ID app is not installed on the phone). Its format must be ISO 639-2 three-letter language code. It is recommended that for consistent user experience, RP provides here the same language that the user was already using in the RP UI. This parameter only affects the language of the <a href="#fallback_page">fallback page</a>, not the Smart-ID app itself.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 11. <code>lang</code> parameter</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">"eng"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authcode_parameter"><a class="anchor" href="#_authcode_parameter"></a><code>authCode</code> parameter</h4>
+<div class="paragraph">
+<p><code>authCode</code> parameter generation is explained in detail in <a href="authcode.html" class="xref page"><code>authCode</code> calculation</a> page.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parameter_visibility"><a class="anchor" href="#_parameter_visibility"></a>Parameter visibility</h3>
+<div class="paragraph">
+<p>The following table aims to clarify which of the parameters involved in device link construction should be accessible by which parties (see legend below). The table also includes parameters which are used for <code>authCode</code> calculation (e.g. <code>unprotectedDeviceLink</code>)&#8201;&#8212;&#8201;for their descriptions, see <a href="authcode.html" class="xref page">authCode calculation</a> page.</p>
+</div>
+<table class="tableblock frame-all grid-none stripes-odd stretch">
+<colgroup>
+<col>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top">RP API server</th>
+<th class="tableblock halign-center valign-top">RP backend</th>
+<th class="tableblock halign-center valign-top">RP frontend/app</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionID</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/no-entry-emoji-26D4.svg" alt="no entry emoji 26D4" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionToken</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionSecret</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/no-entry-emoji-26D4.svg" alt="no entry emoji 26D4" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deviceLinkType</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionType</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>signatureProtocol</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rpChallenge</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/no-entry-emoji-26D4.svg" alt="no entry emoji 26D4" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>digest</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/no-entry-emoji-26D4.svg" alt="no entry emoji 26D4" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relyingPartyName</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brokeredRpName</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interactions</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialCallbackUrl</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/no-entry-emoji-26D4.svg" alt="no entry emoji 26D4" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unprotectedDeviceLink</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elapsedSeconds</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authCode</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lang</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Legend:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="image"><img src="_images/star-emoji-2B50.svg" alt="star emoji 2B50" width="40"></span> - source of parameter (the party that generates/calculates it)</p>
+</li>
+<li>
+<p><span class="image"><img src="_images/check-emoji-2714.svg" alt="check emoji 2714" width="40"></span> - knows parameter</p>
+</li>
+<li>
+<p><span class="image"><img src="_images/cross-emoji-274C.svg" alt="cross emoji 274C" width="40"></span> - does not know parameter</p>
+</li>
+<li>
+<p><span class="image"><img src="_images/no-entry-emoji-26D4.svg" alt="no entry emoji 26D4" width="40"></span> - MUST NOT know parameter</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="device_link_and_qr_presentation"><a class="anchor" href="#device_link_and_qr_presentation"></a>Device link and QR presentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For generation of QR codes, error correction level <strong>LOW</strong> should be used. The QR code should have sufficient margins to enable quick scanning by the Smart-ID app. The optimal size for QR code is ~10 pixels per block when displayed on a PC, since:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Block sizes 5 pixels and less are too small for easy scanning (devices might have focus issues).</p>
+</li>
+<li>
+<p>Block sizes 20 pixels and above are too big for convenient scanning.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When QR code is displayed on a mobile device, it is recommended to show the QR code as big as possible, up to 10 pixels per block.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="paragraph">
+<p>The actual generation of the QR <em>image</em> can be done both in the backend or the frontend, however the device link embedded in the QR code <strong>must</strong> only be generated by the PR backend.</p>
+</div>
+<div class="paragraph">
+<p>Keep in mind that regardless of the approach chosen, sensitive parameters such as <code>sessionSecret</code> <strong>must never be sent</strong> to the RP frontend itself.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fallback_page"><a class="anchor" href="#fallback_page"></a>Fallback page</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For cases when the app is not installed or some other problem occurs with opening a device link, a fallback HTTPS webpage is opened with instructions on how to resolve the issue. The <code>lang</code> parameter in the link is by default used to show the same language as on the RP UI. The instructions cover the following scenarios:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User is not on a mobile device where Smart-ID app is installed and has been allowed by the RP to use a wrong type of device link (e.g. a same-device link on a PC).</p>
+</li>
+<li>
+<p>Smart-ID App is not installed on the current device.</p>
+</li>
+<li>
+<p>Mobile browser does not support universal links / Android App links.</p>
+</li>
+<li>
+<p>Mobile OS/browser settings disallow the link and user intervention is required.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script async src="../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../_/js/vendor/lunr.js"></script>
+<script src="../_/js/search-ui.js" id="search-ui-script" data-site-root-path=".." data-snippet-length="100" data-stylesheet="../_/css/search.css"></script>
+<script async src="../search-index.js"></script>
+  </body>
+</html>

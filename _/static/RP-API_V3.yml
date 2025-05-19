@@ -7,6 +7,8 @@ info:
     url: https://www.skidsolutions.eu/
     email: support@smart-id.com
   termsOfService: https://www.skidsolutions.eu/resources/general-terms-of-subscriber-agreement/
+servers:
+- url: https://sid.demo.sk.ee/smart-id-rp
 tags:
 - name: Authentication session
   description: |
@@ -42,7 +44,7 @@ paths:
     post:
       tags:
       - Authentication session
-      summary: Create a device link based authentication session with ETSI Natural Person Semantics Identifier
+      summary: Device link based authentication session with ETSI Natural Person Semantics Identifier
       description: Used when authenticating a user who has provided an identifier from an ETSI scheme. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
       operationId: authDeviceLinkSemanticId
       parameters:
@@ -70,8 +72,8 @@ paths:
     post:
       tags:
       - Authentication session
-      summary: Create a device link based authentication session with document number
-      description: This method is used to re-authenticate a previously logged in user when their RP session has expired, but they wish to continue using it. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
+      summary: Device link based authentication session with document number
+      description: This method is used to re-authenticate a previously logged-in user when their RP session has expired, but they wish to continue using it. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
       operationId: authDeviceLinkDocumentNumber
       parameters:
       - $ref: '#/components/parameters/document-number'
@@ -98,7 +100,7 @@ paths:
     post:
       tags:
       - Authentication session
-      summary: Create an anonymous device link based authentication session
+      summary: Anonymous device link based authentication session
       description: Used when the user authenticating does not provide any identification. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
       operationId: authDeviceLinkAnonymous
       requestBody:
@@ -124,7 +126,7 @@ paths:
     post:
       tags:
       - Authentication session
-      summary: Create a notification based authentication session with ETSI Natural Person Semantics Identifier
+      summary: Notification based authentication session with ETSI Natural Person Semantics Identifier
       description: |
         Used when authenticating a user who has provided an identifier from an ETSI scheme. A notification is sent to the user's phone.
 
@@ -155,8 +157,8 @@ paths:
     post:
       tags:
       - Authentication session
-      summary: Create a notification based authentication session with document number
-      description: This method is used to re-authenticate a previously logged in user when their RP session has expired, but they wish to continue using it. A notification is sent to the user's phone.
+      summary: Notification based authentication session with document number
+      description: This method is used to re-authenticate a previously logged-in user when their RP session has expired, but they wish to continue using it. A notification is sent to the user's phone.
       operationId: authNotificationDocumentNumber
       parameters:
       - $ref: '#/components/parameters/document-number'
@@ -183,7 +185,7 @@ paths:
     post:
       tags:
       - Signature session
-      summary: Create a device link based signature session with ETSI Natural Person Semantics Identifier
+      summary: Device link based signature session with ETSI Natural Person Semantics Identifier
       description: |
         Used when creating a digital signature for a user who has provided an identifier from an ETSI scheme. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
 
@@ -214,7 +216,7 @@ paths:
     post:
       tags:
       - Signature session
-      summary: Create a device link based signature session with document number
+      summary: Device link based signature session with document number
       description: Used when creating a digital signature for a user identified by a document number. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
       operationId: signDeviceLinkDocumentNumber
       parameters:
@@ -238,40 +240,11 @@ paths:
           $ref: '#/components/responses/480_ClientTooOld'
         "580":
           $ref: '#/components/responses/580_SystemUnderMaintenance'
-  /v3/signature/device-link/anonymous:
-    post:
-      tags:
-      - Signature session
-      summary: Create an anonymous device link based signature session
-      description: |
-        Used when creating a digital signature for a user who has not been identified yet. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
-
-        **Rarely used.**
-      operationId: signDeviceLinkAnonymous
-      requestBody:
-        $ref: '#/components/requestBodies/DeviceLinkSigningRequestBody'
-      responses:
-        "200":
-          $ref: '#/components/responses/DeviceLinkResponse'
-        "401":
-          $ref: '#/components/responses/401_Unauthorized'
-        "403":
-          $ref: '#/components/responses/403_Forbidden'
-        "404":
-          $ref: '#/components/responses/404_NotFound'
-        "471":
-          $ref: '#/components/responses/471_NoSuitableAccount'
-        "472":
-          $ref: '#/components/responses/472_SeeAppOrSelfServicePortal'
-        "480":
-          $ref: '#/components/responses/480_ClientTooOld'
-        "580":
-          $ref: '#/components/responses/580_SystemUnderMaintenance'
   /v3/signature/notification/etsi/{id-etsi-qcs-SemanticsId-Natural}:
     post:
       tags:
       - Signature session
-      summary: Create a notification based signature session with ETSI Natural Person Semantics Identifier
+      summary: Notification based signature session with ETSI Natural Person Semantics Identifier
       description: |
         Used when creating a digital signature for a user who has provided an identifier from an ETSI scheme. A notification is sent to the user's phone.
 
@@ -302,7 +275,7 @@ paths:
     post:
       tags:
       - Signature session
-      summary: Create a notification based signature session with document number
+      summary: Notification based signature session with document number
       description: Used when creating a digital signature for a user identified by a document number. A notification is sent to the user's phone.
       operationId: signNotificationDocumentNumber
       parameters:
@@ -330,11 +303,11 @@ paths:
     post:
       tags:
       - Signature session
-      summary: Create a notification based signature session that is linked to the preceding device link based certificate-choice request
+      summary: Notification based signature session that is linked to the preceding device link based certificate-choice request
       description: |
         This endpoint is used right after a device link based certificate-choice request. It creates a linked session for creating a digital signature.
 
-        Note that interactions involving VC code choice, namely `verificationCodeChoice` and `confirmationMessageAndVerificationCodeChoice`, are forbidden for this endpoint (since VC code is not shown to the user in the linked flow).
+        Note that interactions involving VC code choice, namely `confirmationMessageAndVerificationCodeChoice`, is forbidden for this endpoint (since VC code is not shown to the user in the linked flow).
       operationId: signNotificationLinked
       parameters:
       - $ref: '#/components/parameters/document-number'
@@ -387,7 +360,7 @@ paths:
     post:
       tags:
       - Signature session
-      summary: Create an anonymous device link based certificate-choice session
+      summary: Anonymous device link based certificate-choice session
       description: Used to request the signing certificate and start the signing session of a user who has not provided any identification. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
       operationId: signCertChoiceDeviceLinkAnonymous
       requestBody:
@@ -413,7 +386,7 @@ paths:
     post:
       tags:
       - Signature session
-      summary: Create a notification based certificate-choice session with ETSI Natural Person Semantics Identifier
+      summary: Notification based certificate-choice session with ETSI Natural Person Semantics Identifier
       description: |
         Used to request the signing certificate and start the signing session of a user who provided an identifier from an ETSI scheme. A notification is sent to the user's phone. A `POST` `/v3/signature/notification/document/` session must follow it.
 
@@ -486,7 +459,7 @@ components:
         * used to compute the digest from the `ACSP_V2` data structure for authentication requests,
         * used by the RP to generate the digest from the data-to-be-signed for signature requests.
 
-        `rsassa-pss` signature algorithm also uses the `hashAlgorithm` as the as the mask generation algorithm (`MGF1`) hash algorithm.
+        Also used internally by the `rsassa-pss` signature algorithm the as the mask generation algorithm (`MGF1`) hash algorithm.
     FlowType:
       type: string
       enum:
@@ -515,7 +488,7 @@ components:
     RelyingPartyName:
       type: string
       description: RP name, one of those configured for particular RP. UTF-8 encoded string.
-    initialCallbackURL:
+    initialCallbackUrl:
       type: string
       format: uri
       maxLength: 1800
@@ -573,7 +546,7 @@ components:
           contentEncoding: base64
           minLength: 44
           maxLength: 88
-          pattern: ^[a-zA-Z0-9+\/]+={,2}$
+          pattern: ^[a-zA-Z0-9+\/]+={0,2}$
           description: |
             A random value which is randomly generated by the RP backend with size in the range of 32 bytes - 64 bytes and applying Base64 encoding (according to [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648)). It must be freshly generated for each `authentication`.
 
@@ -598,8 +571,8 @@ components:
           contentEncoding: base64
           minLength: 44
           maxLength: 88
-          pattern: ^[a-zA-Z0-9+\/]+={,2}$
-          description: Base64 encoded digest to be signed.
+          pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+          description: This value should be the Base64 encoded digest of the "data-to-be-signed". It is obtained by first applying the cryptographic hash function specified in the hashAlgorithm field to the complete "data-to-be-signed". The output of this hash operation is the digest (a binary value), which must then be Base64 encoded.
         signatureAlgorithm:
           $ref: '#/components/schemas/SignatureAlgorithm'
         signatureAlgorithmParameters:
@@ -615,18 +588,39 @@ components:
       minLength: 1
       maxLength: 30
       description: Random string, up to 30 characters. If present, must have at least 1 character.
-    Interactions:
+    InteractionsNotificationBased:
       type: string
       format: byte
       contentEncoding: base64
-      pattern: ^[a-zA-Z0-9+\/]+={,2}$
-      description: Base64 encoded representation of a JSON object that lists the supported interaction types. For more details, see section [`interactions`](./interactions.html#interactions).
-    InteractionsNo3VC:
+      pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+      description: |
+        Base64 encoded representation of a JSON object that lists the supported interaction types.
+
+        Following interaction types are allowed:
+
+        1. `displayTextAndPIN` with `displayText60`
+        2. `confirmationMessage` with `displayText200`
+        3. `confirmationMessageAndVerificationCodeChoice` with `displayText200`
+
+        **Warning!** Converting JSON to Base64 encoding is non-deterministic and the exact same byte string must be reused in other calculations!
+
+        For more details, see section [interactions](./interactions.html#interactions).
+    InteractionsDeviceLinkBased:
       type: string
       format: byte
       contentEncoding: base64
-      pattern: ^[a-zA-Z0-9+\/]+={,2}$
-      description: Base64 encoded representation of a JSON object that lists the supported interaction types. Interactions involving VC code choice, namely `verificationCodeChoice` and `confirmationMessageAndVerificationCodeChoice`, are forbidden. For more details, see section [`interactions`](./interactions.html#interactions).
+      pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+      description: |
+        Base64 encoded representation of a JSON object that lists the supported interaction types.
+
+        Only the following interaction types are allowed:
+
+        1. `displayTextAndPIN` with `displayText60`
+        2. `confirmationMessage` with `displayText200`
+
+        **Warning!** Converting JSON to Base64 encoding is non-deterministic and the exact same byte string must be reused in other calculations!
+
+        For more details, see section [interactions](./interactions.html#interactions).
     RequestProperties:
       type: object
       properties:
@@ -717,7 +711,7 @@ components:
       type: string
       format: byte
       contentEncoding: base64
-      pattern: ^[a-zA-Z0-9+\/]+={,2}$
+      pattern: ^[a-zA-Z0-9+\/]+={0,2}$
       description: Signature value, Base64 encoded.
     AcspV2Signature:
       type: object
@@ -735,15 +729,16 @@ components:
           format: byte
           contentEncoding: base64
           minLength: 24
-          pattern: ^[a-zA-Z0-9+\/]+={,2}$
+          pattern: ^[a-zA-Z0-9+\/]+={0,2}$
           description: A unique value of length greater than 18 bytes generated by the RP API. It is returned by RP API in Base64 encoded form, it must be used as is, in Base64 form. There are no guarantees that the returned value length is the same in each call of the RP API.
         userChallenge:
           type: string
           format: byte
-          contentEncoding: base64
-          minLength: 44
-          pattern: ^[a-zA-Z0-9+\/]+={,2}$
-          description: A unique value of length 32 bytes generated by the mobile device. It is returned by RP API in Base64 encoded form, it must be used as is, in Base64 form.
+          contentEncoding: base64url
+          minLength: 43
+          maxLength: 43
+          pattern: ^[a-zA-Z0-9-_]{43}$
+          description: A unique value of length 32 bytes generated by the mobile device with `BASE64URL-ENCODE(SHA-256(userChallengeVerifier))`. It is returned by RP API in Base64URL encoded form and it must be used as is, in Base64URL form.
         flowType:
           $ref: '#/components/schemas/FlowType'
         signatureAlgorithm:
@@ -776,6 +771,7 @@ components:
             required:
             - relyingPartyUUID
             - relyingPartyName
+            - initialCallbackUrl
             - signatureProtocol
             - signatureProtocolParameters
             - interactions
@@ -785,8 +781,8 @@ components:
                 $ref: '#/components/schemas/RelyingPartyUUID'
               relyingPartyName:
                 $ref: '#/components/schemas/RelyingPartyName'
-              initialCallbackURL:
-                $ref: '#/components/schemas/initialCallbackURL'
+              initialCallbackUrl:
+                $ref: '#/components/schemas/initialCallbackUrl'
               certificateLevel:
                 $ref: '#/components/schemas/AuthCertificateLevel'
               signatureProtocol:
@@ -794,7 +790,7 @@ components:
               signatureProtocolParameters:
                 $ref: '#/components/schemas/AuthSignatureProtocolParameters'
               interactions:
-                $ref: '#/components/schemas/Interactions'
+                $ref: '#/components/schemas/InteractionsDeviceLinkBased'
               requestProperties:
                 $ref: '#/components/schemas/RequestProperties'
               capabilities:
@@ -819,8 +815,8 @@ components:
                 $ref: '#/components/schemas/RelyingPartyUUID'
               relyingPartyName:
                 $ref: '#/components/schemas/RelyingPartyName'
-              initialCallbackURL:
-                $ref: '#/components/schemas/initialCallbackURL'
+              initialCallbackUrl:
+                $ref: '#/components/schemas/initialCallbackUrl'
               certificateLevel:
                 $ref: '#/components/schemas/SignCertificateLevel'
               signatureProtocol:
@@ -830,7 +826,7 @@ components:
               nonce:
                 $ref: '#/components/schemas/Nonce'
               interactions:
-                $ref: '#/components/schemas/Interactions'
+                $ref: '#/components/schemas/InteractionsDeviceLinkBased'
               requestProperties:
                 $ref: '#/components/schemas/RequestProperties'
               capabilities:
@@ -852,8 +848,8 @@ components:
                 $ref: '#/components/schemas/RelyingPartyUUID'
               relyingPartyName:
                 $ref: '#/components/schemas/RelyingPartyName'
-              initialCallbackURL:
-                $ref: '#/components/schemas/initialCallbackURL'
+              initialCallbackUrl:
+                $ref: '#/components/schemas/initialCallbackUrl'
               certificateLevel:
                 $ref: '#/components/schemas/SignCertificateLevel'
               nonce:
@@ -890,7 +886,7 @@ components:
               signatureProtocolParameters:
                 $ref: '#/components/schemas/AuthSignatureProtocolParameters'
               interactions:
-                $ref: '#/components/schemas/Interactions'
+                $ref: '#/components/schemas/InteractionsNotificationBased'
               requestProperties:
                 $ref: '#/components/schemas/RequestProperties'
               capabilities:
@@ -926,7 +922,7 @@ components:
               nonce:
                 $ref: '#/components/schemas/Nonce'
               interactions:
-                $ref: '#/components/schemas/Interactions'
+                $ref: '#/components/schemas/InteractionsNotificationBased'
               requestProperties:
                 $ref: '#/components/schemas/RequestProperties'
               capabilities:
@@ -963,7 +959,7 @@ components:
               nonce:
                 $ref: '#/components/schemas/Nonce'
               interactions:
-                $ref: '#/components/schemas/InteractionsNo3VC'
+                $ref: '#/components/schemas/InteractionsDeviceLinkBased'
               requestProperties:
                 $ref: '#/components/schemas/RequestProperties'
               capabilities:
@@ -1035,14 +1031,14 @@ components:
                 format: byte
                 contentEncoding: base64url
                 minLength: 24
-                pattern: ^[a-zA-Z0-9-_]+={,2}$
+                pattern: ^[a-zA-Z0-9-_]+$
                 description: Unique value that is used to connect this device link request between the relevant parties (RP, RP API, mobile app). It is a URL safe value and it must be used as is.
               sessionSecret:
                 type: string
                 format: byte
                 contentEncoding: base64
                 minLength: 24
-                pattern: ^[a-zA-Z0-9+\/]+={,2}$
+                pattern: ^[a-zA-Z0-9+\/]+={0,2}$
                 description: Base64 encoded key value that must be kept secret and **must not** be shared with any other party (including RP frontend).
               deviceLinkBase:
                 type: string
@@ -1139,7 +1135,7 @@ components:
                     type: string
                     format: byte
                     contentEncoding: base64
-                    pattern: ^[a-zA-Z0-9+\/]+={,2}$
+                    pattern: ^[a-zA-Z0-9+\/]+={0,2}$
                     description: Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the certificate is QSCD-enabled, data which is not represented by certificate level.
                   certificateLevel:
                     type: string
@@ -1181,12 +1177,9 @@ components:
                     - WRONG_VC
                     - REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP
                     - USER_REFUSED_CERT_CHOICE
-                    - USER_REFUSED_DISPLAYTEXTANDPIN
-                    - USER_REFUSED_VC_CHOICE
-                    - USER_REFUSED_CONFIRMATIONMESSAGE
-                    - USER_REFUSED_CONFIRMATIONMESSAGE_WITH_VC_CHOICE
                     - USER_REFUSED_INTERACTION
                     - PROTOCOL_FAILURE
+                    - EXPECTED_LINKED_SESSION
                     - SERVER_ERROR
                     description: |
                       End result of the transaction (`OK` if session was completed successfully).
@@ -1198,12 +1191,9 @@ components:
                       * `WRONG_VC` - in case the multiple-choice verification code was requested, the user did not choose the correct verification code.
                       * `REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP` - user app version does not support any of the `interactions` interactions.
                       * `USER_REFUSED_CERT_CHOICE` - user has multiple accounts and pressed Cancel on device choice screen on any device.
-                      * `USER_REFUSED_DISPLAYTEXTANDPIN` - user pressed Cancel on PIN screen. Can be from the most common `displayTextAndPIN` flow or from `verificationCodeChoice` flow when user chosen the right code and then pressed cancel on PIN screen.
-                      * `USER_REFUSED_VC_CHOICE` - user cancelled `verificationCodeChoice` screen.
-                      * `USER_REFUSED_CONFIRMATIONMESSAGE` - user cancelled on `confirmationMessage` screen.
-                      * `USER_REFUSED_CONFIRMATIONMESSAGE_WITH_VC_CHOICE` - user cancelled on `confirmationMessageAndVerificationCodeChoice` screen.
-                      * `USER_REFUSED_INTERACTION` - user has pressed cancel on the device. This will replace the `USER_REFUSED_*` result codes in the future.
+                      * `USER_REFUSED_INTERACTION` - user has pressed cancel on the screen.
                       * `PROTOCOL_FAILURE` - there was a logical error in the signing protocol.
+                      * `EXPECTED_LINKED_SESSION` - the app received a different transaction while waiting for the linked session that follows the device-link based cert-choice session.
                       * `SERVER_ERROR` - process was terminated due to server-side technical error
                   documentNumber:
                     type: string
@@ -1252,7 +1242,7 @@ components:
                     type: string
                     format: byte
                     contentEncoding: base64
-                    pattern: ^[a-zA-Z0-9+\/]+={,2}$
+                    pattern: ^[a-zA-Z0-9+\/]+={0,2}$
                     description: Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the certificate is QSCD-enabled, data which is not represented by certificate level.
                   certificateLevel:
                     type: string
@@ -1263,7 +1253,6 @@ components:
                 type: string
                 enum:
                 - displayTextAndPIN
-                - verificationCodeChoice
                 - confirmationMessage
                 - confirmationMessageAndVerificationCodeChoice
                 description: Name of interaction used. Mandatory if the `result.endResult` is `OK`. See section [available interactions](./interactions.html#available_interactions) for more information.
@@ -1282,10 +1271,6 @@ components:
               $ref: '#/components/examples/RawDigestSignatureResponseExample'
             Running Session Example:
               $ref: '#/components/examples/RunningSesssionResponseExample'
-            Certificate choice successful signing certificate retrieval:
-              $ref: '#/components/examples/CertificateOKResponseExample'
-            Certificate choice signing key currently not usable:
-              $ref: '#/components/examples/CertificateTimelockedResponseExample'
             User refused the interaction:
               $ref: '#/components/examples/UserRefusedInteractionResponseExample'
     401_Unauthorized:
@@ -1386,9 +1371,9 @@ components:
   examples:
     DeviceLinkAuthenticationRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
-        initialCallbackURL: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
         certificateLevel: QUALIFIED
         signatureProtocol: ACSP_V2
         signatureProtocolParameters:
@@ -1399,22 +1384,11 @@ components:
         interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
         requestProperties:
           shareMdClientIpAddress: true
-        required:
-        - relyingPartyUUID
-        - relyingPartyName
-        - initialCallbackURL
-        - signatureProtocol
-        - signatureProtocolParameters
-        - interactions
-        - rpChallenge
-        - signatureAlgorithm
-        - signatureAlgorithmParameters
-        - hashAlgorithm
     DeviceLinkSigningRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
-        initialCallbackURL: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
         certificateLevel: QUALIFIED
         signatureProtocol: RAW_DIGEST_SIGNATURE
         signatureProtocolParameters:
@@ -1428,8 +1402,8 @@ components:
           shareMdClientIpAddress: true
     DeviceLinkCertificateChoiceRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
         initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
         certificateLevel: QUALIFIED
         nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
@@ -1437,8 +1411,8 @@ components:
           shareMdClientIpAddress: true
     NotificationAuthenticationRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
         certificateLevel: QUALIFIED
         signatureProtocol: ACSP_V2
         signatureProtocolParameters:
@@ -1452,8 +1426,8 @@ components:
         vcType: numeric4
     NotificationSigningRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
         certificateLevel: QUALIFIED
         signatureProtocol: RAW_DIGEST_SIGNATURE
         signatureProtocolParameters:
@@ -1467,8 +1441,8 @@ components:
           shareMdClientIpAddress: true
     NotificationSigningLinkedRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
         certificateLevel: QUALIFIED
         signatureProtocol: RAW_DIGEST_SIGNATURE
         signatureProtocolParameters:
@@ -1483,16 +1457,16 @@ components:
           shareMdClientIpAddress: true
     NotificationCertificateChoiceRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
         certificateLevel: QUALIFIED
         nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
         requestProperties:
           shareMdClientIpAddress: true
     SigningCertificateRequestBodyExample:
       value:
-        relyingPartyUUID: 00000000-0000-0000-0000-000000000000
-        relyingPartyName: Bank 123
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
     RunningSesssionResponseExample:
       value:
         state: RUNNING
@@ -1506,7 +1480,7 @@ components:
         signature:
           value: u5XWfL9UggKDraAvdqz7pCf7/tYJYoppnbjccZVojKBRP1M3eKwcwoFh+hJtFuAzddtGtrbrMrQ3svgV8tSJ+w==
           serverRandom: teWoX+CydbzKcpXaCzkJBsYQ
-          userChallenge: iwElgmJ8HB1pi+DVs8J2WDF754qOjV1cm5GB34VMexA=
+          userChallenge: GnsWXXEjTCKR89fj9uo5u5ReBZ9JR7_pezLAI5jMS00
           flowType: QR
           signatureAlgorithm: rsassa-pss
           signatureAlgorithmParameters:
@@ -1515,8 +1489,8 @@ components:
               algorithm: id-mgf1
               parameters:
                 hashAlgorithm: SHA-512
-          saltLength: 64
-          trailerField: "0xbc"
+            saltLength: 64
+            trailerField: "0xbc"
         cert:
           value: MIIFijCCBHKgAwIBAgIIIK7g/bqucjMwDQYJKoZIhvcNAQELBQAwLzELMAkGA1UEBhMCRUUxDjAMBgNVBAoTBUN5YmVyMRAwDgYDVQQDEwdUQyByb290MB4XDTI0MTEwNDE0MzAzOFoXDTI1MTEwNDE0MzAzOFowgYYxCzAJBgNVBAYTAkVFMQ0wCwYDVQQEDARLYXJ1MQ0wCwYDVQQqDARNYXRpMRowGAYDVQQFExFQTk9FRS0zMDAwMTAxMDAwNDEkMCIGA1UEAwwbS2FydSxNYXRpLFBOT0VFLTMwMDAxMDEwMDA0MRcwFQYDVQQLDA5BVVRIRU5USUNBVElPTjCCAyIwDQYJKoZIhvcNAQEBBQADggMPADCCAwoCggMBAIal1PDk+DPP5zi/gdKQIGtxPBNOyqNtFp13i1IcwE6DF37/cG2Nw6DnJj3UgNJeOjT/EnVzwTBpTZUUan4iBlnZ9LOGrYQpTDGBQcMDVSrEuIMHjO3ypRT3oKaR21yK3euqYK+g5+RKUomWKIMa2U/AQ+JoubF1C90JlgHbD1NMhh18wSbTWN07CL5tG33swCAKRtRRyOT0MrGbR2Rtb20Y4d/ux3wjudwQ0OGcUVmQYlWhBk5qUiOm2dLA4Zjhc2Lwn4aXwCC+1maIOI8wP37H4JmL+30xxdcn8okZ7jNWAH602nCqsLLRGC/ufsacxKDHQh4GSmmwBZsmbUuQrEcg9QlLMNBYdDW2E6I0PwHGzcYsIieai4WGls//rm+xhme+689aL9XLINNCMJxiq59ifJKdYpsD3t6JAkYwN0wY8/hdN7EuqIkFq01/5NVfy4lN8HAM09pQcCTWOHbkISa4xgrQN/LgmN9P4dK/roWh9jwFJM0Zca9SwPsjhVUCGwjPyYuPCcA2pv6YqNQzaSDOF8TDl5TqM/zmqOjphaNbVYW9lMUl7ot9YaRBXzQlMqEFDYUXesxIXw30tuvUuj7Z3pTsmsuozhrUgwz/58e6K65hiFOBGBywOnGCCVVQIglT1nRoZ+d88aCUYZOp9SYQYpeLg/1Uu7rpf2AhyVY05iwSRIhr7i2GgieRnUnwF3J3xNI0uhNmYNa+3lFBgqBs7fjQJKtALFLXsDRsuInPrpbqxrSQjHe0T7Azt5vFSN+AEWESJ3Ir7L005cTn302+VHWMPZNlRmoHkfHAsEKT5hYYzcOmPuDurb8v63yi1z1kojLs6RMJGmapG7D60r/ZqLPNCowNbrfTu7lWdUkG6t4G7SukqNh+QUr1qG2T0S1jaxsJnWCJ9I76IPVqgEHsk1ZB9wV2gVYg//qqNyitDsbBgBM1/UvQnTOyzjzAmEP8b6nwd4DJm49OoYBrrW3heAKrQpsAdc1EgckDNwS16ylv1Z8CDLfCNAkibI/QTQIDAQABo1IwUDAfBgNVHSMEGDAWgBR34yPLMQW8zhFBhUVMMmjuqyKPxzAdBgNVHQ4EFgQUji5lHz9q4G0JNwfxQ/X+e8g74xMwDgYDVR0PAQH/BAQDAgSwMA0GCSqGSIb3DQEBCwUAA4IBAQAWjqXH2EPFQ5nP9F9qr9CWLeluUlNv2GCKJXe1Yb2TfOdlCmUoRAeXXS6uVTWD6BvLo6EuFWwlqC3j3+fFaUwhbPRRd4ZXoVVNZPS2XCzEPkE6U9jQadVsaM3dMFrZYVxp6qMhbEyWr1Elcv2hn2pe6G7yNccslN6f3zIS36+mdww6mcUY6KE8+A4wjqOjesA7sAUMfH92MKKmSK5YD+klffnWYIFD+JEjudFsdviFOcNAkhuBSvA4pnD6zoLuM0lCA1yKz7/fFR2NxF9j6KPXIQokz5oG+QA4PYlzdifEiH+6Ducif6Aoy+Fnikptmzcin6lpnacxv2eCOUHhlIxN
           certificateLevel: QUALIFIED
@@ -1539,8 +1513,8 @@ components:
               algorithm: id-mgf1
               parameters:
                 hashAlgorithm: SHA-512
-          saltLength: 64
-          trailerField: "0xbc"
+            saltLength: 64
+            trailerField: "0xbc"
         cert:
           value: MIIFhTCCBG2gAwIBAgIJAMacPu9N8klYMA0GCSqGSIb3DQEBCwUAMC8xCzAJBgNVBAYTAkVFMQ4wDAYDVQQKEwVDeWJlcjEQMA4GA1UEAxMHVEMgcm9vdDAeFw0yNDExMDQxNDMwMzhaFw0yNTExMDQxNDMwMzhaMIGBMQswCQYDVQQGEwJFRTENMAsGA1UEBAwES2FydTENMAsGA1UEKgwETWF0aTEaMBgGA1UEBRMRUE5PRUUtMzAwMDEwMTAwMDQxJDAiBgNVBAMMG0thcnUsTWF0aSxQTk9FRS0zMDAwMTAxMDAwNDESMBAGA1UECwwJU0lHTkFUVVJFMIIDITANBgkqhkiG9w0BAQEFAAOCAw4AMIIDCQKCAwB4M1eviS3RXSj1EYoyxqIp+rykWQ6BQ47/uVirLTewekuYD69cUf7/HHXTbuGbEFj83t/xQcdPglQXPl/J+mDOB9Y9sxPZ5pRcM2icbyOaeW28F+XgY73h2/krbvfmTWo8Vin/I0MUq2EW5G/stGOMxU0ZwJd72fM8Uuq8pxmgyfp++EKGoHav+lLl81v5+mXYfSjURViqmq/1mjJzSFgDXxvy3uyBF+0i90UjwxBGBJCGQghGKdf8aYCjJhsRPaxqWn5FBlTHld8j2UIJpMjB/7L7Ub7g7Ws2ZHrvxiOjgjnuiKemrGbojHVQHK8nukrB70YMMzn9pUp7lEhpee1/SBQrCjjYH6+kD1rqVaBEwq4x6R5DMWH5dEGndOJVorL3J4Q9wBdBqrf//ZB3GFbPuVxGfhi+7vVnYXQiLM+v7iXrxe21c9piXyOotiOCWxYj/EXfThH9M90B/EwCYBiTmB3v8C9pkKl+91p16PnAhSS/BX3CSg3z2sHanea6GKwVg+CoTgUW2bAOVOR5QICYXI1neRL0N+OiokpgujGyHix1yOE4W6aXDtFv/rxkBGN5gdoGrt46Nou3GxPZC/vbwJUI7XrYsfRHCBe89FMiGJC6MJLTLqZzIQnNBSGMcdsjfMga09FLm4tbcyMNbWYllckRwv8bf2rBGo8frcZvgNZ51TRuJCxi1Y2S+CFjNu32mh6YyiGPdLaIAP/QDPJK4wG61ZRFyGIjLQ58peB2hf1rnERyhan9n03rp0qIUnH1NQ6qFHfW66rCzzoElq0OkbqWSNfuoZCBfD9hq9fNXYssJf5G9ZhnWGMB5o/cs+3eQasm4/IIkMyxmlHV+UB96JM3cqajBbkolm7ZQ5hmlV0eSarhr4+NqVDwhVfuRYwTJQV9cQpPdiVrXMt0Qjorw2CPhXBAJa/MRl2bCvs46qBYE3edjrMvKRPR3SJsUXKlKXJMgILxKW3V2221FTlzMNHNEBc6bThLCeNDT1pg2qvccjhNAYjzEb5jLBJI1EECAwEAAaNSMFAwHwYDVR0jBBgwFoAUd+MjyzEFvM4RQYVFTDJo7qsij8cwHQYDVR0OBBYEFOX+iZHLthF1ZRnUXnB2RSnfymglMA4GA1UdDwEB/wQEAwIGQDANBgkqhkiG9w0BAQsFAAOCAQEAFQYqBX7LedlGU0Jzg7PQNWZrx6hsnIe7Hu/KOcNHmP+pgNTo4nZcB+/wOmGWGb/3rjiiunFxsTmX3ONJ7mEvys8NfqoPAObNy4qWTkT/2IerBhVGJX798iCYQUFAqW+pRsuAOKv5ERf2ai0roJCIC0exlS1U8T09sSL1+3S/sYllH8fKGoxPchGejo4Uk/BPI4/XXQR+kT4AntX+Vt2B5BTvF1vnsxUgcLqtITL3nkiY0+ojrKkp4rkqrqoh7iT9N/j0Dd6AqOpH4bFIKtvjMkMwRPOQpk6/jmhOJQ3KbAe5cMUA/iEEj+BOOzIGFuL572roj/UrV8LfQtDJoQ6n8g==
           certificateLevel: QUALIFIED
@@ -1565,8 +1539,8 @@ components:
     DeviceLinkResponseExample:
       value:
         sessionID: fa20fd1e-e320-4c68-8315-f6a507a0b4a9
-        sessionToken: hyBdQYUeQtvXEPqWC7K8a97L
-        sessionSecret: dztL7Ur49D/YYgUzYl4sMg==
+        sessionToken: tw1hOWNAcw0wd-e9OalXV-Sr
+        sessionSecret: B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=
         deviceLinkBase: https://smart-id.com/device-link
     NotificationAuthenticationResponseExample:
       value:

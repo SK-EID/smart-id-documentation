@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Welcome to Smart-ID demo page :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/demo.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="./_/css/site.css">
+
+<link rel="icon" href="./_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="./_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device_link.html">Device-link fallback page</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="https_pinning.html">Implementing HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="logos.html">Logos</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="test_accounts.html">Test accounts</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/changes.html">Changes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rp-api/authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/api_specification.html">OpenAPI specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Documentation</a></div>
+    </li>
+    <li class="component">
+      <div class="title"><a href="rp-api/introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="rp-api/introduction.html">3.1.3</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="On this page" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Welcome to Smart-ID demo page</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page will give you short overview of the Smart-ID and helps you getting started.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_smart_id_description"><a class="anchor" href="#_smart_id_description"></a>Smart-ID description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Smart-ID is the next generation solution for managing your identity online. With Smart-ID you can log into 3rd party websites and give legally valid digital signature. Smart-ID works in your mobile phone or tablet and doesn&#8217;t require specially issued SIM-card.</p>
+</div>
+<div class="paragraph">
+<p>The demo version has the following functionality:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User can use Smart-ID to log into the website (bank123 demo portal).</p>
+</li>
+<li>
+<p>User can login Smart-ID self service portal <a href="https://sid.demo.sk.ee/portal" class="bare">https://sid.demo.sk.ee/portal</a> and get an overview of accounts and to delete an account.</p>
+</li>
+<li>
+<p>User can login to any test e-service which is integrated with Smart-ID demo service.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a>Getting started</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For using demo environment there is need to install Smart-ID demo app.</p>
+</div>
+<div class="paragraph">
+<p>Getting Smart-ID up and running is easy. Follow those easy 4 steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Registration &amp; Installation</strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Install demo app on Android platform (minimum Android 5 required): <a href="https://play.google.com/apps/testing/com.stagnationlab.sk" class="bare">https://play.google.com/apps/testing/com.stagnationlab.sk</a></p>
+</li>
+<li>
+<p>Steps to install on iOS (minimum iOS13 required):</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Download Testflight <a href="https://itunes.apple.com/us/app/testflight/id899247664?mt=8" class="bare">https://itunes.apple.com/us/app/testflight/id899247664?mt=8</a></p>
+</li>
+<li>
+<p>Join Smart-ID demo beta app in <a href="https://testflight.apple.com/join/DoWddZjR" class="bare">https://testflight.apple.com/join/DoWddZjR</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Start the app</strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Start the Smart-ID app and choose the Register button.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Prove your identity</strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For beta version, you can choose to prove your identity via provided bank links.</p>
+</li>
+<li>
+<p>Just make your selection and you&#8217;ll be redirected to the bank&#8217;s Internet bank and you are asked to login with different tokens.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>using bank link as a registration method means, that you will be granted Smart-ID Basic account.</p>
+</li>
+<li>
+<p>Using ID-card or mobile-ID means, that you will be receiving a Smart-ID Qualified account. Smart-ID Basic can be used only by IDP-s (banks), so we suggest to prefer ID-card or mobile-ID as a registration.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>After successful login, you&#8217;ll arrive back in the app, just confirm that your name and national identification number is correct.</p>
+</li>
+<li>
+<p>If you don&#8217;t have supported bank account, you can still try out the app by entering your personal data manually.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>if you do have Estonian personal ID-code, then you are not eligible for manual registration. Use 'Other country' instead if you prefer manual registration. Negative side here is, that you will receive randomly generated personal code, which makes testing more difficult (have to remember that personal code)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Enter your PIN1 and PIN2</strong></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The app asks for your PIN1 and PIN2 code. PIN1 is for protecting your authentication key pair and PIN2 is for protecting your signature key pair, same way as with ID-card and Mobile-ID.</p>
+</li>
+<li>
+<p>You can choose the random codes, generated by app, or enter your own favorite PIN code</p>
+</li>
+<li>
+<p>Either way, make sure you remember the codes afterwards.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Your Smart-ID account is now ready to use. If you have iOS watch with watchOS 8.5 or later then you can test Smart-ID from the watch as well.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_try_it_out"><a class="anchor" href="#_try_it_out"></a>Try it out</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To see the Smart-ID in action and to actually use it to log into a website and give the digital signature, you can try the following beta services.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://smid.demo.sk.ee/#login">https://smid.demo.sk.ee</a> Bank123 demo portal to demonstrate Smart-ID for online banking services</p>
+</li>
+<li>
+<p><a href="https://beta.dokobit.com/login">https://beta.dokobit.com/</a> Dokobit BETA to demonstrate Smart-ID usage for signing</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For demo purposes, some of the security features of the Smart-ID demo environment are not identical with the production environment. The Smart-ID demo environment is not intended to be used for security testing.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Smart-ID demo certificates are not automatically available for DEMO AIA OCSP - aia.demo.sk.ee
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There is a special interface that enables uploading certificates with an option to set the status. The upload page is available at <a href="https://demo.sk.ee/upload_cert/" class="bare">https://demo.sk.ee/upload_cert/</a>.</p>
+</li>
+<li>
+<p>Smart-ID demo certificates can be downloaded from <a href="https://sid.demo.sk.ee/portal/login" class="bare">https://sid.demo.sk.ee/portal/login</a></p>
+</li>
+<li>
+<p>Additional info about DEMO OCSP <a href="https://github.com/SK-EID/ocsp/wiki/SK-OCSP-Demo-environment" class="bare">https://github.com/SK-EID/ocsp/wiki/SK-OCSP-Demo-environment</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_give_us_feedback"><a class="anchor" href="#_give_us_feedback"></a>Give us feedback</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="contact.html" class="xref page">Contact</a></p>
+</div>
+<div class="paragraph">
+<p>All feedback to the Smart-ID DEMO version is much appreciated. Please send it to the e-mail address <a href="mailto:support@sk.ee?subject=Smart-ID%20DEMO%20feedback">support@sk.ee</a></p>
+</div>
+<div class="paragraph">
+<p>When you report a problem, please include at least the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>E-mail subject: Smart-ID DEMO feedback</p>
+</li>
+<li>
+<p>detailed description of the problem (if possible with screenshots)</p>
+</li>
+<li>
+<p>date and time when the problem occurred</p>
+</li>
+<li>
+<p>your device model and version of the operating system</p>
+</li>
+<li>
+<p>your personal code</p>
+</li>
+<li>
+<p>your account UUID, you will find it on SmartID App account management section</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="./_/js/site.js" data-ui-root-path="./_"></script>
+<script async src="./_/js/vendor/highlight.js"></script>
+<script async src="./_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="./_/js/vendor/lunr.js"></script>
+<script src="./_/js/search-ui.js" id="search-ui-script" data-site-root-path="." data-snippet-length="100" data-stylesheet="./_/css/search.css"></script>
+<script async src="./search-index.js"></script>
+  </body>
+</html>

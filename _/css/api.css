@@ -1,0 +1,58 @@
+:root {
+    --custom-nav-back-height: 56px;
+    --scalar-sidebar-width: 300px;
+    --scalar-custom-header-height: 56px;
+    --scalar-content-max-width: 100%;
+}
+
+main > .content {
+    display: block;
+}
+
+.nav-back {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    z-index: 16;
+    height: var(--custom-nav-back-height);
+    top: var(--scalar-custom-header-height);
+    width: calc(var(--scalar-sidebar-width) - 1px);
+    padding-inline: 16px;
+    background-color: var(--body-background);
+    border-bottom: 1px solid var(--panel-border-color);
+}
+
+.nav-back .nav-back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration-color: var(--link-font-color);
+}
+
+.nav-back .nav-back-icon {
+    width: 1rem;
+    height: 1rem;
+    transform: rotate(180deg);
+    stroke-width: 2;
+    color: var(--scalar-color-2);
+}
+
+.nav-back .nav-back-text {
+    font-size: 0.875rem;
+    color: var(--link-font-color);
+}
+
+.nav-back:hover .nav-back-text {
+    color: var(--link_hover-font-color);
+}
+
+@media screen and (max-width: 1024px) {
+    .nav-back {
+        display: none;
+    }
+}
+
+.hide-nav-on-desktop {
+    position: fixed;
+    visibility: hidden;
+}

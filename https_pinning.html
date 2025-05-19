@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Implementing HTTPS pinning :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/https_pinning.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="./_/css/site.css">
+
+<link rel="icon" href="./_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="./_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device_link.html">Device-link fallback page</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="https_pinning.html">Implementing HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="logos.html">Logos</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="test_accounts.html">Test accounts</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/changes.html">Changes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rp-api/authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/api_specification.html">OpenAPI specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/secure.html">Secure Implementation Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Documentation</a></div>
+    </li>
+    <li class="component">
+      <div class="title"><a href="rp-api/introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="rp-api/introduction.html">3.1.3</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="On this page" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Implementing HTTPS pinning</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Anyone who is using Smart-ID API needs to make sure that the connection endpoint is authentic and that the connection is secure. This is required to prevent MITM attacks for the authentication and signature protocols. This requirement is described also here:
+<a href="rp-api/api_details.html" class="xref page">RP API endpoint authentication</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rp_api_smart_id_com_certificates"><a class="anchor" href="#_rp_api_smart_id_com_certificates"></a>rp-api.smart-id.com certificates</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Serial number (HEX)</th>
+<th class="tableblock halign-left valign-top">Validity</th>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0E20714E18D8C3BEE183CC07F74EA14E</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024.09.18 00:00.00<br>
+2025.10.20 23:59:59</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">in use from 10.10.2024</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">​ <a href="_images/rp-api_smart-id_com_2024_DER.crt">DER</a>, <a href="_images/rp-api_smart-id_com_2024_PEM.crt">PEM</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+New certificate is issued by new intermediate certificate (DigiCert Global G2 TLS RSA SHA256 2020 CA1), which itself is issued by new root (DigiCert Global Root G2) certificate. Certificates are found <a href="https://www.digicert.com/kb/digicert-root-certificates.htm">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sid_demo_sk_ee_certificates"><a class="anchor" href="#_sid_demo_sk_ee_certificates"></a>sid.demo.sk.ee certificates</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Serial number (HEX)</th>
+<th class="tableblock halign-left valign-top">Validity</th>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">07FFF49BD963A210A7F0B079283704D6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024.10.03 00:00.00<br>
+2025.10.15 23:59:59</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">in use from 03.10.2024</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">​ <a href="_images/sid_demo_sk_ee_2024_DER.crt">DER</a>, <a href="_images/sid_demo_sk_ee_2024_PEM.crt">PEM</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_smart_id_java_client"><a class="anchor" href="#_smart_id_java_client"></a>smart-id-java-client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using smart-id-java-client one can comply with the requirement without importing anything directly to Java.
+But it requires changes in the code.</p>
+</div>
+<div class="paragraph">
+<p>Samples:
+<a href="https://github.com/SK-EID/smart-id-java-client/blob/master/README.md#verifying-the-ssl-connection-to-application-provider-sk" class="bare">https://github.com/SK-EID/smart-id-java-client/blob/master/README.md#verifying-the-ssl-connection-to-application-provider-sk</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_smart_id_php_client"><a class="anchor" href="#_smart_id_php_client"></a>smart-id-php-client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Same functionality as Smart-ID-Java-Client is available with the new smart-id-php-client.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/SK-EID/smart-id-php-client/blob/master/README.md#configure-client-details-and-https-pinning" class="bare">https://github.com/SK-EID/smart-id-php-client/blob/master/README.md#configure-client-details-and-https-pinning</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_means"><a class="anchor" href="#_other_means"></a>Other means</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Systems running on other platforms must achieve the same result using methods suitable for these particular platforms. SK ID Solutions is not providing sample client libraries for other platforms besides Java and PHP.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="./_/js/site.js" data-ui-root-path="./_"></script>
+<script async src="./_/js/vendor/highlight.js"></script>
+<script async src="./_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="./_/js/vendor/lunr.js"></script>
+<script src="./_/js/search-ui.js" id="search-ui-script" data-site-root-path="." data-snippet-length="100" data-stylesheet="./_/css/search.css"></script>
+<script async src="./search-index.js"></script>
+  </body>
+</html>
