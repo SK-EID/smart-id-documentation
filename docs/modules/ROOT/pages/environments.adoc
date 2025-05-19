@@ -37,7 +37,7 @@ We recommend xref:https_pinning.adoc[Implementing HTTPS pinning] but if you have
 |  base URL v1 | https://sid.demo.sk.ee/smart-id-rp/v1/
 |  base URL v2 | https://sid.demo.sk.ee/smart-id-rp/v2/
 |  base URL v3 | https://sid.demo.sk.ee/smart-id-rp/v3/
-|  relyingPartyUUID | 00000000-0000-0000-0000-000000000000 
+|  relyingPartyUUID | 00000000-0000-4000-8000-000000000000 
 |  relyingPartyName | DEMO 
 |===
 
