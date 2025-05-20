@@ -32,6 +32,16 @@ This PHP client cannot be used to create digitally signed containers because PHP
 . Smart-ID Rust client https://crates.io/crates/smart-id-rust-client
 
 == Verification code calculation examples
-. https://github.com/SK-EID/smart-id-documentation/blob/master/files/verify.java[Smart-ID signature verification and verification code calculation example in java]
-. https://github.com/SK-EID/smart-id-documentation/blob/master/files/control_code.php[Smart-ID verification code calculation example in php]
-. https://github.com/SK-EID/smart-id-documentation/blob/master/files/main.c[Smart-ID verification code calculation example in C]
+. Examples in different languages  
+ifeval::["{service-name}" != ""]
+xref:rp-api:ROOT:notification_based_flows.adoc#verification_codes_for_authentication_requests[for authentication requests]
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html#verification_codes_for_authentication_requests[for authentication requests]
+endif::[]
+and 
+ifeval::["{service-name}" != ""]
+xref:rp-api:ROOT:notification_based_flows.adoc#verification_codes_for_signature_requests[for signature requests]
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html#verification_codes_for_signature_requests[for signature requests]
