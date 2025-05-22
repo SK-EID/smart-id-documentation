@@ -208,13 +208,29 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rp-api.smart-id.com</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">62.65.42.57 (deprecated on 09.12.2024)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>62.65.42.57 (deprecated on 09.12.2024)</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rp-api.smart-id.com</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">195.13.185.55<br>
-81.16.238.22<br>
-91.223.243.57</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>195.13.185.55</p>
+</li>
+<li>
+<p>81.16.238.22</p>
+</li>
+<li>
+<p>91.223.243.57</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -270,15 +286,15 @@
 <div class="sect2">
 <h3 id="_smart_id_basic_advanced_level_accounts"><a class="anchor" href="#_smart_id_basic_advanced_level_accounts"></a>Smart-ID Basic (ADVANCED) level accounts</h3>
 <div class="paragraph">
-<p>DEMO relyingPartyUUID has no access to Smart-ID Basic accounts. If you would like to test with Smart-ID Basic accounts please write to <a href="mailto:support@sk.ee">support@sk.ee</a> .</p>
+<p>DEMO <code>relyingPartyUUID</code> has no access to Smart-ID Basic accounts. If you would like to test with Smart-ID Basic accounts please write to <a href="mailto:support@sk.ee">support@sk.ee</a>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>When using "certificateLevel":"ADVANCED" with wrong relyingPartyUUID in requests then HTTP error <em>403 Forbidden</em> is returned.</p>
+<p>If <code>"certificateLevel":"ADVANCED"</code> is used with wrong <code>relyingPartyUUID</code> in requests then HTTP error <code>403 Forbidden</code> is returned.</p>
 </li>
 <li>
-<p>When user has only Smart-ID Basic account then HTTP error <em>404 Not Found</em> is returned.</p>
+<p>If the user only has a Smart-ID Basic account then HTTP error <code>404 Not Found</code> is returned.</p>
 </li>
 </ul>
 </div>
