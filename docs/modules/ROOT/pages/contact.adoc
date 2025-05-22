@@ -1,5 +1,4 @@
-
-== Sales
+= Contact
 
 Ask for an offer or for more information
 

@@ -1,4 +1,4 @@
-== Smart-ID integration
+= Smart-ID integration
 
 [TIP]
 
@@ -10,7 +10,7 @@ ifeval::["{service-name}" == ""]
 https://sk-eid.github.io/smart-id-documentation/rp-api/[RP-API v3.1 Implementation guide] +
 endif::[]
 
-=== Timeline
+== Timeline
 
 [cols="1,4"]
 [options="header", stripes=odd, grid=none, frame=none]
@@ -30,12 +30,12 @@ a| * [ ] RP API v3.1 is available in PRODUCTION && app v29 is published
 
 
 
-=== FAQ
+== FAQ
 
-==== When I need to be ready with my integration?
+=== When I need to be ready with my integration?
 Smart-ID RP API v1/v2 will remain working as is. Still we encourage you to start your developments to implement new end-user friendly and more secure usage https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html[flows]
 
-==== Do new flows work with all Smart-ID app versions?
+=== Do new flows work with all Smart-ID app versions?
 No. For end-user to be able to use new flows app must be updated to at least version 29. User may see next error messages when using old Smart-ID app with new flows:
 
 [cols="1,1"]
@@ -43,3 +43,4 @@ No. For end-user to be able to use new flows app must be updated to at least ver
 |===
 a| image::same-device-flow-old-app.png[static,400,title="Same-device flows - fallback page",caption=""] 
 a| image::cross-device-flow-old-app.jpg[static,235,title="Cross-device flow - Invalid QR code",caption=""]
+|===
