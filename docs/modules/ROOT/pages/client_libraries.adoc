@@ -44,10 +44,10 @@ This PHP client cannot be used to create digitally signed containers because PHP
 == Verification code calculation examples
 Examples in different languages
 ifeval::["{service-name}" != ""]
-xref:rp-api:ROOT:notification_based_flows.adoc#verification_codes_for_authentication_requests[for authentication requests].
+xref:rp-api:ROOT:notification_based_flows.adoc#verification_codes_for_authentication_requests[for authentication requests]
 endif::[]
 ifeval::["{service-name}" == ""]
-https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html#verification_codes_for_authentication_requests[for authentication requests].
+https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html#verification_codes_for_authentication_requests[for authentication requests]
 endif::[]
 and
 ifeval::["{service-name}" != ""]
