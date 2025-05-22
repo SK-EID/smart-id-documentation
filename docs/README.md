@@ -14,6 +14,5 @@ For testing own changes run
 ```
 cd docs
 npm install
-npx antora --fetch antora-playbook.yml --stacktrace  
+npx antora --fetch antora-playbook.yml --stacktrace
 ```
-

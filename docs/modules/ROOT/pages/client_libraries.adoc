@@ -1,24 +1,35 @@
 = Client libraries
 
+.IMPORTANT
 [IMPORTANT]
+====
 We do not have client libraries available for latest RP API v3 yet!
+====
 
+.NOTE
 [NOTE]
+====
 New documentation includes many code samples in different languages.
-See 
+See
 ifeval::["{service-name}" != ""]
-xref:rp-api:ROOT:device_link_flows.adoc#_same-device_flows[same-device flows], xref:rp-api:ROOT:device_link_flows.adoc#_cross-device_flows[cross-device flows]
+xref:rp-api:ROOT:device_link_flows.adoc#_same-device_flows[same-device flows], xref:rp-api:ROOT:device_link_flows.adoc#_cross-device_flows[cross-device flows].
 endif::[]
 ifeval::["{service-name}" == ""]
-https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html#same_device_flows[same-device flows] , https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html#cross_device_flows[cross-device flows]
+https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html#same_device_flows[same-device flows], https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html#cross_device_flows[cross-device flows].
 endif::[]
+====
 
 == Available examples
 
 . https://github.com/SK-EID/smart-id-php-client[Smart-ID PHP client - authentication]
++
+--
+.NOTE
 [NOTE]
+====
 This PHP client cannot be used to create digitally signed containers because PHP does not have a library like DigiDoc4J.
-
+====
+--
 . https://github.com/SK-EID/smart-id-php-demo[Smart-ID PHP demo application - authentication]
 . https://github.com/SK-EID/smart-id-java-client[Smart-ID JAVA client]
 . https://github.com/SK-EID/smart-id-java-demo[Smart-ID JAVA demo application]
@@ -31,16 +42,17 @@ This PHP client cannot be used to create digitally signed containers because PHP
 . Smart-ID Rust client https://crates.io/crates/smart-id-rust-client
 
 == Verification code calculation examples
-. Examples in different languages  
+Examples in different languages
 ifeval::["{service-name}" != ""]
 xref:rp-api:ROOT:notification_based_flows.adoc#verification_codes_for_authentication_requests[for authentication requests]
 endif::[]
 ifeval::["{service-name}" == ""]
 https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html#verification_codes_for_authentication_requests[for authentication requests]
 endif::[]
-and 
+and
 ifeval::["{service-name}" != ""]
-xref:rp-api:ROOT:notification_based_flows.adoc#verification_codes_for_signature_requests[for signature requests]
+xref:rp-api:ROOT:notification_based_flows.adoc#verification_codes_for_signature_requests[for signature requests].
 endif::[]
 ifeval::["{service-name}" == ""]
-https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html#verification_codes_for_signature_requests[for signature requests]
+https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html#verification_codes_for_signature_requests[for signature requests].
+endif::[]
