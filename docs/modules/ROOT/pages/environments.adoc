@@ -43,4 +43,4 @@ We recommend xref:https_pinning.adoc[Implementing HTTPS pinning] but if you have
 DEMO `relyingPartyUUID` has no access to Smart-ID Basic accounts. If you would like to test with Smart-ID Basic accounts please write to link:mailto:support@sk.ee[support@sk.ee].
 
 * If `"certificateLevel":"ADVANCED"` is used with wrong `relyingPartyUUID` in requests then HTTP error `403 Forbidden` is returned.
-* When user has only Smart-ID Basic account then HTTP error `404 Not Found` is returned.
+* If the user only has a Smart-ID Basic account then HTTP error `404 Not Found` is returned.
