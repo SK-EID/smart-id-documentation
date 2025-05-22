@@ -16,11 +16,12 @@ endif::[]
 [cols="1,4a", options="header", stripes=odd, grid=none, frame=none]
 |===
 | Date | Description
-| 16.05.2025 | * [*] RP API v3.1 is available in demo
-| 20.05.2025 | * [*] RP API v3.1 documentation is available at https://sk-eid.github.io/smart-id-documentation/
-| 22.05.2025 | * [*] Android app v29 is available in DEMO (supports RP API v3.1)
-| 10.06.2025 | * [ ] iOS app v29 is available in DEMO (supports RP API v3.1)
-| 20.06.2025 | * [ ] RP API v3.1 is available in PRODUCTION && app v29 is published 
+| 2025.05.16 | * [*] RP API v3.1 is available in demo
+| 2025.05.20 | * [*] RP API v3.1 documentation is available at https://sk-eid.github.io/smart-id-documentation/
+| 2025.05.22 | * [*] Android app v29 is available in DEMO (supports RP API v3.1)
+| 2025.06.10 | * [ ] iOS app v29 is available in DEMO (supports RP API v3.1)
+| 2025.06.20 | * [ ] RP API v3.1 is available in PRODUCTION 
+| 2025.06.20 | * [ ] App v29 is published 
 |===
 
 == FAQ
@@ -29,7 +30,7 @@ endif::[]
 Smart-ID RP API v1/v2 will remain working as is. Still we encourage you to start your developments to implement new end-user friendly and more secure usage https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html[flows].
 
 === Do new flows work with all Smart-ID app versions?
-No. For end-user to be able to use new flows app must be updated to at least version 29. User may see next error messages when using old Smart-ID app with new flows:
+No. For end-user to be able to use new flows app must be updated to at least version 29. User may see the following error messages when using old Smart-ID app with new flows:
 
 [cols="1,1", stripes=none, grid=none, frame=none]
 |===
