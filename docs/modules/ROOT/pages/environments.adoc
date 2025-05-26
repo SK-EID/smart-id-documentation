@@ -16,7 +16,7 @@ We recommend xref:https_pinning.adoc[Implementing HTTPS pinning] but if you have
 |===
 | DNS name | IP addresses
 | rp-api.smart-id.com |
-* 62.65.42.57 (deprecated on 09.12.2024)
+* 62.65.42.57 (deprecated on 2024-12-09)
 | rp-api.smart-id.com |
 * 195.13.185.55
 * 81.16.238.22

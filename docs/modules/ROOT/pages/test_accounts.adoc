@@ -9,7 +9,7 @@ These test numbers work only with RP API v1/v2!
 .NOTE
 [NOTE]
 ====
-Account numbers with `EndResult!=OK` have changed on 05.11.2024 (New CA chains!)
+Account numbers with `EndResult!=OK` have changed on 2024-11-05 (New CA chains!)
 ====
 
 [cols="3m,1,3,3", options="header", stripes=odd, grid=none, frame=none]
@@ -47,7 +47,7 @@ LT +
 LV | PNOEE-61101012257-MOCK-Q +
 PNOLT-61101012257-MOCK-Q +
 PNOLV-010111-23474-MOCK-Q +
-PNOLV-050405-12223-MOCK-Q | User age is under 18 (01.01.2011)
+PNOLV-050405-12223-MOCK-Q | User age is under 18 (2011-01-01)
 | OK | EE +
 LT +
 LV | PNOEE-30303039903-MOCK-Q +
