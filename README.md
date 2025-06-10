@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> Start your Smart-ID integration with new [RP-API v3 API](https://sk-eid.github.io/smart-id-documentation/rp-api/introduction.html) which is available in DEMO environment.
+
 ## Table of Contents
 
 * [1 Introduction](#1-introduction)
