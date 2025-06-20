@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+<div class="nav-container" data-component="rp-api" data-version="3.1.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -123,7 +123,7 @@
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="additional_security_measures.html">Additional security measures</a>
   </li>
 </ul>
   </li>
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.3</span>
+    <span class="version">3.1.4</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.3</a>
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="3.1.3/introduction.html">3.1.3</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -184,7 +187,7 @@
 <p>RP website backend has to set a session cookie to the user&#8217;s browser. This cookie must be set as <code>SameSite=Lax</code> because later, the Smart-ID app will launch the callback URL using top-level navigation and the request type will be <code>GET</code>.</p>
 </li>
 <li>
-<p>RP website backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
+<p>RP website backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter as a query parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
 </li>
 <li>
 <p>RP website backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the callbackUrl.</p>
@@ -271,7 +274,7 @@ however, there are also some differences in the steps below due to fundamental d
 <p>RP app has to save a session identifier in the app&#8217;s storage.</p>
 </li>
 <li>
-<p>RP app backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter which it also saves in the backend and associates it with the session identifier. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
+<p>RP app backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter as a query parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
 </li>
 <li>
 <p>RP app backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the callbackUrl.</p>
@@ -342,7 +345,7 @@ however, there are also some differences in the steps below due to fundamental d
 </div>
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=TIRImorSPPxBbNSJhTSPpY4GYM3ZXdHkXj2LFVUL2QI&amp;userChallengeVerifier=XtPfaGa8JnGtYrJjboooUf0KfY9sMEHrWFpSQrsUv9c</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=U4CKK13H1XFiyBofev9asqrzIrY5_Gszi_nL_zDKkBc&amp;userChallengeVerifier=XtPfaGa8JnGtYrJjboooUf0KfY9sMEHrWFpSQrsUv9c</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -350,7 +353,7 @@ however, there are also some differences in the steps below due to fundamental d
 </div>
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=TIRImorSPPxBbNSJhTSPpY4GYM3ZXdHkXj2LFVUL2QI</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=U4CKK13H1XFiyBofev9asqrzIrY5_Gszi_nL_zDKkBc</code></pre>
 </div>
 </div>
 </div>
@@ -363,9 +366,6 @@ however, there are also some differences in the steps below due to fundamental d
 </div>
 <div class="paragraph">
 <p>For the response verification steps, see <a href="response_verification.html#_phishing_resistance" class="xref page">Response verification</a> page.</p>
-</div>
-<div class="paragraph">
-<p>Also, for further details and security considerations, consult the <a href="secure.html" class="xref page">Secure implementation guide</a>.</p>
 </div>
 </div>
 </div>

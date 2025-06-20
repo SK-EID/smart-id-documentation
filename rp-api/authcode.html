@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+<div class="nav-container" data-component="rp-api" data-version="3.1.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -123,7 +123,7 @@
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="additional_security_measures.html">Additional security measures</a>
   </li>
 </ul>
   </li>
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.3</span>
+    <span class="version">3.1.4</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.3</a>
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="3.1.3/introduction.html">3.1.3</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -227,7 +230,7 @@
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>As the first step, RP assembles <code>authCodePayload</code> using byte concatenation, using the byte representation of vertical bar (<code>|</code> (U+007C)) as a separator:</p>
+<p>As the first step, RP assembles <code>authCodePayload</code> using byte concatenation, using the byte representation of vertical bar character <code>|</code> (U+007C) as a separator:</p>
 </div>
 <div id="_tabs_1" class="openblock tabs is-sync is-loading">
 <div class="content">
@@ -324,11 +327,11 @@
     String schemeName = "smart-id";
     String signatureProtocol = "ACSP_V2";
     String rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -358,11 +361,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = 'ACSP_V2';
 $rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 $initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -389,11 +392,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = 'ACSP_V2'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -425,11 +428,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = "ACSP_V2"
 	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -457,11 +460,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "ACSP_V2";
     let rp_challenge: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -490,11 +493,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = "ACSP_V2"
     val rpChallenge: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
     val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -528,11 +531,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "ACSP_V2";
         string rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
         string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -560,11 +563,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = 'ACSP_V2';
 const rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -589,11 +592,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = 'ACSP_V2'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -677,11 +680,11 @@ puts auth_code_payload</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "RAW_DIGEST_SIGNATURE";
     String digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -711,11 +714,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = 'RAW_DIGEST_SIGNATURE';
 $digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 $initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -742,11 +745,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = 'RAW_DIGEST_SIGNATURE'
 digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -778,11 +781,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
 	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -810,11 +813,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "RAW_DIGEST_SIGNATURE";
     let digest: &amp;str = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -843,11 +846,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = "RAW_DIGEST_SIGNATURE"
     val digest: String = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
     val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -881,11 +884,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "RAW_DIGEST_SIGNATURE";
         string digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
         string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -913,11 +916,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = 'RAW_DIGEST_SIGNATURE';
 const digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -942,11 +945,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = 'RAW_DIGEST_SIGNATURE'
 digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -1030,11 +1033,11 @@ puts auth_code_payload</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "";
     String digest = "";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "";
     String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -1064,11 +1067,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = '';
 $digest = '';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = '';
 $initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -1095,11 +1098,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = ''
 digest = ''
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = ''
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -1131,11 +1134,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = ""
 	var digest string = ""
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = ""
 	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -1163,11 +1166,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "";
     let digest: &amp;str = "";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "";
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -1196,11 +1199,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = ""
     val digest: String = ""
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = ""
     val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -1234,11 +1237,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "";
         string digest = "";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "";
         string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -1266,11 +1269,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = '';
 const digest = '';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = '';
 const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -1295,11 +1298,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = ''
 digest = ''
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = ''
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -1399,7 +1402,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
+    byte[] authCodePayload = "aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -1426,7 +1429,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = 'YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs';
+$authCodePayload = 'aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -1447,7 +1450,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs'
+auth_code_payload = b'aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -1470,7 +1473,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs")
+	var authCodePayload []byte = []byte("aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -1498,7 +1501,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -1525,7 +1528,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs"
+  val authCodePayload: ByteArray = "aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -1556,7 +1559,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -1579,7 +1582,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = 'YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs';
+const authCodePayload = 'aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -1600,7 +1603,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = 'YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs'
+auth_code_payload = 'aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -1618,7 +1621,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">YJV6Ve47nPIJ5SSk8yCFEKlRRoaSYoG_F2Gqmr8nIXs</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0</code></pre>
 </div>
 </div>
 </div>
@@ -1684,7 +1687,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc"
+    byte[] authCodePayload = "R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -1711,7 +1714,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = 'MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc';
+$authCodePayload = 'R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -1732,7 +1735,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc'
+auth_code_payload = b'R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -1755,7 +1758,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc")
+	var authCodePayload []byte = []byte("R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -1783,7 +1786,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -1810,7 +1813,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc"
+  val authCodePayload: ByteArray = "R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -1841,7 +1844,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -1864,7 +1867,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = 'MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc';
+const authCodePayload = 'R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -1885,7 +1888,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = 'MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc'
+auth_code_payload = 'R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -1903,7 +1906,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">MwMJ_oKImUP-0i9AoayhqQkZVIvoqB4XD2tCFKSdkIc</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8</code></pre>
 </div>
 </div>
 </div>
@@ -1969,7 +1972,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo"
+    byte[] authCodePayload = "PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -1996,7 +1999,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = 'jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo';
+$authCodePayload = 'PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -2017,7 +2020,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo'
+auth_code_payload = b'PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -2040,7 +2043,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo")
+	var authCodePayload []byte = []byte("PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -2068,7 +2071,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -2095,7 +2098,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo"
+  val authCodePayload: ByteArray = "PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -2126,7 +2129,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -2149,7 +2152,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = 'jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo';
+const authCodePayload = 'PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -2170,7 +2173,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = 'jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo'
+auth_code_payload = 'PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -2188,7 +2191,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">jAZDh7kk5jnasMMm33E28sBVE8q5QmRzhn0ylSSzBRo</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg</code></pre>
 </div>
 </div>
 </div>
@@ -2281,11 +2284,11 @@ puts auth_code</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "ACSP_V2";
     String rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -2315,11 +2318,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = 'ACSP_V2';
 $rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 $initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -2346,11 +2349,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = 'ACSP_V2'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -2382,11 +2385,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = "ACSP_V2"
 	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -2414,11 +2417,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "ACSP_V2";
     let rp_challenge: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -2447,11 +2450,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = "ACSP_V2"
     val rpChallenge: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
     val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -2485,11 +2488,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "ACSP_V2";
         string rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
         string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -2517,11 +2520,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = 'ACSP_V2';
 const rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -2546,11 +2549,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = 'ACSP_V2'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -2634,11 +2637,11 @@ puts auth_code_payload</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "RAW_DIGEST_SIGNATURE";
     String digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -2668,11 +2671,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = 'RAW_DIGEST_SIGNATURE';
 $digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 $initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -2699,11 +2702,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = 'RAW_DIGEST_SIGNATURE'
 digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -2735,11 +2738,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
 	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -2767,11 +2770,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "RAW_DIGEST_SIGNATURE";
     let digest: &amp;str = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -2800,11 +2803,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = "RAW_DIGEST_SIGNATURE"
     val digest: String = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
     val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -2838,11 +2841,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "RAW_DIGEST_SIGNATURE";
         string digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
         string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -2870,11 +2873,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = 'RAW_DIGEST_SIGNATURE';
 const digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -2899,11 +2902,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = 'RAW_DIGEST_SIGNATURE'
 digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -2987,11 +2990,11 @@ puts auth_code_payload</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "";
     String digest = "";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "";
     String initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -3021,11 +3024,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = '';
 $digest = '';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = '';
 $initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -3052,11 +3055,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = ''
 digest = ''
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = ''
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -3088,11 +3091,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = ""
 	var digest string = ""
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = ""
 	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -3120,11 +3123,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "";
     let digest: &amp;str = "";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "";
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -3153,11 +3156,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = ""
     val digest: String = ""
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = ""
     val initialCallbackUrl: String = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -3191,11 +3194,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "";
         string digest = "";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "";
         string initialCallbackUrl = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -3223,11 +3226,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = '';
 const digest = '';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = '';
 const initialCallbackUrl = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -3252,11 +3255,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = ''
 digest = ''
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = ''
 initial_callback_url = 'https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ'
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -3356,7 +3359,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0"
+    byte[] authCodePayload = "00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -3383,7 +3386,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = 'JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0';
+$authCodePayload = '00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -3404,7 +3407,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0'
+auth_code_payload = b'00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -3427,7 +3430,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0")
+	var authCodePayload []byte = []byte("00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -3455,7 +3458,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -3482,7 +3485,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0"
+  val authCodePayload: ByteArray = "00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -3513,7 +3516,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -3536,7 +3539,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = 'JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0';
+const authCodePayload = '00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -3557,7 +3560,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = 'JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0'
+auth_code_payload = '00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -3575,7 +3578,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">JvO5yOpliVhqQAHW4iVPx2_kGqizBE99iooupeqxbK0</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo</code></pre>
 </div>
 </div>
 </div>
@@ -3641,7 +3644,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU"
+    byte[] authCodePayload = "8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -3668,7 +3671,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = '1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU';
+$authCodePayload = '8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -3689,7 +3692,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU'
+auth_code_payload = b'8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -3712,7 +3715,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU")
+	var authCodePayload []byte = []byte("8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -3740,7 +3743,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -3767,7 +3770,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU"
+  val authCodePayload: ByteArray = "8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -3798,7 +3801,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -3821,7 +3824,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = '1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU';
+const authCodePayload = '8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -3842,7 +3845,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = '1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU'
+auth_code_payload = '8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -3860,7 +3863,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">1vUMZbjXusQdh0oCfmgdoNV_UZeWh0uIy9m-DIJhrOU</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM</code></pre>
 </div>
 </div>
 </div>
@@ -3926,7 +3929,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c"
+    byte[] authCodePayload = "AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -3953,7 +3956,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = '-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c';
+$authCodePayload = 'AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -3974,7 +3977,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c'
+auth_code_payload = b'AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -3997,7 +4000,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c")
+	var authCodePayload []byte = []byte("AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -4025,7 +4028,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -4052,7 +4055,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c"
+  val authCodePayload: ByteArray = "AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -4083,7 +4086,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -4106,7 +4109,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = '-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c';
+const authCodePayload = 'AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -4127,7 +4130,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = '-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c'
+auth_code_payload = 'AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -4145,7 +4148,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">-GAyjx30TDVzg8If4V97NII5d-61MOE3pr7uG0RCC8c</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU</code></pre>
 </div>
 </div>
 </div>
@@ -4253,11 +4256,11 @@ puts auth_code</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "ACSP_V2";
     String rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     String initialCallbackUrl = "";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -4287,11 +4290,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = 'ACSP_V2';
 $rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 $initialCallbackUrl = '';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -4318,11 +4321,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = 'ACSP_V2'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = ''
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -4354,11 +4357,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = "ACSP_V2"
 	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 	var initialCallbackUrl string = ""
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -4386,11 +4389,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "ACSP_V2";
     let rp_challenge: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     let initial_callback_url: &amp;str = "";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -4419,11 +4422,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = "ACSP_V2"
     val rpChallenge: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
     val initialCallbackUrl: String = ""
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -4457,11 +4460,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "ACSP_V2";
         string rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
         string initialCallbackUrl = "";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -4489,11 +4492,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = 'ACSP_V2';
 const rpChallenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 const initialCallbackUrl = '';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -4518,11 +4521,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = 'ACSP_V2'
 rp_challenge = 'GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = ''
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -4606,11 +4609,11 @@ puts auth_code_payload</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "RAW_DIGEST_SIGNATURE";
     String digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     String initialCallbackUrl = "";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -4640,11 +4643,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = 'RAW_DIGEST_SIGNATURE';
 $digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 $initialCallbackUrl = '';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -4671,11 +4674,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = 'RAW_DIGEST_SIGNATURE'
 digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = ''
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -4707,11 +4710,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
 	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
 	var initialCallbackUrl string = ""
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -4739,11 +4742,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "RAW_DIGEST_SIGNATURE";
     let digest: &amp;str = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
     let initial_callback_url: &amp;str = "";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -4772,11 +4775,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = "RAW_DIGEST_SIGNATURE"
     val digest: String = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
     val initialCallbackUrl: String = ""
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -4810,11 +4813,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "RAW_DIGEST_SIGNATURE";
         string digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d";
         string initialCallbackUrl = "";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -4842,11 +4845,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = 'RAW_DIGEST_SIGNATURE';
 const digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ==';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d';
 const initialCallbackUrl = '';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -4871,11 +4874,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = 'RAW_DIGEST_SIGNATURE'
 digest = 'FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=='
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = 'W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d'
 initial_callback_url = ''
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -4959,11 +4962,11 @@ puts auth_code_payload</code></pre>
     String schemeName = "smart-id";
     String signatureProtocol = "";
     String digest = "";
-    String relyingPartyNameBase64 = "QmFuayAxMjM=";
+    String relyingPartyNameBase64 = "REVNTw==";
     String brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
     String interactions = "";
     String initialCallbackUrl = "";
-    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    String unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     String[] payloadParts = {
       schemeName,
@@ -4993,11 +4996,11 @@ $separator = '|';
 $schemeName = 'smart-id';
 $signatureProtocol = '';
 $digest = '';
-$relyingPartyNameBase64 = 'QmFuayAxMjM=';
+$relyingPartyNameBase64 = 'REVNTw==';
 $brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 $interactions = '';
 $initialCallbackUrl = '';
-$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+$unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 $authCodePayload = implode($separator, [
     $schemeName,
@@ -5024,11 +5027,11 @@ echo $authCodePayload;
 scheme_name = 'smart-id'
 signature_protocol = ''
 digest = ''
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = ''
 initial_callback_url = ''
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = separator.join([
     scheme_name,
@@ -5060,11 +5063,11 @@ func main() {
 	var schemeName string = "smart-id"
 	var signatureProtocol string = ""
 	var digest string = ""
-	var relyingPartyNameBase64 string = "QmFuayAxMjM="
+	var relyingPartyNameBase64 string = "REVNTw=="
 	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
 	var interactions string = ""
 	var initialCallbackUrl string = ""
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -5092,11 +5095,11 @@ func main() {
     let scheme_name: &amp;str = "smart-id";
     let signature_protocol: &amp;str = "";
     let digest: &amp;str = "";
-    let relying_party_name_base64: &amp;str = "QmFuayAxMjM=";
+    let relying_party_name_base64: &amp;str = "REVNTw==";
     let brokered_rp_name_base64: &amp;str = "RXhhbXBsZSBSUA==";
     let interactions: &amp;str = "";
     let initial_callback_url: &amp;str = "";
-    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+    let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
     let auth_code_payload_parts: [&str; 7] = [
         scheme_name,
@@ -5125,11 +5128,11 @@ func main() {
     val schemeName: String = "smart-id"
     val signatureProtocol: String = ""
     val digest: String = ""
-    val relyingPartyNameBase64: String = "QmFuayAxMjM="
+    val relyingPartyNameBase64: String = "REVNTw=="
     val brokeredRpNameBase64: String = "RXhhbXBsZSBSUA=="
     val interactions: String = ""
     val initialCallbackUrl: String = ""
-    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+    val unprotectedDeviceLink: String = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
     val payloadParts: List&lt;String&gt; = listOf(
         schemeName,
@@ -5163,11 +5166,11 @@ public class AuthCodePayload
         string schemeName = "smart-id";
         string signatureProtocol = "";
         string digest = "";
-        string relyingPartyNameBase64 = "QmFuayAxMjM=";
+        string relyingPartyNameBase64 = "REVNTw==";
         string brokeredRpNameBase64 = "RXhhbXBsZSBSUA==";
         string interactions = "";
         string initialCallbackUrl = "";
-        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
+        string unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
         string[] payloadParts = {
             schemeName,
@@ -5195,11 +5198,11 @@ public class AuthCodePayload
 const schemeName = 'smart-id';
 const signatureProtocol = '';
 const digest = '';
-const relyingPartyNameBase64 = 'QmFuayAxMjM=';
+const relyingPartyNameBase64 = 'REVNTw==';
 const brokeredRpNameBase64 = 'RXhhbXBsZSBSUA==';
 const interactions = '';
 const initialCallbackUrl = '';
-const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
+const unprotectedDeviceLink = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng';
 
 const authCodePayload = [
     schemeName,
@@ -5224,11 +5227,11 @@ console.log(authCodePayload);</code></pre>
 scheme_name = 'smart-id'
 signature_protocol = ''
 digest = ''
-relying_party_name_base64 = 'QmFuayAxMjM='
+relying_party_name_base64 = 'REVNTw=='
 brokered_rp_name_base64 = 'RXhhbXBsZSBSUA=='
 interactions = ''
 initial_callback_url = ''
-unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
+unprotected_device_link = 'https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng'
 
 auth_code_payload = [
     scheme_name,
@@ -5328,7 +5331,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
+    byte[] authCodePayload = "OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -5355,7 +5358,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = 'lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk';
+$authCodePayload = 'OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -5376,7 +5379,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk'
+auth_code_payload = b'OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -5399,7 +5402,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk")
+	var authCodePayload []byte = []byte("OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -5427,7 +5430,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -5454,7 +5457,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk"
+  val authCodePayload: ByteArray = "OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -5485,7 +5488,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -5508,7 +5511,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = 'lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk';
+const authCodePayload = 'OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -5529,7 +5532,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = 'lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk'
+auth_code_payload = 'OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -5547,7 +5550,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">lGfD89xMYFmbSsItj5KbyjPn9JgT2dieRuMrSQS3BXk</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0</code></pre>
 </div>
 </div>
 </div>
@@ -5613,7 +5616,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI"
+    byte[] authCodePayload = "5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -5640,7 +5643,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = '3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI';
+$authCodePayload = '5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -5661,7 +5664,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI'
+auth_code_payload = b'5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -5684,7 +5687,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI")
+	var authCodePayload []byte = []byte("5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -5712,7 +5715,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -5739,7 +5742,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI"
+  val authCodePayload: ByteArray = "5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -5770,7 +5773,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -5793,7 +5796,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = '3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI';
+const authCodePayload = '5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -5814,7 +5817,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = '3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI'
+auth_code_payload = '5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -5832,7 +5835,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">3fXZ00X-tusoAVe5641iSkt6NyzhSeeerVzi4Ly2DLI</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco</code></pre>
 </div>
 </div>
 </div>
@@ -5898,7 +5901,7 @@ public class AuthCodeCalculator {
     byte[] sessionSecret = Base64.getDecoder()
       .decode(sessionSecretBase64);
 
-    byte[] authCodePayload = "C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro"
+    byte[] authCodePayload = "T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo"
       .getBytes(StandardCharsets.UTF_8);
 
     Mac sha256Hmac = Mac.getInstance("HmacSHA256");
@@ -5925,7 +5928,7 @@ public class AuthCodeCalculator {
 $sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 $sessionSecret = base64_decode($sessionSecretBase64);
 
-$authCodePayload = 'C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro';
+$authCodePayload = 'T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo';
 
 $authCodeBytes = hash_hmac('sha256', $authCodePayload, $sessionSecret, true);
 
@@ -5946,7 +5949,7 @@ import base64
 session_secret_base64 = b'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = base64.b64decode(session_secret_base64)
 
-auth_code_payload = b'C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro'
+auth_code_payload = b'T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo'
 
 auth_code_bytes = hmac.new(session_secret, auth_code_payload, hashlib.sha256).digest()
 
@@ -5969,7 +5972,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro")
+	var authCodePayload []byte = []byte("T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -5997,7 +6000,7 @@ fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
     let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
 
-    let auth_code_payload: &amp;[u8] = &amp;b"C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro"[..];
+    let auth_code_payload: &amp;[u8] = &amp;b"T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo"[..];
 
     let mut mac = Hmac::&lt;Sha256&gt;::new_from_slice(session_secret).expect("HMAC can take key of any size");
     mac.update(auth_code_payload);
@@ -6024,7 +6027,7 @@ fun main() {
   val sessionSecret: ByteArray = Base64.getDecoder()
     .decode(sessionSecretBase64)
 
-  val authCodePayload: ByteArray = "C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro"
+  val authCodePayload: ByteArray = "T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo"
     .toByteArray(StandardCharsets.UTF_8)
 
   val hmac: Mac = Mac.getInstance("HmacSHA256")
@@ -6055,7 +6058,7 @@ public class AuthCodeCalculator
     {
         string sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
         byte[] sessionSecret = Convert.FromBase64String(sessionSecretBase64);
-        byte[] authCodePayload = Encoding.UTF8.GetBytes("C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro");
+        byte[] authCodePayload = Encoding.UTF8.GetBytes("T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo");
 
         HMACSHA256 hmac = new HMACSHA256(sessionSecret);
         byte[] authCodeBytes = hmac.ComputeHash(authCodePayload);
@@ -6078,7 +6081,7 @@ public class AuthCodeCalculator
 const sessionSecretBase64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=';
 const sessionSecret = Buffer.from(sessionSecretBase64, 'base64');
 
-const authCodePayload = 'C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro';
+const authCodePayload = 'T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo';
 
 const hmac = crypto.createHmac('sha256', sessionSecret);
 hmac.update(authCodePayload);
@@ -6099,7 +6102,7 @@ require 'openssl'
 session_secret_base64 = 'B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps='
 session_secret = Base64.decode64(session_secret_base64)
 
-auth_code_payload = 'C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro'
+auth_code_payload = 'T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo'
 
 hmac = OpenSSL::HMAC.digest(
   'sha256', session_secret, auth_code_payload
@@ -6117,7 +6120,7 @@ puts auth_code</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">C6kDqVN94UM2dp82TTIs9apQhXnFM-CcFoyMx32Y4ro</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo</code></pre>
 </div>
 </div>
 </div>
@@ -6154,20 +6157,14 @@ puts auth_code</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessionSecret</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Generated by RP API. Used as the key in <code>authCode</code> calculation. Must be base64 decoded before use.</p>
+<p>Generated by RP API. Used as the key in <code>authCode</code> calculation. Must be Base64 decoded before use.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>schemeName</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Scheme name is defined by Smart-ID service and it ties the link to the Smart-ID context. Only allowed value is:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>smart-id</code></p>
-</li>
-</ul>
+<p>Scheme name is defined by Smart-ID service and it ties the link to the Smart-ID context.
+The <code>schemeName</code> value depends on the environment. See <a href="../environments.html" class="xref page">Environments</a> page for concrete values.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6222,7 +6219,7 @@ puts auth_code</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialCallbackUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Callback URL the Smart-ID app will add parameters to and launch after a successful signature has been given (only in Web2App and App2App flows). Must use <code>HTTPS</code> scheme.</p>
+<p>Callback URL the Smart-ID app will add parameters to and launch after a successful signature has been given (only in Web2App and App2App flows). Must use <code>HTTPS</code> scheme and there must not be URL fragments (<code>#</code>) in the URL.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -6418,7 +6415,8 @@ session_secret = Base64.decode64(session_secret_base64)</code></pre>
 <div class="sect2">
 <h3 id="_schemename_parameter"><a class="anchor" href="#_schemename_parameter"></a><code>schemeName</code> parameter</h3>
 <div class="paragraph">
-<p>Scheme name that ties the link to the Smart-ID context. Only one value is allowed <code>smart-id</code>.</p>
+<p>Scheme name that ties the link to the Smart-ID context.
+The <code>schemeName</code> value depends on the environment. See <a href="../environments.html" class="xref page">Environments</a> page for concrete values.</p>
 </div>
 <div class="exampleblock">
 <div class="title">Example 11. <code>schemeName</code> parameter</div>
@@ -6676,7 +6674,7 @@ puts relying_party_name_base64</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">QmFuayAxMjM=</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">REVNTw==</code></pre>
 </div>
 </div>
 </div>
@@ -6912,16 +6910,16 @@ puts brokered_rp_name_base64</code></pre>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>initialCallbackUrl</code> parameter specified by the RP in the initial request. Must use <code>HTTPS</code> scheme. In case of QR flows, must be empty. RPs <strong>must</strong> append a unique parameter to each session in the callback URL to make the URL unpredictable.</p>
+<p>The <code>initialCallbackUrl</code> parameter specified by the RP in the initial request. Must use <code>HTTPS</code> scheme. Must not have URL fragments (<code>#</code>). In case of QR flows, must be empty. RPs <strong>must</strong> append a unique parameter to each session in the callback URL to make the URL unpredictable.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">NOTE</div>
+<div class="title">TIP</div>
 <div class="paragraph">
 <p>The Smart-ID app will launch the callback URL after a successful signature has been obtained in Web2App and App2App flows. For verifying the callback URL once the user successfully completes the flow, see <a href="callback_urls.html" class="xref page">Callback URLs</a> page.</p>
 </div>
@@ -7096,16 +7094,16 @@ initial_callback_url_bytes = initial_callback_url.encode('UTF-8')</code></pre>
 <div class="openblock">
 <div class="content">
 <div class="paragraph">
-<p>The <code>initialCallbackUrl</code> parameter specified by the RP in the initial request. Must use <code>HTTPS</code> scheme. In case of QR flows, must be empty. RPs <strong>must</strong> append a unique parameter to each session in the callback URL to make the URL unpredictable.</p>
+<p>The <code>initialCallbackUrl</code> parameter specified by the RP in the initial request. Must use <code>HTTPS</code> scheme. Must not have URL fragments (<code>#</code>). In case of QR flows, must be empty. RPs <strong>must</strong> append a unique parameter to each session in the callback URL to make the URL unpredictable.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">NOTE</div>
+<div class="title">TIP</div>
 <div class="paragraph">
 <p>The Smart-ID app will launch the callback URL after a successful signature has been obtained in Web2App and App2App flows. For verifying the callback URL once the user successfully completes the flow, see <a href="callback_urls.html" class="xref page">Callback URLs</a> page.</p>
 </div>
@@ -7370,7 +7368,7 @@ initial_callback_url_bytes = initial_callback_url.encode('UTF-8')</code></pre>
 
     String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "Web2App";
-    String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
     String sessionType = "auth";
     String version = "1.0";
     String lang = "eng";
@@ -7395,7 +7393,7 @@ initial_callback_url_bytes = initial_callback_url.encode('UTF-8')</code></pre>
 
 $deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "Web2App";
-$sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+$sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 $sessionType = "auth";
 $version = "1.0";
 $lang = "eng";
@@ -7418,7 +7416,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "Web2App" # One of "Web2App", "App2App", "QR"
-session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
 lang = "eng"
@@ -7446,7 +7444,7 @@ import (
 func main() {
 	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "Web2App" // One of "Web2App", "App2App", "QR"
-	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
+	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
 	var sessionType string = "auth"
 	var version string = "1.0"
 	var lang string = "eng"
@@ -7469,7 +7467,7 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
     let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "Web2App"; // One of "Web2App", "App2App", "QR"
-    let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
     let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
@@ -7489,7 +7487,7 @@ func main() {
 fun main() {
     val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "Web2App"
-    val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
+    val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
     val sessionType: String = "auth"
     val version: String = "1.0"
     val lang: String = "eng"
@@ -7517,7 +7515,7 @@ public class UnprotectedDeviceLink
     {
         string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "Web2App";
-        string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+        string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
         string sessionType = "auth";
         string version = "1.0";
         string lang = "eng";
@@ -7540,7 +7538,7 @@ public class UnprotectedDeviceLink
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "Web2App";
-const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 const sessionType = "auth";
 const version = "1.0";
 const lang = "eng";
@@ -7561,7 +7559,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "Web2App" # One of "Web2App", "App2App", "QR"
-session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
 lang = "eng"
@@ -7584,7 +7582,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -7594,7 +7592,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=sign&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -7604,7 +7602,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=cert&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -7677,7 +7675,7 @@ puts unprotected_device_link</code></pre>
 
     String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "App2App";
-    String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
     String sessionType = "auth";
     String version = "1.0";
     String lang = "eng";
@@ -7702,7 +7700,7 @@ puts unprotected_device_link</code></pre>
 
 $deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "App2App";
-$sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+$sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 $sessionType = "auth";
 $version = "1.0";
 $lang = "eng";
@@ -7725,7 +7723,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "App2App" # One of "Web2App", "App2App", "QR"
-session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
 lang = "eng"
@@ -7753,7 +7751,7 @@ import (
 func main() {
 	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "App2App" // One of "Web2App", "App2App", "QR"
-	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
+	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
 	var sessionType string = "auth"
 	var version string = "1.0"
 	var lang string = "eng"
@@ -7776,7 +7774,7 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
     let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "App2App"; // One of "Web2App", "App2App", "QR"
-    let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
     let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
@@ -7796,7 +7794,7 @@ func main() {
 fun main() {
     val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "App2App"
-    val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
+    val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
     val sessionType: String = "auth"
     val version: String = "1.0"
     val lang: String = "eng"
@@ -7824,7 +7822,7 @@ public class UnprotectedDeviceLink
     {
         string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "App2App";
-        string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+        string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
         string sessionType = "auth";
         string version = "1.0";
         string lang = "eng";
@@ -7847,7 +7845,7 @@ public class UnprotectedDeviceLink
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "App2App";
-const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 const sessionType = "auth";
 const version = "1.0";
 const lang = "eng";
@@ -7868,7 +7866,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "App2App" # One of "Web2App", "App2App", "QR"
-session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
 lang = "eng"
@@ -7891,7 +7889,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -7901,7 +7899,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=sign&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -7911,7 +7909,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=cert&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -7986,7 +7984,7 @@ puts unprotected_device_link</code></pre>
     String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "QR";
     int elapsedSeconds = 22;
-    String sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
     String sessionType = "auth";
     String version = "1.0";
     String lang = "eng";
@@ -8013,7 +8011,7 @@ puts unprotected_device_link</code></pre>
 $deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "QR";
 $elapsedSeconds = 22;
-$sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+$sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 $sessionType = "auth";
 $version = "1.0";
 $lang = "eng";
@@ -8038,7 +8036,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "QR"
 elapsed_seconds = 22
-session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
 lang = "eng"
@@ -8068,7 +8066,7 @@ func main() {
 	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "QR"
 	var elapsedSeconds int = 22
-	var sessionToken string = "tw1hOWNAcw0wd-e9OalXV-Sr"
+	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
 	var sessionType string = "auth"
 	var version string = "1.0"
 	var lang string = "eng"
@@ -8093,7 +8091,7 @@ func main() {
     let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "QR";
     let elapsed_seconds: i32 = 22;
-    let session_token: &amp;str = "tw1hOWNAcw0wd-e9OalXV-Sr";
+    let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
     let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
@@ -8114,7 +8112,7 @@ fun main() {
     val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "QR"
     val elapsedSeconds: Int = 22
-    val sessionToken: String = "tw1hOWNAcw0wd-e9OalXV-Sr"
+    val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
     val sessionType: String = "auth"
     val version: String = "1.0"
     val lang: String = "eng"
@@ -8144,7 +8142,7 @@ public class UnprotectedDeviceLink
         string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "QR";
         int elapsedSeconds = 22;
-        string sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+        string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
         string sessionType = "auth";
         string version = "1.0";
         string lang = "eng";
@@ -8169,7 +8167,7 @@ public class UnprotectedDeviceLink
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "QR";
 const elapsedSeconds = 22;
-const sessionToken = "tw1hOWNAcw0wd-e9OalXV-Sr";
+const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 const sessionType = "auth";
 const version = "1.0";
 const lang = "eng";
@@ -8192,7 +8190,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "QR"
 elapsed_seconds = 22
-session_token = "tw1hOWNAcw0wd-e9OalXV-Sr"
+session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
 lang = "eng"
@@ -8216,7 +8214,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=auth&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -8226,7 +8224,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=sign&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=sign&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -8236,7 +8234,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&amp;sessionType=cert&amp;version=1.0&amp;lang=eng</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=cert&amp;version=1.0&amp;lang=eng</code></pre>
 </div>
 </div>
 </div>
@@ -8271,15 +8269,15 @@ puts unprotected_device_link</code></pre>
             --calc-panel-background: var(--calc-color-neutral-100);
             /* Define other variables scoped to the calculator */
             --calc-validation-error-color: #dc3545;
-            --calc-button-background-color: #ff3c12; /* User's custom color */
-            --calc-button-hover-background-color: #0066cc; /* User's custom color */
-            --calc-match-color: #339900; /* User's custom color */
-            --calc-mismatch-color: #ffeeee; /* User's custom color */
+            --calc-button-background-color: #ff3c12; /* custom color */
+            --calc-button-hover-background-color: #0066cc; /* custom color */
+            --calc-match-color: #339900; /* custom color */
+            --calc-mismatch-color: red;
             --calc-match-background-color: #d4edda;
             --calc-mismatch-background-color: #f8d7da;
             --calc-match-border-color: #c3e6cb;
             --calc-mismatch-border-color: #f5c6cb;
-    
+
             /* Add some base styles for the container itself if needed */
              margin: 1em 0; /* Example margin when embedded */
              line-height: 1.6;
@@ -8292,7 +8290,7 @@ puts unprotected_device_link</code></pre>
             color: #333;
             text-align: center;
         }
-    
+
         /* Prefix all previous rules */
         .authcode-calculator form {
             background-color: var(--calc-panel-background);
@@ -8342,7 +8340,6 @@ puts unprotected_device_link</code></pre>
             color: var(--calc-validation-error-color); /* Use scoped variable */
             font-weight: bold;
         }
-        .authcode-calculator label[for="useBrokeredRp"]::after,
         .authcode-calculator fieldset label::after {
              content: "";
          }
@@ -8374,12 +8371,6 @@ puts unprotected_device_link</code></pre>
             margin-right: 8px;
             vertical-align: middle;
         }
-         .authcode-calculator label[for="useBrokeredRp"] {
-             display: inline-block;
-             margin-top: 10px;
-             font-weight: normal;
-              vertical-align: middle;
-         }
          .authcode-calculator .form-group {
              margin-bottom: 15px;
          }
@@ -8430,7 +8421,7 @@ puts unprotected_device_link</code></pre>
         .authcode-calculator #comparisonResult { font-weight: bold; padding: 3px 6px; border-radius: 3px; display: inline-block; }
         .authcode-calculator .match { color: var(--calc-match-color); background-color: var(--calc-match-background-color); border: 1px solid var(--calc-match-border-color); }
         .authcode-calculator .mismatch { color: var(--calc-mismatch-color); background-color: var(--calc-mismatch-background-color); border: 1px solid var(--calc-mismatch-border-color); }
-    
+
         /* Prefixed utility classes if needed, though less common */
         .authcode-calculator .mt-1 { margin-top: 0.5rem; }
         .authcode-calculator .mb-1 { margin-bottom: 0.5rem; }
@@ -8470,7 +8461,6 @@ puts unprotected_device_link</code></pre>
             <label for="signatureProtocol" id="signatureProtocolLabel" class="required">Signature Protocol:</label>
             <select id="signatureProtocol">
                 <option value="ACSP_V2" selected>ACSP_V2</option>
-                <option value="ACSP_V1">ACSP_V1</option>
             </select>
              <span id="signatureProtocol-error" class="validation-error"></span>
         </div>
@@ -8483,14 +8473,10 @@ puts unprotected_device_link</code></pre>
 
         <div class="form-group">
             <label for="relyingPartyName" class="required">Relying Party Name:</label>
-            <input type="text" id="relyingPartyName" value="Bank 123">
+            <input type="text" id="relyingPartyName" value="DEMO">
              <span id="relyingPartyName-error" class="validation-error"></span>
         </div>
 
-        <div class="form-group">
-            <input type="checkbox" id="useBrokeredRp" checked>
-            <label for="useBrokeredRp">Use Brokered RP Name</label>
-        </div>
         <div id="brokeredRpContainer" class="form-group"> <label for="brokeredRpName">Brokered RP Name:</label> <input type="text" id="brokeredRpName" value="Example RP">
               <span id="brokeredRpName-error" class="validation-error"></span>
         </div>
@@ -8506,7 +8492,7 @@ puts unprotected_device_link</code></pre>
         </div>
         <div class="form-group">
             <label for="unprotectedDeviceLink" class="required">Unprotected Device Link:</label>
-            <input type="text" id="unprotectedDeviceLink" value="https://smart-id.com/device-link?deviceLinkType=Web2App&sessionToken=tw1hOWNAcw0wd-e9OalXV-Sr&sessionType=auth&version=1.0&lang=eng">
+            <input type="text" id="unprotectedDeviceLink" value="https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng">
              <span id="unprotectedDeviceLink-error" class="validation-error"></span>
         </div>
 
@@ -8521,16 +8507,16 @@ puts unprotected_device_link</code></pre>
 
     <div id="results" class="hidden"> <h2>Results</h2>
         <p><strong>Calculated Auth Code (Base64URL):</strong></p>
-        <code id="calculatedAuthCode"></code>
+        <span><code id="calculatedAuthCode"></code></span>
         <p><strong>Comparison Result:</strong> <span id="comparisonResult"></span></p>
         <p><strong>Payload Used for Calculation (Processed):</strong></p>
-        <code id="payloadUsed"></code>
+        <span><code id="payloadUsed"></code></span>
     </div>
 
     <script>
         const separator = '|';
         const calculatorContainer = document.querySelector('.authcode-calculator');
-    
+
         const form = document.getElementById('authForm');
         const sessionTypeRadios = calculatorContainer.querySelectorAll('input[name="sessionType"]');
         const sessionSecretInput = document.getElementById('sessionSecretBase64');
@@ -8542,7 +8528,6 @@ puts unprotected_device_link</code></pre>
         const challengeOrDigestLabel = document.getElementById('challengeOrDigestLabel');
         const challengeOrDigestInput = document.getElementById('challengeOrDigest');
         const relyingPartyNameInput = document.getElementById('relyingPartyName');
-        const useBrokeredRpCheckbox = document.getElementById('useBrokeredRp');
         const brokeredRpContainer = document.getElementById('brokeredRpContainer');
         const brokeredRpNameInput = document.getElementById('brokeredRpName');
         const brokeredRpNameLabel = brokeredRpContainer.querySelector('label');
@@ -8558,11 +8543,11 @@ puts unprotected_device_link</code></pre>
         const calculatedAuthCodeElement = document.getElementById('calculatedAuthCode');
         const comparisonResultElement = document.getElementById('comparisonResult');
         const payloadUsedElement = document.getElementById('payloadUsed');
-    
+
         function base64ToUint8Array(base64) { try { const binaryString = atob(base64); const len = binaryString.length; const bytes = new Uint8Array(len); for (let i = 0; i < len; i++) { bytes[i] = binaryString.charCodeAt(i); } return bytes; } catch (e) { console.error("Failed to decode Base64 string:", e); if (e instanceof DOMException && e.name === 'InvalidCharacterError') { throw new Error("Invalid character found in Base64 input string (likely the Session Secret). Please check the value."); } else { throw new Error("Invalid Base64 input string."); } } }
         function arrayBufferToBase64Url(buffer) { const bytes = new Uint8Array(buffer); let binary = ''; for (let i = 0; i < bytes.byteLength; i++) { binary += String.fromCharCode(bytes[i]); } let base64 = btoa(binary); return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
         function utf8ToBase64(str) { try { const bytes = new TextEncoder().encode(str); let binaryString = ''; bytes.forEach(byte => { binaryString += String.fromCharCode(byte); }); return btoa(binaryString); } catch (e) { console.error("Failed to encode string to Base64:", str, e); throw new Error("Could not encode one of the name fields to Base64."); } }
-    
+
         function updateInitialCallbackVisibility() {
             const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
             if (sessionType === 'authentication' && signatureProtocolSelect.value === 'ACSP_V1') {
@@ -8574,7 +8559,7 @@ puts unprotected_device_link</code></pre>
                  clearValidationError(initialCallbackUrlInput);
             }
         }
-    
+
         function updateFormForSessionType() {
             const selectedType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
             signatureProtocolGroup.classList.remove('hidden');
@@ -8610,30 +8595,10 @@ puts unprotected_device_link</code></pre>
                     signatureProtocolLabel.classList.remove('required');
                     break;
             }
-             toggleBrokeredRpRequiredStatus();
         }
-    
-        function toggleBrokeredRpRequiredStatus() {
-             if (useBrokeredRpCheckbox.checked && !brokeredRpContainer.classList.contains('hidden')) {
-                  brokeredRpNameLabel.classList.add('required');
-             } else {
-                  brokeredRpNameLabel.classList.remove('required');
-                  clearValidationError(brokeredRpNameInput);
-             }
-         }
-    
-        function toggleBrokeredRpInputVisibility() {
-            if (useBrokeredRpCheckbox.checked) {
-                brokeredRpContainer.classList.remove('hidden');
-            } else {
-                brokeredRpContainer.classList.add('hidden');
-                 clearValidationError(brokeredRpNameInput);
-            }
-             toggleBrokeredRpRequiredStatus();
-        }
-    
+
          function clearValidationError(inputElement) {
-              const errorEl = calculatorContainer.querySelector(`#${inputElement.id}-error`);
+              const errorEl = calculatorContainer.querySelector(`#${ inputElement.id }-error`);
               if (errorEl) errorEl.textContent = '';
               inputElement.classList.remove('invalid');
           }
@@ -8650,8 +8615,8 @@ puts unprotected_device_link</code></pre>
                 if (!el.closest('.form-group, #brokeredRpContainer')?.classList.contains('hidden')) {
                     if (!el.value.trim()) {
                         isValid = false;
-                        const errorEl = calculatorContainer.querySelector(`#${el.id}-error`);
-                        if (errorEl) errorEl.textContent = `${name} is required.`;
+                        const errorEl = calculatorContainer.querySelector(`#${ el.id }-error`);
+                        if (errorEl) errorEl.textContent = `${ name } is required.`;
                         el.classList.add('invalid');
                     }
                 }
@@ -8668,12 +8633,9 @@ puts unprotected_device_link</code></pre>
                    checkField({ el: challengeOrDigestInput, name: "Digest" });
                    checkField({ el: interactionsInput, name: "Interactions" });
                }
-              if (useBrokeredRpCheckbox.checked && !brokeredRpContainer.classList.contains('hidden')) {
-                   checkField({ el: brokeredRpNameInput, name: "Brokered RP Name" });
-               }
             return isValid;
         }
-    
+
         async function calculateAndCompareAuthCode() {
             if (!validateForm()) {
                 alert("Please fill in all required fields indicated by *.");
@@ -8684,26 +8646,26 @@ puts unprotected_device_link</code></pre>
             calculatedAuthCodeElement.textContent = '';
             comparisonResultElement.textContent = '';
             payloadUsedElement.textContent = '';
-    
+
             try {
                 const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
                 const sessionSecretBase64 = sessionSecretInput.value.trim();
                 const schemeName = schemeNameInput.value;
                 const relyingPartyName = relyingPartyNameInput.value;
-                const includeBrokeredRp = useBrokeredRpCheckbox.checked;
-                const brokeredRpName = includeBrokeredRp ? brokeredRpNameInput.value : null;
+                const includeBrokeredRp = true;
+                const brokeredRpName = includeBrokeredRp ? brokeredRpNameInput.value : '';
                 let initialCallbackUrl = initialCallbackUrlInput.value;
                 const unprotectedDeviceLink = unprotectedDeviceLinkInput.value;
                 const userInputAuthCode = authCodeInput.value.trim();
-    
+
                 const relyingPartyNameBase64 = utf8ToBase64(relyingPartyName);
-                const brokeredRpNameBase64 = includeBrokeredRp ? utf8ToBase64(brokeredRpName) : null;
-    
+                const brokeredRpNameBase64 = includeBrokeredRp ? utf8ToBase64(brokeredRpName) : '';
+
                 let authCodePayloadArray = [];
                 let signatureProtocol = '';
                 let challengeOrDigest = '';
                 let interactions = '';
-    
+
                 switch (sessionType) {
                     case 'authentication':
                         signatureProtocol = signatureProtocolSelect.value;
@@ -8711,7 +8673,7 @@ puts unprotected_device_link</code></pre>
                         interactions = interactionsInput.value;
                         if (signatureProtocol === 'ACSP_V1') { initialCallbackUrl = ''; }
                         authCodePayloadArray = [ schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64 ];
-                        if (includeBrokeredRp) authCodePayloadArray.push(brokeredRpNameBase64);
+                        authCodePayloadArray.push(brokeredRpNameBase64);
                         authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
                         break;
                     case 'signature':
@@ -8719,20 +8681,20 @@ puts unprotected_device_link</code></pre>
                         challengeOrDigest = challengeOrDigestInput.value;
                         interactions = interactionsInput.value;
                          authCodePayloadArray = [ schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64 ];
-                        if (includeBrokeredRp) authCodePayloadArray.push(brokeredRpNameBase64);
+                        authCodePayloadArray.push(brokeredRpNameBase64);
                         authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
                         break;
                     case 'certificate-choice':
                         signatureProtocol = ''; challengeOrDigest = ''; interactions = '';
                          authCodePayloadArray = [ schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64 ];
-                        if (includeBrokeredRp) authCodePayloadArray.push(brokeredRpNameBase64);
+                        authCodePayloadArray.push(brokeredRpNameBase64);
                         authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
                         break;
                 }
-    
+
                 const authCodePayload = authCodePayloadArray.join(separator);
                 payloadUsedElement.textContent = authCodePayload;
-    
+
                 const sessionSecretBytes = base64ToUint8Array(sessionSecretBase64);
                 const payloadBytes = new TextEncoder().encode(authCodePayload);
                 const cryptoKey = await window.crypto.subtle.importKey('raw', sessionSecretBytes, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
@@ -8743,19 +8705,17 @@ puts unprotected_device_link</code></pre>
                 else if (calculatedAuthCode === userInputAuthCode) { comparisonResultElement.textContent = "Match!"; comparisonResultElement.className = "match"; }
                 else { comparisonResultElement.textContent = "Mismatch!"; comparisonResultElement.className = "mismatch"; }
                 resultsDiv.classList.remove('hidden');
-    
+
             } catch (error) {
                 console.error("Error during AuthCode calculation:", error);
-                alert(`An error occurred during calculation: ${error.message}. Check the console for details.`);
+                alert(`An error occurred during calculation: ${ error.message }. Check the console for details.`);
                 resultsDiv.classList.add('hidden');
             }
         }
-    
+
         if (calculatorContainer) {
             updateFormForSessionType();
-            toggleBrokeredRpInputVisibility();
             sessionTypeRadios.forEach(radio => radio.addEventListener('change', updateFormForSessionType));
-            useBrokeredRpCheckbox.addEventListener('change', toggleBrokeredRpInputVisibility);
             signatureProtocolSelect.addEventListener('change', updateInitialCallbackVisibility);
             calculateButton.addEventListener('click', calculateAndCompareAuthCode);
         } else {

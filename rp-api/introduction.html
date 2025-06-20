@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+<div class="nav-container" data-component="rp-api" data-version="3.1.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -123,7 +123,7 @@
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="additional_security_measures.html">Additional security measures</a>
   </li>
 </ul>
   </li>
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.3</span>
+    <span class="version">3.1.4</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.3</a>
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="3.1.3/introduction.html">3.1.3</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -166,10 +169,10 @@
 <div class="sectionbody">
 <!-- Version (worktree) -->
 <div class="paragraph">
-<p>This document describes the relying party interface protocol of Smart-ID service and provides information for integration. The interface offers the entry point to Smart-ID main use cases, i.e. authentication and signing.</p>
+<p>This document describes the Relying Party interface protocol of Smart-ID service and provides information for integration. The interface offers the entry point to Smart-ID main use cases, i.e. authentication and signing.</p>
 </div>
 <div class="paragraph">
-<p>The main Smart-ID use case is of a relying party (RP) starting a session by calling the Smart-ID service RP API with a challenge when the user wishes to authenticate with the relying party&#8217;s service or a hash to create a digital signature.</p>
+<p>The main Smart-ID use case is of a Relying Party (RP) starting a session by calling the Smart-ID service RP API with a challenge when the user wishes to authenticate with the Relying Party&#8217;s service or a hash to create a digital signature.</p>
 </div>
 <div class="paragraph">
 <p>Depending on the chosen RP API endpoint, either the user scans a dynamic QR code or (in the same-device use case) the user clicks a link that launches the Smart-ID application, or the Smart-ID server sends a push notification to the application.</p>
@@ -178,13 +181,13 @@
 <p>The user then verifies the details of the transaction displayed by the Smart-ID application and confirms it.</p>
 </div>
 <div class="paragraph">
-<p>The Smart-ID application communicates with the Smart-ID server to generate the digital signature which makes it available for the relying party to be fetched.</p>
+<p>The Smart-ID application communicates with the Smart-ID server to generate the digital signature which makes it available for the Relying Party to be fetched.</p>
 </div>
 <div class="paragraph">
-<p>Meanwhile, the relying party has been waiting for a reply from the Smart-ID server using a long poll connection. In the case of success, it receives the signature and the user&#8217;s certificate to validate the result.</p>
+<p>Meanwhile, the Relying Party has been waiting for a reply from the Smart-ID server using a long poll connection. In the case of success, it receives the signature and the user&#8217;s certificate to validate the result.</p>
 </div>
 <div class="paragraph">
-<p>The service creates digital signatures as proof of authentication and signing. However, to create electronic signatures (ASiC-E with XAdES/CAdES signatures or PDF with PAdES signatures) the relying party must create the required document structure themselves, calculate the hash and have that signed using this API.</p>
+<p>The service creates digital signatures as proof of authentication and signing. However, to create electronic signatures (ASiC-E with XAdES/CAdES signatures or PDF with PAdES signatures) the Relying Party must create the required document structure themselves, calculate the hash and have that signed using this API.</p>
 </div>
 </div>
 </div>
@@ -197,7 +200,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>for cross-device use cases&#8201;&#8212;&#8201;dynamic QR codes that the user must scan;</p>
+<p>For cross-device use cases&#8201;&#8212;&#8201;dynamic QR codes that the user must scan;</p>
 </li>
 <li>
 <p>for same-device use cases where the user is visiting an RP webpage using a mobile browser&#8201;&#8212;&#8201;device links which the user must click;</p>
@@ -220,15 +223,21 @@
 <p>Device link based flows must always be used in the same-device use case for both usability and security reasons.</p>
 </div>
 <div class="paragraph">
-<p>Brokers of the Smart-ID service are treated similarly to relying parties and there is no extra configuration compared to previous RP API versions.</p>
+<p>Brokers of the Smart-ID service are treated similarly to Relying Parties (RPs) and there is no extra configuration compared to previous RP API versions.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_about_this_document"><a class="anchor" href="#_about_this_document"></a>About this document</h2>
+<h2 id="_security"><a class="anchor" href="#_security"></a>Security</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Throughout this document, there will be some blocks of text as shown below.</p>
+<p>Although Smart-ID service is a secure technology designed with security in mind, Relying Parties (RPs) need to consider potential risks which are associated with digital authentication and signing solutions. It is important that RPs implement additional security mechanisms to help users understand the context of their actions and protect them from possible attacks. For example, there might be a malicious phishing website controlled by attacker between user&#8217;s browser and the RP&#8217;s website.</p>
+</div>
+<div class="paragraph">
+<p>Throughout this integration guide, we describe effective security measures for mitigating attacks, however not all security measures are considered mandatory for all RPs. Nevertheless, there&#8217;s nobody else who can implement those defences and security measures on their behalf. It is the RP&#8217;s opportunity and responsibility to carefully assess these risks and select appropriate countermeasures to prevent cybercriminals from being successful in their actions.</p>
+</div>
+<div class="paragraph">
+<p>Throughout this document, there will be blocks of text as shown below.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -254,11 +263,32 @@
 <td class="content">
 <div class="title">NOTE</div>
 <div class="paragraph">
-<p>Note blocks present additional information and optional features. They also link to other related sections in the guide.</p>
+<p>Blocks that look like this present additional information and optional features.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">TIP</div>
+<div class="paragraph">
+<p>Blocks that look like this link to other related sections in the guide.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>Feedback</h3>
+<div class="paragraph">
+<p>All feedback to this document is appreciated. Please send it to the e-mail address <a href="mailto:support@smart-id.com?subject=Feedback%20on%20RP%20API%20integration%20document">support@smart-id.com</a>.</p>
+</div>
 </div>
 </div>
 </div>

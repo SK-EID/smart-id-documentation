@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+<div class="nav-container" data-component="rp-api" data-version="3.1.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -123,7 +123,7 @@
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="additional_security_measures.html">Additional security measures</a>
   </li>
 </ul>
   </li>
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.3</span>
+    <span class="version">3.1.4</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.3</a>
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="3.1.3/introduction.html">3.1.3</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -186,7 +189,7 @@
 <h2 id="_response_verification_steps"><a class="anchor" href="#_response_verification_steps"></a>Response verification steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following steps perform the response verification algorithm. Note that the algorithm is applicable to both authentication and signature session flows. Specific differences, such as the conditional execution of Steps 1 and 2, are noted within the steps.</p>
+<p>The following steps perform the response verification algorithm. Note that the algorithm is applicable to both authentication and signature session flows. Specific differences, such as the conditional execution of Steps 1 and 3, are noted within the steps.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -195,7 +198,10 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Calculate the SHA-256 digest of the <code>sessionSecret</code> string received in the initial request.</p>
+<p>Base64 decode the <code>sessionSecret</code> string received in the initial request.</p>
+</li>
+<li>
+<p>Calculate the SHA-256 digest of the Base64 decoded <code>sessionSecret</code> value.</p>
 </li>
 <li>
 <p>Encode the raw bytes of the calculated hash using Base64URL.</p>
@@ -205,25 +211,6 @@
 </li>
 <li>
 <p>Verify that this Base64URL encoded hash result exactly matches the <code>sessionSecretDigest</code> obtained from the callback URL.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>User challenge verification (applicable only for authentication sessions with flow type <code>Web2App</code> or <code>App2App</code>):</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Obtain the <code>userChallengeVerifier</code> value from the callback URL parameter visited by the user upon returning to the RP website or application.</p>
-</li>
-<li>
-<p>Calculate the SHA-256 digest of the received <code>userChallengeVerifier</code> string.</p>
-</li>
-<li>
-<p>Encode the raw bytes of the calculated hash using Base64URL.</p>
-</li>
-<li>
-<p>Verify that this Base64URL encoded hash result exactly matches the <code>signature.userChallenge</code> string provided in the JSON response&#8217;s signature object.</p>
 </li>
 </ol>
 </div>
@@ -243,6 +230,25 @@
 </li>
 <li>
 <p>Ensure the <code>cert</code>, <code>signature</code>, and <code>result</code> objects are present and not null.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>User challenge verification (applicable only for authentication sessions with flow type <code>Web2App</code> or <code>App2App</code>):</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Obtain the <code>userChallengeVerifier</code> value from the callback URL parameter visited by the user upon returning to the RP website or application.</p>
+</li>
+<li>
+<p>Calculate the SHA-256 digest of the received <code>userChallengeVerifier</code> string.</p>
+</li>
+<li>
+<p>Encode the raw bytes of the calculated hash using Base64URL.</p>
+</li>
+<li>
+<p>Verify that this Base64URL encoded hash result exactly matches the <code>signature.userChallenge</code> string provided in the JSON response&#8217;s signature object.</p>
 </li>
 </ol>
 </div>
@@ -383,7 +389,7 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Only for authentication session: Reconstruct the exact <code>ACSP_V2_payload</code> string that was signed, as described under <a href="signature_protocols.html#acsp_v2_digest_calculation" class="xref page"><code>ACSP_V2</code> digest calculation</a>. This is done by concatenating the fields in order, separated by the vertical bar character <code>'|' (U+007C)</code>:</p>
+<p>Only for authentication session: Reconstruct the exact <code>ACSP_V2_payload</code> string that was signed, as described under <a href="signature_protocols.html#acsp_v2_digest_calculation" class="xref page"><code>ACSP_V2</code> digest calculation</a>. This is done by concatenating the fields in order, separated by the vertical bar character <code>|</code> (U+007C):</p>
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">'smart-id'|'ACSP_V2'|serverRandom|rpChallenge|userChallenge|BASE64(relyingPartyName)|BASE64(brokeredRpName)|BASE64(SHA-256(interactions))|interactionTypeUsed|initialCallbackUrl|flowType</code></pre>
@@ -427,10 +433,10 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 </ol>
 </div>
 </li>
+<li>
+<p>After a successful action, the users should be able to view their actions or download the signed document. For more information, see <a href="additional_security_measures.html#allowing-users-to-verify-operations" class="xref page">Allowing users to verify operations</a> section.</p>
+</li>
 </ol>
-</div>
-<div class="paragraph">
-<p>For further details and security considerations see also the <a href="secure.html" class="xref page">Secure implementation guide</a>.</p>
 </div>
 </div>
 </div>

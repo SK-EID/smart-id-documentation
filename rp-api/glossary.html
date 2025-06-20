@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+<div class="nav-container" data-component="rp-api" data-version="3.1.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -123,7 +123,7 @@
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="additional_security_measures.html">Additional security measures</a>
   </li>
 </ul>
   </li>
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.3</span>
+    <span class="version">3.1.4</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.3</a>
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="3.1.3/introduction.html">3.1.3</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -164,6 +167,62 @@
 <h1 class="page">Glossary</h1>
 <div class="dlist glossary">
 <dl>
+<dt>ACSP</dt>
+<dd>
+<p>Authentication Context Signature Protocol (ACSP) is a protocol used in Smart-ID that allows a Relying Party to request a user&#8217;s digital signature on the specific details, or "context" of an authentication event.</p>
+</dd>
+<dt>ACSP_V2</dt>
+<dd>
+<p>Version 2 of the ACSP protocol.</p>
+</dd>
+<dt>App</dt>
+<dd>
+<p>RP&#8217;s mobile application running on a user&#8217;s device. The app is used to interact with the RP&#8217;s e-service and in the background, the app is communicating to the RP&#8217;s backend or website.</p>
+</dd>
+<dt>Authentication key pair (or authentication key)</dt>
+<dd>
+<p>Key pair that is used to digitally authenticate a person.</p>
+</dd>
+<dt>Certificate Authority (CA)</dt>
+<dd>
+<p>An entity that issues certificates for Smart-ID account owners.</p>
+</dd>
+<dt>Cross-device use case</dt>
+<dd>
+<p>Use cases that start from an RP in one device and continues with the Smart-ID app in a different device. These use cases are usually used with dynamic QR codes and notification flows.</p>
+</dd>
+<dt>Key pair</dt>
+<dd>
+<p>A Pair of keys that are required for digital signature scheme. There are two kinds of key pairs (or shortly, keys) in the Smart-ID system, authentication key pair and signature key pair. The word pair refers to the private and public keys of each key pair used in an asymmetric cryptographic algorithm, here RSA.</p>
+</dd>
+<dt>Mobile device</dt>
+<dd>
+<p>A tablet computer or smartphone that runs a mobile device operating system (Apple iOS, Google Android).</p>
+</dd>
+<dt>Person</dt>
+<dd>
+<p>A natural person who uses the Smart-ID system to authenticate herself to an RP and to issue digital signatures requested by RP.</p>
+</dd>
+<dt>Registration Authority (RA)</dt>
+<dd>
+<p>An entity responsible for recording or verifying some or all of the information (particularly the identities of subjects) needed by a CA to issue certificates and CRLs and to perform other certificate management functions.</p>
+</dd>
+<dt>Relying Party request</dt>
+<dd>
+<p>A request from an RP that requires some kind of operation in the Smart-ID backend system. It may or may not create a transaction.</p>
+</dd>
+<dt>Relying Party (RP)</dt>
+<dd>
+<p>An organization or service, for example a bank, that uses the Smart-ID service to authenticate its users and to get them to sign the documents.</p>
+</dd>
+<dt>Same-device use case</dt>
+<dd>
+<p>Use cases that start from an RP in one device and continues with the Smart-ID app in the same device.</p>
+</dd>
+<dt>Signature key pair (or signature key)</dt>
+<dd>
+<p>Key pair that is used to give digital signatures of a person.</p>
+</dd>
 <dt>Smart-ID account</dt>
 <dd>
 <p>A person has to register a Smart-ID account to use services provided by the Smart-ID system. Account binds a Smart-ID app instance (installed on a person&#8217;s mobile device) to a person&#8217;s identity in the Smart-ID system. In the course of account creation and registration, the identity of the account owner (person) is proofed by a Registration Authority (RA) and the relation between the identity and a key pair is certified by a Certificate Authority (CA). An account has a signature key pair and an authentication key pair.</p>
@@ -184,65 +243,17 @@
 <dd>
 <p>A technical and organizational environment that enables digital authentication and issuing of digital signatures of persons in an electronic environment. The Smart-ID system provides services that allow persons (Smart-ID account owners) to authenticate themselves to RPs, to give digital signatures requested by RPs, and to manage their Smart-ID accounts.</p>
 </dd>
-<dt>Authentication key pair (or authentication key)</dt>
-<dd>
-<p>Key pair that is used to digitally authenticate a person.</p>
-</dd>
-<dt>Certificate Authority (CA)</dt>
-<dd>
-<p>An entity that issues certificates for Smart-ID account owners.</p>
-</dd>
-<dt>Cross-device use case</dt>
-<dd>
-<p>Use cases that start from an RP in one device and continues with the Smart-ID app in a different device. These use cases are usually used with dynamic QR codes and notification flows.</p>
-</dd>
-<dt>Key pair</dt>
-<dd>
-<p>Pair of keys that are required for digital signature scheme. There are two kinds of key pairs (or shortly, keys) in the Smart-ID system, authentication key pair and signature key pair. The word pair refers to the private and public keys of each key pair used in an asymmetric cryptographic algorithm, here RSA.</p>
-</dd>
-<dt>Mobile device</dt>
-<dd>
-<p>A tablet computer or smartphone that runs a mobile device operating system (Apple iOS, Google Android).</p>
-</dd>
-<dt>Person</dt>
-<dd>
-<p>A natural person who uses the Smart-ID system to authenticate herself to an RP and to issue digital signatures requested by RP.</p>
-</dd>
-<dt>Registration Authority (RA)</dt>
-<dd>
-<p>An entity responsible for recording or verifying some or all of the information (particularly the identities of subjects) needed by a CA to issue certificates and CRLs and to perform other certificate management functions.</p>
-</dd>
-<dt>Relying Party (RP)</dt>
-<dd>
-<p>An organization or service, for example a bank, that uses the Smart-ID service to authenticate its users and to get them to sign the documents.</p>
-</dd>
-<dt>Website (e-service)</dt>
-<dd>
-<p>Information system built by RP and uses Mobile-ID or Smart-ID service to authenticate users and to create digital signatures. The website is integrated with the Mobile-ID RP API (<a href="https://github.com/SK-EID/MID" class="bare">https://github.com/SK-EID/MID</a>) or the Smart-ID RP API (<a href="https://github.com/SK-EID/smart-id-documentation" class="bare">https://github.com/SK-EID/smart-id-documentation</a>).</p>
-</dd>
-<dt>App</dt>
-<dd>
-<p>RP&#8217;s mobile application running on a user&#8217;s device. The app is used to interact with the RP&#8217;s e-service and in the background, the app is communicating to the RP&#8217;s backend or website.</p>
-</dd>
 <dt>Users</dt>
 <dd>
-<p>Natural persons with registered Mobile-ID/Smart-ID accounts. Users authenticate to the RP&#8217;s e-service and create digital signatures with the browser or the RP&#8217;s app.</p>
-</dd>
-<dt>Relying Party request</dt>
-<dd>
-<p>A request from an RP that requires some kind of operation in the Smart-ID backend system. It may or may not create a transaction.</p>
-</dd>
-<dt>Same-device use case</dt>
-<dd>
-<p>Use cases that start from an RP in one device and continues with the Smart-ID app in the same device.</p>
-</dd>
-<dt>Signature key pair (or signature key)</dt>
-<dd>
-<p>Key pair that is used to give digital signatures of a person.</p>
+<p>Natural persons with registered Smart-ID accounts. Users authenticate to the RP&#8217;s e-service and create digital signatures with the browser or the RP&#8217;s app.</p>
 </dd>
 <dt>Verification Code (VC)</dt>
 <dd>
 <p>Verification codes are 4 numbers shown to the user for notification based (authentication and signature) flows to let the user bind together the session on the browser or RP app and the authentication request on the Smart-ID app.</p>
+</dd>
+<dt>Website (e-service)</dt>
+<dd>
+<p>Information system built by RP and uses Smart-ID service to authenticate users and to create digital signatures. The website is integrated with the Smart-ID RP API (this documentation).</p>
 </dd>
 </dl>
 </div>

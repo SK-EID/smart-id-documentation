@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+<div class="nav-container" data-component="rp-api" data-version="3.1.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -123,7 +123,7 @@
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="additional_security_measures.html">Additional security measures</a>
   </li>
 </ul>
   </li>
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.3</span>
+    <span class="version">3.1.4</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.3</a>
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="3.1.3/introduction.html">3.1.3</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -192,23 +195,23 @@
 <div class="paragraph">
 <p>There are two types of flows that can be used in <code>v3/authentication/*</code>, <code>v3/signature/*</code> and <code>v3/signature/certificate-choice/*</code> sessions - the <a href="device_link_flows.html" class="xref page">device link based flow</a> and the <a href="notification_based_flows.html" class="xref page">notification based flow</a>.</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="title">IMPORTANT</div>
+<div class="title">NOTE</div>
 <div class="paragraph">
 <p>In order to improve security and prevent phishing attacks, it is recommended to only use device link based flows or only allow notification based flows on devices and browsers that have successfully completed a device link based flow beforehand. It is up to the RP to decide how to <strong>securely</strong> identify such devices/browsers and tie them to the Smart-ID <code>document-number</code> by utilizing browser cookies, local app storage or other means.</p>
+</div>
+<div class="paragraph">
+<p>For more details on additional security measures RPs can deploy, see the <a href="additional_security_measures.html" class="xref page">additional security measures</a> page.</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>For example using the User-Agent field for device/browser identification is <strong>not secure</strong> and should be avoided as it can be easily spoofed by a malicious party.</p>
 </div>
 <div class="paragraph">
 <p>There are different ways to reference users - via their issued identifier, a document number linking a specific account or even not at all (in case of device link based flows). The different object references are described on the <a href="api_specification.html" class="xref page">OpenAPI specification</a> page.</p>
@@ -247,7 +250,7 @@
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-142420621bfb88ad3af704818e74d80b8c97576b.svg"><img src="_images/flow-142420621bfb88ad3af704818e74d80b8c97576b.svg" alt="flow"></a>
+<a class="image" href="_images/flow-fcac824551ca97f2b4524198f90be09713c4aed9.svg"><img src="_images/flow-fcac824551ca97f2b4524198f90be09713c4aed9.svg" alt="flow"></a>
 </div>
 </div>
 </div>
@@ -284,7 +287,7 @@
 <h2 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Using the device link based flow with QR codes is the most secure option and should be preferred.</p>
+<p>Using the device link based flow is the most secure option and should be preferred.</p>
 </div>
 <div class="paragraph">
 <p>RP may call the anonymous device link based <code>authentication</code> session endpoint and display a dynamic QR code that the user must scan with the Smart-ID app or show a same-device (Web2App, App2App) link the user can interact with.</p>
@@ -409,7 +412,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The combination of device link based <code>certificate-choice</code> and notification based linked <code>signature</code> session endpoints provides the optimal user experience where Smart-ID app is launched only once and a VC code is not shown. If the <code>certificate-choice</code> session was completed using a same-device device link, after the flow is completed, the Smart-ID app will launch the <code>callbackUrl</code> <strong>given in the device link based <code>certificate-choice</code></strong>.</p>
+<p>The combination of device link based <code>certificate-choice</code> and notification based linked <code>signature</code> session endpoints provides the optimal user experience where Smart-ID app is launched only once and a verification code (VC) is not shown. If the <code>certificate-choice</code> session was completed using a same-device device link, after the flow is completed, the Smart-ID app will launch the <code>callbackUrl</code> <strong>given in the device link based <code>certificate-choice</code></strong>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -482,7 +485,7 @@
 <td class="content">
 <div class="title">IMPORTANT</div>
 <div class="paragraph">
-<p>Notification based <code>certificate-choice</code> <strong>cannot</strong> be connected to notification based linked <code>signature</code> session endpoint with <code>linkedSessionID</code>. If notification based <code>certificate-choice</code> is used, VC code must still be shown to the user, and in same-device use cases, there might be usability issues with VC being shown too fast or not being shown at all (this is especially problematic for interactions involving <code>confirmationMessageAndVerificationCodeChoice</code>).</p>
+<p>Notification based <code>certificate-choice</code> <strong>cannot</strong> be connected to notification based linked <code>signature</code> session endpoint with <code>linkedSessionID</code>. If notification based <code>certificate-choice</code> is used, verification code (VC) must still be shown to the user, and in same-device use cases, there might be usability issues with VC being shown too fast or not being shown at all (this is especially problematic for interactions involving <code>confirmationMessageAndVerificationCodeChoice</code>).</p>
 </div>
 </td>
 </tr>

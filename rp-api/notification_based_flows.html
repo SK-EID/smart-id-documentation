@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.3">
+<div class="nav-container" data-component="rp-api" data-version="3.1.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -123,7 +123,7 @@
     <a class="nav-link" href="response_verification.html">Response verification</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="secure.html">Secure Implementation Guide</a>
+    <a class="nav-link" href="additional_security_measures.html">Additional security measures</a>
   </li>
 </ul>
   </li>
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.3</span>
+    <span class="version">3.1.4</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.3</a>
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="3.1.3/introduction.html">3.1.3</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -165,17 +168,28 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In general, notification based flows are similar to the flows from RP API v2 in the sense that they rely on the push notifications mechanism. The main differences with regard to RP API v2 are:</p>
+<p>Notification based flows are flows that rely on the push notification mechanism to notify the Smart-ID app. In these flows, the RP website or app shows a verification code (VC) which the user must compare to the VC displayed on Smart-ID to match the authentication or signature session.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>For signature requests, verification codes are returned to the RP from server, not calculated by the RP;</p>
-</li>
-<li>
-<p>There are changes to the <a href="signature_protocols.html" class="xref page">signature protocols</a> of authentication and signature requests.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>To force the user to perform the verification, the RP can request the Smart-ID app to display three VCs (one correct code and two random codes) and the user is required to select the correct code which is displayed by the RP website or app. In case the user doesn&#8217;t choose the correct code, the Smart-ID app aborts the request.</p>
+</div>
+<div class="paragraph">
+<p>This can be requested in the Smart-ID RP API call using the <code>confirmationMessageAndVerificationCodeChoice</code> interaction type. For details of the <code>interactions</code> object, see <a href="interactions.html" class="xref page">Interactions</a> page.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">NOTE</div>
+<div class="paragraph">
+<p>In case of <a href="overview.html#same_device_use_cases" class="xref page">same-device use cases</a> where the recommended App2App or Web2App device link flow cannot be used for some reason, then in notification flows it is recommended to include a small delay after showing the verification code to user and before starting the transaction on the RP API. This way, the user has additional time to look at the verification code on the RP&#8217;s app before the push notification arrives.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Below, sequence diagrams are given along with explanations of the differences.</p>
@@ -190,7 +204,7 @@
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-93692ae68c61d534f90f2849ef8a5694ef91cc49.svg"><img src="_images/flow-93692ae68c61d534f90f2849ef8a5694ef91cc49.svg" alt="flow"></a>
+<a class="image" href="_images/flow-53709c326cd74dd4416093539340665ee7af6a51.svg"><img src="_images/flow-53709c326cd74dd4416093539340665ee7af6a51.svg" alt="flow"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -198,7 +212,7 @@
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-0e7cb1307813c9cfed4f5ad360af241c1adbdf72.svg"><img src="_images/flow-0e7cb1307813c9cfed4f5ad360af241c1adbdf72.svg" alt="flow"></a>
+<a class="image" href="_images/flow-74628f9b8fcc613f955edbf03be99fdb7e3ef41c.svg"><img src="_images/flow-74628f9b8fcc613f955edbf03be99fdb7e3ef41c.svg" alt="flow"></a>
 </div>
 </div>
 <div class="paragraph">
