@@ -312,7 +312,7 @@ It replaces parameters `displayText` and `requestProperties.vcChoice`.
   - `USER_REFUSED_VC_CHOICE`
   - `USER_REFUSED_CONFIRMATIONMESSAGE`
   - `USER_REFUSED_CONFIRMATIONMESSAGE_WITH_VC_CHOICE`
-  - `USER_REFUSED_CERT_CHOICE`
+  - ~~`USER_REFUSED_CERT_CHOICE`~~ - DEPRECATED on 2025-06-19
 - New parameter [Request properties](#236-request-properties) for API `/v2/certificatechoice` also
 - New option `shareMdClientIpAddress` for parameter `requestProperties`
 - Previously deprecated object reference `pno/:country/:national-identity-number`
@@ -889,8 +889,8 @@ getting the exact reason.
 choose the correct verification code.
 - `REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP` - user app version does not
 support any of the `allowedInteractionsOrder` interactions.
-- `USER_REFUSED_CERT_CHOICE` - user has multiple accounts and pressed Cancel on
-device choice screen on any device.
+- ~~`USER_REFUSED_CERT_CHOICE` - user has multiple accounts and pressed Cancel on
+device choice screen on any device.~~ - DEPRECATED on 2025-06-19
 - `USER_REFUSED_DISPLAYTEXTANDPIN` - user pressed Cancel on PIN screen. Can
 be from the most common `displayTextAndPIN` flow or from `verificationCodeChoice` flow
 when user chosen the right code and then pressed cancel on PIN screen.
