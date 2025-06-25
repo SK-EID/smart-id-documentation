@@ -246,7 +246,7 @@
 <p>Calculate <code>SHA-256</code> from the <code>rpChallenge</code>, extract 2 rightmost bytes from the result, interpret them as a big-endian unsigned integer and take the last 4 digits in decimal form for display. <code>SHA-256</code> must be used to calculate the VC.</p>
 </div>
 <div class="paragraph">
-<p>Please keep in mind that the rpChallenge is the real rpChallenge byte value (for example, the byte array returned from the <code>SecureRandom()</code> or equivalent method), not the Base64 encoded form used for transport or the popular hexadecimal representation.</p>
+<p>Please keep in mind that the <code>rpChallenge</code> is the real <code>rpChallenge</code> byte value (for example, the byte array returned from the <code>SecureRandom()</code> or equivalent method), not the Base64 encoded form used for transport or the popular hexadecimal representation.</p>
 </div>
 <div class="paragraph">
 <p>The VC value must be displayed to the user in the browser together with a message asking the end user to verify the code matches with the one displayed on their mobile device. The user must not proceed if these don&#8217;t match.</p>
