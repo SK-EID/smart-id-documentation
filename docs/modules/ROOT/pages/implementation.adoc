@@ -26,7 +26,7 @@ endif::[]
 
 == FAQ
 
-=== When I need to be ready with my integration?
+=== When do I need to be ready with my integration?
 Smart-ID RP API v1/v2 will remain working as is. Still we encourage you to start your developments to implement new end-user friendly and more secure usage https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html[flows].
 
 === Do new flows work with all Smart-ID app versions?
