@@ -2,7 +2,7 @@
 
 [TIP]
 ====
-Start your Smart-ID integration with new RP API v3.1 which is available in DEMO environment
+Start your Smart-ID integration with new 
 ifeval::["{service-name}" != ""]
 xref:rp-api:ROOT:introduction.adoc[RP-API v3.1 Implementation guide].
 endif::[]
@@ -10,19 +10,6 @@ ifeval::["{service-name}" == ""]
 https://sk-eid.github.io/smart-id-documentation/rp-api/[RP-API v3.1 Implementation guide].
 endif::[]
 ====
-
-== Timeline
-
-[cols="1,4a", options="header", stripes=odd, grid=none, frame=none]
-|===
-| Date | Description
-| 2025-05-16 | * [*] RP API v3.1 is available in demo
-| 2025-05-20 | * [*] RP API v3.1 documentation is available at https://sk-eid.github.io/smart-id-documentation/
-| 2025-05-22 | * [*] Android app v29 is available in DEMO (supports RP API v3.1)
-| 2025-06-10 | * [*] iOS app v29 is available in DEMO (supports RP API v3.1)
-| 2025-06-20 | * [*] RP API v3.1 is available in PRODUCTION 
-| 2025-06-20 | * [*] App v29 is publishing started 
-|===
 
 == FAQ
 
