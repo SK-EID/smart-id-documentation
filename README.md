@@ -1,5 +1,5 @@
 > [!IMPORTANT]  
-> Start your Smart-ID integration with new [RP-API v3 API](https://sk-eid.github.io/smart-id-documentation/rp-api/introduction.html) which is available in DEMO environment.
+> Start your Smart-ID integration with new [RP-API v3 API](https://sk-eid.github.io/smart-id-documentation/rp-api/introduction.html).
 
 ## Table of Contents
 
