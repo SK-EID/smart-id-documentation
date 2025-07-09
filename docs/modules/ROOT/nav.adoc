@@ -8,6 +8,7 @@
 *** xref:ROOT:ROOT:client_libraries.adoc[Client libraries]
 *** xref:ROOT:ROOT:logos.adoc[Logos]
 *** xref:ROOT:ROOT:test_accounts.adoc[Test accounts]
+**** xref:ROOT:ROOT:device_link_test_endpoint.adoc[Device link test endpoint]
 * xref:ROOT:ROOT:contact.adoc[Contact]
 ifeval::["{service-name}" != ""]
 * Relying Party API
