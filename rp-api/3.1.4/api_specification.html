@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OpenAPI specification :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/api_specification.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <link rel="stylesheet" href="../../_/css/api.css">
+    <script src="../../_/js/vendor/scalar-api-reference.js"></script>
+
+<link rel="icon" href="../../_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="../../_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-back">
+    <a href="./index.html" class="nav-back-link">
+        <svg class="nav-back-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" ariaHidden="true" role="presentation"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"></path></svg>
+        <span class="nav-back-text">Back to docs</span>
+    </a>
+</div>
+<div class="nav-container hide-nav-on-desktop" data-component="rp-api" data-version="3.1.4">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="introduction.html">Relying Party API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../device_link.html">Device-link fallback page</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../https_pinning.html">Implementing HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../logos.html">Logos</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../test_accounts.html">Test accounts</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../changes.html">Changes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api_specification.html">OpenAPI specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../additional_security_measures.html">Additional security measures</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Relying Party API</span>
+    <span class="version">3.1.4</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../index.html">Documentation</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../introduction.html">3.1.5</a>
+        </li>
+        <li class="version is-current">
+          <a href="introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="../3.1.3/introduction.html">3.1.3</a>
+        </li>
+        <li class="version">
+          <a href="../3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<div id="app"></div>
+
+<script>
+    Scalar.createApiReference('#app', {
+    url: '../_/static/RP-API_V3.yml',
+    showSidebar: true,
+    hideModels: true,
+    withDefaultFonts: false,
+    darkMode: false,
+    hideDarkModeToggle: true,
+    forceDarkModeState: 'light',
+    hideDarkModeToggle: true,
+    hideClientButton: true,
+    customCss: `
+    #app {
+        --scalar-color-1: var(--caption-font-color);
+        --scalar-color-2: var(--body-font-color);
+        --scalar-link-color: var(--link-font-color);
+        --scalar-link-color-hover: var(--link_hover-font-color);
+        --scalar-border-color: var(--panel-border-color);
+        --scalar-font: 'Inter Variable', sans-serif;
+        --scalar-font-code: 'Roboto Mono Variable', monospace;
+        --scalar-micro: 13px;
+    }
+
+    .scalar-app .dark-mode {
+        --scalar-background-1: var(--color-neutral-950);
+        --scalar-background-2: var(--pre-background);
+        --scalar-background-3: var(--color-neutral-900);
+        --scalar-border-color: var(--pre-border-color);
+    }
+
+    .scalar-app .introduction-section {
+        padding-top: 32px;
+    }
+
+    .scalar-app .section-header {
+        color: var(--heading-font-color);
+    }
+
+    .scalar-app .parameter-list-title,
+    .scalar-app .request-body-title {
+        color: var(--heading-font-color);
+        font-size: 1.125rem;
+        font-weight: var(--body-font-weight-semibold);
+    }
+
+    .scalar-app .introduction-section .section-header {
+        font-size: 1.875rem;
+        letter-spacing: -0.05rem;
+        margin-top: 4px;
+    }
+
+    .scalar-app .section-container {
+        padding: 0 40px;
+    }
+
+    .scalar-app .scalar .scalar-app-layout {
+        height: calc(100% - 48px);
+        max-width: calc(100% - 48px);
+        border-color: transparent;
+    }
+
+    .scalar-app .fade-request-section-content {
+        background: none;
+    }
+
+    .scalar-app .scalar .scalar-app-exit {
+        background: #00000096;
+    }
+
+    .scalar-app .markdown p {
+        line-height: 1.75;
+    }
+
+    .scalar-app .markdown h1,
+    .scalar-app .markdown h2,
+    .scalar-app .markdown h3,
+    .scalar-app .markdown h4,
+    .scalar-app .markdown h5,
+    .scalar-app .markdown h6,
+    .scalar-app .markdown p,
+    .scalar-app .markdown div,
+    .scalar-app .markdown img,
+    .scalar-app .markdown details,
+    .scalar-app .markdown summary,
+    .scalar-app .markdown ul,
+    .scalar-app .markdown ol,
+    .scalar-app .markdown table,
+    .scalar-app .markdown blockquote,
+    .scalar-app .markdown code {
+        margin: 16px 0;
+    }
+
+    .scalar-app .app-exit-button {
+        background: #00000098;
+    }
+
+    .scalar-app .app-exit-button:hover {
+        background: #000;
+    }
+
+    .scalar-app .darklight-reference {
+        display: none;
+    }
+
+    .scalar-app .show-more {
+        background-color: #fff;
+    }
+
+    .scalar-app .scalar-api-references-standalone-search {
+        padding: 72px 16px 8px 16px
+    }
+
+    .scalar-app .sidebar-pages {
+        padding: 8px 16px 64px 16px
+    }
+
+    .scalar-app .scalar-modal-search {
+        min-width: 960px;
+    }
+
+    .scalar-app .scalar-address-bar {
+        --scalar-address-bar-height: 40px;
+        width: 90%;
+    }
+
+    .scalar-app .address-bar-bg-states {
+        min-width: unset !important;
+        max-width: 100% !important;
+    }
+
+    @media screen and (max-width: 1000px) {
+
+        .scalar-app .scalar-api-references-standalone-search {
+            padding: 8px 16px 8px 16px
+        }
+
+        .scalar-app .sidebar-pages {
+            padding: 8px 16px 8px 16px
+        }
+
+        .scalar-app .section-container {
+            padding-inline: 0;
+        }
+
+        .scalar-app .section-container .section {
+            padding-inline: 16px;
+        }
+
+        .scalar-app .scalar-address-bar {
+            --scalar-address-bar-height: 32px;
+            padding-inline: 40px;
+            margin-top: -8px;
+            width: 100%;
+        }
+    }
+
+`,
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const backLinks = document.querySelectorAll('.nav-back-link');
+        const currentDomain = window.location.hostname;
+        backLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const referrer = document.referrer;
+                let referrerDomain = null;
+                if (referrer) {
+                    try {
+                        const referrerUrl = new URL(referrer);
+                        referrerDomain = referrerUrl.hostname;
+                    } catch (e) {
+                        console.error("Invalid referrer URL:", referrer, e);
+                        referrerDomain = null;
+                    }
+                }
+                const shouldFallbackToHref = history.length <= 1 || !referrer || referrerDomain !== currentDomain;
+                if (shouldFallbackToHref) {
+                    window.location.href = link.href;
+                } else {
+                    history.back();
+                }
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.addEventListener('click', function(event) {
+            const targetLink = event.target.closest('.sidebar-heading-link');
+            if (targetLink) {
+                event.preventDefault();
+                const url = targetLink.getAttribute('href');
+                if (url) {
+                    history.replaceState({}, '', url);
+                    window.location.replace(url);
+            }
+            }
+        });
+    });
+
+</script>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

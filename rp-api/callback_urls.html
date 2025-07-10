@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.4">
+<div class="nav-container" data-component="rp-api" data-version="3.1.5">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.4</span>
+    <span class="version">3.1.5</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.4</a>
+          <a href="introduction.html">3.1.5</a>
+        </li>
+        <li class="version">
+          <a href="3.1.4/introduction.html">3.1.4</a>
         </li>
         <li class="version">
           <a href="3.1.3/introduction.html">3.1.3</a>
@@ -170,6 +173,21 @@
 <div class="paragraph">
 <p>For device link flows that use a callback URL (Web2App and App2App links), the callback URL handling is very important to achieve a secure and phishing-resistant flow.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="paragraph">
+<p>If Web2App and App2App flows are used simultaneously, the <code>initialCallbackUrl</code> must be different for both flows, otherwise Web2App flows <code>callbackUrl</code> might wrongly end up in the RP app.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -190,7 +208,7 @@
 <p>RP website backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter as a query parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
 </li>
 <li>
-<p>RP website backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the callbackUrl.</p>
+<p>RP website backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the <code>callbackUrl</code>.</p>
 </li>
 <li>
 <p>Once the user has signed (or rejected the transaction), they are redirected to the callback URL address of RP website and their browser will have the same session cookie. Some aspects to take into account are:</p>
@@ -219,13 +237,19 @@
 <p>Verify that the user&#8217;s session cookie matches with the random parameter attached in the callback URL;</p>
 </li>
 <li>
+<p>Verify that the SHA-256 digest of the <code>sessionSecret</code> equals to <code>sessionSecretDigest</code> in the callback URL;</p>
+</li>
+<li>
 <p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value (as is, without Base64URL decoding), the result equals to the <code>userChallenge</code> within the <code>signature</code> object sent by the RP API in the session API response;</p>
 </li>
 <li>
 <p>Perform the response verification steps described in <a href="response_verification.html" class="xref page">Response verification</a> page. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
 </li>
 <li>
-<p>Invalidate the old user session and generate a new one.</p>
+<p>Invalidate the old user session and generate a new one. <code>callbackUrl</code> <strong>must</strong> be invalidated after use and must not be accepted after it is used once. <strong>Failing to invalidate the <code>callbackUrl</code> after use may leave the user vulnerable to a phishing attack.</strong></p>
+</li>
+<li>
+<p>Redirect the user to a new page and show authenticated session.</p>
 </li>
 </ul>
 </div>
@@ -277,7 +301,7 @@ however, there are also some differences in the steps below due to fundamental d
 <p>RP app backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter as a query parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
 </li>
 <li>
-<p>RP app backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the callbackUrl.</p>
+<p>RP app backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the <code>callbackUrl</code>.</p>
 </li>
 <li>
 <p>Once the user has signed (or rejected the transaction), they are redirected to the callback URL, which will cause RP app to open (for this to work, RP app has to be configured to handle that domain and path of the URL).</p>
@@ -299,13 +323,16 @@ however, there are also some differences in the steps below due to fundamental d
 <p>Verify that the user&#8217;s session identifier matches with the random parameter attached in the callback URL;</p>
 </li>
 <li>
+<p>Verify that the SHA-256 digest of the <code>sessionSecret</code> equals to <code>sessionSecretDigest</code> in the callback URL;</p>
+</li>
+<li>
 <p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value (as is, without Base64URL decoding), the result equals to the <code>userChallenge</code> within the <code>signature</code> object sent by the RP API in the session API response;</p>
 </li>
 <li>
 <p>Perform the response verification steps described in <a href="response_verification.html" class="xref page">Response verification</a> page. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
 </li>
 <li>
-<p>Invalidate the old user session and generate a new one.</p>
+<p>Invalidate the old user session and generate a new one. <code>callbackUrl</code> <strong>must</strong> be invalidated after use and must not be accepted after it is used once. <strong>Failing to invalidate the <code>callbackUrl</code> after use may leave the user vulnerable to a phishing attack.</strong></p>
 </li>
 </ul>
 </div>
@@ -326,6 +353,14 @@ however, there are also some differences in the steps below due to fundamental d
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="callback_urls_in_linked_notification_based_flows"><a class="anchor" href="#callback_urls_in_linked_notification_based_flows"></a>Callback URLs in linked notification based flows</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Linked notification based flows are used in cases where the certificate of the user is required before the digest to be signed can be generated. In these flows <code>callbackUrl</code> is required and it is supplied by the RP in the initial device link based certificate choice request. However, the <code>callbackUrl</code> is not immediately used after the certificate choice request, and is only used after the <code>/v3/signature/notification/linked</code> endpoint is called with the mandatory <code>linkedSessionID</code> parameter and the flow is completed.</p>
 </div>
 </div>
 </div>
@@ -365,7 +400,7 @@ however, there are also some differences in the steps below due to fundamental d
 <p>For both Web2App and App2App callback URLs, the checks described above provide complete phishing resistance. Always prefer device link flows if possible.</p>
 </div>
 <div class="paragraph">
-<p>For the response verification steps, see <a href="response_verification.html#_phishing_resistance" class="xref page">Response verification</a> page.</p>
+<p>For the response verification steps, see <a href="response_verification.html" class="xref page">Response verification</a> page.</p>
 </div>
 </div>
 </div>

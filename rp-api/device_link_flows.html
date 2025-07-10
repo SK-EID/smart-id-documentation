@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.4">
+<div class="nav-container" data-component="rp-api" data-version="3.1.5">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.4</span>
+    <span class="version">3.1.5</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.4</a>
+          <a href="introduction.html">3.1.5</a>
+        </li>
+        <li class="version">
+          <a href="3.1.4/introduction.html">3.1.4</a>
         </li>
         <li class="version">
           <a href="3.1.3/introduction.html">3.1.3</a>
@@ -438,7 +441,7 @@
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class DeviceLinkGenerator {
 
   public static void main(String[] args) {
-    String deviceLinkBase = "https://smart-id.com/device-link";
+    String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "Web2App";
     String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
     String sessionType = "auth";
@@ -465,7 +468,7 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$deviceLinkBase = "https://smart-id.com/device-link";
+$deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "Web2App";
 $sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 $sessionType = "auth";
@@ -490,7 +493,7 @@ echo $deviceLink;
 <div id="_tabs_1_python--panel" class="tabpanel" aria-labelledby="_tabs_1_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "Web2App" # One of "Web2App", "App2App"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
@@ -513,7 +516,7 @@ import (
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com/device-link"
+	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "Web2App" // One of "Web2App", "App2App"
 	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
 	var sessionType string = "auth"
@@ -537,7 +540,7 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let device_link_base: &amp;str = "https://smart-id.com/device-link";
+    let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "Web2App"; // One of "Web2App", "App2App"
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
@@ -556,7 +559,7 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
-    val deviceLinkBase: String = "https://smart-id.com/device-link"
+    val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "Web2App"
     val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
     val sessionType: String = "auth"
@@ -586,7 +589,7 @@ public class DeviceLinkGenerator
 {
     public static void Main(string[] args)
     {
-        string deviceLinkBase = "https://smart-id.com/device-link";
+        string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "Web2App";
         string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
         string sessionType = "auth";
@@ -611,7 +614,7 @@ public class DeviceLinkGenerator
 <div id="_tabs_1_node_js--panel" class="tabpanel" aria-labelledby="_tabs_1_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com/device-link";
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "Web2App";
 const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 const sessionType = "auth";
@@ -634,7 +637,7 @@ console.log(deviceLink);</code></pre>
 <div id="_tabs_1_ruby--panel" class="tabpanel" aria-labelledby="_tabs_1_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "Web2App" # One of "Web2App", "App2App"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
@@ -742,7 +745,7 @@ puts device_link</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class DeviceLinkGenerator {
 
   public static void main(String[] args) {
-    String deviceLinkBase = "https://smart-id.com/device-link";
+    String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "QR";
     int elapsedSeconds = 22;
     String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -771,7 +774,7 @@ puts device_link</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$deviceLinkBase = "https://smart-id.com/device-link";
+$deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "QR";
 $elapsedSeconds = 22;
 $sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -798,7 +801,7 @@ echo $deviceLink;
 <div id="_tabs_2_python--panel" class="tabpanel" aria-labelledby="_tabs_2_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "QR" # "QR"
 elapsed_seconds = 22
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -822,7 +825,7 @@ import (
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com/device-link"
+	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "QR" // "QR"
 	var elapsedSeconds int = 22
 	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -848,7 +851,7 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let device_link_base: &amp;str = "https://smart-id.com/device-link";
+    let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "QR"; // "QR"
     let elapsed_seconds: i32 = 22;
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -868,7 +871,7 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
-    val deviceLinkBase: String = "https://smart-id.com/device-link"
+    val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "QR"
     val elapsedSeconds: Int = 22
     val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -900,7 +903,7 @@ public class DeviceLinkGenerator
 {
     public static void Main(string[] args)
     {
-        string deviceLinkBase = "https://smart-id.com/device-link";
+        string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "QR";
         int elapsedSeconds = 22;
         string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -927,7 +930,7 @@ public class DeviceLinkGenerator
 <div id="_tabs_2_node_js--panel" class="tabpanel" aria-labelledby="_tabs_2_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com/device-link";
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "QR";
 const elapsedSeconds = 22;
 const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -952,7 +955,7 @@ console.log(deviceLink);</code></pre>
 <div id="_tabs_2_ruby--panel" class="tabpanel" aria-labelledby="_tabs_2_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "QR" # "QR"
 elapsed_seconds = 22
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -1614,235 +1617,220 @@ puts elapsed_seconds_str</code></pre>
 </div>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Generator</title>
     <style>
-        .qr-generator-app-wrapper {
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f2f5;
-            color: #ff3c12;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-        }
+      .qr-generator-app-wrapper {
+        --calc-white: #fff;
+        --calc-smoke-30: #fafafa;
+        --calc-smoke-90: #e1e1e1;
+        --calc-gray-30: #9c9c9c;
+        --calc-gray-70: #5d5d5d;
+        --calc-main-color: #ff3c12;
+        --calc-accent-color: #e97257;
+        --calc-validation-error-color: #e33;
+        --calc-validation-error-background-color: #fee;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: var(--calc-smoke-90);
+        color: var(--calc-main-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+      }
 
-        .qr-generator-app-wrapper .container {
-            background-color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: none;
-            min-width: 450px;
-        }
+      .qr-generator-app-wrapper .container {
+        background-color: var(--calc-white);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: none;
+        min-width: 450px;
+      }
 
-        .qr-generator-app-wrapper h2 {
-            color: #ff3c12;
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
+      .qr-generator-app-wrapper h2 {
+        color: var(--calc-main-color);
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 25px;
+      }
 
-        .qr-generator-app-wrapper label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #4b5563;
-        }
+      .qr-generator-app-wrapper label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--calc-gray-70);
+      }
 
-        .qr-generator-app-wrapper input[type="number"],
-        .qr-generator-app-wrapper textarea,
-        .qr-generator-app-wrapper select {
-            width: calc(100% - 24px); /* Account for padding */
-            padding: 12px;
-            margin-bottom: 18px;
-            border: 1px solid #ccd0d5;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
+      .qr-generator-app-wrapper input[type="number"],
+      .qr-generator-app-wrapper textarea,
+      .qr-generator-app-wrapper select {
+        width: calc(100% - 24px);
+        padding: 12px;
+        border: 1px solid var(--calc-gray-30);
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 16px;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        background-color: var(--calc-white);
+      }
 
-        .qr-generator-app-wrapper input[type="number"]:focus,
-        .qr-generator-app-wrapper textarea:focus,
-        .qr-generator-app-wrapper select:focus {
-            border-color: #ff3c12;
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-            outline: none;
-        }
+      .qr-generator-app-wrapper input[type="number"]:focus,
+      .qr-generator-app-wrapper textarea:focus,
+      .qr-generator-app-wrapper select:focus {
+        border-color: var(--calc-main-color);
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        outline: none;
+      }
 
-        .qr-generator-app-wrapper textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
+      .qr-generator-app-wrapper textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
 
-        .qr-generator-app-wrapper button {
-            background-color: #ff3c12;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            width: 100%;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+      .qr-generator-app-wrapper button {
+        background-color: var(--calc-main-color);
+        color: var(--calc-white);
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        width: 100%;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
 
-        .qr-generator-app-wrapper button:hover {
-            background-color: #e97257;
-        }
+      .qr-generator-app-wrapper button:hover {
+        background-color: var(--calc-accent-color);
+      }
 
-        .qr-generator-app-wrapper button:active {
-            background-color: #ff3c12;
-        }
+      .qr-generator-app-wrapper button:active {
+        background-color: var(--calc-main-color);
+      }
 
-        .qr-generator-app-wrapper #block-size-info {
-            margin-top: 10px;
-            padding: 4px 0; /* Reduced vertical padding, no horizontal for centered text */
-            background-color: transparent; /* Removes the background color */
-            border: none; /* Removes the border */
-            border-radius: 0; /* Removes rounded corners */
-            font-size: 0.9em;
-            color: #495057; /* Keeps the original text color, ensure it's readable */
-            text-align: center;
-        }
+      .qr-generator-app-wrapper #block-size-info {
+        margin-top: 10px;
+        padding: 4px 0;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        font-size: 0.9em;
+        color: var(--calc-gray-70);
+        text-align: center;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-        .qr-generator-app-wrapper #qrcode-container {
-            margin-top: 25px;
-            padding: 15px;
-            border: 1px dashed #ccd0d5;
-            border-radius: 6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100px; /* Placeholder height */
-            background-color: #f8f9fa;
-        }
+      .qr-generator-app-wrapper #qrcode-container {
+        margin-top: 25px;
+        padding: 15px;
+        border: 1px dashed var(--calc-smoke-90);
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        background-color: var(--calc-smoke-30);
+      }
 
-        .qr-generator-app-wrapper #qrcode-container svg {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
+      .qr-generator-app-wrapper #qrcode-container svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
 
-        .qr-generator-app-wrapper .form-group {
-            margin-bottom: 18px;
-        }
+      .qr-generator-app-wrapper .form-group,
+      .qr-generator-app-wrapper .form-group-inline {
+        margin-bottom: 18px;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-        .qr-generator-app-wrapper .form-group-inline {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 18px;
-        }
+      .qr-generator-app-wrapper .form-group-inline {
+        display: flex;
+        gap: 15px;
+      }
 
-        .qr-generator-app-wrapper .form-group-inline > div {
-            flex: 1;
-        }
+      .qr-generator-app-wrapper .form-group-inline>div {
+        flex: 1;
+      }
 
-        .qr-generator-app-wrapper .message {
-            text-align: center;
-            padding: 10px;
-            border-radius: 6px;
-        }
+      .qr-generator-app-wrapper .message {
+        text-align: center;
+        padding: 10px;
+        border-radius: 6px;
+      }
 
-        .qr-generator-app-wrapper .message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .qr-generator-app-wrapper .message.info {
-            background-color: #d1ecf1;
-            color: #ff3c12;
-            border: 1px solid #bee5eb;
-        }
-
-        .qr-generator-app-wrapper .form-group,
-        .qr-generator-app-wrapper .form-group-inline {
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .qr-generator-app-wrapper button#generate-qr {
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-
-        .qr-generator-app-wrapper #block-size-info {
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+      .qr-generator-app-wrapper .message.error {
+        color: var(--calc-validation-error-color);
+        border: 1px solid var(--calc-validation-error-color);
+        font-weight: bold;
+        background-color: var(--calc-validation-error-background-color);
+      }
     </style>
-</head>
-<body>
-
-<div class="qr-generator-app-wrapper">
-    <div class="container">
+  </head>
+  <body>
+    <div class="qr-generator-app-wrapper">
+      <div class="container">
         <h2>SVG QR Code Generator</h2>
-
         <div class="form-group">
-            <label for="qr-text">QR Link/Text:</label>
-            <textarea id="qr-text" name="qr-text" rows="6" placeholder="e.g., https://smart-id.com/device-link?..">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0</textarea>
+          <label for="qr-text">QR Link/Text:</label>
+          <textarea id="qr-text" name="qr-text" rows="6" placeholder="e.g., https://smart-id.com/device-link?..">https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng&amp;authCode=OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0</textarea>
         </div>
-
         <div class="form-group-inline">
-            <div>
-                <label for="qr-width">Width (px):</label>
-                <input type="number" id="qr-width" name="qr-width" value="400" min="50">
-            </div>
-            <div>
-                <label for="qr-height">Height (px):</label>
-                <input type="number" id="qr-height" name="qr-height" value="400" min="50">
-            </div>
+          <div>
+            <label for="qr-width">Width (px):</label>
+            <input type="number" id="qr-width" name="qr-width" value="400" min="50">
+          </div>
+          <div>
+            <label for="qr-height">Height (px):</label>
+            <input type="number" id="qr-height" name="qr-height" value="400" min="50">
+          </div>
         </div>
-
         <div class="form-group">
-            <label for="qr-ecl">Error Correction:</label>
-            <select id="qr-ecl" name="qr-ecl">
-                <option value="L">L (Low ~7%)</option>
-                <option value="M" selected>M (Medium ~15%)</option>
-            </select>
+          <label for="qr-ecl">Error Correction:</label>
+          <select id="qr-ecl" name="qr-ecl">
+            <option value="L">L (Low ~7%)</option>
+            <option value="M" selected>M (Medium ~15%)</option>
+          </select>
         </div>
-
         <button id="generate-qr">Generate QR Code</button>
-
         <div id="block-size-info" style="display: none;">Estimated block size: N/A</div>
-
         <div id="qrcode-container">
-            <div class="message info">QR code will appear here.</div>
+          <div class="message error">QR code will appear here.</div>
         </div>
+      </div>
     </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1/build/qrcode.min.js"></script>
-<script>
-    // Check if QRCode library is loaded
-    if (typeof QRCode === 'undefined') {
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1/build/qrcode.min.js"></script>
+    <script>
+      if (typeof QRCode === 'undefined') {
         console.error("Fatal Error: QRCode (from node-qrcode) library not loaded.");
         const qrCodeContainerError = document.getElementById('qrcode-container');
         if (qrCodeContainerError) {
-            qrCodeContainerError.innerHTML = '<div class="message error">Error: QR Code library (node-qrcode) failed to load. Please check your internet connection or contact support.</div>';
+          qrCodeContainerError.innerHTML = ' < div class = "message error" > Error: QR Code library(node - qrcode) failed to load.Please check your internet connection or contact support. < /div>';
         }
         const blockSizeInfoElementError = document.getElementById('block-size-info');
         if (blockSizeInfoElementError) {
-            blockSizeInfoElementError.textContent = 'Error: Library not loaded.';
-            blockSizeInfoElementError.style.display = 'block';
-            blockSizeInfoElementError.className = 'qr-generator-app-wrapper message error';
+          blockSizeInfoElementError.textContent = 'Error: Library not loaded.';
+          blockSizeInfoElementError.style.display = 'block';
+          blockSizeInfoElementError.className = 'qr-generator-app-wrapper message error';
         }
         const generateButtonError = document.getElementById('generate-qr');
-        if(generateButtonError) generateButtonError.disabled = true;
-    } else {
-        // Get DOM elements
+        if (generateButtonError) generateButtonError.disabled = true;
+      } else {
         const qrTextElement = document.getElementById('qr-text');
         const qrWidthElement = document.getElementById('qr-width');
         const qrHeightElement = document.getElementById('qr-height');
@@ -1851,119 +1839,105 @@ puts elapsed_seconds_str</code></pre>
         const qrCodeContainer = document.getElementById('qrcode-container');
         const blockSizeInfoElement = document.getElementById('block-size-info');
 
-        // Function to generate and display QR code
         function generateQrCode() {
-            if (typeof QRCode === 'undefined') {
-                displayMessage('QR Code library (node-qrcode) not loaded. Cannot generate QR code.', 'error');
-                blockSizeInfoElement.textContent = 'Error: Library not loaded.';
-                blockSizeInfoElement.style.display = 'block';
-                blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
-                return;
+          if (typeof QRCode === 'undefined') {
+            displayError('QR Code library (node-qrcode) not loaded. Cannot generate QR code.');
+            blockSizeInfoElement.textContent = 'Error: Library not loaded.';
+            blockSizeInfoElement.style.display = 'block';
+            blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
+            return;
+          }
+          const text = qrTextElement.value.trim();
+          const width = parseInt(qrWidthElement.value, 10);
+          const height = parseInt(qrHeightElement.value, 10);
+          const ecl = qrEclElement.value;
+          const marginModules = 4;
+          qrCodeContainer.innerHTML = '';
+          blockSizeInfoElement.style.display = 'none';
+          blockSizeInfoElement.className = 'qr-generator-app-wrapper';
+          blockSizeInfoElement.textContent = 'Estimated block size: N/A';
+          if (!text) {
+            displayError('Please enter some text or a URL for the QR code.');
+            return;
+          }
+          if (isNaN(width) || width <= 0 || isNaN(height) || height <= 0) {
+            displayError('Please enter valid positive numbers for width and height.');
+            return;
+          }
+          try {
+            const qrData = QRCode.create(text, {
+              errorCorrectionLevel: ecl
+            });
+            const moduleCount = qrData.modules.size;
+            if (moduleCount > 0) {
+              const totalModulesAcross = moduleCount + (2 * marginModules);
+              const estimatedBlockSize = width / totalModulesAcross;
+              blockSizeInfoElement.textContent = `Estimated block size: ~${estimatedBlockSize.toFixed(2)} px`;
+              blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
+            } else {
+              blockSizeInfoElement.textContent = 'Could not determine module count for block size.';
+              blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
             }
-
-            const text = qrTextElement.value.trim();
-            const width = parseInt(qrWidthElement.value, 10);
-            const height = parseInt(qrHeightElement.value, 10);
-            const ecl = qrEclElement.value;
-            const marginModules = 4; // This is the quiet zone margin
-
-            // Clear previous QR code or message
-            qrCodeContainer.innerHTML = '';
-            blockSizeInfoElement.style.display = 'none';
-            blockSizeInfoElement.className = 'qr-generator-app-wrapper'; // Reset class
-            blockSizeInfoElement.textContent = 'Estimated block size: N/A';
-
-            if (!text) {
-                displayMessage('Please enter some text or a URL for the QR code.', 'error');
-                return;
-            }
-            if (isNaN(width) || width <= 0 || isNaN(height) || height <= 0) {
-                displayMessage('Please enter valid positive numbers for width and height.', 'error');
-                return;
-            }
-
-            try {
-                const qrData = QRCode.create(text, { errorCorrectionLevel: ecl });
-                const moduleCount = qrData.modules.size;
-                if (moduleCount > 0) {
-                    const totalModulesAcross = moduleCount + (2 * marginModules);
-                    const estimatedBlockSize = width / totalModulesAcross;
-                    blockSizeInfoElement.textContent = `Estimated block size: ~${estimatedBlockSize.toFixed(2)} px`;
-                    blockSizeInfoElement.className = 'qr-generator-app-wrapper message info';
-                } else {
-                    blockSizeInfoElement.textContent = 'Could not determine module count for block size.';
-                    blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
-                }
-                blockSizeInfoElement.style.display = 'block';
-
-                const options = {
-                    type: 'svg',
-                    width: width,
-                    errorCorrectionLevel: ecl,
-                    margin: marginModules,
-                    color: {
-                        dark: "#000000",
-                        light: "#ffffff"
-                    }
-                };
-
-                // Generate QR code as an SVG string
-                QRCode.toString(text, options, (err, svgString) => {
-                    if (err) {
-                        console.error("QR Code Generation Error:", err);
-                        let errorMessage = 'Could not generate QR code.';
-                        if (err.message && err.message.toLowerCase().includes("data too long")) {
-                            errorMessage = "Data is too long for QR code generation at the current error correction level. Try less data or a lower ECL.";
-                        } else if (err instanceof Error) {
-                            errorMessage += ` Error: ${err.message}`;
-                        }
-                        displayMessage(errorMessage, 'error');
-                        blockSizeInfoElement.textContent = 'Error generating QR.';
-                        blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
-                        return;
-                    }
-
-                    qrCodeContainer.innerHTML = svgString;
-
-                    // Adjust height to match user input
-                    const svgElement = qrCodeContainer.querySelector('svg');
-                    if (svgElement) {
-                        svgElement.setAttribute('height', height + 'px');
-                    }
-                });
-
-            } catch (error) {
-                console.error("QR Code Creation Error:", error);
+            blockSizeInfoElement.style.display = 'block';
+            const options = {
+              type: 'svg',
+              width: width,
+              errorCorrectionLevel: ecl,
+              margin: marginModules,
+              color: {
+                dark: "#000000",
+                light: "#ffffff"
+              }
+            };
+            QRCode.toString(text, options, (err, svgString) => {
+              if (err) {
+                console.error("QR Code Generation Error:", err);
                 let errorMessage = 'Could not generate QR code.';
-                 if (error.message && (error.message.toLowerCase().includes("data too long") || error.message.toLowerCase().includes("code length overflow"))) {
-                    errorMessage = "Data is too long for QR code generation at the current error correction level. Try less data or a lower ECL.";
-                } else if (error instanceof Error) {
-                    errorMessage += ` Error: ${ error.message }`;
+                if (err.message && err.message.toLowerCase().includes("data too long")) {
+                  errorMessage = "Data is too long for QR code generation at the current error correction level. Try less data or a lower ECL.";
+                } else if (err instanceof Error) {
+                  errorMessage += ` Error: ${err.message}`;
                 }
-                displayMessage(errorMessage, 'error');
+                displayError(errorMessage);
                 blockSizeInfoElement.textContent = 'Error generating QR.';
-                blockSizeInfoElement.style.display = 'block';
                 blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
+                return;
+              }
+              qrCodeContainer.innerHTML = svgString;
+              const svgElement = qrCodeContainer.querySelector('svg');
+              if (svgElement) {
+                svgElement.setAttribute('height', height + 'px');
+              }
+            });
+          } catch (error) {
+            console.error("QR Code Creation Error:", error);
+            let errorMessage = 'Could not generate QR code.';
+            if (error.message && (error.message.toLowerCase().includes("data too long") || error.message.toLowerCase().includes("code length overflow"))) {
+              errorMessage = "Data is too long for QR code generation at the current error correction level. Try less data or a lower ECL.";
+            } else if (error instanceof Error) {
+              errorMessage += ` Error: ${ error.message }`;
             }
+            displayError(errorMessage);
+            blockSizeInfoElement.textContent = 'Error generating QR.';
+            blockSizeInfoElement.style.display = 'block';
+            blockSizeInfoElement.className = 'qr-generator-app-wrapper message error';
+          }
         }
 
-        function displayMessage(message, type = 'info') {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${ type }`;
-            messageDiv.textContent = message;
-            qrCodeContainer.innerHTML = '';
-            qrCodeContainer.appendChild(messageDiv);
+        function displayError(message) {
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `message error`;
+          messageDiv.textContent = message;
+          qrCodeContainer.innerHTML = '';
+          qrCodeContainer.appendChild(messageDiv);
         }
-
         generateButton.addEventListener('click', generateQrCode);
-
         document.addEventListener('DOMContentLoaded', () => {
-            generateQrCode();
+          generateQrCode();
         });
-    }
-</script>
-
-</body>
+      }
+    </script>
+  </body>
 </html>
 </div>
 </div>

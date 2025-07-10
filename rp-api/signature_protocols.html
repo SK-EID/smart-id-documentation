@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.4">
+<div class="nav-container" data-component="rp-api" data-version="3.1.5">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.4</span>
+    <span class="version">3.1.5</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.4</a>
+          <a href="introduction.html">3.1.5</a>
+        </li>
+        <li class="version">
+          <a href="3.1.4/introduction.html">3.1.4</a>
         </li>
         <li class="version">
           <a href="3.1.3/introduction.html">3.1.3</a>
@@ -971,6 +974,24 @@ puts Base64.strict_encode64(digest)</code></pre>
 </div>
 <div class="paragraph">
 <p>Full verification of the signature and response is described in <a href="response_verification.html" class="xref page">Response verification</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">NOTE</div>
+<div class="paragraph">
+<p>When integrating with Smart-ID RP API for electronic signing, note that RP API v3 and above only supports <code>RSASSA-PSS</code> signature scheme. Previous versions supported only the legacy <code>RSASSA-PKCS1-v1_5</code> signature scheme.</p>
+</div>
+<div class="paragraph">
+<p>Some national signature container formats do not support <code>RSASSA-PSS</code> and if alternatives are not available (such as the ASiC format that is internationally recognized), previous RP API versions might have to be used to obtain <code>RSASSA-PKCS1-v1_5</code> signatures.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

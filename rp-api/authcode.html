@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.4">
+<div class="nav-container" data-component="rp-api" data-version="3.1.5">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -133,7 +133,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.4</span>
+    <span class="version">3.1.5</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +143,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.4</a>
+          <a href="introduction.html">3.1.5</a>
+        </li>
+        <li class="version">
+          <a href="3.1.4/introduction.html">3.1.4</a>
         </li>
         <li class="version">
           <a href="3.1.3/introduction.html">3.1.3</a>
@@ -6219,7 +6222,7 @@ The <code>schemeName</code> value depends on the environment. See <a href="../en
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialCallbackUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Callback URL the Smart-ID app will add parameters to and launch after a successful signature has been given (only in Web2App and App2App flows). Must use <code>HTTPS</code> scheme and there must not be URL fragments (<code>#</code>) in the URL.</p>
+<p>Callback URL the Smart-ID app will add parameters to and launch after a successful signature has been given (only in Web2App and App2App flows). Must use <code>HTTPS</code> scheme and there must not be URL fragments (<code>#</code>) in the URL. Must be different URLs in App2App and Web2App flows.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -7366,7 +7369,7 @@ initial_callback_url_bytes = initial_callback_url.encode('UTF-8')</code></pre>
 
   public static void main(String[] args) {
 
-    String deviceLinkBase = "https://smart-id.com/device-link";
+    String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "Web2App";
     String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
     String sessionType = "auth";
@@ -7391,7 +7394,7 @@ initial_callback_url_bytes = initial_callback_url.encode('UTF-8')</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$deviceLinkBase = "https://smart-id.com/device-link";
+$deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "Web2App";
 $sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 $sessionType = "auth";
@@ -7414,7 +7417,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div id="_tabs_33_python--panel" class="tabpanel" aria-labelledby="_tabs_33_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "Web2App" # One of "Web2App", "App2App", "QR"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
@@ -7442,7 +7445,7 @@ import (
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com/device-link"
+	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "Web2App" // One of "Web2App", "App2App", "QR"
 	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
 	var sessionType string = "auth"
@@ -7465,7 +7468,7 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let device_link_base: &amp;str = "https://smart-id.com/device-link";
+    let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "Web2App"; // One of "Web2App", "App2App", "QR"
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
@@ -7485,7 +7488,7 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">package main
 
 fun main() {
-    val deviceLinkBase: String = "https://smart-id.com/device-link"
+    val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "Web2App"
     val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
     val sessionType: String = "auth"
@@ -7513,7 +7516,7 @@ public class UnprotectedDeviceLink
 {
     public static void Main(string[] args)
     {
-        string deviceLinkBase = "https://smart-id.com/device-link";
+        string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "Web2App";
         string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
         string sessionType = "auth";
@@ -7536,7 +7539,7 @@ public class UnprotectedDeviceLink
 <div id="_tabs_33_node_js--panel" class="tabpanel" aria-labelledby="_tabs_33_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com/device-link";
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "Web2App";
 const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 const sessionType = "auth";
@@ -7557,7 +7560,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div id="_tabs_33_ruby--panel" class="tabpanel" aria-labelledby="_tabs_33_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "Web2App" # One of "Web2App", "App2App", "QR"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
@@ -7673,7 +7676,7 @@ puts unprotected_device_link</code></pre>
 
   public static void main(String[] args) {
 
-    String deviceLinkBase = "https://smart-id.com/device-link";
+    String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "App2App";
     String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
     String sessionType = "auth";
@@ -7698,7 +7701,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$deviceLinkBase = "https://smart-id.com/device-link";
+$deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "App2App";
 $sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 $sessionType = "auth";
@@ -7721,7 +7724,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div id="_tabs_34_python--panel" class="tabpanel" aria-labelledby="_tabs_34_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "App2App" # One of "Web2App", "App2App", "QR"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
@@ -7749,7 +7752,7 @@ import (
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com/device-link"
+	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "App2App" // One of "Web2App", "App2App", "QR"
 	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
 	var sessionType string = "auth"
@@ -7772,7 +7775,7 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let device_link_base: &amp;str = "https://smart-id.com/device-link";
+    let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "App2App"; // One of "Web2App", "App2App", "QR"
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
@@ -7792,7 +7795,7 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">package main
 
 fun main() {
-    val deviceLinkBase: String = "https://smart-id.com/device-link"
+    val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "App2App"
     val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
     val sessionType: String = "auth"
@@ -7820,7 +7823,7 @@ public class UnprotectedDeviceLink
 {
     public static void Main(string[] args)
     {
-        string deviceLinkBase = "https://smart-id.com/device-link";
+        string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "App2App";
         string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
         string sessionType = "auth";
@@ -7843,7 +7846,7 @@ public class UnprotectedDeviceLink
 <div id="_tabs_34_node_js--panel" class="tabpanel" aria-labelledby="_tabs_34_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com/device-link";
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "App2App";
 const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 const sessionType = "auth";
@@ -7864,7 +7867,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div id="_tabs_34_ruby--panel" class="tabpanel" aria-labelledby="_tabs_34_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "App2App" # One of "Web2App", "App2App", "QR"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
@@ -7981,7 +7984,7 @@ puts unprotected_device_link</code></pre>
 
   public static void main(String[] args) {
 
-    String deviceLinkBase = "https://smart-id.com/device-link";
+    String deviceLinkBase = "https://smart-id.com";
     String deviceLinkType = "QR";
     int elapsedSeconds = 22;
     String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -8008,7 +8011,7 @@ puts unprotected_device_link</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
-$deviceLinkBase = "https://smart-id.com/device-link";
+$deviceLinkBase = "https://smart-id.com";
 $deviceLinkType = "QR";
 $elapsedSeconds = 22;
 $sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -8033,7 +8036,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div id="_tabs_35_python--panel" class="tabpanel" aria-labelledby="_tabs_35_python">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
 device_link_type = "QR"
 elapsed_seconds = 22
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -8063,7 +8066,7 @@ import (
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com/device-link"
+	var deviceLinkBase string = "https://smart-id.com"
 	var deviceLinkType string = "QR"
 	var elapsedSeconds int = 22
 	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -8088,7 +8091,7 @@ func main() {
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
-    let device_link_base: &amp;str = "https://smart-id.com/device-link";
+    let device_link_base: &amp;str = "https://smart-id.com";
     let device_link_type: &amp;str = "QR";
     let elapsed_seconds: i32 = 22;
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -8109,7 +8112,7 @@ func main() {
 <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">package main
 
 fun main() {
-    val deviceLinkBase: String = "https://smart-id.com/device-link"
+    val deviceLinkBase: String = "https://smart-id.com"
     val deviceLinkType: String = "QR"
     val elapsedSeconds: Int = 22
     val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -8139,7 +8142,7 @@ public class UnprotectedDeviceLink
 {
     public static void Main(string[] args)
     {
-        string deviceLinkBase = "https://smart-id.com/device-link";
+        string deviceLinkBase = "https://smart-id.com";
         string deviceLinkType = "QR";
         int elapsedSeconds = 22;
         string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -8164,7 +8167,7 @@ public class UnprotectedDeviceLink
 <div id="_tabs_35_node_js--panel" class="tabpanel" aria-labelledby="_tabs_35_node_js">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com/device-link";
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
 const deviceLinkType = "QR";
 const elapsedSeconds = 22;
 const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
@@ -8187,7 +8190,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div id="_tabs_35_ruby--panel" class="tabpanel" aria-labelledby="_tabs_35_ruby">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com/device-link"
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
 device_link_type = "QR"
 elapsed_seconds = 22
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
@@ -8256,474 +8259,626 @@ puts unprotected_device_link</code></pre>
 </div>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AuthCode Calculator</title>
     <style>
-        /* Define CSS Variables scoped to the calculator container */
-        .authcode-calculator {
-            /* Define the base neutral color - **ADJUST THIS VALUE AS NEEDED** */
-            --calc-color-neutral-100: #f8f9fa; /* Example: A common light grey/off-white */
-            /* Define the panel background using the neutral color */
-            --calc-panel-background: var(--calc-color-neutral-100);
-            /* Define other variables scoped to the calculator */
-            --calc-validation-error-color: #dc3545;
-            --calc-button-background-color: #ff3c12; /* custom color */
-            --calc-button-hover-background-color: #0066cc; /* custom color */
-            --calc-match-color: #339900; /* custom color */
-            --calc-mismatch-color: red;
-            --calc-match-background-color: #d4edda;
-            --calc-mismatch-background-color: #f8d7da;
-            --calc-match-border-color: #c3e6cb;
-            --calc-mismatch-border-color: #f5c6cb;
+      .authcode-calculator {
+        --calc-white: #fff;
+        --calc-smoke-30: #fafafa;
+        --calc-smoke-90: #e1e1e1;
+        --calc-gray-30: #9c9c9c;
+        --calc-gray-70: #5d5d5d;
+        --calc-jet-70: #222;
+        --calc-jet-80: #191919;
+        --calc-main-color: #ff3c12;
+        --calc-accent-color: #e97257;
+        --calc-validation-error-color: #e33;
+        --calc-validation-error-background-color: #fee;
+        --calc-match-color: #390;
+        --calc-match-background-color: #d4edda;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: var(--calc-smoke-90);
+        color: var(--calc-main-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+      }
 
-            /* Add some base styles for the container itself if needed */
-             margin: 1em 0; /* Example margin when embedded */
-             line-height: 1.6;
-        }
-        /* Apply general styles only within the calculator */
-        .authcode-calculator h1 {
-            /* Add specific styles for h1 inside the calculator if needed */
-            font-size: 1.5em;
-            margin-bottom: 1em;
-            color: #333;
-            text-align: center;
-        }
+      .authcode-calculator .container {
+        background-color: var(--calc-white);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: none;
+        min-width: 450px;
+      }
 
-        /* Prefix all previous rules */
-        .authcode-calculator form {
-            background-color: var(--calc-panel-background);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            max-width: 700px;
-            margin: 10px 0; /* Changed 'auto' to '0' for left/right margins */
-        }
-        .authcode-calculator fieldset {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-        }
-        .authcode-calculator legend {
-            font-weight: bold;
-            padding: 0 10px;
-            font-size: 1.1em;
-            color: #333;
-        }
-        .authcode-calculator fieldset div.radio-group-item {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 20px;
-            margin-bottom: 10px;
-        }
-        .authcode-calculator fieldset input[type="radio"] {
-            margin: 0 5px 0 0;
-        }
-        .authcode-calculator fieldset label {
-            display: inline-block;
-            margin: 0;
-            font-weight: normal;
-             vertical-align: middle;
-        }
-        .authcode-calculator label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-        .authcode-calculator label.required::after {
-            content: " *";
-            color: var(--calc-validation-error-color); /* Use scoped variable */
-            font-weight: bold;
-        }
-        .authcode-calculator fieldset label::after {
-             content: "";
-         }
-        .authcode-calculator input[type="text"],
-        .authcode-calculator textarea,
-        .authcode-calculator select {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            padding: 10px;
-            margin-top: 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 1em;
-            box-sizing: border-box;
-            line-height: 1.4;
-            background-color: #fff;
-        }
-         .authcode-calculator select {
-             height: calc(2.4em + 20px);
-             background-color: #fff;
-         }
-         .authcode-calculator textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .authcode-calculator input[type="checkbox"] {
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-         .authcode-calculator .form-group {
-             margin-bottom: 15px;
-         }
-        .authcode-calculator .hidden {
-            display: none !important;
-        }
-        .authcode-calculator .validation-error {
-             color: var(--calc-validation-error-color); /* Use scoped variable */
-             font-size: 0.9em;
-             margin-top: 4px;
-             display: block;
-             min-height: 1.2em;
-         }
-        .authcode-calculator input.invalid,
-        .authcode-calculator textarea.invalid,
-        .authcode-calculator select.invalid {
-             border-color: var(--calc-validation-error-color) !important; /* Use scoped variable */
-             /* background-color: #fbe Sbe !important; */
-         }
-        .authcode-calculator button {
-            display: block;
-            width: auto;
-            min-width: 150px;
-            margin: 30px auto 10px auto;
-            padding: 12px 20px;
-            background-color: var(--calc-button-background-color); /* Use scoped variable */
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.2s ease;
-        }
-        .authcode-calculator button:hover {
-            background-color: var(--calc-button-hover-background-color); /* Use scoped variable */
-        }
-        .authcode-calculator #results {
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px solid #d6d6d6;
-            background-color: #f9f9f9;
-            border-radius: 4px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .authcode-calculator #results h2 { margin-top: 0; color: #333; }
-        .authcode-calculator #results code { display: block; background-color: #e9ecef; color: #212529; padding: 10px; margin-top: 8px; border-radius: 4px; word-wrap: break-word; white-space: pre-wrap; font-size: 0.95em; border: 1px solid #dee2e6; }
-        .authcode-calculator #results p { margin-bottom: 10px; color: #444; }
-        .authcode-calculator #comparisonResult { font-weight: bold; padding: 3px 6px; border-radius: 3px; display: inline-block; }
-        .authcode-calculator .match { color: var(--calc-match-color); background-color: var(--calc-match-background-color); border: 1px solid var(--calc-match-border-color); }
-        .authcode-calculator .mismatch { color: var(--calc-mismatch-color); background-color: var(--calc-mismatch-background-color); border: 1px solid var(--calc-mismatch-border-color); }
+      .authcode-calculator h2 {
+        color: var(--calc-main-color);
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 25px;
+      }
 
-        /* Prefixed utility classes if needed, though less common */
-        .authcode-calculator .mt-1 { margin-top: 0.5rem; }
-        .authcode-calculator .mb-1 { margin-bottom: 0.5rem; }
+      .authcode-calculator fieldset {
+        border: none;
+      }
+
+      .authcode-calculator fieldset label {
+        display: inline-block;
+        font-weight: normal;
+      }
+
+      .authcode-calculator label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--calc-gray-70);
+      }
+
+      .authcode-calculator label.required::after {
+        content: " *";
+        color: var(--calc-validation-error-color);
+        font-weight: bold;
+      }
+
+      .authcode-calculator input[type="text"],
+      .authcode-calculator textarea,
+      .authcode-calculator select {
+        width: calc(100% - 24px);
+        padding: 12px;
+        border: 1px solid var(--calc-gray-30);
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 16px;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        background-color: var(--calc-white);
+      }
+
+      .authcode-calculator input[type="text"]:focus,
+      .authcode-calculator textarea:focus,
+      .authcode-calculator select:focus {
+        border-color: var(--calc-main-color);
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        outline: none;
+      }
+
+      .authcode-calculator textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .authcode-calculator .form-group {
+        margin-bottom: 18px;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .authcode-calculator .hidden {
+        display: none !important;
+      }
+
+      .authcode-calculator .validation-error {
+        color: var(--calc-validation-error-color);
+        font-size: 0.9em;
+        margin-top: 4px;
+        display: block;
+        min-height: 1.2em;
+      }
+
+      .authcode-calculator input.invalid,
+      .authcode-calculator textarea.invalid,
+      .authcode-calculator select.invalid {
+        border-color: var(--calc-validation-error-color) !important;
+      }
+
+      .authcode-calculator button {
+        background-color: var(--calc-main-color);
+        color: var(--calc-white);
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        width: 100%;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+
+      .authcode-calculator button:hover {
+        background-color: var(--calc-accent-color);
+      }
+
+      .authcode-calculator button:active {
+        background-color: var(--calc-main-color);
+      }
+
+      .authcode-calculator #results {
+        margin-top: 25px;
+        padding: 15px;
+        border: 1px dashed var(--calc-smoke-90);
+        border-radius: 6px;
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        background-color: var(--calc-smoke-30);
+      }
+
+      .authcode-calculator #results code {
+        display: block;
+        background-color: var(--calc-smoke-90);
+        color: var(--calc-jet-70);
+        padding: 10px;
+        margin-top: 8px;
+        border-radius: 4px;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        font-size: 0.95em;
+        border: 1px solid var(--calc-gray-30);
+      }
+
+      .authcode-calculator #results p {
+        margin-bottom: 10px;
+        color: var(--calc-jet-70);
+      }
+
+      .authcode-calculator #comparisonResult {
+        font-weight: bold;
+        padding: 3px 6px;
+        border-radius: 3px;
+        display: inline-block;
+        margin-top: 5px;
+      }
+
+      .authcode-calculator .match {
+        color: var(--calc-match-color);
+        background-color: var(--calc-match-background-color);
+        font-weight: bold;
+        border: 1px solid var(--calc-match-color);
+      }
+
+      .authcode-calculator .mismatch {
+        color: var(--calc-validation-error-color);
+        font-weight: bold;
+        background-color: var(--calc-validation-error-background-color);
+        border: 1px solid var(--calc-validation-error-color);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="authcode-calculator">
-    <h2>AuthCode Calculator & Comparator</h2>
-
-    <form id="authForm" novalidate>
-
-        <fieldset>
-            <legend>Session Type</legend>
+      <div class="container">
+        <h2>AuthCode Calculator & Comparator</h2>
+        <div class="form-group">
+          <label class="required">Session Type:</label>
+          <fieldset>
             <input type="radio" id="sessionAuth" name="sessionType" value="authentication" checked>
             <label for="sessionAuth">Authentication</label>
-
             <input type="radio" id="sessionSign" name="sessionType" value="signature">
             <label for="sessionSign">Signature</label>
-
             <input type="radio" id="sessionCert" name="sessionType" value="certificate-choice">
             <label for="sessionCert">Certificate-Choice</label>
-        </fieldset>
-
-        <div class="form-group">
-            <label for="sessionSecretBase64" class="required">Session Secret (Base64):</label>
-            <input type="text" id="sessionSecretBase64" value="B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=">
-             <span id="sessionSecretBase64-error" class="validation-error"></span>
+          </fieldset>
         </div>
-
         <div class="form-group">
-            <label for="schemeName" class="required">Scheme Name:</label>
-            <input type="text" id="schemeName" value="smart-id">
-             <span id="schemeName-error" class="validation-error"></span>
+          <label for="sessionSecretBase64" class="required">Session Secret (Base64):</label>
+          <input type="text" id="sessionSecretBase64" value="B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=">
+          <span id="sessionSecretBase64-error" class="validation-error"></span>
         </div>
-
+        <div class="form-group">
+          <label for="schemeName" class="required">Scheme Name:</label>
+          <input type="text" id="schemeName" value="smart-id">
+          <span id="schemeName-error" class="validation-error"></span>
+        </div>
         <div class="form-group" id="signatureProtocolGroup">
-            <label for="signatureProtocol" id="signatureProtocolLabel" class="required">Signature Protocol:</label>
-            <select id="signatureProtocol">
-                <option value="ACSP_V2" selected>ACSP_V2</option>
-            </select>
-             <span id="signatureProtocol-error" class="validation-error"></span>
+          <label for="signatureProtocol" id="signatureProtocolLabel" class="required">Signature Protocol:</label>
+          <select id="signatureProtocol" disabled>
+            <option value="ACSP_V2" selected>ACSP_V2</option>
+          </select>
+          <span id="signatureProtocol-error" class="validation-error"></span>
         </div>
-
         <div class="form-group" id="challengeDigestGroup">
-             <label for="challengeOrDigest" id="challengeOrDigestLabel" class="required">RP Challenge (Base64):</label>
-             <input type="text" id="challengeOrDigest" value="GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==">
-              <span id="challengeOrDigest-error" class="validation-error"></span>
+          <label for="challengeOrDigest" id="challengeOrDigestLabel" class="required">RP Challenge (Base64):</label>
+          <input type="text" id="challengeOrDigest" value="GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==">
+          <span id="challengeOrDigest-error" class="validation-error"></span>
         </div>
-
         <div class="form-group">
-            <label for="relyingPartyName" class="required">Relying Party Name:</label>
-            <input type="text" id="relyingPartyName" value="DEMO">
-             <span id="relyingPartyName-error" class="validation-error"></span>
+          <label for="relyingPartyName" class="required">Relying Party Name:</label>
+          <input type="text" id="relyingPartyName" value="DEMO">
+          <span id="relyingPartyName-error" class="validation-error"></span>
         </div>
-
-        <div id="brokeredRpContainer" class="form-group"> <label for="brokeredRpName">Brokered RP Name:</label> <input type="text" id="brokeredRpName" value="Example RP">
-              <span id="brokeredRpName-error" class="validation-error"></span>
+        <div id="brokeredRpContainer" class="form-group">
+          <label for="brokeredRpName">Brokered RP Name:</label>
+          <input type="text" id="brokeredRpName" value="Example RP">
+          <span id="brokeredRpName-error" class="validation-error"></span>
         </div>
         <div class="form-group" id="interactionsGroup">
-             <label for="interactions" id="interactionsLabel" class="required">Interactions (Base64 JSON):</label>
-             <textarea id="interactions">W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d</textarea>
-              <span id="interactions-error" class="validation-error"></span>
+          <label for="interactions" id="interactionsLabel" class="required">Interactions (Base64 JSON):</label>
+          <textarea id="interactions">W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d</textarea>
+          <span id="interactions-error" class="validation-error"></span>
         </div>
-
         <div class="form-group" id="initialCallbackUrlGroup">
-            <label for="initialCallbackUrl">Initial Callback URL:</label> <input type="text" id="initialCallbackUrl" value="https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ">
-             <span id="initialCallbackUrl-error" class="validation-error"></span>
+          <label for="initialCallbackUrl">Initial Callback URL:</label>
+          <input type="text" id="initialCallbackUrl" value="https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ">
+          <span id="initialCallbackUrl-error" class="validation-error"></span>
         </div>
         <div class="form-group">
-            <label for="unprotectedDeviceLink" class="required">Unprotected Device Link:</label>
-            <input type="text" id="unprotectedDeviceLink" value="https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng">
-             <span id="unprotectedDeviceLink-error" class="validation-error"></span>
+          <label for="unprotectedDeviceLink" class="required">Unprotected Device Link:</label>
+          <input type="text" id="unprotectedDeviceLink" value="https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng">
+          <span id="unprotectedDeviceLink-error" class="validation-error"></span>
         </div>
-
         <hr>
-
         <div class="form-group">
-            <label for="authCodeInput">Auth Code (User Input - Compare Against):</label> <input type="text" id="authCodeInput" placeholder="Enter the Auth Code to compare">
-             <span id="authCodeInput-error" class="validation-error"></span> </div>
-
+          <label for="authCodeInput">Auth Code (User Input - Compare Against):</label>
+          <input type="text" id="authCodeInput" placeholder="Enter the Auth Code to compare">
+          <span id="authCodeInput-error" class="validation-error"></span>
+        </div>
         <button type="button" id="calculateButton">Calculate & Compare AuthCode</button>
-    </form>
-
-    <div id="results" class="hidden"> <h2>Results</h2>
-        <p><strong>Calculated Auth Code (Base64URL):</strong></p>
-        <span><code id="calculatedAuthCode"></code></span>
-        <p><strong>Comparison Result:</strong> <span id="comparisonResult"></span></p>
-        <p><strong>Payload Used for Calculation (Processed):</strong></p>
-        <span><code id="payloadUsed"></code></span>
+        <div id="results" class="hidden">
+          <h2>Results</h2>
+          <p>
+            <strong>Calculated Auth Code (Base64URL):</strong>
+          </p>
+          <span>
+            <code id="calculatedAuthCode"></code>
+          </span>
+          <p>
+            <strong>Comparison Result:</strong>
+            <span id="comparisonResult"></span>
+          </p>
+          <p>
+            <strong>Payload Used for Calculation (Processed):</strong>
+          </p>
+          <span>
+            <code id="payloadUsed"></code>
+          </span>
+        </div>
+      </div>
     </div>
-
     <script>
-        const separator = '|';
-        const calculatorContainer = document.querySelector('.authcode-calculator');
+      const separator = '|';
+      const calculatorContainer = document.querySelector('.authcode-calculator');
+      const form = document.getElementById('authForm');
+      const sessionTypeRadios = calculatorContainer.querySelectorAll('input[name="sessionType"]');
+      const sessionSecretInput = document.getElementById('sessionSecretBase64');
+      const schemeNameInput = document.getElementById('schemeName');
+      const signatureProtocolGroup = document.getElementById('signatureProtocolGroup');
+      const signatureProtocolLabel = document.getElementById('signatureProtocolLabel');
+      const signatureProtocolSelect = document.getElementById('signatureProtocol');
+      const challengeDigestGroup = document.getElementById('challengeDigestGroup');
+      const challengeOrDigestLabel = document.getElementById('challengeOrDigestLabel');
+      const challengeOrDigestInput = document.getElementById('challengeOrDigest');
+      const relyingPartyNameInput = document.getElementById('relyingPartyName');
+      const brokeredRpContainer = document.getElementById('brokeredRpContainer');
+      const brokeredRpNameInput = document.getElementById('brokeredRpName');
+      const brokeredRpNameLabel = brokeredRpContainer.querySelector('label');
+      const interactionsGroup = document.getElementById('interactionsGroup');
+      const interactionsLabel = document.getElementById('interactionsLabel');
+      const interactionsInput = document.getElementById('interactions');
+      const initialCallbackUrlGroup = document.getElementById('initialCallbackUrlGroup');
+      const initialCallbackUrlInput = document.getElementById('initialCallbackUrl');
+      const unprotectedDeviceLinkInput = document.getElementById('unprotectedDeviceLink');
+      const authCodeInput = document.getElementById('authCodeInput');
+      const calculateButton = document.getElementById('calculateButton');
+      const resultsDiv = calculatorContainer.querySelector('#results');
+      const calculatedAuthCodeElement = document.getElementById('calculatedAuthCode');
+      const comparisonResultElement = document.getElementById('comparisonResult');
+      const payloadUsedElement = document.getElementById('payloadUsed');
 
-        const form = document.getElementById('authForm');
-        const sessionTypeRadios = calculatorContainer.querySelectorAll('input[name="sessionType"]');
-        const sessionSecretInput = document.getElementById('sessionSecretBase64');
-        const schemeNameInput = document.getElementById('schemeName');
-        const signatureProtocolGroup = document.getElementById('signatureProtocolGroup');
-        const signatureProtocolLabel = document.getElementById('signatureProtocolLabel');
-        const signatureProtocolSelect = document.getElementById('signatureProtocol');
-        const challengeDigestGroup = document.getElementById('challengeDigestGroup');
-        const challengeOrDigestLabel = document.getElementById('challengeOrDigestLabel');
-        const challengeOrDigestInput = document.getElementById('challengeOrDigest');
-        const relyingPartyNameInput = document.getElementById('relyingPartyName');
-        const brokeredRpContainer = document.getElementById('brokeredRpContainer');
-        const brokeredRpNameInput = document.getElementById('brokeredRpName');
-        const brokeredRpNameLabel = brokeredRpContainer.querySelector('label');
-        const interactionsGroup = document.getElementById('interactionsGroup');
-        const interactionsLabel = document.getElementById('interactionsLabel');
-        const interactionsInput = document.getElementById('interactions');
-        const initialCallbackUrlGroup = document.getElementById('initialCallbackUrlGroup');
-        const initialCallbackUrlInput = document.getElementById('initialCallbackUrl');
-        const unprotectedDeviceLinkInput = document.getElementById('unprotectedDeviceLink');
-        const authCodeInput = document.getElementById('authCodeInput');
-        const calculateButton = document.getElementById('calculateButton');
-        const resultsDiv = calculatorContainer.querySelector('#results');
-        const calculatedAuthCodeElement = document.getElementById('calculatedAuthCode');
-        const comparisonResultElement = document.getElementById('comparisonResult');
-        const payloadUsedElement = document.getElementById('payloadUsed');
-
-        function base64ToUint8Array(base64) { try { const binaryString = atob(base64); const len = binaryString.length; const bytes = new Uint8Array(len); for (let i = 0; i < len; i++) { bytes[i] = binaryString.charCodeAt(i); } return bytes; } catch (e) { console.error("Failed to decode Base64 string:", e); if (e instanceof DOMException && e.name === 'InvalidCharacterError') { throw new Error("Invalid character found in Base64 input string (likely the Session Secret). Please check the value."); } else { throw new Error("Invalid Base64 input string."); } } }
-        function arrayBufferToBase64Url(buffer) { const bytes = new Uint8Array(buffer); let binary = ''; for (let i = 0; i < bytes.byteLength; i++) { binary += String.fromCharCode(bytes[i]); } let base64 = btoa(binary); return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
-        function utf8ToBase64(str) { try { const bytes = new TextEncoder().encode(str); let binaryString = ''; bytes.forEach(byte => { binaryString += String.fromCharCode(byte); }); return btoa(binaryString); } catch (e) { console.error("Failed to encode string to Base64:", str, e); throw new Error("Could not encode one of the name fields to Base64."); } }
-
-        function updateInitialCallbackVisibility() {
-            const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
-            if (sessionType === 'authentication' && signatureProtocolSelect.value === 'ACSP_V1') {
-                initialCallbackUrlGroup.classList.add('hidden');
-            } else {
-                initialCallbackUrlGroup.classList.remove('hidden');
-            }
-            if (initialCallbackUrlGroup.classList.contains('hidden')) {
-                 clearValidationError(initialCallbackUrlInput);
-            }
+      function base64ToUint8Array(base64) {
+        try {
+          const binaryString = atob(base64);
+          const len = binaryString.length;
+          const bytes = new Uint8Array(len);
+          for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+          }
+          return bytes;
+        } catch (e) {
+          console.error("Failed to decode input sessionSecret string:", e);
+          throw new Error("Failed to decode input sessionSecret string.");
         }
+      }
 
-        function updateFormForSessionType() {
-            const selectedType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
-            signatureProtocolGroup.classList.remove('hidden');
-            signatureProtocolLabel.classList.add('required');
-            challengeDigestGroup.classList.remove('hidden');
+      function arrayBufferToBase64Url(buffer) {
+        const bytes = new Uint8Array(buffer);
+        let binary = '';
+        for (let i = 0; i < bytes.byteLength; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        let base64 = btoa(binary);
+        return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      }
+
+      function utf8ToBase64(str) {
+        try {
+          const bytes = new TextEncoder().encode(str);
+          let binaryString = '';
+          bytes.forEach(byte => {
+            binaryString += String.fromCharCode(byte);
+          });
+          return btoa(binaryString);
+        } catch (e) {
+          console.error("Failed to encode string to Base64:", str, e);
+          throw new Error("Could not encode one of the name fields to Base64.");
+        }
+      }
+
+      function updateSignatureProtocol() {
+        const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
+        if (sessionType === 'certificate-choice') {
+          signatureProtocolLabel.classList.remove('required');
+          signatureProtocolGroup.classList.add('hidden');
+        } else if (sessionType === 'signature') {
+          signatureProtocolLabel.classList.add('required');
+          signatureProtocolSelect.innerHTML = '';
+          const option = document.createElement('option');
+          option.value = 'RAW_DIGEST_SIGNATURE';
+          option.textContent = 'RAW_DIGEST_SIGNATURE';
+          signatureProtocolSelect.appendChild(option);
+          signatureProtocolGroup.classList.remove('hidden');
+        } else if (sessionType === 'authentication') {
+          signatureProtocolLabel.classList.add('required');
+          signatureProtocolSelect.innerHTML = '';
+          const option = document.createElement('option');
+          option.value = 'ACSP_V2';
+          option.textContent = 'ACSP_V2';
+          signatureProtocolSelect.appendChild(option);
+          signatureProtocolGroup.classList.remove('hidden');
+        }
+        if (signatureProtocolGroup.classList.contains('hidden')) {
+          clearValidationError(initialCallbackUrlInput);
+        }
+      }
+
+      function updateFormForSessionType() {
+        const selectedType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
+        signatureProtocolGroup.classList.remove('hidden');
+        signatureProtocolLabel.classList.add('required');
+        updateSignatureProtocol();
+        challengeDigestGroup.classList.remove('hidden');
+        challengeOrDigestLabel.classList.add('required');
+        interactionsGroup.classList.remove('hidden');
+        interactionsLabel.classList.add('required');
+        initialCallbackUrlGroup.classList.remove('hidden');
+        brokeredRpNameLabel.classList.remove('required');
+        clearAllValidation();
+        switch (selectedType) {
+          case 'authentication':
+            challengeOrDigestLabel.textContent = 'RP Challenge (Base64):';
             challengeOrDigestLabel.classList.add('required');
-            interactionsGroup.classList.remove('hidden');
             interactionsLabel.classList.add('required');
-            initialCallbackUrlGroup.classList.remove('hidden');
-            brokeredRpNameLabel.classList.remove('required');
-            clearAllValidation();
-            switch (selectedType) {
-                case 'authentication':
-                    challengeOrDigestLabel.textContent = 'RP Challenge (Base64):';
-                    challengeOrDigestLabel.classList.add('required');
-                    interactionsLabel.classList.add('required');
-                    signatureProtocolLabel.classList.add('required');
-                     updateInitialCallbackVisibility();
-                    break;
-                case 'signature':
-                    challengeOrDigestLabel.textContent = 'Digest (Base64):';
-                    challengeOrDigestLabel.classList.add('required');
-                    interactionsLabel.classList.add('required');
-                    signatureProtocolGroup.classList.add('hidden');
-                    signatureProtocolLabel.classList.remove('required');
-                    break;
-                case 'certificate-choice':
-                    challengeDigestGroup.classList.add('hidden');
-                    challengeOrDigestLabel.classList.remove('required');
-                    interactionsGroup.classList.add('hidden');
-                    interactionsLabel.classList.remove('required');
-                    signatureProtocolGroup.classList.add('hidden');
-                    signatureProtocolLabel.classList.remove('required');
-                    break;
-            }
+            signatureProtocolLabel.classList.add('required');
+            break;
+          case 'signature':
+            challengeOrDigestLabel.textContent = 'Digest (Base64):';
+            challengeOrDigestLabel.classList.add('required');
+            interactionsLabel.classList.add('required');
+            signatureProtocolLabel.classList.add('required');
+            break;
+          case 'certificate-choice':
+            challengeDigestGroup.classList.add('hidden');
+            challengeOrDigestLabel.classList.remove('required');
+            interactionsGroup.classList.add('hidden');
+            interactionsLabel.classList.remove('required');
+            signatureProtocolGroup.classList.add('hidden');
+            signatureProtocolLabel.classList.remove('required');
+            break;
         }
+      }
 
-         function clearValidationError(inputElement) {
-              const errorEl = calculatorContainer.querySelector(`#${ inputElement.id }-error`);
-              if (errorEl) errorEl.textContent = '';
-              inputElement.classList.remove('invalid');
+      function clearValidationError(inputElement) {
+        const errorEl = calculatorContainer.querySelector(`#${ inputElement.id }-error`);
+        if (errorEl) errorEl.textContent = '';
+        inputElement.classList.remove('invalid');
+      }
+
+      function clearAllValidation() {
+        calculatorContainer.querySelectorAll('.validation-error').forEach(el => el.textContent = '');
+        calculatorContainer.querySelectorAll('input, textarea, select').forEach(el => el.classList.remove('invalid'));
+      }
+
+      function isBase64(str) {
+        if (str === '' || str.trim() === '') {
+          return false;
+        }
+        try {
+          return btoa(atob(str)) == str;
+        } catch (err) {
+          return false;
+        }
+      }
+
+      function validateForm() {
+        let isValid = true;
+        clearAllValidation();
+        const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
+        const checkField = (field) => {
+          const {
+            el,
+            name
+          } = field;
+          if (!el.closest('.form-group, #brokeredRpContainer')?.classList.contains('hidden')) {
+            if (!el.value.trim()) {
+              isValid = false;
+              const errorEl = calculatorContainer.querySelector(`#${ el.id }-error`);
+              if (errorEl) errorEl.textContent = `${ name } is required.`;
+              el.classList.add('invalid');
+            }
           }
-         function clearAllValidation() {
-              calculatorContainer.querySelectorAll('.validation-error').forEach(el => el.textContent = '');
-              calculatorContainer.querySelectorAll('input, textarea, select').forEach(el => el.classList.remove('invalid'));
+        };
+        const isBase64 = (field) => {
+          const {
+            el,
+            name
+          } = field;
+          if (el.value === '' || el.value.trim() === '') {
+            isValid = false;
+            const errorEl = calculatorContainer.querySelector(`#${ el.id }-error`);
+            if (errorEl) errorEl.textContent = `${ name } must be Base64 encoded.`;
+            el.classList.add('invalid');
           }
-         function validateForm() {
-            let isValid = true;
-            clearAllValidation();
-            const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
-            const checkField = (field) => {
-                const { el, name } = field;
-                if (!el.closest('.form-group, #brokeredRpContainer')?.classList.contains('hidden')) {
-                    if (!el.value.trim()) {
-                        isValid = false;
-                        const errorEl = calculatorContainer.querySelector(`#${ el.id }-error`);
-                        if (errorEl) errorEl.textContent = `${ name } is required.`;
-                        el.classList.add('invalid');
-                    }
-                }
-            };
-             checkField({ el: sessionSecretInput, name: "Session Secret" });
-             checkField({ el: schemeNameInput, name: "Scheme Name" });
-             checkField({ el: relyingPartyNameInput, name: "Relying Party Name" });
-             checkField({ el: unprotectedDeviceLinkInput, name: "Unprotected Device Link" });
-             if (sessionType === 'authentication') {
-                  checkField({ el: signatureProtocolSelect, name: "Signature Protocol" });
-                  checkField({ el: challengeOrDigestInput, name: "RP Challenge" });
-                  checkField({ el: interactionsInput, name: "Interactions" });
-              } else if (sessionType === 'signature') {
-                   checkField({ el: challengeOrDigestInput, name: "Digest" });
-                   checkField({ el: interactionsInput, name: "Interactions" });
-               }
-            return isValid;
+          try {
+            return btoa(atob(el.value)) == el.value;
+          } catch (err) {
+            isValid = false;
+            const errorEl = calculatorContainer.querySelector(`#${ el.id }-error`);
+            if (errorEl) errorEl.textContent = `${ name } must be Base64 encoded.`;
+            el.classList.add('invalid');
+          }
+        };
+        checkField({
+          el: sessionSecretInput,
+          name: "Session Secret"
+        });
+        isBase64({
+          el: sessionSecretInput,
+          name: "Session Secret"
+        });
+        checkField({
+          el: schemeNameInput,
+          name: "Scheme Name"
+        });
+        checkField({
+          el: relyingPartyNameInput,
+          name: "Relying Party Name"
+        });
+        checkField({
+          el: unprotectedDeviceLinkInput,
+          name: "Unprotected Device Link"
+        });
+        if (sessionType === 'authentication') {
+          checkField({
+            el: signatureProtocolSelect,
+            name: "Signature Protocol"
+          });
+          checkField({
+            el: challengeOrDigestInput,
+            name: "RP Challenge"
+          });
+          checkField({
+            el: interactionsInput,
+            name: "Interactions"
+          });
+        } else if (sessionType === 'signature') {
+          checkField({
+            el: signatureProtocolSelect,
+            name: "Signature Protocol"
+          });
+          checkField({
+            el: challengeOrDigestInput,
+            name: "Digest"
+          });
+          checkField({
+            el: interactionsInput,
+            name: "Interactions"
+          });
         }
-
-        async function calculateAndCompareAuthCode() {
-            if (!validateForm()) {
-                alert("Please fill in all required fields indicated by *.");
-                resultsDiv.classList.add('hidden');
-                return;
-            }
-            resultsDiv.classList.add('hidden');
-            calculatedAuthCodeElement.textContent = '';
-            comparisonResultElement.textContent = '';
-            payloadUsedElement.textContent = '';
-
-            try {
-                const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
-                const sessionSecretBase64 = sessionSecretInput.value.trim();
-                const schemeName = schemeNameInput.value;
-                const relyingPartyName = relyingPartyNameInput.value;
-                const includeBrokeredRp = true;
-                const brokeredRpName = includeBrokeredRp ? brokeredRpNameInput.value : '';
-                let initialCallbackUrl = initialCallbackUrlInput.value;
-                const unprotectedDeviceLink = unprotectedDeviceLinkInput.value;
-                const userInputAuthCode = authCodeInput.value.trim();
-
-                const relyingPartyNameBase64 = utf8ToBase64(relyingPartyName);
-                const brokeredRpNameBase64 = includeBrokeredRp ? utf8ToBase64(brokeredRpName) : '';
-
-                let authCodePayloadArray = [];
-                let signatureProtocol = '';
-                let challengeOrDigest = '';
-                let interactions = '';
-
-                switch (sessionType) {
-                    case 'authentication':
-                        signatureProtocol = signatureProtocolSelect.value;
-                        challengeOrDigest = challengeOrDigestInput.value;
-                        interactions = interactionsInput.value;
-                        if (signatureProtocol === 'ACSP_V1') { initialCallbackUrl = ''; }
-                        authCodePayloadArray = [ schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64 ];
-                        authCodePayloadArray.push(brokeredRpNameBase64);
-                        authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
-                        break;
-                    case 'signature':
-                        signatureProtocol = 'RAW_DIGEST_SIGNATURE';
-                        challengeOrDigest = challengeOrDigestInput.value;
-                        interactions = interactionsInput.value;
-                         authCodePayloadArray = [ schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64 ];
-                        authCodePayloadArray.push(brokeredRpNameBase64);
-                        authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
-                        break;
-                    case 'certificate-choice':
-                        signatureProtocol = ''; challengeOrDigest = ''; interactions = '';
-                         authCodePayloadArray = [ schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64 ];
-                        authCodePayloadArray.push(brokeredRpNameBase64);
-                        authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
-                        break;
-                }
-
-                const authCodePayload = authCodePayloadArray.join(separator);
-                payloadUsedElement.textContent = authCodePayload;
-
-                const sessionSecretBytes = base64ToUint8Array(sessionSecretBase64);
-                const payloadBytes = new TextEncoder().encode(authCodePayload);
-                const cryptoKey = await window.crypto.subtle.importKey('raw', sessionSecretBytes, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-                const signatureBuffer = await window.crypto.subtle.sign('HMAC', cryptoKey, payloadBytes);
-                const calculatedAuthCode = arrayBufferToBase64Url(signatureBuffer);
-                calculatedAuthCodeElement.textContent = calculatedAuthCode;
-                if (!userInputAuthCode) { comparisonResultElement.textContent = "Enter an Auth Code above to compare."; comparisonResultElement.className = ""; }
-                else if (calculatedAuthCode === userInputAuthCode) { comparisonResultElement.textContent = "Match!"; comparisonResultElement.className = "match"; }
-                else { comparisonResultElement.textContent = "Mismatch!"; comparisonResultElement.className = "mismatch"; }
-                resultsDiv.classList.remove('hidden');
-
-            } catch (error) {
-                console.error("Error during AuthCode calculation:", error);
-                alert(`An error occurred during calculation: ${ error.message }. Check the console for details.`);
-                resultsDiv.classList.add('hidden');
-            }
+        return isValid;
+      }
+      async function calculateAndCompareAuthCode() {
+        if (!validateForm()) {
+          alert("Please check all required fields indicated by *.");
+          resultsDiv.classList.add('hidden');
+          return;
         }
-
-        if (calculatorContainer) {
-            updateFormForSessionType();
-            sessionTypeRadios.forEach(radio => radio.addEventListener('change', updateFormForSessionType));
-            signatureProtocolSelect.addEventListener('change', updateInitialCallbackVisibility);
-            calculateButton.addEventListener('click', calculateAndCompareAuthCode);
-        } else {
-            console.error("Calculator container '.authcode-calculator' not found.");
+        resultsDiv.classList.add('hidden');
+        calculatedAuthCodeElement.textContent = '';
+        comparisonResultElement.textContent = '';
+        payloadUsedElement.textContent = '';
+        try {
+          const sessionType = calculatorContainer.querySelector('input[name="sessionType"]:checked').value;
+          const sessionSecretBase64 = sessionSecretInput.value.trim();
+          const schemeName = schemeNameInput.value;
+          const relyingPartyName = relyingPartyNameInput.value;
+          const includeBrokeredRp = true;
+          const brokeredRpName = includeBrokeredRp ? brokeredRpNameInput.value : '';
+          let initialCallbackUrl = initialCallbackUrlInput.value;
+          const unprotectedDeviceLink = unprotectedDeviceLinkInput.value;
+          const userInputAuthCode = authCodeInput.value.trim();
+          const relyingPartyNameBase64 = utf8ToBase64(relyingPartyName);
+          const brokeredRpNameBase64 = includeBrokeredRp ? utf8ToBase64(brokeredRpName) : '';
+          let authCodePayloadArray = [];
+          let signatureProtocol = '';
+          let challengeOrDigest = '';
+          let interactions = '';
+          switch (sessionType) {
+            case 'authentication':
+              signatureProtocol = signatureProtocolSelect.value;
+              // signatureProtocol = 'ACSP_V2';
+              challengeOrDigest = challengeOrDigestInput.value;
+              interactions = interactionsInput.value;
+              authCodePayloadArray = [schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64];
+              authCodePayloadArray.push(brokeredRpNameBase64);
+              authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
+              break;
+            case 'signature':
+              signatureProtocol = signatureProtocolSelect.value;
+              // signatureProtocol = 'RAW_DIGEST_SIGNATURE';
+              challengeOrDigest = challengeOrDigestInput.value;
+              interactions = interactionsInput.value;
+              authCodePayloadArray = [schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64];
+              authCodePayloadArray.push(brokeredRpNameBase64);
+              authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
+              break;
+            case 'certificate-choice':
+              signatureProtocol = '';
+              challengeOrDigest = '';
+              interactions = '';
+              authCodePayloadArray = [schemeName, signatureProtocol, challengeOrDigest, relyingPartyNameBase64];
+              authCodePayloadArray.push(brokeredRpNameBase64);
+              authCodePayloadArray.push(interactions, initialCallbackUrl, unprotectedDeviceLink);
+              break;
+          }
+          const authCodePayload = authCodePayloadArray.join(separator);
+          payloadUsedElement.textContent = authCodePayload;
+          const sessionSecretBytes = base64ToUint8Array(sessionSecretBase64);
+          const payloadBytes = new TextEncoder().encode(authCodePayload);
+          const cryptoKey = await window.crypto.subtle.importKey('raw', sessionSecretBytes, {
+            name: 'HMAC',
+            hash: 'SHA-256'
+          }, false, ['sign']);
+          const signatureBuffer = await window.crypto.subtle.sign('HMAC', cryptoKey, payloadBytes);
+          const calculatedAuthCode = arrayBufferToBase64Url(signatureBuffer);
+          calculatedAuthCodeElement.textContent = calculatedAuthCode;
+          if (!userInputAuthCode) {
+            comparisonResultElement.textContent = "Enter an Auth Code above to compare.";
+            comparisonResultElement.className = "";
+          } else if (calculatedAuthCode === userInputAuthCode) {
+            comparisonResultElement.textContent = "Match!";
+            comparisonResultElement.className = "match";
+          } else {
+            comparisonResultElement.textContent = "Mismatch!";
+            comparisonResultElement.className = "mismatch";
+          }
+          resultsDiv.classList.remove('hidden');
+        } catch (error) {
+          console.error("Error during AuthCode calculation:", error);
+          alert(`An error occurred during calculation: ${ error.message }. Check the console for details.`);
+          resultsDiv.classList.add('hidden');
         }
+      }
+      if (calculatorContainer) {
+        updateFormForSessionType();
+        sessionTypeRadios.forEach(radio => radio.addEventListener('change', updateFormForSessionType));
+        calculateButton.addEventListener('click', calculateAndCompareAuthCode);
+      } else {
+        console.error("Calculator container '.authcode-calculator' not found.");
+      }
     </script>
-
-</body>
+  </body>
 </html>
 </div>
 </div>

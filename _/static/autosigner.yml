@@ -1,0 +1,92 @@
+openapi: 3.1.1
+info:
+  title: Smart-ID Automated Testing Interface
+  version: 1.0.0
+  description: Smart-ID Relying Party API version 3 automated testing interface, also referred to as "autosigner". Mobile device is not required for testing. Session will be resolved with a predetermined result. Only known document numbers can be used for testing.
+  contact:
+    name: SK ID Solutions
+    url: https://www.skidsolutions.eu/
+    email: support@smart-id.com
+  license:
+    name: Proprietary license
+    url: https://smart-id.com
+  termsOfService: https://www.skidsolutions.eu/resources/general-terms-of-subscriber-agreement/
+servers:
+- url: https://sid.demo.sk.ee/autosigner
+tags:
+- name: Device Link
+  description: API endpoint for submitting device links to the automated testing interface
+paths:
+  /device-link:
+    post:
+      tags:
+      - Device Link
+      summary: API endpoint for submitting device links to the automated testing interface
+      description: Used when device link endpoints are used with test accounts.
+      operationId: sendDeviceLink
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceLinkRequestBody'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request. Client error.
+components:
+  schemas:
+    DocumentNumber:
+      type: string
+      description: One of the configured document numbers; SK provides a list of document numbers per country, each resolves with a specific resultType. Mandatory and must be provided even for anonymous sessions, because this will determine the resultType.
+      enum:
+      - PNOEE-30303039914-MOCK-Q
+      - TODO
+    DeviceLink:
+      type: string
+      description: The device link that will be tied to the provided documentNumber
+      format: URL
+    FlowType:
+      type: string
+      description: the flow type the automated testing interface will use
+      enum:
+      - Web2App
+      - App2App
+      - QR
+    BrowserCookie:
+      type: string
+      description: A string or stringified JSON of the cookie value that RP would have set to user's browser if this was a user-initiated session. Required if flowType is Web2App or App2App. Should be ignored if flowType is QR.
+    InitialCallbackUrl:
+      type: string
+      description: The callback URL the automated testing interface will add parameters to and launch after a successful Web2App or App2App flow. Mandatory if Web2App and App2App flows are used, ignored for QR flow.
+      format: URL
+  requestBodies:
+    DeviceLinkRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - documentNumber
+            - deviceLink
+            - flowType
+            properties:
+              documentNumber:
+                $ref: '#/components/schemas/DocumentNumber'
+              deviceLink:
+                $ref: '#/components/schemas/DeviceLink'
+              flowType:
+                $ref: '#/components/schemas/FlowType'
+              browserCookie:
+                $ref: '#/components/schemas/BrowserCookie'
+              initialCallbackUrl:
+                $ref: '#/components/schemas/InitialCallbackUrl'
+          examples:
+            Device Link Authentication Request Example:
+              $ref: '#/components/examples/DeviceLinkRequestBodyExample'
+  examples:
+    DeviceLinkRequestBodyExample:
+      value:
+        documentNumber: PNOEE-30303039914-MOCK-Q
+        deviceLink: https://sid.demo.sk.ee/smart-id-rp/v3/device-link/?...
+        flowType: Web2App
+        browserCookie: a=b;c=d
+        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
