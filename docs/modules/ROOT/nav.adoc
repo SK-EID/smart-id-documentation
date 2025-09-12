@@ -9,11 +9,14 @@
 *** xref:ROOT:ROOT:suggestions.adoc[Suggestions]
 *** xref:ROOT:ROOT:logos.adoc[Logos]
 * xref:ROOT:ROOT:contact.adoc[Contact]
+
 ifeval::["{service-name}" != ""]
+
 * Automated testing
-* xref:rp-api:ROOT:mock_service.adoc[Introduction]
-* xref:rp-api:ROOT:device_link_test_endpoint.adoc[]
-* xref:ROOT:ROOT:test_accounts.adoc[Test accounts]
+** xref:rp-api:ROOT:mock_service.adoc[Introduction]
+** xref:rp-api:ROOT:device_link_test_endpoint.adoc[]
+** xref:ROOT:ROOT:test_accounts.adoc[Test accounts]
+
 * Relying Party API
 * xref:rp-api:ROOT:introduction.adoc[]
 ** xref:rp-api:ROOT:changes.adoc[]
