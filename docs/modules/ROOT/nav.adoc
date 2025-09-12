@@ -6,6 +6,7 @@
 *** xref:ROOT:ROOT:device_link.adoc[Device link fallback page]
 *** xref:ROOT:ROOT:https_pinning.adoc[Implementing HTTPS pinning]
 *** xref:ROOT:ROOT:client_libraries.adoc[Client libraries]
+*** xref:ROOT:ROOT:suggestions.adoc[Suggestions]
 *** xref:ROOT:ROOT:logos.adoc[Logos]
 *** xref:ROOT:ROOT:test_accounts.adoc[Test accounts]
 # Hide link until autosigner is available

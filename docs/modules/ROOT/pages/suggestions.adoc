@@ -1,0 +1,74 @@
+= Suggestions
+
+Integrating new https://www.smart-id.com/smart-id-brings-the-future-of-authentication-to-you/[Smart-ID+], Smart-ID RP API v3 
+ifeval::["{service-name}" != ""]
+xref:rp-api:ROOT:device_link_flows.adoc[device link flows],
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/device_link_flows.html[device link flows],
+endif::[]
+into your web service you need to make some additional changes in User Interface (UI) layer.
+
+// Table
+[cols="1,4a,4a", options="header", stripes=odd, grid=none, frame=none]
+|===
+| 
+^| *Same device flow* 
+^| *Other device flow*  
+| *Step 1* 
+2+| Detect if user is trying to use Smart-ID on same or other device.
+|  
+2+^| Use method that make sense for you, for example use User-Agent string for detection.
+| *Step 2* 
+2+| Show respective button with meaningful text 
+| 
+^| _Open Smart-ID app_ +
+ +
+
+image::SD-2.png[static,150,title="",caption="",link=_images/SD-2.png] 
+^| _Show QR code_ +
+_Sign using Smart-ID QR code_
+
+image::OD-2.png[static,500,title="",caption="",link=_images/OD-2.png] 
+| *Step 3*
+2+^| show instructions and QR code
+| 
+^| _Finish authentication in Smart-ID app_
+
+image::SD-3.png[static,150,title="",caption="",link=_images/SD-3.png] 
+in case of user moves back without finishing transaction 
+^| _Scan the QR code with Smart-ID app to continue_ 
+
+image::OD-3.png[static,500,title="",caption="",link=_images/OD-3.png] 
+| 
+2+^| User interaction
+| 
+^| Smart-ID app is opened automatically
+
+image::SD-3a.png[static,150,title="",caption="",link=_images/SD-3a.png] 
+or https://smart-id.com/device-link/?lang=eng[fallback page] is displayed
+
+image::SD-3b.png[static,150,title="",caption="",link=_images/SD-3b.png] 
+^| User opens Smart-ID app to scan QR code
+
+image::OD-3a.png[static,150,title="",caption="",link=_images/OD-3a.png] 
+| *Step 4* 
+2+^| After successful PIN entry
+| 
+^| user is redirected back to e-service
+
+image::SD-4.png[static,150,title="",caption="",link=_images/SD-4.png] 
+^| user returns back to e-service
+
+image::OD-4.png[static,500,title="",caption="",link=_images/OD-4.png] 
+|===
+
+
+
+// Video?
+
+.IMPORTANT
+[IMPORTANT]
+====
+At the end of authentication on *same device flow* (web2app) new tab is opened. We suggest closing old tab on the background when authentication has finished on Smart-ID app.
+====
