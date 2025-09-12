@@ -1,68 +1,62 @@
 = Test accounts for automated testing
 
-.IMPORTANT
-[IMPORTANT]
-====
-These test numbers work only with RP API v1/v2!
-====
+== Device link flows
+[cols="2m,1,3,3", options="header", stripes=odd, grid=none, frame=none]
+|===
+| EndResult | Country | Document Number | Comment
+| OK | EE +
+LV +
+LT +
+BE  
+| PNOEE-40404040009-MOCK-Q +
+PNOLV-040404-10003-MOCK-Q +
+PNOLT-40404040009-MOCK-Q +
+PNOBE-04040400287-MOCK-Q
+| See xref:ROOT:ROOT:device_link_test_endpoint.adoc[more] how to test device-link flows 
+|===
 
-.NOTE
-[NOTE]
-====
-Account numbers with `EndResult!=OK` have changed on 2024-11-05 (New CA chains!)
-====
 
-[cols="3m,1,3,3", options="header", stripes=odd, grid=none, frame=none]
+== Notification flows
+
+[cols="2m,1,3,3", options="header", stripes=odd, grid=none, frame=none]
 |===
 | EndResult | Country | Document Number | Comment
 | OK | EE +
 LT +
 LV +
-BE | PNOEE-40504040001-MOCK-Q +
+BE | PNOEE-40504040001-DEMO-Q +
 PNOLT-40504040001-MOCK-Q +
-PNOLV-050405-13330-MOCK-Q +
-PNOBE-05040400032-MOCK-Q | Issued using: +
+PNOLV-050405-10009-DEMO-Q +
+PNOBE-05040400032-DEMO-Q | Issued using: +
 **TEST of SK ID Solutions EID-Q 2024E**
 | OK | LT +
 LV | PNOLT-40504049999-MOCK-NQ +
-PNOLV-050404-19993-MOCK-NQ | Issued using: +
+PNOLV-050404-19993-DEMO-NQ | Issued using: +
 **TEST of SK ID Solutions EID-NQ 2021E**
-| OK | LT +
+| OK | EE +
+LT +
 LV +
-BE | PNOLT-50001029996-MOCK-Q +
+BE | PNOEE-50001029996-DEMO-Q +
+PNOLT-50001029996-DEMO-Q +
 PNOLV-020100-29990-MOCK-Q +
 PNOBE-00010299944-MOCK-Q | Adult
+| OK | LT | PNOLT-30303039914-MOCK-Q |
 | OK | EE +
 LT +
-LV | PNOEE-30303039914-MOCK-Q +
-PNOLT-30303039914-MOCK-Q +
-PNOLV-030303-10012-MOCK-Q |
-| OK | EE +
-LT +
-LV | PNOEE-30303039816-MOCK-Q +
-PNOLT-39901012239-MOCK-Q +
-PNOLV-030303-10215-MOCK-Q | User has other active account
+LV +
+BE | PNOEE-39901012239-MOCK-Q +
+PNOLT-39901012239-DEMO-Q +
+PNOLV-030303-10215-MOCK-Q +
+PNOBE-99010199987-DEMO-Q | User has other active account
 | OK | EE +
 LT +
 LV | PNOEE-61101012257-MOCK-Q +
 PNOLT-61101012257-MOCK-Q +
 PNOLV-010111-23474-MOCK-Q +
 PNOLV-050405-12223-MOCK-Q | User age is under 18 (2011-01-01)
-| OK | EE +
-LT +
-LV | PNOEE-30303039903-MOCK-Q +
-PNOLT-30303039903-MOCK-Q +
-PNOLV-030303-10004-MOCK-Q | No numbers in names
-| OK | EE +
-LT +
-LV | PNOEE-40404049996-MOCK-Q +
-PNOLT-40404049996-MOCK-Q +
-PNOLV-040404-19999-MOCK-Q |
-| OK | EE +
-LT +
-LV | PNOEE-40404049985-MOCK-Q +
-PNOLT-40404049985-MOCK-Q +
-PNOLV-040404-19980-MOCK-Q |
+| OK | LV | PNOLV-030303-10004-MOCK-Q | No numbers in names
+| OK | LV | PNOLV-040404-19999-MOCK-Q |
+| OK | LV | PNOLV-040404-19980-MOCK-Q |
 | OK | LV | PNOLV-311299-19993-MOCK-Q +
 PNOLV-329999-99901-MOCK-Q | dateOfBirth in separate field
 | OK | LV | PNOLV-329999-99709-MOCK-Q | No dateOfBirth in separate field
