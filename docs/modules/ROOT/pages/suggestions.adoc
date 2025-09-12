@@ -61,11 +61,12 @@ image::SD-4.png[static,150,title="",caption="",link=_images/SD-4.png]
 ^| user returns back to e-service
 
 image::OD-4.png[static,500,title="",caption="",link=_images/OD-4.png] 
+|  
+2+^| *Sample video through the eyes of a user*
+|
+^|video::EizJiqN4Jx4[youtube]
+^|video::V6BhvAJ7qsQ[youtube]
 |===
-
-
-
-// Video?
 
 .IMPORTANT
 [IMPORTANT]
