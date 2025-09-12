@@ -14,6 +14,8 @@ page.
 [cols="2,1,1,1", options="header", stripes=odd, grid=none, frame=none]
 |===
 | Serial number (HEX) | Validity | Status | Download
+| 039FA4242367BF1E778E7E13C070F406 | 2025-09-09 03:00:00 +
+2026-10-11 02:59:59 | in use from 06.10.2025 |​ link:https://c.sk.ee/rp-api_smart-id_com_2025_der.cer[DER], link:https://c.sk.ee/rp-api_smart-id_com_2025_pem.crt[PEM]
 | 0E20714E18D8C3BEE183CC07F74EA14E | 2024-09-18 00:00:00 +
 2025-10-20 23:59:59 | in use from 2024-10-10 | link:_images/rp-api_smart-id_com_2024_DER.crt[DER], link:_images/rp-api_smart-id_com_2024_PEM.crt[PEM]
 |===
@@ -29,6 +31,8 @@ New certificate is issued by new intermediate certificate (DigiCert Global G2 TL
 [cols="2,1,1,1", options="header", stripes=odd, grid=none, frame=none]
 |===
 | Serial number (HEX) | Validity | Status | Download
+| 02794E922985CD08A99DB1CF2708E2E4 | 2025.09.09 00:00:00 +
+2026.10.11 23:59:59 | in use from 2025-09-29 13:00 | link:https://c.sk.ee/sid_demo_sk_ee_2025_der.cer[DER], link:https://c.sk.ee/sid_demo_sk_ee_2025_pem.crt[PEM]
 | 07FFF49BD963A210A7F0B079283704D6 | 2024-10-03 00:00:00 +
 2025-10-15 23:59:59 | in use from 2024-10-03 | link:_images/sid_demo_sk_ee_2024_DER.crt[DER], link:_images/sid_demo_sk_ee_2024_PEM.crt[PEM]
 |===
