@@ -40,10 +40,10 @@ Getting Smart-ID up and running is easy. Follow those easy 4 steps:
 . **Install sample bank123 app** +
 App demonstrates 
 ifeval::["{service-name}" != ""]
-xref:rp-api:ROOT:overview.adoc#same_device_use_cases[same device usecase]
+xref:rp-api:ROOT:introduction.adoc#_same_device_use_cases[same device usecase]
 endif::[]
 ifeval::["{service-name}" == ""]
-https://sk-eid.github.io/smart-id-documentation/rp-api/overview.html#same_device_use_cases[same device usecase]
+https://sk-eid.github.io/smart-id-documentation/rp-api/introduction.html#_same_device_use_cases[same device usecase]
 endif::[]
 how Smart-ID app is automatically opened from another app.
 .. Get app for Android platform
