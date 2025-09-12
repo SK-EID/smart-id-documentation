@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Notification based flows :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/notification_based_flows.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+
+<link rel="icon" href="../../_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="../../_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rp-api" data-version="3.1.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="introduction.html">Relying Party API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../device_link.html">Device-link fallback page</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../https_pinning.html">Implementing HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../logos.html">Logos</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../test_accounts.html">Test accounts</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../changes.html">Changes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api_specification.html">OpenAPI specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../additional_security_measures.html">Additional security measures</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Relying Party API</span>
+    <span class="version">3.1.5</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../index.html">Documentation</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../introduction.html">3.1.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="introduction.html">3.1.5</a>
+        </li>
+        <li class="version">
+          <a href="../3.1.4/introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="../3.1.3/introduction.html">3.1.3</a>
+        </li>
+        <li class="version">
+          <a href="../3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="On this page" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Notification based flows</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Notification based flows are flows that rely on the push notification mechanism to notify the Smart-ID app. In these flows, the RP website or app shows a verification code (VC) which the user must compare to the VC displayed on Smart-ID to match the authentication or signature session.</p>
+</div>
+<div class="paragraph">
+<p>To force the user to perform the verification, the RP can request the Smart-ID app to display three VCs (one correct code and two random codes) and the user is required to select the correct code which is displayed by the RP website or app. In case the user doesn&#8217;t choose the correct code, the Smart-ID app aborts the request.</p>
+</div>
+<div class="paragraph">
+<p>This can be requested in the Smart-ID RP API call using the <code>confirmationMessageAndVerificationCodeChoice</code> interaction type. For details of the <code>interactions</code> object, see <a href="interactions.html" class="xref page">Interactions</a> page.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">NOTE</div>
+<div class="paragraph">
+<p>In case of <a href="overview.html#same_device_use_cases" class="xref page">same-device use cases</a> where the recommended App2App or Web2App device link flow cannot be used for some reason, then in notification flows it is recommended to include a small delay after showing the verification code to user and before starting the transaction on the RP API. This way, the user has additional time to look at the verification code on the RP&#8217;s app before the push notification arrives.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below, sequence diagrams are given along with explanations of the differences.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_flow_diagrams"><a class="anchor" href="#_flow_diagrams"></a>Flow diagrams</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following diagram describes the notification based flow for the authentication session.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-53709c326cd74dd4416093539340665ee7af6a51.svg"><img src="_images/flow-53709c326cd74dd4416093539340665ee7af6a51.svg" alt="flow"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates the notification based signing flow.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-74628f9b8fcc613f955edbf03be99fdb7e3ef41c.svg"><img src="_images/flow-74628f9b8fcc613f955edbf03be99fdb7e3ef41c.svg" alt="flow"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates the device link based certificate choice flow being linked to a notification based signing flow.</p>
+</div>
+<div class="imageblock sequence kroki-format-svg kroki">
+<div class="content">
+<a class="image" href="_images/flow-216644239dfadce71569cdd65b364997c4234ca5.svg"><img src="_images/flow-216644239dfadce71569cdd65b364997c4234ca5.svg" alt="flow"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_signature_protocols"><a class="anchor" href="#_signature_protocols"></a>Signature protocols</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are separate signing protocols for authentication and signature requests (see <a href="signature_protocols.html" class="xref page">signature protocols</a> for details).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="verification_codes_for_authentication_requests"><a class="anchor" href="#verification_codes_for_authentication_requests"></a>Verification codes for authentication requests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In RP API v3 notification based authentication requests, RP must compute verification codes (VC) for each authentication request, so the user can bind together the session on the browser or RP app and the authentication request on the Smart-ID app.</p>
+</div>
+<div class="paragraph">
+<p>The VC is computed as follows:</p>
+</div>
+<div class="paragraph">
+<p>Calculate <code>SHA-256</code> from the <code>rpChallenge</code>, extract 2 rightmost bytes from the result, interpret them as a big-endian unsigned integer and take the last 4 digits in decimal form for display. <code>SHA-256</code> must be used to calculate the VC.</p>
+</div>
+<div class="paragraph">
+<p>Please keep in mind that the <code>rpChallenge</code> is the real <code>rpChallenge</code> byte value (for example, the byte array returned from the <code>SecureRandom()</code> or equivalent method), not the Base64 encoded form used for transport or the popular hexadecimal representation.</p>
+</div>
+<div class="paragraph">
+<p>The VC value must be displayed to the user in the browser together with a message asking the end user to verify the code matches with the one displayed on their mobile device. The user must not proceed if these don&#8217;t match.</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">integer(SHA-256(rpChallenge)[-2:-1]) mod 10000</code></pre>
+</div>
+</div>
+<div id="_tabs_1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_1_php" class="tab">
+<p>PHP</p>
+</li>
+<li id="_tabs_1_python" class="tab">
+<p>Python</p>
+</li>
+<li id="_tabs_1_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_1_rust" class="tab">
+<p>Rust</p>
+</li>
+<li id="_tabs_1_kotlin" class="tab">
+<p>Kotlin</p>
+</li>
+<li id="_tabs_1_c" class="tab">
+<p>C#</p>
+</li>
+<li id="_tabs_1_node_js" class="tab">
+<p>Node.js</p>
+</li>
+<li id="_tabs_1_ruby" class="tab">
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_java--panel" class="tabpanel" aria-labelledby="_tabs_1_java">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Base64;
+
+public class NotificationVerificationCode {
+
+    public static void main(String[] args) throws Exception {
+
+        String rpChallengeBase64 = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+        byte[] rpChallengeBytes = Base64.getDecoder().decode(
+            rpChallengeBase64
+        );
+
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(rpChallengeBytes);
+        byte[] sha256Hash = md.digest();
+
+        BigInteger LAST_2_BYTES_BITMASK = new BigInteger("65535");
+
+        BigInteger result = new BigInteger(sha256Hash)
+            .and(LAST_2_BYTES_BITMASK)
+            .mod(new BigInteger("10000"));
+
+        String verificationCode = String.format("%04d", result);
+
+        System.out.println(verificationCode);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_php--panel" class="tabpanel" aria-labelledby="_tabs_1_php">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
+
+$rpChallengeBase64 = base64_decode('GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==');
+$sha256Hash = hash('sha256', $rpChallengeBase64, true);
+$result = hexdec(bin2hex(substr($sha256Hash, -2))) % 10000;
+$verificationCode = sprintf('%04d', $result);
+echo $verificationCode;
+
+?&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_python--panel" class="tabpanel" aria-labelledby="_tabs_1_python">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import base64
+import hashlib
+
+rp_challenge_base64 = b"GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+rp_challenge_bytes = base64.b64decode(rp_challenge_base64)
+sha256_hash = hashlib.sha256(rp_challenge_bytes).digest()
+
+result = int.from_bytes(sha256_hash[-2:], byteorder='big') % 10000
+verification_code = f"{result:04d}"
+print(verification_code)</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_go--panel" class="tabpanel" aria-labelledby="_tabs_1_go">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
+
+import (
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+)
+
+func main() {
+	var rpChallengeBase64 string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var rpChallengeBytes, err = base64.StdEncoding.DecodeString(rpChallengeBase64)
+	if err != nil {
+		panic(err)
+	}
+
+	var sha256Hash [32]byte = sha256.Sum256(rpChallengeBytes)
+	var result int = int(sha256Hash[len(sha256Hash)-2])&lt;&lt;8 + int(sha256Hash[len(sha256Hash)-1])
+	result %= 10000
+
+	var verificationCode string = fmt.Sprintf("%04d", result)
+	fmt.Printf("%s\n",verificationCode)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::decode;
+use sha2::{Sha256, Digest};
+
+fn main() {
+    let rp_challenge_base64: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+    let rp_challenge_bytes = decode(rp_challenge_base64).unwrap();
+    let sha256_hash = Sha256::digest(&amp;rp_challenge_bytes);
+    let result = (((sha256_hash[30] as u16) &lt;&lt; 8) + (sha256_hash[31] as u16)) % 10000;
+    let verification_code: String = format!("{:04}", result);
+    println!("{}", verification_code);
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_kotlin--panel" class="tabpanel" aria-labelledby="_tabs_1_kotlin">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.math.BigInteger
+import java.nio.charset.StandardCharsets
+import java.security.MessageDigest
+import java.util.Base64
+
+fun main() {
+    val rpChallengeBase64: String = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+    val rpChallengeBytes: ByteArray = Base64.getDecoder().decode(rpChallengeBase64)
+
+    val sha256Hash: ByteArray = MessageDigest
+        .getInstance("SHA-256")
+        .digest(rpChallengeBytes)
+
+    val LAST_2_BYTES_BITMASK: BigInteger = BigInteger("65535")
+
+    val result: BigInteger = BigInteger(sha256Hash)
+        .and(LAST_2_BYTES_BITMASK)
+        .mod(BigInteger("10000"))
+
+    val verificationCode = "%04d".format(result)
+
+    println(verificationCode)
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_c--panel" class="tabpanel" aria-labelledby="_tabs_1_c">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cs hljs" data-lang="cs">using System;
+using System.Security.Cryptography;
+
+public class NotificationVerificationCode
+{
+    public static void Main(string[] args)
+    {
+        string rpChallengeBase64 = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
+        byte[] rpChallengeBytes = Convert.FromBase64String(rpChallengeBase64);
+
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] sha256Hash = sha256.ComputeHash(rpChallengeBytes);
+            int result = ((sha256Hash[30] &lt;&lt; 8) + (sha256Hash[31])) % 10000;
+            string verificationCode = result.ToString("D4");
+            Console.WriteLine(verificationCode);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_node_js--panel" class="tabpanel" aria-labelledby="_tabs_1_node_js">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const crypto = require('crypto');
+
+const rpChallenge = Buffer.from('GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==', 'base64');
+
+const sha256 = crypto.createHash('sha256');
+sha256.update(rpChallenge);
+const sha256Hash = sha256.digest();
+
+const result = sha256Hash.readUInt16BE(30) % 10000
+  .toString()
+  .padStart(4, '0');
+
+console.log(result);</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_1_ruby--panel" class="tabpanel" aria-labelledby="_tabs_1_ruby">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'base64'
+require 'digest'
+
+rp_challenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+sha256_hash = Digest::SHA256.digest(Base64.decode64(rp_challenge))
+
+last_2_bytes = sha256_hash[-2..-1].unpack('n*').first
+
+result = (last_2_bytes % 10_000).to_s.rjust(4, '0')
+
+puts result</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Verification code</div>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">7180</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="verification_codes_for_signature_requests"><a class="anchor" href="#verification_codes_for_signature_requests"></a>Verification codes for signature requests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In RP API v3 notification based signature requests, verification codes (VC) are not generated by RP based on the DTBS (data-to-be-signed), but are returned from the server to RP for security reasons. Verification codes are only relevant for the notification based flows.</p>
+</div>
+<div class="paragraph">
+<p>Currently, there is only one supported verification code type:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>numeric4</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The returned verification code consists of 4 numbers. It must be shown to the user as it is received from the server.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

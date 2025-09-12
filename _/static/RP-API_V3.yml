@@ -4,6 +4,8 @@ info:
   version: "3.1"
   description: |
     Relying Party interface protocol of Smart-ID. The interface offers the entry point to Smart-ID main use cases, i.e. authentication and signing.
+
+    For overview of API endpoints, see the [Overview of API endpoints](./overview_of_api_endpoints.html) page.
   contact:
     name: SK ID Solutions
     url: https://www.skidsolutions.eu/
@@ -19,11 +21,9 @@ tags:
   description: |
     An authentication session allows an RP to request verification of a user's identity. The result must be fetched using the separate `/session` endpoint.
 
-    For same-device use cases the `/v3/authentication/device-link` endpoints must always be used as they provide both a superior user experience and better security guarantees.
+    For same-device use cases the `/v3/authentication/device-link` endpoints should always be used as they provide both a superior user experience and better security guarantees.
 
-    For cross-device use cases the `/v3/authentication/device-link` endpoints should be preferred. The `/v3/authentication/notification` endpoints are not recommended due to security considerations.
-
-    The `/v3/authentication/notification/document` endpoint can be safely utilized on devices and browsers that have previously completed a successful device link based flow. It is up to the RP to decide how to securely identify such devices/browsers and tie them to the `document-number` by utilizing browser cookies, local app storage etc. For example using the User-Agent field is **not secure** and should be avoided as it can be easily spoofed by a malicious party.
+    For cross-device use cases the `/v3/authentication/device-link` endpoints should be preferred. The `/v3/authentication/notification` endpoints are not recommended due to security considerations unless a prior device link based authentication has been completed on the same user device. The `/v3/authentication/notification` endpoint can be safely utilized on devices and browsers that have previously completed a successful device link based flow. It is up to the RP to decide how to securely identify such devices/browsers and tie them to the user's personal number by utilizing browser cookies, local app storage etc. For example using the User-Agent field is **not secure** and should be avoided as it can be easily spoofed by a malicious party.
 - name: Signature session
   description: |
     A signature session allows an RP to create digital signatures that in turn can be used to create electronic signatures. The digital signature must be fetched using the separate `/session` endpoint.

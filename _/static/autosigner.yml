@@ -12,7 +12,7 @@ info:
     url: https://smart-id.com
   termsOfService: https://www.skidsolutions.eu/resources/general-terms-of-subscriber-agreement/
 servers:
-- url: https://sid.demo.sk.ee/autosigner
+- url: https://sid.demo.sk.ee/mock
 tags:
 - name: Device Link
   description: API endpoint for submitting device links to the automated testing interface
@@ -35,10 +35,12 @@ components:
   schemas:
     DocumentNumber:
       type: string
-      description: One of the configured document numbers; SK provides a list of document numbers per country, each resolves with a specific resultType. Mandatory and must be provided even for anonymous sessions, because this will determine the resultType.
+      description: One of the configured document numbers. Find more from https://sk-eid.github.io/smart-id-documentation/test_accounts.html.  Each resolves with a specific resultType. Mandatory and must be provided even for anonymous sessions, because this will determine the resultType.
       enum:
-      - PNOEE-30303039914-MOCK-Q
-      - TODO
+      - PNOEE-40404040009-MOCK-Q
+      - PNOLV-040404-10003-MOCK-Q
+      - PNOLT-40404040009-MOCK-Q
+      - PNOBE-04040400287-MOCK-Q
     DeviceLink:
       type: string
       description: The device link that will be tied to the provided documentNumber

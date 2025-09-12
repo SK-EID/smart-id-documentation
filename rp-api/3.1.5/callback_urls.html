@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Callback URLs :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/callback_urls.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+
+<link rel="icon" href="../../_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="../../_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rp-api" data-version="3.1.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="introduction.html">Relying Party API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../device_link.html">Device-link fallback page</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../https_pinning.html">Implementing HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../logos.html">Logos</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../test_accounts.html">Test accounts</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../changes.html">Changes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api_specification.html">OpenAPI specification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../additional_security_measures.html">Additional security measures</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Relying Party API</span>
+    <span class="version">3.1.5</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../index.html">Documentation</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../introduction.html">3.1.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="introduction.html">3.1.5</a>
+        </li>
+        <li class="version">
+          <a href="../3.1.4/introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="../3.1.3/introduction.html">3.1.3</a>
+        </li>
+        <li class="version">
+          <a href="../3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="On this page" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Callback URLs</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>For device link flows that use a callback URL (Web2App and App2App links), the callback URL handling is very important to achieve a secure and phishing-resistant flow.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="paragraph">
+<p>If Web2App and App2App flows are used by the same RP, the <code>initialCallbackUrl</code> base (without the random parameter) must be different for both flows, otherwise Web2App flow <code>callbackUrl</code> might wrongly end up in the RP app.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web2app_callback_url"><a class="anchor" href="#_web2app_callback_url"></a>Web2App callback URL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For Web2App callback URLs, the following steps must be followed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user initiates authentication or signing flow on RP website.</p>
+</li>
+<li>
+<p>RP website backend has to set a session cookie to the user&#8217;s browser. This cookie must be set as <code>SameSite=Lax</code> because later, the Smart-ID app will launch the callback URL using top-level navigation and the request type will be <code>GET</code>.</p>
+</li>
+<li>
+<p>RP website backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter as a query parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
+</li>
+<li>
+<p>RP website backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the <code>callbackUrl</code>.</p>
+</li>
+<li>
+<p>Once the user has signed (or rejected the transaction), they are redirected to the callback URL address of RP website and their browser will have the same session cookie. Some aspects to take into account are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User will end up on a new browser tab;</p>
+</li>
+<li>
+<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> which is the Base64URL encoded SHA-256 digest of the <code>sessionSecret</code>; and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code> which is also Base64URL encoded.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>RP website sends the callback URL to RP website backend.</p>
+</li>
+<li>
+<p>RP website backend polls RP API <code>/v3/session/{sessionID}</code> endpoint for the session API response. Note that this can be done before or after the user has returned to the RP website via the callback URL.</p>
+</li>
+<li>
+<p>RP website backend performs the following checks:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that the user&#8217;s session cookie matches with the random parameter attached in the callback URL;</p>
+</li>
+<li>
+<p>Verify that the SHA-256 digest of the <code>sessionSecret</code> equals to <code>sessionSecretDigest</code> in the callback URL;</p>
+</li>
+<li>
+<p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value (as is, without Base64URL decoding), the result equals to the <code>userChallenge</code> within the <code>signature</code> object sent by the RP API in the session API response;</p>
+</li>
+<li>
+<p>Perform the response verification steps described in <a href="response_verification.html" class="xref page">Response verification</a> page. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
+</li>
+<li>
+<p>Invalidate the old user session and generate a new one. <code>callbackUrl</code> <strong>must</strong> be invalidated after use and must not be accepted after it is used once. <strong>Failing to invalidate the <code>callbackUrl</code> after use may leave the user vulnerable to a phishing attack.</strong></p>
+</li>
+<li>
+<p>Redirect the user to a new page and show authenticated session.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="paragraph">
+<p>If any of these steps fail to verify, deny the authentication or signature attempt.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_multiple_browser_challenges"><a class="anchor" href="#_multiple_browser_challenges"></a>Multiple browser challenges</h3>
+<div class="paragraph">
+<p>In cases where user initiated the authentication/signing flow on a mobile browser that was not their default browser, the HTTPS callback URL will probably be opened in the default browser which will not have the session cookie and thus the verification <strong>must</strong> fail.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_app2app_callback_url"><a class="anchor" href="#_app2app_callback_url"></a>App2App callback URL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The protocol steps for handling App2App callback URLs are functionally the same as for Web2App;
+however, there are also some differences in the steps below due to fundamental differences between webpages and apps.</p>
+</div>
+<div class="paragraph">
+<p>For App2App callback URLs, the following steps must be followed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user initiates authentication or signing flow on RP app.</p>
+</li>
+<li>
+<p>RP app has to save a session identifier in the app&#8217;s storage.</p>
+</li>
+<li>
+<p>RP app backend makes a request to RP API and in the <code>initialCallbackUrl</code>, attaches a random parameter as a query parameter which it also saves in the backend and associates it with the session. The objective is for every <code>initialCallbackUrl</code> in any session to be unique and unpredictable.</p>
+</li>
+<li>
+<p>RP app backend saves the BASE64URL encoded SHA-256 digest of <code>sessionSecret</code> as <code>sessionSecretDigest</code> for later use during verification of the <code>callbackUrl</code>.</p>
+</li>
+<li>
+<p>Once the user has signed (or rejected the transaction), they are redirected to the callback URL, which will cause RP app to open (for this to work, RP app has to be configured to handle that domain and path of the URL).</p>
+</li>
+<li>
+<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> which is the Base64URL encoded SHA-256 digest of the <code>sessionSecret</code>; and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code> which is also Base64URL encoded.</p>
+</li>
+<li>
+<p>RP app sends the callback URL together with the session identifier from storage to RP app backend.</p>
+</li>
+<li>
+<p>RP website backend polls RP API <code>/v3/session/{sessionID}</code> endpoint for the session API response. Note that this can be done before or after the user has returned to the RP website via the callback URL.</p>
+</li>
+<li>
+<p>RP app backend performs the following checks:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that the user&#8217;s session identifier matches with the random parameter attached in the callback URL;</p>
+</li>
+<li>
+<p>Verify that the SHA-256 digest of the <code>sessionSecret</code> equals to <code>sessionSecretDigest</code> in the callback URL;</p>
+</li>
+<li>
+<p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value (as is, without Base64URL decoding), the result equals to the <code>userChallenge</code> within the <code>signature</code> object sent by the RP API in the session API response;</p>
+</li>
+<li>
+<p>Perform the response verification steps described in <a href="response_verification.html" class="xref page">Response verification</a> page. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
+</li>
+<li>
+<p>Invalidate the old user session and generate a new one. <code>callbackUrl</code> <strong>must</strong> be invalidated after use and must not be accepted after it is used once. <strong>Failing to invalidate the <code>callbackUrl</code> after use may leave the user vulnerable to a phishing attack.</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="paragraph">
+<p>If any of these steps fail to verify, deny the authentication or signature attempt.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="callback_urls_in_linked_notification_based_flows"><a class="anchor" href="#callback_urls_in_linked_notification_based_flows"></a>Callback URLs in linked notification based flows</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Linked notification based flows are used in cases where the certificate of the user is required before the digest to be signed can be generated. In these flows <code>callbackUrl</code> is required and it is supplied by the RP in the initial device link based certificate choice request. However, the <code>callbackUrl</code> is not immediately used after the certificate choice request, and is only used after the <code>/v3/signature/notification/linked</code> endpoint is called with the mandatory <code>linkedSessionID</code> parameter and the flow is completed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_callback_url_examples"><a class="anchor" href="#_callback_url_examples"></a>Callback URL examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the initial callback URL provided by RP backend is:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then in the <code>authentication</code> flow the full callback URL would be:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=U4CKK13H1XFiyBofev9asqrzIrY5_Gszi_nL_zDKkBc&amp;userChallengeVerifier=XtPfaGa8JnGtYrJjboooUf0KfY9sMEHrWFpSQrsUv9c</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the <code>signature</code> and <code>certificate-choice</code> flows the full callback URL would be:</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ&amp;sessionSecretDigest=U4CKK13H1XFiyBofev9asqrzIrY5_Gszi_nL_zDKkBc</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_phishing_resistance"><a class="anchor" href="#_phishing_resistance"></a>Phishing resistance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For both Web2App and App2App callback URLs, the checks described above provide complete phishing resistance. Always prefer device link flows if possible.</p>
+</div>
+<div class="paragraph">
+<p>For the response verification steps, see <a href="response_verification.html" class="xref page">Response verification</a> page.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

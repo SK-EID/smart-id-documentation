@@ -60,16 +60,16 @@
     <a class="nav-link" href="device_link.html">Device link fallback page</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="https_pinning.html">Implementing HTTPS pinning</a>
+    <a class="nav-link" href="https_pinning.html">HTTPS pinning</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="client_libraries.html">Client libraries</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="logos.html">Logos</a>
+    <a class="nav-link" href="suggestions.html">Suggestions</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="test_accounts.html">Test accounts</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="logos.html">Logos</a>
   </li>
 </ul>
   </li>
@@ -79,19 +79,38 @@
     <a class="nav-link" href="contact.html">Contact</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <span class="nav-text">Automated testing</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/mock_service.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/device_link_test_endpoint.html">Device link test endpoint</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="test_accounts.html">Test accounts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <span class="nav-text">Relying Party API</span>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="rp-api/introduction.html">Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="rp-api/overview.html">Overview</a>
-  </li>
-  <li class="nav-item" data-depth="1">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rp-api/changes.html">Changes</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rp-api/glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/overview_of_api_endpoints.html">Overview of API endpoints</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rp-api/api_specification.html">OpenAPI specification</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="rp-api/device_link_flows.html">Device link flows</a>
@@ -103,9 +122,6 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="rp-api/notification_based_flows.html">Notification based flows</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="rp-api/api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="rp-api/api_details.html">API technical description</a>
@@ -143,7 +159,10 @@
       <div class="title"><a href="rp-api/introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="rp-api/introduction.html">3.1.5</a>
+          <a href="rp-api/introduction.html">3.1.6</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.1.5/introduction.html">3.1.5</a>
         </li>
         <li class="version">
           <a href="rp-api/3.1.4/introduction.html">3.1.4</a>
@@ -168,42 +187,52 @@
 </aside>
 <article class="doc">
 <h1 class="page">Test accounts for automated testing</h1>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">IMPORTANT</div>
-<div class="paragraph">
-<p>These test numbers work only with RP API v1/v2!</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">NOTE</div>
-<div class="paragraph">
-<p>Account numbers with <code>EndResult!=OK</code> have changed on 2024-11-05 (New CA chains!)</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
+<div class="sect1">
+<h2 id="_device_link_flows"><a class="anchor" href="#_device_link_flows"></a>Device link flows</h2>
+<div class="sectionbody">
 <table class="tableblock frame-none grid-none stripes-odd stretch">
 <colgroup>
-<col style="width: 30%;">
-<col style="width: 10%;">
-<col style="width: 30%;">
-<col style="width: 30%;">
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">EndResult</th>
+<th class="tableblock halign-left valign-top">Country</th>
+<th class="tableblock halign-left valign-top">Document Number</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EE<br>
+LV<br>
+LT<br>
+BE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-40404040009-MOCK-Q<br>
+PNOLV-040404-10003-MOCK-Q<br>
+PNOLT-40404040009-MOCK-Q<br>
+PNOBE-04040400287-MOCK-Q</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See
+<a href="rp-api/mock_service.html" class="xref page">more</a>
+how to test device-link flows</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_notification_flows"><a class="anchor" href="#_notification_flows"></a>Notification flows</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stripes-odd stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
@@ -220,10 +249,10 @@
 LT<br>
 LV<br>
 BE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-40504040001-MOCK-Q<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-40504040001-DEMO-Q<br>
 PNOLT-40504040001-MOCK-Q<br>
-PNOLV-050405-13330-MOCK-Q<br>
-PNOBE-05040400032-MOCK-Q</p></td>
+PNOLV-050405-10009-DEMO-Q<br>
+PNOBE-05040400032-DEMO-Q</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Issued using:<br>
 <strong>TEST of SK ID Solutions EID-Q 2024E</strong></p></td>
 </tr>
@@ -232,38 +261,38 @@ PNOBE-05040400032-MOCK-Q</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">LT<br>
 LV</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PNOLT-40504049999-MOCK-NQ<br>
-PNOLV-050404-19993-MOCK-NQ</p></td>
+PNOLV-050404-19993-DEMO-NQ</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Issued using:<br>
 <strong>TEST of SK ID Solutions EID-NQ 2021E</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LT<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EE<br>
+LT<br>
 LV<br>
 BE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PNOLT-50001029996-MOCK-Q<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-50001029996-DEMO-Q<br>
+PNOLT-50001029996-DEMO-Q<br>
 PNOLV-020100-29990-MOCK-Q<br>
 PNOBE-00010299944-MOCK-Q</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adult</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EE<br>
-LT<br>
-LV</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-30303039914-MOCK-Q<br>
-PNOLT-30303039914-MOCK-Q<br>
-PNOLV-030303-10012-MOCK-Q</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOLT-30303039914-MOCK-Q</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EE<br>
 LT<br>
-LV</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-30303039816-MOCK-Q<br>
-PNOLT-39901012239-MOCK-Q<br>
-PNOLV-030303-10215-MOCK-Q</p></td>
+LV<br>
+BE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-39901012239-MOCK-Q<br>
+PNOLT-39901012239-DEMO-Q<br>
+PNOLV-030303-10215-MOCK-Q<br>
+PNOBE-99010199987-DEMO-Q</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User has other active account</p></td>
 </tr>
 <tr>
@@ -279,32 +308,20 @@ PNOLV-050405-12223-MOCK-Q</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EE<br>
-LT<br>
-LV</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-30303039903-MOCK-Q<br>
-PNOLT-30303039903-MOCK-Q<br>
-PNOLV-030303-10004-MOCK-Q</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LV</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOLV-030303-10004-MOCK-Q</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No numbers in names</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EE<br>
-LT<br>
-LV</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-40404049996-MOCK-Q<br>
-PNOLT-40404049996-MOCK-Q<br>
-PNOLV-040404-19999-MOCK-Q</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LV</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOLV-040404-19999-MOCK-Q</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EE<br>
-LT<br>
-LV</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PNOEE-40404049985-MOCK-Q<br>
-PNOLT-40404049985-MOCK-Q<br>
-PNOLV-040404-19980-MOCK-Q</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LV</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PNOLV-040404-19980-MOCK-Q</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -419,6 +436,8 @@ PNOBE-00010220335-MOCK-Q</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 </article>
   </div>
 </main>

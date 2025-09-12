@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.5">
+<div class="nav-container" data-component="rp-api" data-version="3.1.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -57,19 +57,19 @@
     <a class="nav-link" href="../environments.html">Environments</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../device_link.html">Device-link fallback page</a>
+    <a class="nav-link" href="../device_link.html">Device link fallback page</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../https_pinning.html">Implementing HTTPS pinning</a>
+    <a class="nav-link" href="../https_pinning.html">HTTPS pinning</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../client_libraries.html">Client libraries</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../logos.html">Logos</a>
+    <a class="nav-link" href="../suggestions.html">Suggestions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../test_accounts.html">Test accounts</a>
+    <a class="nav-link" href="../logos.html">Logos</a>
   </li>
 </ul>
   </li>
@@ -79,19 +79,38 @@
     <a class="nav-link" href="../contact.html">Contact</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <span class="nav-text">Automated testing</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mock_service.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="device_link_test_endpoint.html">Device link test endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../test_accounts.html">Test accounts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <span class="nav-text">Relying Party API</span>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="introduction.html">Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="overview.html">Overview</a>
-  </li>
-  <li class="nav-item" data-depth="1">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="changes.html">Changes</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="overview_of_api_endpoints.html">Overview of API endpoints</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="device_link_flows.html">Device link flows</a>
@@ -103,9 +122,6 @@
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="notification_based_flows.html">Notification based flows</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="api_specification.html">OpenAPI specification</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="api_details.html">API technical description</a>
@@ -133,7 +149,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.5</span>
+    <span class="version">3.1.6</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -143,7 +159,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.5</a>
+          <a href="introduction.html">3.1.6</a>
+        </li>
+        <li class="version">
+          <a href="3.1.5/introduction.html">3.1.5</a>
         </li>
         <li class="version">
           <a href="3.1.4/introduction.html">3.1.4</a>
@@ -179,16 +198,16 @@
 <div class="paragraph">
 <p>This can be requested in the Smart-ID RP API call using the <code>confirmationMessageAndVerificationCodeChoice</code> interaction type. For details of the <code>interactions</code> object, see <a href="interactions.html" class="xref page">Interactions</a> page.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">NOTE</div>
+<div class="title">TIP</div>
 <div class="paragraph">
-<p>In case of <a href="overview.html#same_device_use_cases" class="xref page">same-device use cases</a> where the recommended App2App or Web2App device link flow cannot be used for some reason, then in notification flows it is recommended to include a small delay after showing the verification code to user and before starting the transaction on the RP API. This way, the user has additional time to look at the verification code on the RP&#8217;s app before the push notification arrives.</p>
+<p>In case of same-device use cases where the recommended App2App or Web2App device link flow cannot be used for some reason, then in notification flows it is recommended to include a small delay after showing the verification code to user and before starting the transaction on the RP API. This way, the user has additional time to look at the verification code on the RP&#8217;s app before the push notification arrives.</p>
 </div>
 </td>
 </tr>
