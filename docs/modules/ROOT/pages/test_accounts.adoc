@@ -12,7 +12,14 @@ BE
 PNOLV-040404-10003-MOCK-Q +
 PNOLT-40404040009-MOCK-Q +
 PNOBE-04040400287-MOCK-Q
-| See xref:rp-api:ROOT:mock_service.adoc[more] how to test device-link flows 
+| See 
+ifeval::["{service-name}" != ""]
+xref:rp-api:ROOT:mock_service.adoc[more] 
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/mock_service.html[more]
+endif::[]
+how to test device-link flows 
 |===
 
 
