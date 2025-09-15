@@ -87,7 +87,7 @@ components:
   examples:
     DeviceLinkRequestBodyExample:
       value:
-        documentNumber: PNOEE-30303039914-MOCK-Q
+        documentNumber: PNOEE-40404040009-MOCK-Q
         deviceLink: https://sid.demo.sk.ee/smart-id-rp/v3/device-link/?...
         flowType: Web2App
         browserCookie: a=b;c=d
