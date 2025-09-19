@@ -1,18 +1,7 @@
 = Test accounts for automated testing
 
 == Device link flows
-[cols="2m,1,3,3", options="header", stripes=odd, grid=none, frame=none]
-|===
-| EndResult | Country | Document Number | Comment
-| OK | EE +
-LV +
-LT +
-BE  
-| PNOEE-40404040009-MOCK-Q +
-PNOLV-040404-10003-MOCK-Q +
-PNOLT-40404040009-MOCK-Q +
-PNOBE-04040400287-MOCK-Q
-| See 
+See 
 ifeval::["{service-name}" != ""]
 xref:rp-api:ROOT:mock_service.adoc[more] 
 endif::[]
@@ -20,6 +9,35 @@ ifeval::["{service-name}" == ""]
 https://sk-eid.github.io/smart-id-documentation/rp-api/mock_service.html[more]
 endif::[]
 how to test device-link flows 
+
+[cols="2m,1,3,3", options="header", stripes=odd, grid=none, frame=none]
+|===
+| EndResult | Country | Document Number | Comment
+| OK | EE +
+LT +
+LV +
+BE  
+| PNOEE-40404040009-MOCK-Q +
+PNOLT-40404040009-MOCK-Q +
+PNOLV-040404-10003-MOCK-Q +
+PNOBE-04040400287-MOCK-Q
+| Adult
+| OK | EE +
+LT +
+LV +
+LV +
+BE
+| PNOEE-61101019999-MOCK-Q +
+PNOLT-61101019999-MOCK-Q +
+PNOLV-020211-12343-MOCK-Q +
+PNOLV-320000-00008-MOCK-Q +
+PNOBE-11010199815-MOCK-Q
+| Minor
+| OK | LT +
+LV 
+| PNOLT-61101019988-MOCK-NQ +
+PNOLV-020211-12351-MOCK-NQ
+| Minor
 |===
 
 
@@ -31,9 +49,11 @@ how to test device-link flows
 | OK | EE +
 LT +
 LV +
+LV +
 BE | PNOEE-40504040001-DEMO-Q +
 PNOLT-40504040001-MOCK-Q +
 PNOLV-050405-10009-DEMO-Q +
+https://www.pmlp.gov.lv/en/change-personal-identity-number[PNOLV-320000-10003-MOCK-Q] +
 PNOBE-05040400032-DEMO-Q | Issued using: +
 **TEST of SK ID Solutions EID-Q 2024E**
 | OK | LT +
@@ -57,10 +77,11 @@ PNOLV-030303-10215-MOCK-Q +
 PNOBE-99010199987-DEMO-Q | User has other active account
 | OK | EE +
 LT +
-LV | PNOEE-61101012257-MOCK-Q +
+LV +
+LV| PNOEE-61101012257-MOCK-Q +
 PNOLT-61101012257-MOCK-Q +
-PNOLV-010111-23474-MOCK-Q +
-PNOLV-050405-12223-MOCK-Q | User age is under 18 (2011-01-01)
+PNOLV-010111-23474-DEMD-Q +
+PNOLV-320000-00032-MOCK-Q | User age is under 18 (2011-01-01)
 | OK | LV | PNOLV-030303-10004-MOCK-Q | No numbers in names
 | OK | LV | PNOLV-040404-19999-MOCK-Q |
 | OK | LV | PNOLV-040404-19980-MOCK-Q |
