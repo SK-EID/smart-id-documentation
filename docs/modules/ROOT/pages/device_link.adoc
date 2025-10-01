@@ -1,0 +1,25 @@
+= Device link fallback page
+
+In some cases user may end up in device link fallback page.
+
+For better user experience there is possibility to view that page in different languages.
+
+Page supports ISO 639-2 codes with `lang` parameter:
+----
+'eng' - English (default)
+'est' - Estonian
+'rus' - Russian
+'lit' - Lithuanian
+'lav' - Latvian
+'nld' - Dutch
+'fra' - French
+'deu' - German
+----
+
+More info about constructing device link URLs can be found 
+ifeval::["{service-name}" != ""]
+xref:rp-api:ROOT:device_link_flows.adoc[here].
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html#_device_link_calculation[here].
+endif::[]

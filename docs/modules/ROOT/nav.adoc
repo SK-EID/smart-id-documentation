@@ -1,0 +1,15 @@
+include::partial$nav_docs.adoc[]
+
+ifeval::["{service-name}" != ""]
+include::rp-api:ROOT:partial$nav_testing.adoc[]
+include::ROOT:ROOT:partial$nav_testing.adoc[]
+endif::[]
+
+ifeval::["{service-name}" == ""]
+* Automated testing
+include::partial$nav_testing.adoc[]
+endif::[]
+
+ifeval::["{service-name}" != ""]
+include::rp-api:ROOT:partial$nav_api.adoc[]
+endif::[]

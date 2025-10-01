@@ -1,0 +1,11 @@
+site:
+  title: Smart-ID documentation
+  start_page: ROOT::index.adoc
+content:
+  sources:
+  - url: ./../
+    branches: HEAD
+    start_path: docs
+ui:
+  bundle:
+    url: ./ui/ui-bundle.zip

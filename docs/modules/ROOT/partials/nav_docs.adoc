@@ -1,0 +1,12 @@
+* Smart-ID Documentation
+* xref:ROOT:ROOT:index.adoc[Getting started]
+** xref:ROOT:ROOT:demo.adoc[Try out]
+** xref:ROOT:ROOT:implementation.adoc[Smart-ID integration]
+*** xref:ROOT:ROOT:environments.adoc[Environments]
+*** xref:ROOT:ROOT:device_link.adoc[Device link fallback page]
+*** xref:ROOT:ROOT:https_pinning.adoc[HTTPS pinning]
+*** xref:ROOT:ROOT:client_libraries.adoc[Client libraries]
+*** xref:ROOT:ROOT:suggestions.adoc[Suggestions]
+*** xref:ROOT:ROOT:logos.adoc[Logos]
+* xref:ROOT:ROOT:app_release_notes.adoc[App Release Notes]
+* xref:ROOT:ROOT:contact.adoc[Contact]

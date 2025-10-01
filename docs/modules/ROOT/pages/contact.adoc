@@ -1,0 +1,30 @@
+= Contact
+
+Ask for an offer or for more information:
+
+e-mail::
+sales@smart-id.com
+
+phone::
++
+--
+link:tel:+3726101885[+372 610 1885] (Estonian) +
+link:tel:+37126127964[+371 2612 7964] (Latvian) +
+link:tel:+37052456897[+370 5245 6897] (Lithuanian)
+--
+
+== Support (in English)
+In case of technical questions or errors:
+
+e-mail:: support@smart-id.com
+
+phone:: link:tel:+3726101888[+372 610 1888]
+
+**__If you have problems with transactions and receive an error, please include:__**
+
+--
+* _date and time of the transaction,_
+* _personal code used,_
+* _your external IP,_
+* _environment (production, demo)._
+--

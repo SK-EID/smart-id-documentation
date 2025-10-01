@@ -1,0 +1,1053 @@
+= App Release Notes
+
+++++
+<style>
+.doc .ulist li+li {
+    margin-top: 0;
+}
+.doc details>summary::before {
+    border-width: .3em .5em .3em;
+</style>
+++++
+
+[#v293]
+== Smart-ID App v29.3
+.Released: 2025-08-25
+[%collapsible%open]
+====
+Fixed::
+* App Usage broken with iOS 26 beta
+* Fix wrong theme after device link transaction.
+* Allow SID Android app to start without push messaging service (GrapheneOS)
+* Fix hybrid menu buttons not closing the menu when pressed.
+* Confirm code button appears during transition.
+
+Changed::
+* Integrate Android service lib 24.4
+* Integrate iOS service Lib 24.1
+====
+
+[#v292]
+## Smart-ID App v29.2
+.Released: 2025-06-19
+[%collapsible]
+====
+Changed::
+* Allow QR scanning only from app
+* Android service lib 24.3
+* iOS service lib 24.0
+
+Fixed::
+* Fix translations.
+* Voice control transaction item numbers are missing
+* Fallback to UTC timezone when failing to resolve actual timezone. Prevents app crash.
+* Fix background push handling.
+* Change button label "Learn more" to dynamic.
+* Improve home screen content fit on small screens and large font sizes.
+* Add translations for ROB document not valid error.
+* Remove numbers from how-to-use translations.
+* Fix tutorial last slide content not scrollable.
+* Fix pin pad slow entering
+* Improve Home screen notification accessibility.
+* Fix how screen readers handle toggle and radio buttons in settings menu.
+* Fix how screen readers read out person name in home view and confirm certificates view.
+* Hide background page from screenreader when modal is displayed.
+* Read generated PIN codes (and similar numbers) as digits.
+* Fix account status notifications.
+* Improve app texts
+
+Added::
+* Integrate Service lib 24 and device link flows. (RP API v3.1)
+* Add Artea bank logo and visuals.
+* Add timer to token waiting view in minor registration.
+
+Security::
+* Updated 3rd party libraries, inc ReadID M114
+====
+
+[#v281]
+## Smart-ID App v28.1
+.Released: 25.04.2025
+[%collapsible]
+====
+Changed::
+* Minimum Android version for ABIV registration is now SDK 26 (Android 8.0)
+* Minimum supported iOS version is now iOS 14
+* iOS service lib 22.1
+* Android service lib 22.1.
+
+Fixed::
+* Fix Android navigation bar scrims and webview insets when screen is rotated.
+* Fix ReadID Android NFC crash in release app.
+* Fix blank webview on Android 10.
+* Fix app rating loader.
+* Update flutter to 3.27.2 to fix iOS 18.2 unresponsive webview.
+* Fiz MRZ view wrong background color.
+* Improve soft keyboard behavior on Android.
+* Improved behavior when account is deleted in portal while app is open.
+* Fix loader blinking in iOS.
+* Correctly show client too old error when push arrives at Android.
+* Increase pinpad buttons semantics container size.
+* Show open settings instead of allow notifications.
+* Abiv INVALID_COUNTRY_CODE improvements
+* Reset ABIV registration when startSession fails with error
+* Terminate registration when ROB api responds with ACCESS_TOKEN_INACTIVE
+* Fix menu insets.
+* Fix critical error handling.
+* Fix turorial modal on older safari versions (15.5).
+* Fix Pin code entry speed during registration.
+
+Added::
+* Add LV ID-Card restriction message for minors
+* Inform users about apple watch.
+* Add support for targetSdk 35. Support edge-to-edge screens on Android 10+.
+
+Security::
+* Updated 3rd party libraries, inc ReadID M113
+====
+
+[#v271]
+## Smart-ID App v27.1
+.Released: 22.11.2024
+[%collapsible]
+====
+Changed::
+* Possibility to upgrade accounts for using TSE 11.5 
+* Update android minSdk to 23 (Android 6.0).
+* ABIV registration minimum iOS version is set to iOS14
+* Implement new phone input and country select.
+* Change QR screen to always dark mode.
+* Remove phone numbers from help menu.
+* Allow skipping tutorial view final slide
+
+Fixed::
+* Fix Android landscape mode on tablets.
+* Fix modal semantics when only 1 action button is displayed in footer.
+* Fix status bar color is wrong when light theme is active, QR scanner is active and transaction is opened
+* Fix white stripe on unregistered account home screen on Android
+* Fix race condition in SID2SID same device flow that prevents account registration.
+* Fix home screen notifications top overflow when collapsed.
+* Fix choose country and country list visuals on zoomed in screens.
+* Fix help button and pin locked error.
+* Fix home screen notifications toggle logic.
+* Fix text "Can't remember code" text alignment when font size is increased.
+* Set correct camera notice font size.
+* Prevent QR code scanning if camera is not yet shown.
+* Fix flickering line between webview and native screen.
+
+Added::
+* Add FAQ link to QR code scanning view.
+* Add new fields to ROB API.
+* Add FAQ link for _Account usage limited_ message
+
+Security::
+* Updated 3rd party libraries, inc ReadID M108
+
+====
+
+[#v261]
+## Smart-ID App v26.1
+.Released: 01.10.2024
+[%collapsible]
+====
+Added::
+* Support for RP API v3 dynamic flows (Scan QR code button on home screen). Available for Belgium RP's
+
+Changed::
+* Improve home screen notifications.
+* Integrate Service LIB 22.0
+
+Fixed::
+* Set splash screen to be dependent on system mode.
+* Countdown timer shows wrong unlocking time on home view
+* OCR data capture (picture) too fast
+
+Security::
+* Updated 3rd party libraries, inc ReadID M105 Android, M104 iOS
+
+====
+
+[#v252298]
+## Smart-ID App v25.2.298
+.Released: 02.07.2024
+[%collapsible]
+====
+Changed::
+* Start using TSE v11 with NQ accounts (iOS)
+====
+
+[#v252]
+## Smart-ID App v25.2
+.Released: 11.06.2024
+[%collapsible]
+====
+Added::
+* Implement dark mode
+* Add link under help menu to service status page
+
+Changed::
+* Change Medicinos to Urbo bankas
+* Use numeric keyboard for MID OTP
+* Update Belgium support email
+* Update iOS LIB 21.4.52
+
+Fixed::
+* Improve ABIV flows
+* Improve INVALID_DEVICE error handling.
+* Correctly show buttons related to active account in Help menu
+* Fixed VoiceOver of buttons with images
+* Limit the maximum font scale of the app
+* Fixed WebView accessibility scaling issues and bold text on Android and iOS
+* Maintain pinpad size when scaling text.
+* Android Talkback: Read personal code as digits.
+* Other minor fixes
+
+Security::
+* Updated 3rd party libraries
+====
+
+[#v241]
+## Smart-ID App v24.1
+.Released: 11.03.2024
+[%collapsible]
+====
+Added::
+* Display account TSE version(s) in app.
+
+Changed::
+* Start using TSE v11 with NQ accounts (android)
+
+Fixed::
+* Fix race condition which prevents showing transaction on iOS sometimes after pressing notification.
+* Fix for Samsung android 14 devices, black screen on registration.
+* Show displayText in registration transaction views (if present).
+====
+
+[#v240]
+## Smart-ID App v24.0
+.Released: 05.02.2024
+[%collapsible]
+====
+Added::
+* New design for display text focus and other transaction related modals.
+* Added adaptive icons for Android app
+
+Changed::
+* Change texts regarding allowed minor age in ABIV registration
+* Make email field mandatory for all registration methods (except bank office).
+* Change "Incoming transaction" settings design.
+
+Fixed::
+* Update account status after key unlocks.
+* Handle exception when iOS watch connection fails
+* Fix cases where unlocked key status is not updated correctly.
+* Improve error handling in Registration Token view when app is in background and network disappears.
+* Badge is not cleared
+
+Security::
+* Updated 3rd party libraries
+====
+
+[#v239]
+## Smart-ID App v23.9
+.Released: 15.12.2023
+[%collapsible]
+====
+Added::
+* Allow ID-card with EE in ABIV registration.
+* For Android 14+, the SCHEDULE_EXACT_ALARM permission is required to display account renewal notifications.
+
+Fixed::
+* Fix disappearing registration buttons on Chrome Beta version (120.0.6099.4).
+* Make pin pad touch presses more forgiving so users can tap more quickly. (Android)
+* Fix transaction/push not received after registration or error. (Android)
+* Poll transaction after confirming signature RP request. (Android)
+* Keep screen opened on Huawei devices in case of signature RP Requests. (Android)
+* Fix Android10 overlay and other MIUI specific permission to automatically open app when transaction arrives.
+* Fixed help menu and transaction scaling issues. Fixed modal scroll.
+
+Security::
+* Update 3rd party dependencies.
+* ABIV registration minimum supported sdk is now 24 (Android 7)
+====
+
+## Smart-ID App v23.8 (iOS)
+.Released: released with v23.9
+[%collapsible]
+====
+Added::
+* WatchOS 10 new design
+* Watch: Add haptic touch to pin pad view
+* Add animations to view changes
+
+Fixed::
+* Fix transaction/push not received after registration or error.
+* Improve loaders and error handling on Watch.
+* Watch: handle notifications when app is in foreground
+* Watch: make pin button sizes responsive
+* Improve view displaying from background to foreground.
+* Apple watch: Improve contentView animations
+* Show pin locked view with every logo tap.
+====
+
+[#v237_ios]
+## Smart-ID App v23.7 (iOS)
+.Released: 19.09.2023
+[%collapsible]
+====
+Fixed::
+* New account does not receive trx before closing/re-opening
+* fixed MRZ reading
+* Prevent double notification sound. Remove notification sound option from menu.
+* Make pin pad touch presses more forgiving so users can tap more quickly.
+
+Changed::
+* Minimum requirement: Operating system iOS 13 or newer 
+====
+
+[#v236]
+## Smart-ID App v23.6
+.Released: 05.09.2023
+[%collapsible]
+====
+Fixed::
+* Fix push behavior when opened manually.
+* Fix potential edge cases where same transaction can be shown twice.
+* Fix android screen not turning on when transaction arrives on some devices (Huawei EMUI 8).
+* Fix transaction route navigation logic when account upgrade is in progress. Fix duplicate transaction sounds.
+* Fixes same transaction being displayed multiple times and app removed from recents on Android.
+* Fix per-app language preference logic on Android 13+.
+* Fixes transaction logic for all platforms and background push stability for GMS.
+* Fix infinite loader on some iOS devices when opening app.
+* iOS Voiceover: Close button is read out in RU 
+* Fix iOS App sometimes loads forever when opened
+* Fix Error: AppError.appInvalidLibResponse after PIN code lock
+* Use device notification volume for notification sounds if available.
+
+Added::
+* support for in app review (iOS).
+
+Changed::
+* Removed link to ID card registration video.
+====
+
+[#v235]
+## Smart-ID App v23.5
+.Released: 12.07.2023
+[%collapsible]
+====
+Changed::
+* Update service lib to 21.1
+* Updated and reviewed app error codes.
+
+Fixed::
+* different bug fixes
+
+Added::
+* Added new languages: de, fr, nl.
+
+Security::
+* Updated third-party libraries
+====
+
+## Smart-ID App v23.4
+.Released: 13.06.2023
+[%collapsible]
+====
+Changed::
+* Flutter rewrite
+* Updated Service library to v20
+
+Added::
+* Add android 13 per-app language preferences
+* Add error pages for new MID.
+
+Security::
+Updated third-party libraries
+====
+
+[#v225]
+## Smart-ID App v22.5
+.Released: 18.10.2022
+[%collapsible]
+====
+Fixed::
+* camera focus in ABIV registration on the iOS 14 Pro and Pro Max
+
+Security::
+* Updated third-party libraries
+====
+
+[#v224]
+## Smart-ID App v22.4
+.Released: 12.09.2022
+[%collapsible]
+====
+Added::
+* support for in app review.
+====
+
+[#v223]
+## Smart-ID App v22.3
+.Released: 12.09.2022
+[%collapsible]
+====
+Added::
+* SK logo to transaction.
+* Added SMS OTP support for bank link registration.
+* Updated Service library to v18.
+* support for minor registration with biometric identification
+Fixed::
+* Fixed displayText modal header.
+Security::
+* Updated third-party libraries
+* Disable screen capture on PIN entering screen
+
+====
+
+[#v21613_ios]
+## Smart-ID App v21.6.13 (iOS)
+.Released: 22.08.2022
+[%collapsible]
+====
+Fixed::
+* Fixed issues with iOS 16 
+====
+
+[#v216]
+## Smart-ID App v21.6
+.Released: 09.05.2022
+[%collapsible]
+====
+Fixed::
+* Improve phone number validation
+* Ignore OTP invalid error when automatic detection. SMS can sometimes arrive late and trigger this error before correct sms arrives.
+Added::
+* Added account document capabilities notification. (Message when account usage is limited)
+* Add menu item for PIN change info (link to FAQ article). 
+Security::
+* Updated 3rd party dependencies
+====
+
+[#v215]
+## Smart-ID App v21.5
+.Released: 23.11.2021
+[%collapsible]
+====
+Added::
+* New account renewal method - using your existing Smart-ID account to register a new account;
+* option in menu to turn Smart-ID PIN entry touch feedback on/off;
+* Enabled attack report modal in live app (iOS);
+
+Fixed::
+* AppError.APP_WEBVIEW_ERROR on older phones (Android);
+* hardware back button issue with SID2SID authentication (Android);
+* app push token error not displayed or empty token returned (Android);
+* General bug fixes, performance and usability improvements.
+====
+
+[#v213]
+## Smart-ID App v21.3
+.Released: 01.09.2021
+[%collapsible]
+====
+Added::
+* Implemented registration with other device Smart-ID
+* Show attack report modal when transaction is cancelled
+Removed::
+* Removed interactive upgrade functionality with lib v16 upgrade
+Fixed::
+* Fixed incorrect display on error messages 580 and 480
+* Fix Android back function
+* Fix creating duplicate otp SMS
+* Other bug fixes, performance and usability improvements.
+Security::
+* Updated third-party libraries
+====
+
+[#v214]
+## Smart-ID App v21.4
+.Released: 12.07.2021
+[%collapsible]
+====
+
+* Added Huawei support, works with Android phones without google services (released in Huawei App Gallery)
+* Added HUAWEI Mobile Services (push messages) support (updated app version 21.4.242 available from 09.08.2021)
+====
+
+[#v2010]
+## Smart-ID App v20.10
+.Released: 21.01.2021
+[%collapsible]
+====
+
+* Fixed texts
+====
+
+[#v209]
+## Smart-ID App v20.9
+.Released: 14.01.2021
+[%collapsible]
+====
+
+* Fixed texts in confirmationMessage flow
+* Enabled ABIV OAuth
+====
+
+[#v208]
+## Smart-ID App v20.8
+.Released: 23.11.2020
+[%collapsible]
+====
+
+* Moved Basic account upgrade button from home screen to menu;
+* Changed Basic account upgrade button text and visual;
+====
+
+[#v206]
+## Smart-ID App v20.6
+.Released: 03.11.2020
+[%collapsible]
+====
+
+* Added error view for geo-restriction;
+* Added security quiz link to help menu;
+* Added security-quiz and portal buttons to "How to use Smart-ID” tutorial;
+* Added “Upgrade Smart-ID” dialog for NQ accounts;
+* Added MID registering instructions before terms like ABIV;
+* Added ABIV OAuth support, allowing to enable/disable it via build parameters;
+* Added hint to go to self-service portal for account delete if deletion by typing ok fails;
+* Account is now deleted after personal data mismatch error during ID-card registration;
+* Multi-account confirm dialog buttons now stack and are more prominent on larger screens than h530dp;
+* Feedback is now displayed via hardware & OS checks if ABIV registration is possible;
+* Updated dependencies & (third-party) libraries;
+* Changed privacy URL to skidsolutions.eu;
+* Improved logging;
+* Improved error handling:
+  * Added new App error code APP_DOC_SCAN_NFC_ERROR;
+  * Improved error handling of transaction signing during ABIV registration;
+  * Added ReadID NFC_ERROR handling and new error code APP_DOC_SCAN_NFC_ERROR (Android);
+  * Improved SafetyNet error handling on app side (Android);
+* Added timeout of 60s to signature waiting loader, navigating to main screen after timeout (Android);
+* Implemented display text focus;
+* Improved transaction handling during (ABIV) registration so app is not closed and registration would not be terminated (Android);
+* Removed Android 4 support (Android);
+* Fixed issue where "Renew Smart-ID" in transaction view opens home view (Android);
+* Fixed error activity countdown timer to resume countdown on reopening app (Android);
+* Added “Allow once” button to “Screen is being captured" error view (iOS);
+* Added pending transaction notification badge on smart-id app icon (iOS);
+* Improved iOS app handling of service down (iOS);
+* Loader is now displayed when opening app from push notification (iOS);
+* Removed “Close” button from transaction completed view in app after authentication transaction (iOS);
+* Fixed T&C section scrolling not working on iOS 14 (iOS);
+* Fixed ABIV document locked time not being shown (iOS);
+* Fixed Smart-ID not working in landscape mode anymore on iPad (iPadOS);
+* Fixed app crashing on iOS versions below 12.2 when bitcode is enabled (iOS);
+* Fixed pin-pad being shown before control code selection, causing user to select wrong code (iOS);
+* General bug fixes, performance and usability improvements.
+====
+
+[#v194]
+## Smart-ID App v19.4
+.Released: 06.07.2020
+[%collapsible]
+====
+
+* Registering new account on Android is now possible with minimum Android 4.4
+====
+
+[#v194_android]
+## Smart-ID App v19.4
+.Released: 25.06.2020
+[%collapsible]
+====
+* Improve ABIV contact data registration error handling (Android);
+====
+
+[#v193]
+## Smart-ID App v19.3
+.Released: 29.05.2020
+[%collapsible]
+====
+* Added country calling code select for contact phone field;
+* Added possibility to allow re-sending OTP during ABIV contact data registration;
+* Added more info to delete account view, user will need to type “OK” now to confirm deletion;
+* Improved app landing view. “Existing users” now can see better info about needing to register a new Smart-ID account.
+* Improved home view behavior when account is not active;
+* Improved e-mail validation;
+* Improved missing push token handling in home view;
+* Show error message with timer when document is locked during ABIV registration;
+* Show error message when ABIV document is permanently locked;
+* Show error message when ABIV fails due to missing account;
+* Show error message when ABIV OTP fails;
+* Show technical error code from lib;
+* Show error with FAQ link for minors registering with ABIV;
+* Show technical error code from service library on error views;
+* Updated dependencies & libraries;
+* Use separate ID-card video URL for LV and new ABIV video URLs for LV & LT languages;
+* Do not allow to renew when identities of old and new account do not match;
+* During account renewal: always show bank option, use ABIV button style based on device support;
+* Request extra permissions during tutorial and after transaction to automatically open app with Android 10+ (Android);
+* Use correct audio signal type when notification sound playing media (Android);
+* Improved vision impair accessibility in transaction view (Android).
+* Close app when pin lock timer runs out (Android);
+* Prevent double transactions when push and polling both give same transaction during ABIV signing (Android);
+* Implemented FCM error dialog (Android);
+* Added description text after signing transaction has completed and add close button to transaction view (iOS);
+* Improved too small tutorial video during ABIV registration (iOS);
+* General bug fixes, performance and usability improvements.
+====
+
+[#v184]
+## Smart-ID App v18.4
+.Released: 28.02.2020
+[%collapsible]
+====
+* Added biometric identification tutorial videos based on app language;
+* Improved "Account deleted" error message with info about expiry;
+* Improved error message when cancelling transaction from app;
+* Improved biometric identification related error handling, added new error messages;
+* Unified support email structure;
+* General bug fixes, performance and usability improvements.
+====
+
+[#v183]
+## Smart-ID App v18.3
+.Released: 05.02.2020
+[%collapsible]
+====
+* Fixed transactions not opening during account renewal with banklink on Android devices;
+* Account renewal button is now displayed in app menu for only Smart-ID Basic accounts;
+* Smart-ID expiry date is now visible on Smart-ID app home screen;
+* Improved Smart-ID expiry dialog and fixed "Learn more" button not opening non-english FAQ links for more info;
+* Implemented workaround for OTP autofill during Mobile-ID registration causing app to crash on iOS devices;
+* General bug fixes, performance and usability improvements.
+====
+
+[#v182]
+## Smart-ID App v18.2
+.Released: 15.01.2020
+[%collapsible]
+====
+* Introducing expiring Smart-ID account renewal to make easier continue using Smart-ID;
+* Improved support for transaction notifications on Android 10 ;
+* Fixed dark mode hiding "Back to app" arrow on iOS 13.
+* iOS version 11 now minimum required for installation
+* General bug fixes, performance and usability improvements.
+====
+
+[#v178]
+## Smart-ID App v17.8
+.Released: 06.11.2019
+[%collapsible]
+====
+* Use bold font in three control code view;
+* Updated dependencies & libraries to newest versions;
+* Reduced wait time for app landing animation;
+* Support for IDC scheme on registering;
+* New ways to limit rooted devices;
+* Fixed firebase related crash (Android);
+* Fixed pin pad sounds not being played (iOS);
+* Fixed launch screen background image pattern (iOS);
+* General bug fixes, performance and usability improvements.
+
+====
+
+[#v166]
+## Smart-ID App v16.6
+.Released: 17.10.2019
+[%collapsible]
+====
+* Fixed scroll issue during registering with chrome v78 installed on Android
+====
+
+[#v165]
+## Smart-ID App v16.5
+.Released: 22.08.2019
+[%collapsible]
+====
+* Fixed ios 9 registering crash with banklink 
+* Set ios 9 as minimum with app 16.5 
+* Fixed blank page on launching LV-DNB and Medicinos bank view with ios
+* Support NQ issuance in bank office
+
+====
+
+[#v16]
+## Smart-ID App v16
+.Released: 25.06.2019
+[%collapsible]
+====
+
+* Added OTP flow with error handling to MID registration;
+* Added "How to use Smart-ID" interactive tutorial to help menu for registered accounts;
+* Added RP request cancelling for multi-accounts;
+* Added scrolling indicator for terms view;
+* Terms and Conditions are now acceptable only after scrolled to bottom;
+* Help menu e-mail now redirects to smart-id.com form with prefilled country and language;
+* Removed contact phone number from MID flow, now using MID number instead;
+* Improved account not ready for usage view;
+* Rooted info in menu now includes a link to FAQ article;
+* After unlocking the screen user gets renewed registration token;
+* When push arrives, fullscreen intent is used instead of starting activity on Android Q (Android);
+* Check and show new transaction after previous transaction is handled (confirmed, cancelled or times out) (Android);
+* Improved "Transaction expired" error message to cover both "in progress" and "expired” (Android);
+* Added ID-card video link handler (iOS);
+* Help menu can now be opened and closed by sliding from the right edge (iOS);
+* Fixed transaction not shown when getTransaction request times out (iOS);
+* Fixed upgrade required error not shown when using ID-card or bank office to register (iOS);
+* Added ID-card registering video to registration page (portal);
+* Added Edge link to missing ID-card plugin error page (portal);
+* Show QSCD status in self-service portal;
+* General bug fixes, performance and usability improvements.
+====
+
+[#v15]
+## Smart-ID App v15
+.Released: 25.03.2019
+[%collapsible]
+====
+
+* Fixed network error and crash during banklink registration with latest Chrome
+* Added “Confirm certificates” view;
+* Added better informing user of timelocking;
+* Added ID-card registering video link to needed pages;
+* Added descriptions to “Choose Country” & Mobile-ID authentication views;
+* Added third party license info to show in app & removed unnecessary licenses;
+* Added brand colour and image to Medicinos Bankas registration method in Lithuania;
+* Added missing push token or push notifications disabled design for home screen;
+* Improved back button behaviour in MID and SID auth views;
+* Improved error message description for INVALID_TRANSACTION_STATE error code;
+* Updated dependencies & libraries to newest versions ;
+* Updated authentication provider selection flow according to latest design;
+* Design improvements for licenses and push notification alert;
+* Show key lock info on home screen when returning from KEY_UNUSABLE_ERROR view;
+* Replaced original Terms & Conditions with short summaries;
+* "Choose another method" in NQ warning view now takes always back to “Authentication methods” view;
+* An additional dialog can now be shown optionally, requiring user to select correct control code before proceeding with transaction;
+* Certificate subject is now sent to hybrid;
+* Hide phone number input until e-mail is rejected;
+* Root check improved during registration;
+* When system does not support specific input hint request, remember it and do not attempt again;
+* Prevent race condition which causes APP_REGISTRATION_NOT_INITIALIZED error;
+* Prevent showing "Confirm cancel" view if users cannot continue registration after error;
+* Removed e-mail link & added contact customer service links in help menu;
+* Fixed regression: portal ID-card registration URL changes were ignored;
+* Fixed cases where cursor moves to the left of "+" in phone number input;
+* Added clone detect message to have link to FAQ (Android);
+* Added email/phone number hint (requested from system), improved error handling when hint request fails (Android);
+* Improve error handling when Account locked (Android);
+* Show "Transaction not found error" when Transaction activity is opened without transaction/rp request (Android);
+* Correctly show next view when navigating from transaction view that is displayed over lock screen (Android);
+* Check if attestation data is present before trying to read the data (Android);
+* When app is opened with Google Play Store, then open correct activity (Android);
+* Handle PORTAL_INVALID_APP_VERSION error in SSO webview (Android);
+* Improved transition from "Preparing for singing" to "Transaction" view (Android);
+* Allow only one concurrent hint request (Android);
+* Improved automatic root detection and if device has no account (Android);
+* Fixed handling SERVER_KEY_UNUSABLE error when resuming app from background (Android);
+* Fixed crash in Transaction activity when API initialization completes after activity is destroyed (Android);
+* Added PRNG_TEST_FAILED error code (iOS);
+* Added error code logging when Lib returns too short PIN length (iOS);
+* Added local HTML loading as a fallback when loading the remote HTML fails (iOS);
+* Added workaround for webview views getting stuck in scrolled up position when keyboard is closed (iOS);
+* Improved PIN length handling (iOS);
+* Improved outdated app error handling when using bank auth (iOS);
+* Improved http request retry logic when app returns from background (iOS);
+* Improved clone detected error handling when Ok button is pressed on error view (iOS);
+* Removed maximum PIN length message from being shown when pinpad OK is not shown (iOS);
+* Show SFSafariViewController color depending on Q or NQ level. (iOS)
+* Fixed for DNB LV authentication (iOS);
+* Fixed crash when entering PIN code quickly (iOS);
+* Fixed verification code modal staying hidden when show modal animation is started before hide modal animation has finished (iOS);
+* Fixed first verification code shown in transaction view when transaction view is shown again after correct verification code has been selected (iOS);
+* Fixed crash caused by accountKey added to error extra info without creating dictionary from it (iOS);
+* Fixed retry button not shown for network error when creating account (iOS);
+* Fixed error after returning to foreground or unlocking the screen while registration provider status requests are being made (iOS);
+* Fixed portal SSL error try again during registration resulting in home screen being shown (iOS);
+* General bug fixes, performance and usability improvements.
+====
+
+[#v14]
+## Smart-ID App v14
+.Released: 15.06.2018
+[%collapsible]
+====
+
+* New Smart-ID account will be created with 6K RSA keys and certificates (existing accounts are using 4K RSA keys)
+* Made whole home screen tap/click to trigger check transaction (excluding top edge);
+* Added "Existing accounts" modal after registration if user has more than one account;
+* Added transaction timeout modal when less than 30 seconds left to complete transaction;
+* Added better scroll indication and buttons visibility with longer text - when view is scrollable, text will start fading out below;
+* Added Smart-ID Basic (NQ) warning view to banklink registration recommending to register a Smart-ID (Q) account instead;
+* Added QSCD info to menu if account has QSCD certificate, displayed as “Smart-ID Qualified Electronic Signature”;
+* Separated Settings and Application info into two menu sections;
+* Improved error handling for older device operating systems that are not supported anymore and will require updating to a newer version;
+* Added “Open system notification settings" option to menu and implemented notification channels on Android 8+:
+* Added isCaptured check to warn about screen being captured/recorded (iOS);
+* Added registering ID-card support to Edge;
+* Implemented "Remember login details" functionality in self-service portal;
+* General bug fixes, performance and usability improvements.
+====
+
+[#v13]
+## Smart-ID App v13
+.Released 19.04.2018
+[%collapsible]
+====
+
+* Optimised layout for iPhone X;
+* Added option to toggle "allow screenshot" functionality;
+* "User info" is now also shown with unregistered account menu (only "Device" info is shown without account);
+* App now shows transaction details along with verification code in the same view without having to toggle the verification code and details separately;
+* Google Play now has also better differentiation between Smart-ID live and demo apps;
+* Improved error handling for older app versions that are not supported anymore and will require updating to a newer version;
+* Improved error handling for secure connections on iOS when issue is likely caused by poor Internet connection;
+* General bug fixes, performance and usability improvements.
+====
+
+[#v12]
+## Smart-ID App v12
+.Released: 29.01.2018
+[%collapsible]
+====
+
+* Added home view error clearing;
+* Added prettier for hybrid file formatting;
+* Added timeout counter to RP request view;
+* Added handling of RP request with type SIGNING;
+* Added "Already have an account?" link to registration home view;
+* Added timeout for entering PINs during identity token registration;
+* Account status is now updated when app returns to foreground;
+* App no longer shows "Tap code for details" disclaimer when RP has no displayText;
+* Updated terms & conditions;
+* Updated hybrid dependencies and Android/iOS (third party) libraries;
+* Redesigned help menu:
+** Added self-service portal link to help menu (links also open in respective languages);
+** App and device info is added to e-mails sent to support;
+** Contacts are shown based on app language;
+** Removed 900 1807 number for Estonia;
+* Improved different font sizes and layout breakpoints. Icons for warning & error messages now also resize with breakpoints;
+* Improved check transaction error handling and logo animation logic;
+* Improved key generation error handling;
+* Improved general error handling:
+** Added "Session expired" error message;
+** Added error messages for various PRE errors;
+** Added "Account not found" error when push message arrived after account is deleted;
+** Added view for INVALID_PERSONAL_CODE error during manual and banklink registration;
+** Added “Poor internet connection” error with more detailed NSURLError codes instead of “Service temporarily unavailable” where applicable;
+* Improved logging:
+** Added Lib errors ERROR_CODE_RESPONSE_TIMEOUT, ERROR_CODE_SERVER_INTERNAL_ERROR and App SSL exceptions to portal;
+** Added registration abandoned event logging when account is deleted in DOCUMENT_CREATED state;
+* Input is scrolled into view when it is hidden after keyboard opens;
+* Hide main webview while showing banklink and remove/pause loaders while not visible to reduce unnecessary rendering;
+* Changed MID polling times. New values: initial delay = 15 sec, polling timeout = 3 sec;
+* Fixed cancelling registration during key generation;
+* Fixed user cancelling in SEB LT banklink views resulting in technical error;
+* Fixed "Account deleted" view popping up before deletion process is completed;
+* Fixed keyboard staying up when submitting form and navigating to following views (e.g. with keyboard enter button);
+* Fixed resolving account state for account status view. Fixes animations and app not loading after deleting account in portal;
+* Added Android root info to Menu (Android);
+* Added scroll indicator (arrow) for banklink view (Android);
+* Added timer to inactive transaction error views. App now closes automatically after time expires (Android);
+* Implemented code obfuscation and optimisation with proguard. Removed Multidex (Android);
+* Retry loading transaction when it initially fails due to ERROR_CODE_RESPONSE_TIMEOUT (Android);
+* RP request view is now automatically hidden when new push arrives and active RP request is completed (Android);
+* Notification (toast) is now shown in app when navigating to external URLs and device has no browser installed (Android);
+* Potentially fix joda.time crash on some devices (Android);
+* Fixed Crash on Android 4.x devices when pressing help icon in native Error view (Android);
+* Removed automatic account deletion functionality - now user has to press button for account to be deleted. If it fails, error is shown;
+* Fixed SSL error when opening Swebank banklink, also correct error message is now shown when Portal SSL pinning fails (Android);
+* Fixed bug where back stops working when user manages to open two webviews (pressing buttons very fast) and when pressing back immediately (200ms) before banklink webview is loaded (Android);
+* Fixed keyboard showing when pressing "Back" in banklink view while keyboard is opened (Android);
+* Fixed "Registration terminated" showing up every time app is started after app was killed after creating PINs in ID-card registration (Android);
+* Portal shared cookies are now added to banklink authentication request (iOS);
+* Improved CSR transaction error handling when no result is returned from Lib (iOS);
+* Fixed Safari 9 buttons not working issue in Terms and MID application view when user has scrolled to the end or back to the beginning;
+* Fixed missing parent signing links for minors registration (iOS);
+* Fixed menu not closing properly on iOS 11.2 when changing language (iOS);
+* Fixed being able to start MID signing multiple times because UI problems (iOS);
+* Fixed CSR transaction shown when returning to registration from help view (iOS);
+* Fixed pdf icons not rendering correctly in iOS <=8.3. Works when dimensions are multiples of 8 (iOS);
+* General bug fixes, performance and usability improvements.
+
+====
+
+[#v10]
+## Smart-ID App v10
+.Released: 11.10.2017
+[%collapsible]
+====
+
+* New landing animation intro when starting registration starting from Android 5x and iOS 9x. Older devices show still image;
+* Improved animations to make the registration process and usage more fluid. These include:
+** Improved loader rotation, loader animating to success and fade-in success animations;
+** Slide animations between views - from right to left when moving forward and opposite when moving backwards;
+** All modals, alert and error views fade in and slightly slide in from top and disappear by fading out and sliding up;
+* Improved app universal responsive design - various breakpoints for different screen sizes have been added for resizing text, buttons, icons and PIN pad;
+* During registration, users can now see an improved progress bar indicating consecutive registration steps;
+* When registering a demo account, users can choose "Other countries" to generate a random personal code and use it to authenticate to demo portal;
+* First 10 characters of the push token are now visible in the menu for troubleshooting issues with support if push messages/transactions do not arrive automatically to the device;
+* Demo app also displays info if device has been rooted or jailbroken next to the device name in menu;
+* Improved error handling when registration times out and for some rare server side issues e.g. SSL pinning;
+* Improved error handling for issues related to data absence in population registries (PRE) needed for registration;
+* General technical error messages now also display error code or "Case ID" to better identify issues in support;
+* Notification messages are now cleared when transaction is opened manually in app (Android);
+* Notification messages are now cleared from the tray when there are no pending transactions (iOS);
+* Migrated from Google Cloud Messaging to Firebase Cloud Messaging;
+* Added UTM parameters (app version) to smart-id.com FAQ requests. User agent info is also sent with requests to portal
+* Updated hybrid dependencies and Android/iOS (third party) libraries;
+* General bug fixes, performance and usability improvements.
+
+====
+
+[#v9]
+## Smart-ID App v9
+.Released: 29.07.2017
+[%collapsible]
+====
+
+* Redesigned Menu;
+* Redesigned "Waiting approval" dialogues with ability to restart registration from menu if needed;
+* Help view now has app and lib versions visible;
+* Help view now has 2 support contact phone numbers displayed for all countries;
+* Help view now has white background (equals to Q design) if there are no active accounts;
+* Added timeout for multiple account transaction request views;
+* Added “National ID number not supported” error view when registering with ID-card and new Latvian ID-code;
+* Added “Invalid country code” error view when registering with bank link and bank returns INVALID_COUNTRY_CODE;
+* Added small help disclaimer for multiple account transaction request views in case of receiving extra notification screens per transaction;
+* Error views now direct to FAQ articles directly where applicable;
+* New "How To Use Smart-ID" onboarding cards when completing registration;
+* Improved minors registration flow, users under 18 can now register for a Smart-ID account;
+* Moved Terms & Conditions view immediately after authentication method selection to avoid timeouts when reading too long;
+* Readiness for electronic Qualified certificate issuance (EE, LT) which will be turned on later on July;
+* Implemented transaction pending local state retry logic. When transaction submission fails due to network error, then operation can be retried without additional PIN entry;
+* Fixed “Try again” in error view, when app is started without internet;
+* Fixed ID-card registration code not refreshing when app returns to foreground.
+* Fixed network error when receiving push message when power saver is turned on on some devices (Android);
+* Push upon arrival plays tune (Android);
+* Added option in menu to toggle notification sound on or off. Default is on (Android);
+* Control code is now always shown on new transactions (iOS);
+* Pressing transaction cancel now shows loader and error view if canceling fails (iOS);
+* “Navigate back to e-service” dialog is now shown on after completing transaction iOS9+ (iOS);
+* “Notifications disabled” dialog is now always shown after transaction when notifications are disabled (iOS);
+* General bug fixes, performance and usability improvements.
+====
+
+[#v110]
+## 2017-02-28
+[%collapsible]
+====
+*   More reliable PIN dialogue notification for Android
+*   Personal code not shown on home screen
+*   Fixed the bug which blocked registering account with multiple first names via banklink
+*   Bug fixes, performance and usability improvements
+
+====
+
+[#v100]
+## 2017-01-02
+[%collapsible]
+====
+*   Smart-ID has a new look - white background for Smart-ID and blue for Smart-ID Basic
+*   Full support for 5 languages implemented - in addition to English and Russian, we support all Baltic languages (Estonian, Latvian and Lithuanian)
+*   Improved user experience - account registration with ID-card is made much easier for you!
+*   Keeping in mind your safety and security reasons, easy PIN-codes (e.g 1234, 0000) are not allowed
+====
+
+[#v090]
+## 2016-12-20
+[%collapsible]
+====
+*   Due to popular demand, custom PIN selection is now set as default
+*   ID-card registration optimisation: contact data is now entered in self-service portal
+*   Audio notifications (for transactions) in iOS platform
+*   Many visual tweaks and fixes
+====
+
+[#v080]
+## 2016-11-30
+[%collapsible]
+====
+*   ID-card based registration for Estonia, Latvia, Lithuania
+*   Redesigned home screen, issuance method and country selection
+*   Redesigned self-service portal
+*   General UX improvements
+
+====
+
+[#v070]
+## 2016-11-02
+[%collapsible]
+====
+*   New visual
+*   Added uservoice feedback system
+====
+
+[#v060]
+## 2016-10-25
+[%collapsible]
+====
+*   Added Latvian, Lithuanian and Russian languages
+*   Added Google analytics
+*   Improved push messages speed on iOS platform;
+*   Dropped JSON/RPC integration API support.
+*   Several changes in self service portal, including mobile view.
+====
+
+[#v050]
+## 2016-09-16
+[%collapsible]
+====
+*   Multilevel PIN locking. After three incorrect PIN entries, the authentication or signing function is locked for 3 hours. Upon another three incorrect PIN entries, the function is locked for 24 hours. After 24 hours the user has a possibility to enter the PIN codes three more times - if all entries are still invalid then the account is locked and certificates are revoked. To use Smart-ID the user must go through the registration process again.
+*   Major changes as regards the issuance process (CSR signing). These are mostly internal changes and don't affect the user flow.
+*   Some UX improvements
+*   The first version of self service portal available at https://sid.demo.sk.ee/portal/ . The current version supports only login with Smart-ID, contains a possibility to get an overview of user accounts and to close an account
+====
+
+[#v040]
+## 2016-08-19
+[%collapsible]
+====
+*   Multi-device support (user has several active accounts on different devices). When user has multiple active accounts and a new transaction occurs, a confirmation screen is shown
+*   Changed bank selection during banklink authentication. User has to choose first the bank and afterwards the country of the residence.
+*   Implemented language changing. Currently allows to change between English and Estonian. By default, device system language is used.
+*   Added bank authentication support for Swedbank customers in Lithuania
+*   Added asking user phone number to the registration process. During registration user should enter his e-mail or phone number.
+*   Improved push notification sending to iOS devices
+*   Some UX improvements
+*   RP JSON/RPC API improvements
+*   Several internal improvements
+====
+
+[#v030]
+## 2016-07-01
+[%collapsible]
+====
+*   Added bank authentication support for Swedbank customers in Latvia
+====
+
+[#v020]
+## 2016-06-29
+[%collapsible]
+====
+*   Added manual registration possibility (in addition to Swedbank EE and SEB EE bank authentication)
+*   Improved PIN-pad view
+*   Added loader and Smart-ID logo to the bank authentication view header
+*   Updated PIN creation flow in registration:
+    *   Added PIN intro view
+    *   Updated titles and descriptions
+    *   Added "PIN1/2 saved" animation
+    *   When using "Remember PIN”, then PIN needs to be confirmed only one time
+*   Updated error message texts
+*   Improved device name displaying (iOS)
+*   “Wrong PIN message” view shows now attempts left (iOS)
+*   Improved “Check transaction” button behaviour (iOS)
+====
+
+[#v010]
+## 2016-06-15
+[%collapsible]
+====
+* First public beta release
+====

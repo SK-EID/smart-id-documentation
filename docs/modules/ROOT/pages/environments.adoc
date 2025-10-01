@@ -1,0 +1,48 @@
+= Environment technical parameters
+
+== LIVE
+
+[cols="1,3", options="header", stripes=odd, grid=none, frame=none]
+|===
+| Parameter | Value
+| base URL v1 | https://rp-api.smart-id.com/v1/
+| base URL v2 | https://rp-api.smart-id.com/v2/
+| base URL v3 | https://rp-api.smart-id.com/v3/
+| schemeName  | smart-id
+|===
+
+We recommend xref:https_pinning.adoc[Implementing HTTPS pinning] but if you have IP address whitelisting in use:
+
+[cols="1,3a", options="header", stripes=odd, grid=none, frame=none]
+|===
+| DNS name | IP addresses
+| rp-api.smart-id.com |
+* 62.65.42.57 (deprecated on 2024-12-09)
+| rp-api.smart-id.com |
+* 195.13.185.55
+* 81.16.238.22
+* 91.223.243.57
+|===
+
+* Add Smart-ID to your e-service! https://sk.ee/en/services/smart-id/[Order now!]
+* xref:contact.adoc[Contact]
+
+== DEMO
+
+[cols="1,3", options="header", stripes=odd, grid=none, frame=none]
+|===
+| Parameter | Value
+| base URL v1 | https://sid.demo.sk.ee/smart-id-rp/v1/
+| base URL v2 | https://sid.demo.sk.ee/smart-id-rp/v2/
+| base URL v3 | https://sid.demo.sk.ee/smart-id-rp/v3/
+| schemeName  | smart-id-demo
+| relyingPartyUUID | 00000000-0000-4000-8000-000000000000
+| relyingPartyName | DEMO
+|===
+
+=== Smart-ID Basic (ADVANCED) level accounts
+
+DEMO `relyingPartyUUID` has no access to Smart-ID Basic accounts. If you would like to test with Smart-ID Basic accounts please write to link:mailto:support@sk.ee[support@sk.ee].
+
+* If `"certificateLevel":"ADVANCED"` is used with wrong `relyingPartyUUID` in requests then HTTP error `403 Forbidden` is returned.
+* If the user only has a Smart-ID Basic account then HTTP error `404 Not Found` is returned.
