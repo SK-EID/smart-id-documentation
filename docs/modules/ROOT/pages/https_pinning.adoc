@@ -31,8 +31,8 @@ New certificate is issued by new intermediate certificate (DigiCert Global G2 TL
 [cols="2,1,1,1", options="header", stripes=odd, grid=none, frame=none]
 |===
 | Serial number (HEX) | Validity | Status | Download
-| 02794E922985CD08A99DB1CF2708E2E4 | 2025.09.09 00:00:00 +
-2026.10.11 23:59:59 | in use from 2025-09-29 13:00 | link:https://c.sk.ee/sid_demo_sk_ee_2025_der.cer[DER], link:https://c.sk.ee/sid_demo_sk_ee_2025_pem.crt[PEM]
+| 0386376F9FA217F3C0FC9A20FD874C89 | 2025.09.29 03:00.00 +
+2026.10.11 02:29:59 | in use from 2025-10-01 |​ link:https://c.sk.ee/2025_sid_demo_sk_ee_DER.cer[DER], link:https://c.sk.ee/2025_sid_demo_sk_ee_PEM.crt[PEM]
 | 07FFF49BD963A210A7F0B079283704D6 | 2024-10-03 00:00:00 +
 2025-10-15 23:59:59 | in use from 2024-10-03 | link:_images/sid_demo_sk_ee_2024_DER.crt[DER], link:_images/sid_demo_sk_ee_2024_PEM.crt[PEM]
 |===
