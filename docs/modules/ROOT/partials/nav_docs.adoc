@@ -8,4 +8,5 @@
 *** xref:ROOT:ROOT:client_libraries.adoc[Client libraries]
 *** xref:ROOT:ROOT:suggestions.adoc[Suggestions]
 *** xref:ROOT:ROOT:logos.adoc[Logos]
+* xref:ROOT:ROOT:app_release_notes.adoc[App Release Notes]
 * xref:ROOT:ROOT:contact.adoc[Contact]
