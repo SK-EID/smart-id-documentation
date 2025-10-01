@@ -1,5 +1,15 @@
 = App Release Notes
 
+++++
+<style>
+.doc .ulist li+li {
+    margin-top: 0;
+}
+.doc details>summary::before {
+    border-width: .3em .5em .3em;
+</style>
+++++
+
 [#v293]
 == Smart-ID App v29.3
 .Released: 2025-08-25
