@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.6">
+<div class="nav-container" data-component="rp-api" data-version="3.1.7">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -74,6 +74,9 @@
 </ul>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../app_release_notes.html">App Release Notes</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../contact.html">Contact</a>
@@ -149,7 +152,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.6</span>
+    <span class="version">3.1.7</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -159,7 +162,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.6</a>
+          <a href="introduction.html">3.1.7</a>
+        </li>
+        <li class="version">
+          <a href="3.1.6/introduction.html">3.1.6</a>
         </li>
         <li class="version">
           <a href="3.1.5/introduction.html">3.1.5</a>
@@ -192,6 +198,7 @@
 <!-- Version (worktree) -->
 
 <style>
+
 .recommended_text, .discouraged_text {
     margin-top: 0 !important;
 }
@@ -200,19 +207,29 @@
   display: flex;
   line-height: 1.25rem;
   align-items: center;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.recommended_text p strong, .discouraged_text p strong {
+    padding-inline: 0.375rem;
 }
 
 .recommended_text .image, .discouraged_text .image {
    flex-shrink: 0;
 }
 
-.recommended_text p {
+.recommended_text {
   color: #15803D;
 }
+
 .discouraged_text {
   color: #A16207;
 }
+
+.center p {
+  justify-content: center;
+}
+
 </style>
 <div class="paragraph">
 <p>This document describes the Relying Party interface protocol of Smart-ID service and provides information for integration. The interface offers the entry point to Smart-ID main use cases: <strong>authentication</strong> and <strong>digital signing</strong>.</p>
@@ -408,47 +425,53 @@ The following table gives an overview of the possible options and their implicat
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span> QR code link</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span><br>
+QR code link</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span> QR code link</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span><br>
+QR code link</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph recommended_text">
 <p><span class="image"><img src="_images/icon-3x-lock.svg" alt="Recommended" width="114" height="64"></span>
 <strong>Maximum protection against phishing attacks</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph recommended_text center">
 <p><strong>Recommended</strong></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span> QR code link</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span><br>
+QR code link</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span> Push notification</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph recommended_text">
 <p><span class="image"><img src="_images/icon-2x-lock.svg" alt="Recommended" width="114" height="64"></span>
 <strong>Enhanced protection against phishing attacks</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
-<p>Recommended</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph recommended_text center">
+<p><strong>Recommended</strong></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span> Push notification</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span> Push notification</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph discouraged_text">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph discouraged_text">
 <p><span class="image"><img src="_images/icon-1x-lock.svg" alt="Not recommended" width="114" height="64"></span>
 <strong>Phishing protection relies on user awareness</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph discouraged_text">
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph discouraged_text center">
 <p><strong>Not recommended</strong></p>
 </div></div></td>
 </tr>
@@ -470,7 +493,7 @@ However, there are even more benefits for always using device link flows in the 
 <p>they provide a seamless user experience, where user has to only make one click to open up the Smart-ID app;</p>
 </li>
 <li>
-<p>user does not have to verify verification codes (which can be problematic for users to verify in same-device flows);</p>
+<p>user does not have to verify verification codes (which can be highly problematic for users to verify in same-device flows);</p>
 </li>
 <li>
 <p>they provide highest phishing resistance possible, relying on the fact that RP frontend and Smart-ID app reside in the same device.</p>
@@ -494,11 +517,13 @@ However, there are even more benefits for always using device link flows in the 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span> Web2App/App2App link</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span><br>
+Web2App/App2App link</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span> Web2App/App2App link</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span><br>
+Web2App/App2App link</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
 <p><span class="image"><img src="_images/icon-3x-lock.svg" alt="Recommended" width="114" height="64"></span>
@@ -506,18 +531,20 @@ However, there are even more benefits for always using device link flows in the 
 </div>
 <div class="paragraph recommended_text">
 <p><span class="image"><img src="_images/icon-3x-thumb.svg" alt="Recommended" width="114" height="64"></span>
-Best user experience</p>
+<strong>Best user experience</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph recommended_text center">
 <p><strong>Recommended</strong></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span> Web2App/App2App link</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span><br>
+Web2App/App2App link</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span> Push notification</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
 <p><span class="image"><img src="_images/icon-2x-lock.svg" alt="Recommended" width="114" height="64"></span>
@@ -525,18 +552,20 @@ Best user experience</p>
 </div>
 <div class="paragraph discouraged_text">
 <p><span class="image"><img src="_images/icon-2x-thumb.svg" alt="Recommended" width="114" height="64"></span>
-Less smooth user experience</p>
+<strong>Less smooth user experience</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph discouraged_text">
-<p>Not recommended</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph discouraged_text center">
+<p><strong>Not recommended</strong></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span> Push notification</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span> Push notification</p>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph discouraged_text">
 <p><span class="image"><img src="_images/icon-1x-lock.svg" alt="Recommended" width="114" height="64"></span>
@@ -544,9 +573,9 @@ Less smooth user experience</p>
 </div>
 <div class="paragraph discouraged_text">
 <p><span class="image"><img src="_images/icon-2x-thumb.svg" alt="Recommended" width="114" height="64"></span>
-Less smooth user experience</p>
+<strong>Less smooth user experience</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph discouraged_text">
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph discouraged_text center">
 <p><strong>Not recommended</strong></p>
 </div></div></td>
 </tr>

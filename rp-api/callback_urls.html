@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.6">
+<div class="nav-container" data-component="rp-api" data-version="3.1.7">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -74,6 +74,9 @@
 </ul>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../app_release_notes.html">App Release Notes</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../contact.html">Contact</a>
@@ -149,7 +152,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.6</span>
+    <span class="version">3.1.7</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -159,7 +162,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.6</a>
+          <a href="introduction.html">3.1.7</a>
+        </li>
+        <li class="version">
+          <a href="3.1.6/introduction.html">3.1.6</a>
         </li>
         <li class="version">
           <a href="3.1.5/introduction.html">3.1.5</a>
@@ -265,7 +271,7 @@
 <p>Perform the response verification steps described in <a href="response_verification.html" class="xref page">Response verification</a> page. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
 </li>
 <li>
-<p>Invalidate the old user session and generate a new one. <code>callbackUrl</code> <strong>must</strong> be invalidated after use and must not be accepted after it is used once. <strong>Failing to invalidate the <code>callbackUrl</code> after use may leave the user vulnerable to a phishing attack.</strong></p>
+<p>Invalidate the user session cookie that was generated previously and invalidate the used <code>callbackUrl</code>. The previous session cookie or the used <code>callbackUrl</code> <strong>must</strong> not be accepted after they are used once. <strong>Failing to invalidate the <code>callbackUrl</code> after use may leave the user vulnerable to a phishing attack.</strong></p>
 </li>
 <li>
 <p>Redirect the user to a new page and show authenticated session.</p>

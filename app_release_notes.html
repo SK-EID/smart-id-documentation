@@ -1,0 +1,3102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>App Release Notes :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/app_release_notes.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="./_/css/site.css">
+
+<link rel="icon" href="./_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="./_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device_link.html">Device link fallback page</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="https_pinning.html">HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="suggestions.html">Suggestions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="logos.html">Logos</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="app_release_notes.html">App Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Automated testing</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/mock_service.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/device_link_test_endpoint.html">Device link test endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="test_accounts.html">Test accounts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rp-api/changes.html">Changes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rp-api/glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/overview_of_api_endpoints.html">Overview of API endpoints</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rp-api/api_specification.html">OpenAPI specification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rp-api/authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rp-api/additional_security_measures.html">Additional security measures</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Documentation</a></div>
+    </li>
+    <li class="component">
+      <div class="title"><a href="rp-api/introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="rp-api/introduction.html">3.1.7</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.1.6/introduction.html">3.1.6</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.1.5/introduction.html">3.1.5</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.1.4/introduction.html">3.1.4</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.1.3/introduction.html">3.1.3</a>
+        </li>
+        <li class="version">
+          <a href="rp-api/3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="On this page" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">App Release Notes</h1>
+<div id="preamble">
+<div class="sectionbody">
+<style>
+.doc .ulist li+li {
+    margin-top: 0;
+}
+.doc details>summary::before {
+    border-width: .3em .5em .3em;
+</style>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v293"><a class="anchor" href="#v293"></a>Smart-ID App v29.3</h2>
+<div class="sectionbody">
+<details open>
+<summary class="title">Released: 2025-08-25</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>App Usage broken with iOS 26 beta</p>
+</li>
+<li>
+<p>Fix wrong theme after device link transaction.</p>
+</li>
+<li>
+<p>Allow SID Android app to start without push messaging service (GrapheneOS)</p>
+</li>
+<li>
+<p>Fix hybrid menu buttons not closing the menu when pressed.</p>
+</li>
+<li>
+<p>Confirm code button appears during transition.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrate Android service lib 24.4</p>
+</li>
+<li>
+<p>Integrate iOS service Lib 24.1</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v292"><a class="anchor" href="#v292"></a>Smart-ID App v29.2</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 2025-06-19</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Allow QR scanning only from app</p>
+</li>
+<li>
+<p>Android service lib 24.3</p>
+</li>
+<li>
+<p>iOS service lib 24.0</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix translations.</p>
+</li>
+<li>
+<p>Voice control transaction item numbers are missing</p>
+</li>
+<li>
+<p>Fallback to UTC timezone when failing to resolve actual timezone. Prevents app crash.</p>
+</li>
+<li>
+<p>Fix background push handling.</p>
+</li>
+<li>
+<p>Change button label "Learn more" to dynamic.</p>
+</li>
+<li>
+<p>Improve home screen content fit on small screens and large font sizes.</p>
+</li>
+<li>
+<p>Add translations for ROB document not valid error.</p>
+</li>
+<li>
+<p>Remove numbers from how-to-use translations.</p>
+</li>
+<li>
+<p>Fix tutorial last slide content not scrollable.</p>
+</li>
+<li>
+<p>Fix pin pad slow entering</p>
+</li>
+<li>
+<p>Improve Home screen notification accessibility.</p>
+</li>
+<li>
+<p>Fix how screen readers handle toggle and radio buttons in settings menu.</p>
+</li>
+<li>
+<p>Fix how screen readers read out person name in home view and confirm certificates view.</p>
+</li>
+<li>
+<p>Hide background page from screenreader when modal is displayed.</p>
+</li>
+<li>
+<p>Read generated PIN codes (and similar numbers) as digits.</p>
+</li>
+<li>
+<p>Fix account status notifications.</p>
+</li>
+<li>
+<p>Improve app texts</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrate Service lib 24 and device link flows. (RP API v3.1)</p>
+</li>
+<li>
+<p>Add Artea bank logo and visuals.</p>
+</li>
+<li>
+<p>Add timer to token waiting view in minor registration.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated 3rd party libraries, inc ReadID M114</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v281"><a class="anchor" href="#v281"></a>Smart-ID App v28.1</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 25.04.2025</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Minimum Android version for ABIV registration is now SDK 26 (Android 8.0)</p>
+</li>
+<li>
+<p>Minimum supported iOS version is now iOS 14</p>
+</li>
+<li>
+<p>iOS service lib 22.1</p>
+</li>
+<li>
+<p>Android service lib 22.1.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix Android navigation bar scrims and webview insets when screen is rotated.</p>
+</li>
+<li>
+<p>Fix ReadID Android NFC crash in release app.</p>
+</li>
+<li>
+<p>Fix blank webview on Android 10.</p>
+</li>
+<li>
+<p>Fix app rating loader.</p>
+</li>
+<li>
+<p>Update flutter to 3.27.2 to fix iOS 18.2 unresponsive webview.</p>
+</li>
+<li>
+<p>Fiz MRZ view wrong background color.</p>
+</li>
+<li>
+<p>Improve soft keyboard behavior on Android.</p>
+</li>
+<li>
+<p>Improved behavior when account is deleted in portal while app is open.</p>
+</li>
+<li>
+<p>Fix loader blinking in iOS.</p>
+</li>
+<li>
+<p>Correctly show client too old error when push arrives at Android.</p>
+</li>
+<li>
+<p>Increase pinpad buttons semantics container size.</p>
+</li>
+<li>
+<p>Show open settings instead of allow notifications.</p>
+</li>
+<li>
+<p>Abiv INVALID_COUNTRY_CODE improvements</p>
+</li>
+<li>
+<p>Reset ABIV registration when startSession fails with error</p>
+</li>
+<li>
+<p>Terminate registration when ROB api responds with ACCESS_TOKEN_INACTIVE</p>
+</li>
+<li>
+<p>Fix menu insets.</p>
+</li>
+<li>
+<p>Fix critical error handling.</p>
+</li>
+<li>
+<p>Fix turorial modal on older safari versions (15.5).</p>
+</li>
+<li>
+<p>Fix Pin code entry speed during registration.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Add LV ID-Card restriction message for minors</p>
+</li>
+<li>
+<p>Inform users about apple watch.</p>
+</li>
+<li>
+<p>Add support for targetSdk 35. Support edge-to-edge screens on Android 10+.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated 3rd party libraries, inc ReadID M113</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v271"><a class="anchor" href="#v271"></a>Smart-ID App v27.1</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 22.11.2024</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Possibility to upgrade accounts for using TSE 11.5</p>
+</li>
+<li>
+<p>Update android minSdk to 23 (Android 6.0).</p>
+</li>
+<li>
+<p>ABIV registration minimum iOS version is set to iOS14</p>
+</li>
+<li>
+<p>Implement new phone input and country select.</p>
+</li>
+<li>
+<p>Change QR screen to always dark mode.</p>
+</li>
+<li>
+<p>Remove phone numbers from help menu.</p>
+</li>
+<li>
+<p>Allow skipping tutorial view final slide</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix Android landscape mode on tablets.</p>
+</li>
+<li>
+<p>Fix modal semantics when only 1 action button is displayed in footer.</p>
+</li>
+<li>
+<p>Fix status bar color is wrong when light theme is active, QR scanner is active and transaction is opened</p>
+</li>
+<li>
+<p>Fix white stripe on unregistered account home screen on Android</p>
+</li>
+<li>
+<p>Fix race condition in SID2SID same device flow that prevents account registration.</p>
+</li>
+<li>
+<p>Fix home screen notifications top overflow when collapsed.</p>
+</li>
+<li>
+<p>Fix choose country and country list visuals on zoomed in screens.</p>
+</li>
+<li>
+<p>Fix help button and pin locked error.</p>
+</li>
+<li>
+<p>Fix home screen notifications toggle logic.</p>
+</li>
+<li>
+<p>Fix text "Can&#8217;t remember code" text alignment when font size is increased.</p>
+</li>
+<li>
+<p>Set correct camera notice font size.</p>
+</li>
+<li>
+<p>Prevent QR code scanning if camera is not yet shown.</p>
+</li>
+<li>
+<p>Fix flickering line between webview and native screen.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Add FAQ link to QR code scanning view.</p>
+</li>
+<li>
+<p>Add new fields to ROB API.</p>
+</li>
+<li>
+<p>Add FAQ link for <em>Account usage limited</em> message</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated 3rd party libraries, inc ReadID M108</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v261"><a class="anchor" href="#v261"></a>Smart-ID App v26.1</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 01.10.2024</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Support for RP API v3 dynamic flows (Scan QR code button on home screen). Available for Belgium RP&#8217;s</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Improve home screen notifications.</p>
+</li>
+<li>
+<p>Integrate Service LIB 22.0</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Set splash screen to be dependent on system mode.</p>
+</li>
+<li>
+<p>Countdown timer shows wrong unlocking time on home view</p>
+</li>
+<li>
+<p>OCR data capture (picture) too fast</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated 3rd party libraries, inc ReadID M105 Android, M104 iOS</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v252298"><a class="anchor" href="#v252298"></a>Smart-ID App v25.2.298</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 02.07.2024</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Start using TSE v11 with NQ accounts (iOS)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v252"><a class="anchor" href="#v252"></a>Smart-ID App v25.2</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 11.06.2024</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement dark mode</p>
+</li>
+<li>
+<p>Add link under help menu to service status page</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Change Medicinos to Urbo bankas</p>
+</li>
+<li>
+<p>Use numeric keyboard for MID OTP</p>
+</li>
+<li>
+<p>Update Belgium support email</p>
+</li>
+<li>
+<p>Update iOS LIB 21.4.52</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Improve ABIV flows</p>
+</li>
+<li>
+<p>Improve INVALID_DEVICE error handling.</p>
+</li>
+<li>
+<p>Correctly show buttons related to active account in Help menu</p>
+</li>
+<li>
+<p>Fixed VoiceOver of buttons with images</p>
+</li>
+<li>
+<p>Limit the maximum font scale of the app</p>
+</li>
+<li>
+<p>Fixed WebView accessibility scaling issues and bold text on Android and iOS</p>
+</li>
+<li>
+<p>Maintain pinpad size when scaling text.</p>
+</li>
+<li>
+<p>Android Talkback: Read personal code as digits.</p>
+</li>
+<li>
+<p>Other minor fixes</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated 3rd party libraries</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v241"><a class="anchor" href="#v241"></a>Smart-ID App v24.1</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 11.03.2024</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Display account TSE version(s) in app.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Start using TSE v11 with NQ accounts (android)</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix race condition which prevents showing transaction on iOS sometimes after pressing notification.</p>
+</li>
+<li>
+<p>Fix for Samsung android 14 devices, black screen on registration.</p>
+</li>
+<li>
+<p>Show displayText in registration transaction views (if present).</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v240"><a class="anchor" href="#v240"></a>Smart-ID App v24.0</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 05.02.2024</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>New design for display text focus and other transaction related modals.</p>
+</li>
+<li>
+<p>Added adaptive icons for Android app</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Change texts regarding allowed minor age in ABIV registration</p>
+</li>
+<li>
+<p>Make email field mandatory for all registration methods (except bank office).</p>
+</li>
+<li>
+<p>Change "Incoming transaction" settings design.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Update account status after key unlocks.</p>
+</li>
+<li>
+<p>Handle exception when iOS watch connection fails</p>
+</li>
+<li>
+<p>Fix cases where unlocked key status is not updated correctly.</p>
+</li>
+<li>
+<p>Improve error handling in Registration Token view when app is in background and network disappears.</p>
+</li>
+<li>
+<p>Badge is not cleared</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated 3rd party libraries</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v239"><a class="anchor" href="#v239"></a>Smart-ID App v23.9</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 15.12.2023</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Allow ID-card with EE in ABIV registration.</p>
+</li>
+<li>
+<p>For Android 14+, the SCHEDULE_EXACT_ALARM permission is required to display account renewal notifications.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix disappearing registration buttons on Chrome Beta version (120.0.6099.4).</p>
+</li>
+<li>
+<p>Make pin pad touch presses more forgiving so users can tap more quickly. (Android)</p>
+</li>
+<li>
+<p>Fix transaction/push not received after registration or error. (Android)</p>
+</li>
+<li>
+<p>Poll transaction after confirming signature RP request. (Android)</p>
+</li>
+<li>
+<p>Keep screen opened on Huawei devices in case of signature RP Requests. (Android)</p>
+</li>
+<li>
+<p>Fix Android10 overlay and other MIUI specific permission to automatically open app when transaction arrives.</p>
+</li>
+<li>
+<p>Fixed help menu and transaction scaling issues. Fixed modal scroll.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Update 3rd party dependencies.</p>
+</li>
+<li>
+<p>ABIV registration minimum supported sdk is now 24 (Android 7)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_smart_id_app_v23_8_ios"><a class="anchor" href="#_smart_id_app_v23_8_ios"></a>Smart-ID App v23.8 (iOS)</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: released with v23.9</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>WatchOS 10 new design</p>
+</li>
+<li>
+<p>Watch: Add haptic touch to pin pad view</p>
+</li>
+<li>
+<p>Add animations to view changes</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix transaction/push not received after registration or error.</p>
+</li>
+<li>
+<p>Improve loaders and error handling on Watch.</p>
+</li>
+<li>
+<p>Watch: handle notifications when app is in foreground</p>
+</li>
+<li>
+<p>Watch: make pin button sizes responsive</p>
+</li>
+<li>
+<p>Improve view displaying from background to foreground.</p>
+</li>
+<li>
+<p>Apple watch: Improve contentView animations</p>
+</li>
+<li>
+<p>Show pin locked view with every logo tap.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v237_ios"><a class="anchor" href="#v237_ios"></a>Smart-ID App v23.7 (iOS)</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 19.09.2023</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>New account does not receive trx before closing/re-opening</p>
+</li>
+<li>
+<p>fixed MRZ reading</p>
+</li>
+<li>
+<p>Prevent double notification sound. Remove notification sound option from menu.</p>
+</li>
+<li>
+<p>Make pin pad touch presses more forgiving so users can tap more quickly.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Minimum requirement: Operating system iOS 13 or newer</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v236"><a class="anchor" href="#v236"></a>Smart-ID App v23.6</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 05.09.2023</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix push behavior when opened manually.</p>
+</li>
+<li>
+<p>Fix potential edge cases where same transaction can be shown twice.</p>
+</li>
+<li>
+<p>Fix android screen not turning on when transaction arrives on some devices (Huawei EMUI 8).</p>
+</li>
+<li>
+<p>Fix transaction route navigation logic when account upgrade is in progress. Fix duplicate transaction sounds.</p>
+</li>
+<li>
+<p>Fixes same transaction being displayed multiple times and app removed from recents on Android.</p>
+</li>
+<li>
+<p>Fix per-app language preference logic on Android 13+.</p>
+</li>
+<li>
+<p>Fixes transaction logic for all platforms and background push stability for GMS.</p>
+</li>
+<li>
+<p>Fix infinite loader on some iOS devices when opening app.</p>
+</li>
+<li>
+<p>iOS Voiceover: Close button is read out in RU</p>
+</li>
+<li>
+<p>Fix iOS App sometimes loads forever when opened</p>
+</li>
+<li>
+<p>Fix Error: AppError.appInvalidLibResponse after PIN code lock</p>
+</li>
+<li>
+<p>Use device notification volume for notification sounds if available.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>support for in app review (iOS).</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Removed link to ID card registration video.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v235"><a class="anchor" href="#v235"></a>Smart-ID App v23.5</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 12.07.2023</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Update service lib to 21.1</p>
+</li>
+<li>
+<p>Updated and reviewed app error codes.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>different bug fixes</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Added new languages: de, fr, nl.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated third-party libraries</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_smart_id_app_v23_4"><a class="anchor" href="#_smart_id_app_v23_4"></a>Smart-ID App v23.4</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 13.06.2023</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Changed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Flutter rewrite</p>
+</li>
+<li>
+<p>Updated Service library to v20</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Add android 13 per-app language preferences</p>
+</li>
+<li>
+<p>Add error pages for new MID.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<p>Updated third-party libraries</p>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v225"><a class="anchor" href="#v225"></a>Smart-ID App v22.5</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 18.10.2022</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>camera focus in ABIV registration on the iOS 14 Pro and Pro Max</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated third-party libraries</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v224"><a class="anchor" href="#v224"></a>Smart-ID App v22.4</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 12.09.2022</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>support for in app review.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v223"><a class="anchor" href="#v223"></a>Smart-ID App v22.3</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 12.09.2022</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>SK logo to transaction.</p>
+</li>
+<li>
+<p>Added SMS OTP support for bank link registration.</p>
+</li>
+<li>
+<p>Updated Service library to v18.</p>
+</li>
+<li>
+<p>support for minor registration with biometric identification</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed displayText modal header.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated third-party libraries</p>
+</li>
+<li>
+<p>Disable screen capture on PIN entering screen</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v21613_ios"><a class="anchor" href="#v21613_ios"></a>Smart-ID App v21.6.13 (iOS)</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 22.08.2022</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issues with iOS 16</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v216"><a class="anchor" href="#v216"></a>Smart-ID App v21.6</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 09.05.2022</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Improve phone number validation</p>
+</li>
+<li>
+<p>Ignore OTP invalid error when automatic detection. SMS can sometimes arrive late and trigger this error before correct sms arrives.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Added account document capabilities notification. (Message when account usage is limited)</p>
+</li>
+<li>
+<p>Add menu item for PIN change info (link to FAQ article).</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated 3rd party dependencies</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v215"><a class="anchor" href="#v215"></a>Smart-ID App v21.5</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 23.11.2021</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>New account renewal method - using your existing Smart-ID account to register a new account;</p>
+</li>
+<li>
+<p>option in menu to turn Smart-ID PIN entry touch feedback on/off;</p>
+</li>
+<li>
+<p>Enabled attack report modal in live app (iOS);</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>AppError.APP_WEBVIEW_ERROR on older phones (Android);</p>
+</li>
+<li>
+<p>hardware back button issue with SID2SID authentication (Android);</p>
+</li>
+<li>
+<p>app push token error not displayed or empty token returned (Android);</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v213"><a class="anchor" href="#v213"></a>Smart-ID App v21.3</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 01.09.2021</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Added</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Implemented registration with other device Smart-ID</p>
+</li>
+<li>
+<p>Show attack report modal when transaction is cancelled</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Removed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Removed interactive upgrade functionality with lib v16 upgrade</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fixed</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed incorrect display on error messages 580 and 480</p>
+</li>
+<li>
+<p>Fix Android back function</p>
+</li>
+<li>
+<p>Fix creating duplicate otp SMS</p>
+</li>
+<li>
+<p>Other bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Security</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated third-party libraries</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v214"><a class="anchor" href="#v214"></a>Smart-ID App v21.4</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 12.07.2021</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added Huawei support, works with Android phones without google services (released in Huawei App Gallery)</p>
+</li>
+<li>
+<p>Added HUAWEI Mobile Services (push messages) support (updated app version 21.4.242 available from 09.08.2021)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v2010"><a class="anchor" href="#v2010"></a>Smart-ID App v20.10</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 21.01.2021</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed texts</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v209"><a class="anchor" href="#v209"></a>Smart-ID App v20.9</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 14.01.2021</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed texts in confirmationMessage flow</p>
+</li>
+<li>
+<p>Enabled ABIV OAuth</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v208"><a class="anchor" href="#v208"></a>Smart-ID App v20.8</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 23.11.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Moved Basic account upgrade button from home screen to menu;</p>
+</li>
+<li>
+<p>Changed Basic account upgrade button text and visual;</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v206"><a class="anchor" href="#v206"></a>Smart-ID App v20.6</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 03.11.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added error view for geo-restriction;</p>
+</li>
+<li>
+<p>Added security quiz link to help menu;</p>
+</li>
+<li>
+<p>Added security-quiz and portal buttons to "How to use Smart-ID” tutorial;</p>
+</li>
+<li>
+<p>Added “Upgrade Smart-ID” dialog for NQ accounts;</p>
+</li>
+<li>
+<p>Added MID registering instructions before terms like ABIV;</p>
+</li>
+<li>
+<p>Added ABIV OAuth support, allowing to enable/disable it via build parameters;</p>
+</li>
+<li>
+<p>Added hint to go to self-service portal for account delete if deletion by typing ok fails;</p>
+</li>
+<li>
+<p>Account is now deleted after personal data mismatch error during ID-card registration;</p>
+</li>
+<li>
+<p>Multi-account confirm dialog buttons now stack and are more prominent on larger screens than h530dp;</p>
+</li>
+<li>
+<p>Feedback is now displayed via hardware &amp; OS checks if ABIV registration is possible;</p>
+</li>
+<li>
+<p>Updated dependencies &amp; (third-party) libraries;</p>
+</li>
+<li>
+<p>Changed privacy URL to skidsolutions.eu;</p>
+</li>
+<li>
+<p>Improved logging;</p>
+</li>
+<li>
+<p>Improved error handling:</p>
+</li>
+<li>
+<p>Added new App error code APP_DOC_SCAN_NFC_ERROR;</p>
+</li>
+<li>
+<p>Improved error handling of transaction signing during ABIV registration;</p>
+</li>
+<li>
+<p>Added ReadID NFC_ERROR handling and new error code APP_DOC_SCAN_NFC_ERROR (Android);</p>
+</li>
+<li>
+<p>Improved SafetyNet error handling on app side (Android);</p>
+</li>
+<li>
+<p>Added timeout of 60s to signature waiting loader, navigating to main screen after timeout (Android);</p>
+</li>
+<li>
+<p>Implemented display text focus;</p>
+</li>
+<li>
+<p>Improved transaction handling during (ABIV) registration so app is not closed and registration would not be terminated (Android);</p>
+</li>
+<li>
+<p>Removed Android 4 support (Android);</p>
+</li>
+<li>
+<p>Fixed issue where "Renew Smart-ID" in transaction view opens home view (Android);</p>
+</li>
+<li>
+<p>Fixed error activity countdown timer to resume countdown on reopening app (Android);</p>
+</li>
+<li>
+<p>Added “Allow once” button to “Screen is being captured" error view (iOS);</p>
+</li>
+<li>
+<p>Added pending transaction notification badge on smart-id app icon (iOS);</p>
+</li>
+<li>
+<p>Improved iOS app handling of service down (iOS);</p>
+</li>
+<li>
+<p>Loader is now displayed when opening app from push notification (iOS);</p>
+</li>
+<li>
+<p>Removed “Close” button from transaction completed view in app after authentication transaction (iOS);</p>
+</li>
+<li>
+<p>Fixed T&amp;C section scrolling not working on iOS 14 (iOS);</p>
+</li>
+<li>
+<p>Fixed ABIV document locked time not being shown (iOS);</p>
+</li>
+<li>
+<p>Fixed Smart-ID not working in landscape mode anymore on iPad (iPadOS);</p>
+</li>
+<li>
+<p>Fixed app crashing on iOS versions below 12.2 when bitcode is enabled (iOS);</p>
+</li>
+<li>
+<p>Fixed pin-pad being shown before control code selection, causing user to select wrong code (iOS);</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v194"><a class="anchor" href="#v194"></a>Smart-ID App v19.4</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 06.07.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Registering new account on Android is now possible with minimum Android 4.4</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v194_android"><a class="anchor" href="#v194_android"></a>Smart-ID App v19.4</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 25.06.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Improve ABIV contact data registration error handling (Android);</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v193"><a class="anchor" href="#v193"></a>Smart-ID App v19.3</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 29.05.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added country calling code select for contact phone field;</p>
+</li>
+<li>
+<p>Added possibility to allow re-sending OTP during ABIV contact data registration;</p>
+</li>
+<li>
+<p>Added more info to delete account view, user will need to type “OK” now to confirm deletion;</p>
+</li>
+<li>
+<p>Improved app landing view. “Existing users” now can see better info about needing to register a new Smart-ID account.</p>
+</li>
+<li>
+<p>Improved home view behavior when account is not active;</p>
+</li>
+<li>
+<p>Improved e-mail validation;</p>
+</li>
+<li>
+<p>Improved missing push token handling in home view;</p>
+</li>
+<li>
+<p>Show error message with timer when document is locked during ABIV registration;</p>
+</li>
+<li>
+<p>Show error message when ABIV document is permanently locked;</p>
+</li>
+<li>
+<p>Show error message when ABIV fails due to missing account;</p>
+</li>
+<li>
+<p>Show error message when ABIV OTP fails;</p>
+</li>
+<li>
+<p>Show technical error code from lib;</p>
+</li>
+<li>
+<p>Show error with FAQ link for minors registering with ABIV;</p>
+</li>
+<li>
+<p>Show technical error code from service library on error views;</p>
+</li>
+<li>
+<p>Updated dependencies &amp; libraries;</p>
+</li>
+<li>
+<p>Use separate ID-card video URL for LV and new ABIV video URLs for LV &amp; LT languages;</p>
+</li>
+<li>
+<p>Do not allow to renew when identities of old and new account do not match;</p>
+</li>
+<li>
+<p>During account renewal: always show bank option, use ABIV button style based on device support;</p>
+</li>
+<li>
+<p>Request extra permissions during tutorial and after transaction to automatically open app with Android 10+ (Android);</p>
+</li>
+<li>
+<p>Use correct audio signal type when notification sound playing media (Android);</p>
+</li>
+<li>
+<p>Improved vision impair accessibility in transaction view (Android).</p>
+</li>
+<li>
+<p>Close app when pin lock timer runs out (Android);</p>
+</li>
+<li>
+<p>Prevent double transactions when push and polling both give same transaction during ABIV signing (Android);</p>
+</li>
+<li>
+<p>Implemented FCM error dialog (Android);</p>
+</li>
+<li>
+<p>Added description text after signing transaction has completed and add close button to transaction view (iOS);</p>
+</li>
+<li>
+<p>Improved too small tutorial video during ABIV registration (iOS);</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v184"><a class="anchor" href="#v184"></a>Smart-ID App v18.4</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 28.02.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added biometric identification tutorial videos based on app language;</p>
+</li>
+<li>
+<p>Improved "Account deleted" error message with info about expiry;</p>
+</li>
+<li>
+<p>Improved error message when cancelling transaction from app;</p>
+</li>
+<li>
+<p>Improved biometric identification related error handling, added new error messages;</p>
+</li>
+<li>
+<p>Unified support email structure;</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v183"><a class="anchor" href="#v183"></a>Smart-ID App v18.3</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 05.02.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed transactions not opening during account renewal with banklink on Android devices;</p>
+</li>
+<li>
+<p>Account renewal button is now displayed in app menu for only Smart-ID Basic accounts;</p>
+</li>
+<li>
+<p>Smart-ID expiry date is now visible on Smart-ID app home screen;</p>
+</li>
+<li>
+<p>Improved Smart-ID expiry dialog and fixed "Learn more" button not opening non-english FAQ links for more info;</p>
+</li>
+<li>
+<p>Implemented workaround for OTP autofill during Mobile-ID registration causing app to crash on iOS devices;</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v182"><a class="anchor" href="#v182"></a>Smart-ID App v18.2</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 15.01.2020</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Introducing expiring Smart-ID account renewal to make easier continue using Smart-ID;</p>
+</li>
+<li>
+<p>Improved support for transaction notifications on Android 10 ;</p>
+</li>
+<li>
+<p>Fixed dark mode hiding "Back to app" arrow on iOS 13.</p>
+</li>
+<li>
+<p>iOS version 11 now minimum required for installation</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v178"><a class="anchor" href="#v178"></a>Smart-ID App v17.8</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 06.11.2019</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Use bold font in three control code view;</p>
+</li>
+<li>
+<p>Updated dependencies &amp; libraries to newest versions;</p>
+</li>
+<li>
+<p>Reduced wait time for app landing animation;</p>
+</li>
+<li>
+<p>Support for IDC scheme on registering;</p>
+</li>
+<li>
+<p>New ways to limit rooted devices;</p>
+</li>
+<li>
+<p>Fixed firebase related crash (Android);</p>
+</li>
+<li>
+<p>Fixed pin pad sounds not being played (iOS);</p>
+</li>
+<li>
+<p>Fixed launch screen background image pattern (iOS);</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v166"><a class="anchor" href="#v166"></a>Smart-ID App v16.6</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 17.10.2019</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed scroll issue during registering with chrome v78 installed on Android</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v165"><a class="anchor" href="#v165"></a>Smart-ID App v16.5</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 22.08.2019</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed ios 9 registering crash with banklink</p>
+</li>
+<li>
+<p>Set ios 9 as minimum with app 16.5</p>
+</li>
+<li>
+<p>Fixed blank page on launching LV-DNB and Medicinos bank view with ios</p>
+</li>
+<li>
+<p>Support NQ issuance in bank office</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v16"><a class="anchor" href="#v16"></a>Smart-ID App v16</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 25.06.2019</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added OTP flow with error handling to MID registration;</p>
+</li>
+<li>
+<p>Added "How to use Smart-ID" interactive tutorial to help menu for registered accounts;</p>
+</li>
+<li>
+<p>Added RP request cancelling for multi-accounts;</p>
+</li>
+<li>
+<p>Added scrolling indicator for terms view;</p>
+</li>
+<li>
+<p>Terms and Conditions are now acceptable only after scrolled to bottom;</p>
+</li>
+<li>
+<p>Help menu e-mail now redirects to smart-id.com form with prefilled country and language;</p>
+</li>
+<li>
+<p>Removed contact phone number from MID flow, now using MID number instead;</p>
+</li>
+<li>
+<p>Improved account not ready for usage view;</p>
+</li>
+<li>
+<p>Rooted info in menu now includes a link to FAQ article;</p>
+</li>
+<li>
+<p>After unlocking the screen user gets renewed registration token;</p>
+</li>
+<li>
+<p>When push arrives, fullscreen intent is used instead of starting activity on Android Q (Android);</p>
+</li>
+<li>
+<p>Check and show new transaction after previous transaction is handled (confirmed, cancelled or times out) (Android);</p>
+</li>
+<li>
+<p>Improved "Transaction expired" error message to cover both "in progress" and "expired” (Android);</p>
+</li>
+<li>
+<p>Added ID-card video link handler (iOS);</p>
+</li>
+<li>
+<p>Help menu can now be opened and closed by sliding from the right edge (iOS);</p>
+</li>
+<li>
+<p>Fixed transaction not shown when getTransaction request times out (iOS);</p>
+</li>
+<li>
+<p>Fixed upgrade required error not shown when using ID-card or bank office to register (iOS);</p>
+</li>
+<li>
+<p>Added ID-card registering video to registration page (portal);</p>
+</li>
+<li>
+<p>Added Edge link to missing ID-card plugin error page (portal);</p>
+</li>
+<li>
+<p>Show QSCD status in self-service portal;</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v15"><a class="anchor" href="#v15"></a>Smart-ID App v15</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 25.03.2019</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed network error and crash during banklink registration with latest Chrome</p>
+</li>
+<li>
+<p>Added “Confirm certificates” view;</p>
+</li>
+<li>
+<p>Added better informing user of timelocking;</p>
+</li>
+<li>
+<p>Added ID-card registering video link to needed pages;</p>
+</li>
+<li>
+<p>Added descriptions to “Choose Country” &amp; Mobile-ID authentication views;</p>
+</li>
+<li>
+<p>Added third party license info to show in app &amp; removed unnecessary licenses;</p>
+</li>
+<li>
+<p>Added brand colour and image to Medicinos Bankas registration method in Lithuania;</p>
+</li>
+<li>
+<p>Added missing push token or push notifications disabled design for home screen;</p>
+</li>
+<li>
+<p>Improved back button behaviour in MID and SID auth views;</p>
+</li>
+<li>
+<p>Improved error message description for INVALID_TRANSACTION_STATE error code;</p>
+</li>
+<li>
+<p>Updated dependencies &amp; libraries to newest versions ;</p>
+</li>
+<li>
+<p>Updated authentication provider selection flow according to latest design;</p>
+</li>
+<li>
+<p>Design improvements for licenses and push notification alert;</p>
+</li>
+<li>
+<p>Show key lock info on home screen when returning from KEY_UNUSABLE_ERROR view;</p>
+</li>
+<li>
+<p>Replaced original Terms &amp; Conditions with short summaries;</p>
+</li>
+<li>
+<p>"Choose another method" in NQ warning view now takes always back to “Authentication methods” view;</p>
+</li>
+<li>
+<p>An additional dialog can now be shown optionally, requiring user to select correct control code before proceeding with transaction;</p>
+</li>
+<li>
+<p>Certificate subject is now sent to hybrid;</p>
+</li>
+<li>
+<p>Hide phone number input until e-mail is rejected;</p>
+</li>
+<li>
+<p>Root check improved during registration;</p>
+</li>
+<li>
+<p>When system does not support specific input hint request, remember it and do not attempt again;</p>
+</li>
+<li>
+<p>Prevent race condition which causes APP_REGISTRATION_NOT_INITIALIZED error;</p>
+</li>
+<li>
+<p>Prevent showing "Confirm cancel" view if users cannot continue registration after error;</p>
+</li>
+<li>
+<p>Removed e-mail link &amp; added contact customer service links in help menu;</p>
+</li>
+<li>
+<p>Fixed regression: portal ID-card registration URL changes were ignored;</p>
+</li>
+<li>
+<p>Fixed cases where cursor moves to the left of "+" in phone number input;</p>
+</li>
+<li>
+<p>Added clone detect message to have link to FAQ (Android);</p>
+</li>
+<li>
+<p>Added email/phone number hint (requested from system), improved error handling when hint request fails (Android);</p>
+</li>
+<li>
+<p>Improve error handling when Account locked (Android);</p>
+</li>
+<li>
+<p>Show "Transaction not found error" when Transaction activity is opened without transaction/rp request (Android);</p>
+</li>
+<li>
+<p>Correctly show next view when navigating from transaction view that is displayed over lock screen (Android);</p>
+</li>
+<li>
+<p>Check if attestation data is present before trying to read the data (Android);</p>
+</li>
+<li>
+<p>When app is opened with Google Play Store, then open correct activity (Android);</p>
+</li>
+<li>
+<p>Handle PORTAL_INVALID_APP_VERSION error in SSO webview (Android);</p>
+</li>
+<li>
+<p>Improved transition from "Preparing for singing" to "Transaction" view (Android);</p>
+</li>
+<li>
+<p>Allow only one concurrent hint request (Android);</p>
+</li>
+<li>
+<p>Improved automatic root detection and if device has no account (Android);</p>
+</li>
+<li>
+<p>Fixed handling SERVER_KEY_UNUSABLE error when resuming app from background (Android);</p>
+</li>
+<li>
+<p>Fixed crash in Transaction activity when API initialization completes after activity is destroyed (Android);</p>
+</li>
+<li>
+<p>Added PRNG_TEST_FAILED error code (iOS);</p>
+</li>
+<li>
+<p>Added error code logging when Lib returns too short PIN length (iOS);</p>
+</li>
+<li>
+<p>Added local HTML loading as a fallback when loading the remote HTML fails (iOS);</p>
+</li>
+<li>
+<p>Added workaround for webview views getting stuck in scrolled up position when keyboard is closed (iOS);</p>
+</li>
+<li>
+<p>Improved PIN length handling (iOS);</p>
+</li>
+<li>
+<p>Improved outdated app error handling when using bank auth (iOS);</p>
+</li>
+<li>
+<p>Improved http request retry logic when app returns from background (iOS);</p>
+</li>
+<li>
+<p>Improved clone detected error handling when Ok button is pressed on error view (iOS);</p>
+</li>
+<li>
+<p>Removed maximum PIN length message from being shown when pinpad OK is not shown (iOS);</p>
+</li>
+<li>
+<p>Show SFSafariViewController color depending on Q or NQ level. (iOS)</p>
+</li>
+<li>
+<p>Fixed for DNB LV authentication (iOS);</p>
+</li>
+<li>
+<p>Fixed crash when entering PIN code quickly (iOS);</p>
+</li>
+<li>
+<p>Fixed verification code modal staying hidden when show modal animation is started before hide modal animation has finished (iOS);</p>
+</li>
+<li>
+<p>Fixed first verification code shown in transaction view when transaction view is shown again after correct verification code has been selected (iOS);</p>
+</li>
+<li>
+<p>Fixed crash caused by accountKey added to error extra info without creating dictionary from it (iOS);</p>
+</li>
+<li>
+<p>Fixed retry button not shown for network error when creating account (iOS);</p>
+</li>
+<li>
+<p>Fixed error after returning to foreground or unlocking the screen while registration provider status requests are being made (iOS);</p>
+</li>
+<li>
+<p>Fixed portal SSL error try again during registration resulting in home screen being shown (iOS);</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v14"><a class="anchor" href="#v14"></a>Smart-ID App v14</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 15.06.2018</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>New Smart-ID account will be created with 6K RSA keys and certificates (existing accounts are using 4K RSA keys)</p>
+</li>
+<li>
+<p>Made whole home screen tap/click to trigger check transaction (excluding top edge);</p>
+</li>
+<li>
+<p>Added "Existing accounts" modal after registration if user has more than one account;</p>
+</li>
+<li>
+<p>Added transaction timeout modal when less than 30 seconds left to complete transaction;</p>
+</li>
+<li>
+<p>Added better scroll indication and buttons visibility with longer text - when view is scrollable, text will start fading out below;</p>
+</li>
+<li>
+<p>Added Smart-ID Basic (NQ) warning view to banklink registration recommending to register a Smart-ID (Q) account instead;</p>
+</li>
+<li>
+<p>Added QSCD info to menu if account has QSCD certificate, displayed as “Smart-ID Qualified Electronic Signature”;</p>
+</li>
+<li>
+<p>Separated Settings and Application info into two menu sections;</p>
+</li>
+<li>
+<p>Improved error handling for older device operating systems that are not supported anymore and will require updating to a newer version;</p>
+</li>
+<li>
+<p>Added “Open system notification settings" option to menu and implemented notification channels on Android 8+:</p>
+</li>
+<li>
+<p>Added isCaptured check to warn about screen being captured/recorded (iOS);</p>
+</li>
+<li>
+<p>Added registering ID-card support to Edge;</p>
+</li>
+<li>
+<p>Implemented "Remember login details" functionality in self-service portal;</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v13"><a class="anchor" href="#v13"></a>Smart-ID App v13</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released 19.04.2018</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Optimised layout for iPhone X;</p>
+</li>
+<li>
+<p>Added option to toggle "allow screenshot" functionality;</p>
+</li>
+<li>
+<p>"User info" is now also shown with unregistered account menu (only "Device" info is shown without account);</p>
+</li>
+<li>
+<p>App now shows transaction details along with verification code in the same view without having to toggle the verification code and details separately;</p>
+</li>
+<li>
+<p>Google Play now has also better differentiation between Smart-ID live and demo apps;</p>
+</li>
+<li>
+<p>Improved error handling for older app versions that are not supported anymore and will require updating to a newer version;</p>
+</li>
+<li>
+<p>Improved error handling for secure connections on iOS when issue is likely caused by poor Internet connection;</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v12"><a class="anchor" href="#v12"></a>Smart-ID App v12</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 29.01.2018</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added home view error clearing;</p>
+</li>
+<li>
+<p>Added prettier for hybrid file formatting;</p>
+</li>
+<li>
+<p>Added timeout counter to RP request view;</p>
+</li>
+<li>
+<p>Added handling of RP request with type SIGNING;</p>
+</li>
+<li>
+<p>Added "Already have an account?" link to registration home view;</p>
+</li>
+<li>
+<p>Added timeout for entering PINs during identity token registration;</p>
+</li>
+<li>
+<p>Account status is now updated when app returns to foreground;</p>
+</li>
+<li>
+<p>App no longer shows "Tap code for details" disclaimer when RP has no displayText;</p>
+</li>
+<li>
+<p>Updated terms &amp; conditions;</p>
+</li>
+<li>
+<p>Updated hybrid dependencies and Android/iOS (third party) libraries;</p>
+</li>
+<li>
+<p>Redesigned help menu:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added self-service portal link to help menu (links also open in respective languages);</p>
+</li>
+<li>
+<p>App and device info is added to e-mails sent to support;</p>
+</li>
+<li>
+<p>Contacts are shown based on app language;</p>
+</li>
+<li>
+<p>Removed 900 1807 number for Estonia;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improved different font sizes and layout breakpoints. Icons for warning &amp; error messages now also resize with breakpoints;</p>
+</li>
+<li>
+<p>Improved check transaction error handling and logo animation logic;</p>
+</li>
+<li>
+<p>Improved key generation error handling;</p>
+</li>
+<li>
+<p>Improved general error handling:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added "Session expired" error message;</p>
+</li>
+<li>
+<p>Added error messages for various PRE errors;</p>
+</li>
+<li>
+<p>Added "Account not found" error when push message arrived after account is deleted;</p>
+</li>
+<li>
+<p>Added view for INVALID_PERSONAL_CODE error during manual and banklink registration;</p>
+</li>
+<li>
+<p>Added “Poor internet connection” error with more detailed NSURLError codes instead of “Service temporarily unavailable” where applicable;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improved logging:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added Lib errors ERROR_CODE_RESPONSE_TIMEOUT, ERROR_CODE_SERVER_INTERNAL_ERROR and App SSL exceptions to portal;</p>
+</li>
+<li>
+<p>Added registration abandoned event logging when account is deleted in DOCUMENT_CREATED state;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Input is scrolled into view when it is hidden after keyboard opens;</p>
+</li>
+<li>
+<p>Hide main webview while showing banklink and remove/pause loaders while not visible to reduce unnecessary rendering;</p>
+</li>
+<li>
+<p>Changed MID polling times. New values: initial delay = 15 sec, polling timeout = 3 sec;</p>
+</li>
+<li>
+<p>Fixed cancelling registration during key generation;</p>
+</li>
+<li>
+<p>Fixed user cancelling in SEB LT banklink views resulting in technical error;</p>
+</li>
+<li>
+<p>Fixed "Account deleted" view popping up before deletion process is completed;</p>
+</li>
+<li>
+<p>Fixed keyboard staying up when submitting form and navigating to following views (e.g. with keyboard enter button);</p>
+</li>
+<li>
+<p>Fixed resolving account state for account status view. Fixes animations and app not loading after deleting account in portal;</p>
+</li>
+<li>
+<p>Added Android root info to Menu (Android);</p>
+</li>
+<li>
+<p>Added scroll indicator (arrow) for banklink view (Android);</p>
+</li>
+<li>
+<p>Added timer to inactive transaction error views. App now closes automatically after time expires (Android);</p>
+</li>
+<li>
+<p>Implemented code obfuscation and optimisation with proguard. Removed Multidex (Android);</p>
+</li>
+<li>
+<p>Retry loading transaction when it initially fails due to ERROR_CODE_RESPONSE_TIMEOUT (Android);</p>
+</li>
+<li>
+<p>RP request view is now automatically hidden when new push arrives and active RP request is completed (Android);</p>
+</li>
+<li>
+<p>Notification (toast) is now shown in app when navigating to external URLs and device has no browser installed (Android);</p>
+</li>
+<li>
+<p>Potentially fix joda.time crash on some devices (Android);</p>
+</li>
+<li>
+<p>Fixed Crash on Android 4.x devices when pressing help icon in native Error view (Android);</p>
+</li>
+<li>
+<p>Removed automatic account deletion functionality - now user has to press button for account to be deleted. If it fails, error is shown;</p>
+</li>
+<li>
+<p>Fixed SSL error when opening Swebank banklink, also correct error message is now shown when Portal SSL pinning fails (Android);</p>
+</li>
+<li>
+<p>Fixed bug where back stops working when user manages to open two webviews (pressing buttons very fast) and when pressing back immediately (200ms) before banklink webview is loaded (Android);</p>
+</li>
+<li>
+<p>Fixed keyboard showing when pressing "Back" in banklink view while keyboard is opened (Android);</p>
+</li>
+<li>
+<p>Fixed "Registration terminated" showing up every time app is started after app was killed after creating PINs in ID-card registration (Android);</p>
+</li>
+<li>
+<p>Portal shared cookies are now added to banklink authentication request (iOS);</p>
+</li>
+<li>
+<p>Improved CSR transaction error handling when no result is returned from Lib (iOS);</p>
+</li>
+<li>
+<p>Fixed Safari 9 buttons not working issue in Terms and MID application view when user has scrolled to the end or back to the beginning;</p>
+</li>
+<li>
+<p>Fixed missing parent signing links for minors registration (iOS);</p>
+</li>
+<li>
+<p>Fixed menu not closing properly on iOS 11.2 when changing language (iOS);</p>
+</li>
+<li>
+<p>Fixed being able to start MID signing multiple times because UI problems (iOS);</p>
+</li>
+<li>
+<p>Fixed CSR transaction shown when returning to registration from help view (iOS);</p>
+</li>
+<li>
+<p>Fixed pdf icons not rendering correctly in iOS &#8656;8.3. Works when dimensions are multiples of 8 (iOS);</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v10"><a class="anchor" href="#v10"></a>Smart-ID App v10</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 11.10.2017</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>New landing animation intro when starting registration starting from Android 5x and iOS 9x. Older devices show still image;</p>
+</li>
+<li>
+<p>Improved animations to make the registration process and usage more fluid. These include:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Improved loader rotation, loader animating to success and fade-in success animations;</p>
+</li>
+<li>
+<p>Slide animations between views - from right to left when moving forward and opposite when moving backwards;</p>
+</li>
+<li>
+<p>All modals, alert and error views fade in and slightly slide in from top and disappear by fading out and sliding up;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improved app universal responsive design - various breakpoints for different screen sizes have been added for resizing text, buttons, icons and PIN pad;</p>
+</li>
+<li>
+<p>During registration, users can now see an improved progress bar indicating consecutive registration steps;</p>
+</li>
+<li>
+<p>When registering a demo account, users can choose "Other countries" to generate a random personal code and use it to authenticate to demo portal;</p>
+</li>
+<li>
+<p>First 10 characters of the push token are now visible in the menu for troubleshooting issues with support if push messages/transactions do not arrive automatically to the device;</p>
+</li>
+<li>
+<p>Demo app also displays info if device has been rooted or jailbroken next to the device name in menu;</p>
+</li>
+<li>
+<p>Improved error handling when registration times out and for some rare server side issues e.g. SSL pinning;</p>
+</li>
+<li>
+<p>Improved error handling for issues related to data absence in population registries (PRE) needed for registration;</p>
+</li>
+<li>
+<p>General technical error messages now also display error code or "Case ID" to better identify issues in support;</p>
+</li>
+<li>
+<p>Notification messages are now cleared when transaction is opened manually in app (Android);</p>
+</li>
+<li>
+<p>Notification messages are now cleared from the tray when there are no pending transactions (iOS);</p>
+</li>
+<li>
+<p>Migrated from Google Cloud Messaging to Firebase Cloud Messaging;</p>
+</li>
+<li>
+<p>Added UTM parameters (app version) to smart-id.com FAQ requests. User agent info is also sent with requests to portal</p>
+</li>
+<li>
+<p>Updated hybrid dependencies and Android/iOS (third party) libraries;</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v9"><a class="anchor" href="#v9"></a>Smart-ID App v9</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Released: 29.07.2017</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Redesigned Menu;</p>
+</li>
+<li>
+<p>Redesigned "Waiting approval" dialogues with ability to restart registration from menu if needed;</p>
+</li>
+<li>
+<p>Help view now has app and lib versions visible;</p>
+</li>
+<li>
+<p>Help view now has 2 support contact phone numbers displayed for all countries;</p>
+</li>
+<li>
+<p>Help view now has white background (equals to Q design) if there are no active accounts;</p>
+</li>
+<li>
+<p>Added timeout for multiple account transaction request views;</p>
+</li>
+<li>
+<p>Added “National ID number not supported” error view when registering with ID-card and new Latvian ID-code;</p>
+</li>
+<li>
+<p>Added “Invalid country code” error view when registering with bank link and bank returns INVALID_COUNTRY_CODE;</p>
+</li>
+<li>
+<p>Added small help disclaimer for multiple account transaction request views in case of receiving extra notification screens per transaction;</p>
+</li>
+<li>
+<p>Error views now direct to FAQ articles directly where applicable;</p>
+</li>
+<li>
+<p>New "How To Use Smart-ID" onboarding cards when completing registration;</p>
+</li>
+<li>
+<p>Improved minors registration flow, users under 18 can now register for a Smart-ID account;</p>
+</li>
+<li>
+<p>Moved Terms &amp; Conditions view immediately after authentication method selection to avoid timeouts when reading too long;</p>
+</li>
+<li>
+<p>Readiness for electronic Qualified certificate issuance (EE, LT) which will be turned on later on July;</p>
+</li>
+<li>
+<p>Implemented transaction pending local state retry logic. When transaction submission fails due to network error, then operation can be retried without additional PIN entry;</p>
+</li>
+<li>
+<p>Fixed “Try again” in error view, when app is started without internet;</p>
+</li>
+<li>
+<p>Fixed ID-card registration code not refreshing when app returns to foreground.</p>
+</li>
+<li>
+<p>Fixed network error when receiving push message when power saver is turned on on some devices (Android);</p>
+</li>
+<li>
+<p>Push upon arrival plays tune (Android);</p>
+</li>
+<li>
+<p>Added option in menu to toggle notification sound on or off. Default is on (Android);</p>
+</li>
+<li>
+<p>Control code is now always shown on new transactions (iOS);</p>
+</li>
+<li>
+<p>Pressing transaction cancel now shows loader and error view if canceling fails (iOS);</p>
+</li>
+<li>
+<p>“Navigate back to e-service” dialog is now shown on after completing transaction iOS9+ (iOS);</p>
+</li>
+<li>
+<p>“Notifications disabled” dialog is now always shown after transaction when notifications are disabled (iOS);</p>
+</li>
+<li>
+<p>General bug fixes, performance and usability improvements.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v110"><a class="anchor" href="#v110"></a>2017-02-28</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>More reliable PIN dialogue notification for Android</p>
+</li>
+<li>
+<p>Personal code not shown on home screen</p>
+</li>
+<li>
+<p>Fixed the bug which blocked registering account with multiple first names via banklink</p>
+</li>
+<li>
+<p>Bug fixes, performance and usability improvements</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v100"><a class="anchor" href="#v100"></a>2017-01-02</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Smart-ID has a new look - white background for Smart-ID and blue for Smart-ID Basic</p>
+</li>
+<li>
+<p>Full support for 5 languages implemented - in addition to English and Russian, we support all Baltic languages (Estonian, Latvian and Lithuanian)</p>
+</li>
+<li>
+<p>Improved user experience - account registration with ID-card is made much easier for you!</p>
+</li>
+<li>
+<p>Keeping in mind your safety and security reasons, easy PIN-codes (e.g 1234, 0000) are not allowed</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v090"><a class="anchor" href="#v090"></a>2016-12-20</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Due to popular demand, custom PIN selection is now set as default</p>
+</li>
+<li>
+<p>ID-card registration optimisation: contact data is now entered in self-service portal</p>
+</li>
+<li>
+<p>Audio notifications (for transactions) in iOS platform</p>
+</li>
+<li>
+<p>Many visual tweaks and fixes</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v080"><a class="anchor" href="#v080"></a>2016-11-30</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>ID-card based registration for Estonia, Latvia, Lithuania</p>
+</li>
+<li>
+<p>Redesigned home screen, issuance method and country selection</p>
+</li>
+<li>
+<p>Redesigned self-service portal</p>
+</li>
+<li>
+<p>General UX improvements</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v070"><a class="anchor" href="#v070"></a>2016-11-02</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>New visual</p>
+</li>
+<li>
+<p>Added uservoice feedback system</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v060"><a class="anchor" href="#v060"></a>2016-10-25</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added Latvian, Lithuanian and Russian languages</p>
+</li>
+<li>
+<p>Added Google analytics</p>
+</li>
+<li>
+<p>Improved push messages speed on iOS platform;</p>
+</li>
+<li>
+<p>Dropped JSON/RPC integration API support.</p>
+</li>
+<li>
+<p>Several changes in self service portal, including mobile view.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v050"><a class="anchor" href="#v050"></a>2016-09-16</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Multilevel PIN locking. After three incorrect PIN entries, the authentication or signing function is locked for 3 hours. Upon another three incorrect PIN entries, the function is locked for 24 hours. After 24 hours the user has a possibility to enter the PIN codes three more times - if all entries are still invalid then the account is locked and certificates are revoked. To use Smart-ID the user must go through the registration process again.</p>
+</li>
+<li>
+<p>Major changes as regards the issuance process (CSR signing). These are mostly internal changes and don&#8217;t affect the user flow.</p>
+</li>
+<li>
+<p>Some UX improvements</p>
+</li>
+<li>
+<p>The first version of self service portal available at <a href="https://sid.demo.sk.ee/portal/" class="bare">https://sid.demo.sk.ee/portal/</a> . The current version supports only login with Smart-ID, contains a possibility to get an overview of user accounts and to close an account</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v040"><a class="anchor" href="#v040"></a>2016-08-19</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Multi-device support (user has several active accounts on different devices). When user has multiple active accounts and a new transaction occurs, a confirmation screen is shown</p>
+</li>
+<li>
+<p>Changed bank selection during banklink authentication. User has to choose first the bank and afterwards the country of the residence.</p>
+</li>
+<li>
+<p>Implemented language changing. Currently allows to change between English and Estonian. By default, device system language is used.</p>
+</li>
+<li>
+<p>Added bank authentication support for Swedbank customers in Lithuania</p>
+</li>
+<li>
+<p>Added asking user phone number to the registration process. During registration user should enter his e-mail or phone number.</p>
+</li>
+<li>
+<p>Improved push notification sending to iOS devices</p>
+</li>
+<li>
+<p>Some UX improvements</p>
+</li>
+<li>
+<p>RP JSON/RPC API improvements</p>
+</li>
+<li>
+<p>Several internal improvements</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v030"><a class="anchor" href="#v030"></a>2016-07-01</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added bank authentication support for Swedbank customers in Latvia</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v020"><a class="anchor" href="#v020"></a>2016-06-29</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Added manual registration possibility (in addition to Swedbank EE and SEB EE bank authentication)</p>
+</li>
+<li>
+<p>Improved PIN-pad view</p>
+</li>
+<li>
+<p>Added loader and Smart-ID logo to the bank authentication view header</p>
+</li>
+<li>
+<p>Updated PIN creation flow in registration:</p>
+</li>
+<li>
+<p>Added PIN intro view</p>
+</li>
+<li>
+<p>Updated titles and descriptions</p>
+</li>
+<li>
+<p>Added "PIN1/2 saved" animation</p>
+</li>
+<li>
+<p>When using "Remember PIN”, then PIN needs to be confirmed only one time</p>
+</li>
+<li>
+<p>Updated error message texts</p>
+</li>
+<li>
+<p>Improved device name displaying (iOS)</p>
+</li>
+<li>
+<p>“Wrong PIN message” view shows now attempts left (iOS)</p>
+</li>
+<li>
+<p>Improved “Check transaction” button behaviour (iOS)</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="v010"><a class="anchor" href="#v010"></a>2016-06-15</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>First public beta release</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2024 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="./_/js/site.js" data-ui-root-path="./_"></script>
+<script async src="./_/js/vendor/highlight.js"></script>
+<script async src="./_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="./_/js/vendor/lunr.js"></script>
+<script src="./_/js/search-ui.js" id="search-ui-script" data-site-root-path="." data-snippet-length="100" data-stylesheet="./_/css/search.css"></script>
+<script async src="./search-index.js"></script>
+  </body>
+</html>
