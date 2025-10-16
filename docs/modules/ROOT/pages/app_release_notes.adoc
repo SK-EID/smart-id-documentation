@@ -10,10 +10,40 @@
 </style>
 ++++
 
+[#v301]
+== Smart-ID App v30.1
+.Released: 2025-10-27
+[%collapsible%open]
+====
+Fixed::
+* Fix iOS APNS race condition when handling initial push message.
+* Fix iOS SSL pinning error.
+* Improve QR scanner opening speed. Show loader after scan during networks request.
+* Fix iOS VoiceOver issues
+* Fix duplicate back to app modal, fix loader flicker when showing the modal.
+* Make readId statusBar color more readable.
+* Fix wrong theme after device link transaction.
+
+Changed::
+* Refactored how iOS screen shot protection is applied.
+* Allow SID Android app to start without push mess.
+
+Added::
+* Implement Android navigation with physical keyboard.
+* Implement iOS navigation with physical keyboard.
+* Add support for Google Play 16KB page size requirement.
+
+Removed::
+* Remove cookie_jar and ios_utsname_ext as these are not needed or functionality included in other libraries.
+
+Security::
+* Updated 3rd party libraries, inc ReadID M118
+====
+
 [#v293]
 == Smart-ID App v29.3
 .Released: 2025-08-25
-[%collapsible%open]
+[%collapsible]
 ====
 Fixed::
 * App Usage broken with iOS 26 beta
