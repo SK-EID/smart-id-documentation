@@ -1,11 +1,5 @@
 = Client libraries
 
-.IMPORTANT
-[IMPORTANT]
-====
-We do not have client libraries available for latest RP API v3 yet!
-====
-
 .NOTE
 [NOTE]
 ====
@@ -24,9 +18,9 @@ endif::[]
 [cols="2,1,1", options="header", stripes=odd, grid=none, frame=none]
 |===
 | Name | Supported API versions | Additional info
+| https://github.com/SK-EID/smart-id-java-client[Smart-ID JAVA client] | v3 |  https://github.com/SK-EID/smart-id-java-demo[Smart-ID JAVA demo application]
 | https://github.com/SK-EID/smart-id-php-client[Smart-ID PHP client] | v2 | Authentication only +
 https://github.com/SK-EID/smart-id-php-demo[Smart-ID PHP demo application]
-| https://github.com/SK-EID/smart-id-java-client[Smart-ID JAVA client] | v2 |  https://github.com/SK-EID/smart-id-java-demo[Smart-ID JAVA demo application]
 |===
 
 == 3rd Party libraries
