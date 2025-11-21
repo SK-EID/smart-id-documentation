@@ -10,10 +10,39 @@
 </style>
 ++++
 
+[#v305]
+== Smart-ID App v30.5
+.Released: TBA
+[%collapsible%open]
+====
+Fixed::
+* Return to token view from error view after error is resolved (e.g. network was lost and then restored).
+* Fix issue, where WebView buttons stop working after displaying Flutter elements (e.g. Help menu).
+* Show registration terminated error for accounts with restricted registration types (e.g. registration was terminated during ABIV contact data before signing application).
+* Improve retry logic from error view.
+* Prevent invalid WebView state when opening main screen multiple times.
+* Handle ERROR_CODE_WRONG_ACCOUNT.
+* Update Apple Watch model names.
+* Missing Continue button on ABIV minor registration (iOS 26)
+* Update vibration Flutter plugin so we can remove overriding device_info_plus plugin
+* Don't show camera scanning warning when scanning QR code after (outdated link) error.
+
+Changed::
+* Integrated iOS service lib 25.0.73.
+
+Added::
+* Added shortcuts/quick actions for opening QR scanner. Option to pin shortcut to home screen on Android.
+* Adds iOS widget with 2 buttons. Scan QR and opening Smart-ID
+* Optional OK button for PIN entry.
+
+Security::
+* Updated 3rd party libraries, inc ReadID M120
+====
+
 [#v301]
 == Smart-ID App v30.1
 .Released: 2025-10-27
-[%collapsible%open]
+[%collapsible]
 ====
 Fixed::
 * Fix iOS APNS race condition when handling initial push message.
