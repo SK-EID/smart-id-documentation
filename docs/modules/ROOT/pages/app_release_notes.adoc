@@ -12,7 +12,7 @@
 
 [#v305]
 == Smart-ID App v30.5
-.Released: TBA
+.Released: 2025-12-01
 [%collapsible%open]
 ====
 Fixed::
