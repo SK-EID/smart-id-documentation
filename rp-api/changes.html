@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Changes :: Smart-ID documentation</title>
+    <title>Changelog :: Smart-ID documentation</title>
     <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/changes.html">
     <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.7">
+<div class="nav-container" data-component="rp-api" data-version="3.2.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -103,7 +103,7 @@
     <a class="nav-link" href="introduction.html">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="changes.html">Changelog</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Glossary</a>
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.7</span>
+    <span class="version">3.2.0</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,19 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.7</a>
+          <a href="introduction.html">3.2.0</a>
         </li>
         <li class="version">
-          <a href="3.1.6/introduction.html">3.1.6</a>
-        </li>
-        <li class="version">
-          <a href="3.1.5/introduction.html">3.1.5</a>
-        </li>
-        <li class="version">
-          <a href="3.1.4/introduction.html">3.1.4</a>
-        </li>
-        <li class="version">
-          <a href="3.1.3/introduction.html">3.1.3</a>
+          <a href="3.1.7/introduction.html">3.1.7</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -195,12 +186,46 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Changes</h1>
+<h1 class="page">Changelog</h1>
 <div class="sect1">
-<h2 id="_rp_api_version_3_changes_compared_to_version_2"><a class="anchor" href="#_rp_api_version_3_changes_compared_to_version_2"></a>RP API version 3 changes compared to version 2</h2>
+<h2 id="_rp_api_version_3_2_changes_compared_to_version_3_1"><a class="anchor" href="#_rp_api_version_3_2_changes_compared_to_version_3_1"></a>RP API version 3.2 changes compared to version 3.1</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_api_changes"><a class="anchor" href="#_api_changes"></a>API changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>RP API v3 now supports both HTTP/1.1 and HTTP/2 protocols.</p>
+</li>
+<li>
+<p>Custom HTTP response status codes (471 and 472) are no longer used.
+These have been replaced with 404 (see <a href="api_specification.html" class="xref page">OpenAPI specification</a> for overview of possible HTTP error codes for each request).
+The error details are provided according to <a href="https://www.rfc-editor.org/rfc/rfc9457.html">RFC9457</a> format.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation_changes"><a class="anchor" href="#_documentation_changes"></a>Documentation changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Instructions have been fixed regarding session handling after <a href="callback_urls.html" class="xref page">callback URL</a> is used in the same-device flows.</p>
+</li>
+<li>
+<p>Page <a href="#additional_security_measures">Additional security measures</a> has been updated.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rp_api_version_3_1_changes_compared_to_version_2"><a class="anchor" href="#_rp_api_version_3_1_changes_compared_to_version_2"></a>RP API version 3.1 changes compared to version 2</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This changelog outlines the key differences between Relying Party (RP) API version 3 and version 2.</p>
+<p>This changelog outlines the key differences between Relying Party (RP) API version 3.1 and version 2.
+Note that version 3.0 was not widely publicly released.</p>
 </div>
 <div class="sect2">
 <h3 id="_new_features"><a class="anchor" href="#_new_features"></a>New features</h3>
@@ -349,6 +374,9 @@
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Error responses now use <a href="https://www.rfc-editor.org/rfc/rfc9457.html">RFC9457</a> format.</p>
 </li>
 </ul>
 </div>

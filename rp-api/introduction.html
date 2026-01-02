@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.7">
+<div class="nav-container" data-component="rp-api" data-version="3.2.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -103,7 +103,7 @@
     <a class="nav-link" href="introduction.html">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="changes.html">Changelog</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Glossary</a>
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.7</span>
+    <span class="version">3.2.0</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,19 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.7</a>
+          <a href="introduction.html">3.2.0</a>
         </li>
         <li class="version">
-          <a href="3.1.6/introduction.html">3.1.6</a>
-        </li>
-        <li class="version">
-          <a href="3.1.5/introduction.html">3.1.5</a>
-        </li>
-        <li class="version">
-          <a href="3.1.4/introduction.html">3.1.4</a>
-        </li>
-        <li class="version">
-          <a href="3.1.3/introduction.html">3.1.3</a>
+          <a href="3.1.7/introduction.html">3.1.7</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -317,14 +308,14 @@
 <h2 id="_about_rp_api_v3"><a class="anchor" href="#_about_rp_api_v3"></a>About RP API v3</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The latest version introduces <strong>device link flows</strong>--a unified approach for cross-device and same-device scenarios.
+<p>The latest version introduces <strong>device link flows</strong>&#8201;&#8212;&#8201;a unified approach for cross-device and same-device scenarios.
 Device link flows provide a modern and more secure alternative to push notification flows.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/device-link-diagram.png" alt="device link diagram">
 </div>
-<div class="title">Device link&#8212;&#8203;a unified approach for cross-device and same-device scenarios</div>
+<div class="title">Device link - a unified approach for cross-device and same-device scenarios</div>
 </div>
 <div class="sect2">
 <h3 id="_cross_device_use_cases"><a class="anchor" href="#_cross_device_use_cases"></a>Cross-device Use Cases</h3>
@@ -499,7 +490,10 @@ However, there are even more benefits for always using device link flows in the 
 <p>user does not have to verify verification codes (which can be highly problematic for users to verify in same-device flows);</p>
 </li>
 <li>
-<p>they provide highest phishing resistance possible, relying on the fact that RP frontend and Smart-ID app reside in the same device.</p>
+<p>they provide highest phishing resistance possible by using a secure <a href="callback_urls.html" class="xref page">callback URL</a>, relying on the fact that RP frontend and Smart-ID app reside in the same device;</p>
+</li>
+<li>
+<p>they solve a UI/UX inconvenience that users faced when using the notification based same device flow in iOS, where after entering the PIN it was not possible to automatically redirect the user from the Smart-ID app back to the RP webpage/app.</p>
 </li>
 </ul>
 </div>
@@ -659,6 +653,9 @@ Push notification</p>
 </li>
 <li>
 <p>For additional information about device link flows, continue to read the <a href="device_link_flows.html" class="xref page">Device Link flows</a> page.</p>
+</li>
+<li>
+<p>It is highly recommended to review the page <a href="additional_security_measures.html" class="xref page">Additional security measures</a> and consider the proposed measures there.</p>
 </li>
 </ul>
 </div>

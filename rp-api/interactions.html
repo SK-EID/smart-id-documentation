@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.7">
+<div class="nav-container" data-component="rp-api" data-version="3.2.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -103,7 +103,7 @@
     <a class="nav-link" href="introduction.html">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="changes.html">Changelog</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Glossary</a>
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.7</span>
+    <span class="version">3.2.0</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,19 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.7</a>
+          <a href="introduction.html">3.2.0</a>
         </li>
         <li class="version">
-          <a href="3.1.6/introduction.html">3.1.6</a>
-        </li>
-        <li class="version">
-          <a href="3.1.5/introduction.html">3.1.5</a>
-        </li>
-        <li class="version">
-          <a href="3.1.4/introduction.html">3.1.4</a>
-        </li>
-        <li class="version">
-          <a href="3.1.3/introduction.html">3.1.3</a>
+          <a href="3.1.7/introduction.html">3.1.7</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -306,7 +297,7 @@
 <p>In addition, it is not allowed to list interaction types not meant for the flow (device link flow or notification based flow).</p>
 </li>
 <li>
-<p>JSON to Base64 encoding is non-deterministic (parameters may be ordered randomly, whitespace can be optional). Therefore, the specific Base64-encoded string generated from the interactions object to initiate the session must be stored and reused in all subsequent calculations. This is relevant for all device link flows, more specifically in:</p>
+<p>Serializing a JSON object may produce different byte representations depending on the JSON library or serialization settings (e.g., parameter ordering or whitespace), which would result in different Base64-encoded values. Therefore, the Base64-encoded <code>interactions</code> object generated during session initiation must be stored and reused for all subsequent calculations. This is relevant for all device link flows, more specifically in:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
