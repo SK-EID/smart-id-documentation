@@ -5,7 +5,7 @@ ifeval::["{service-name}" != ""]
 xref:rp-api:ROOT:device_link_flows.adoc[device link flows],
 endif::[]
 ifeval::["{service-name}" == ""]
-https://sk-eid.github.io/smart-id-documentation/device_link_flows.html[device link flows],
+https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html[device link flows],
 endif::[]
 into your web service you need to make some additional changes in User Interface (UI) layer.
 
@@ -39,7 +39,10 @@ image::SD-3.png[static,150,title="",caption="",link=_images/SD-3.png]
 in case of user moves back without finishing transaction 
 ^| _Scan the QR code with Smart-ID app to continue_ 
 
-image::OD-3.png[static,500,title="",caption="",link=_images/OD-3.png] 
+image::OD-3.png[static,500,title="",caption="",link=_images/OD-3.png]
+Refresh QR code each second over 60 second period
+
+Do not show QR code that is older than 3sec
 | 
 2+^| User interaction
 | 
