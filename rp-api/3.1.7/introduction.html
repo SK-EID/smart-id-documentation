@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction :: Smart-ID documentation</title>
+    <link rel="canonical" href="https://sk-eid.github.io/smart-id-documentation/rp-api/introduction.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+
+<link rel="icon" href="../../_/img/favicon.svg" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://sk-eid.github.io/smart-id-documentation">
+        <img src="../../_/img/sk-id-solutions.svg" class="logo" />
+      </a>
+      <span class="separator"></span>
+      <span class="title">Smart-ID documentation</span>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="nav-toggle"></button>    </div>
+
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rp-api" data-version="3.1.7">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="introduction.html">Relying Party API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Smart-ID Documentation</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">Getting started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../demo.html">Try out</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../implementation.html">Smart-ID integration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../environments.html">Environments</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../device_link.html">Device link fallback page</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../https_pinning.html">HTTPS pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../client_libraries.html">Client libraries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../suggestions.html">Suggestions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../logos.html">Logos</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../app_release_notes.html">App Release Notes</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../contact.html">Contact</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Automated testing</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mock_service.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../device_link_test_endpoint.html">Device link test endpoint</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../test_accounts.html">Test accounts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Relying Party API</span>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../introduction.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../changes.html">Changelog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../overview_of_api_endpoints.html">Overview of API endpoints</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api_specification.html">OpenAPI specification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../device_link_flows.html">Device link flows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../authcode.html"><code>authCode</code> calculation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../notification_based_flows.html">Notification based flows</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api_details.html">API technical description</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../interactions.html">Interactions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../signature_protocols.html">Signature protocols</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../callback_urls.html">Callback URLs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../response_verification.html">Response verification</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../additional_security_measures.html">Additional security measures</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Relying Party API</span>
+    <span class="version">3.1.7</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <div class="title"><a href="../../index.html">Documentation</a></div>
+    </li>
+    <li class="component is-current">
+      <div class="title"><a href="../introduction.html">Relying Party API</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../introduction.html">3.2.0</a>
+        </li>
+        <li class="version is-current">
+          <a href="introduction.html">3.1.7</a>
+        </li>
+        <li class="version">
+          <a href="../3.0.3/introduction.html">3.0.3</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="On this page" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Introduction</h1>
+<div id="preamble">
+<div class="sectionbody">
+<!-- Version 12723d00c6144747cd8544768a425180113b77c1 -->
+
+<style>
+
+.recommended_text, .discouraged_text {
+    margin-top: 0 !important;
+}
+
+.recommended_text p, .discouraged_text p {
+  display: flex;
+  line-height: 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.recommended_text p strong, .discouraged_text p strong {
+    padding-inline: 0.375rem;
+}
+
+.recommended_text .image, .discouraged_text .image {
+   flex-shrink: 0;
+}
+
+.recommended_text {
+  color: #15803D;
+}
+
+.discouraged_text {
+  color: #A16207;
+}
+
+.center p {
+  justify-content: center;
+}
+
+</style>
+<div class="paragraph">
+<p>This document describes the Relying Party interface protocol of Smart-ID service and provides information for integration. The interface offers the entry point to Smart-ID main use cases: <strong>authentication</strong> and <strong>digital signing</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_smart_id"><a class="anchor" href="#_what_is_smart_id"></a>What is Smart-ID?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Smart-ID is a secure digital identity service that enables users to authenticate and create digital signatures using their mobile device. The service works through a collaboration between:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Relying Parties (RPs)</strong> - organizations that need to verify user identity or obtain digital signatures</p>
+</li>
+<li>
+<p><strong>Smart-ID service</strong> - the backend infrastructure that manages authentication and signing processes</p>
+</li>
+<li>
+<p><strong>Smart-ID mobile app</strong> - the user&#8217;s interface for confirming transactions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_smart_id_works"><a class="anchor" href="#_how_smart_id_works"></a>How Smart-ID works</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The typical Smart-ID workflow follows these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A user wants to authenticate or sign a document with a Relying Party</p>
+</li>
+<li>
+<p>The RP creates a session by calling the Smart-ID RP API with either:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A challenge (for authentication)</p>
+</li>
+<li>
+<p>A document hash (for digital signing)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The user interacts with Smart-ID through one of these methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Scanning a dynamic QR code (cross-device)</p>
+</li>
+<li>
+<p>Clicking a link (same-device)</p>
+</li>
+<li>
+<p>Receiving a push notification</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The user verifies transaction details and confirms the transaction in the Smart-ID app</p>
+</li>
+<li>
+<p>The Smart-ID service generates the digital signature</p>
+</li>
+<li>
+<p>The RP receives the result and validates the user&#8217;s certificate</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_rp_api_v3"><a class="anchor" href="#_about_rp_api_v3"></a>About RP API v3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The latest version introduces <strong>device link flows</strong>--a unified approach for cross-device and same-device scenarios.
+Device link flows provide a modern and more secure alternative to push notification flows.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/device-link-diagram.png" alt="device link diagram">
+</div>
+<div class="title">Device link&#8212;&#8203;a unified approach for cross-device and same-device scenarios</div>
+</div>
+<div class="sect2">
+<h3 id="_cross_device_use_cases"><a class="anchor" href="#_cross_device_use_cases"></a>Cross-device Use Cases</h3>
+<div class="paragraph">
+<p>Users scan dynamic QR codes when the RP session is on a different device than their Smart-ID app (e.g., using a PC browser to access an RP website).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/qr-flow.png" alt="qr flow">
+</div>
+<div class="title">Cross-device device link flow</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_same_device_use_cases"><a class="anchor" href="#_same_device_use_cases"></a>Same-device Use Cases</h3>
+<div class="paragraph">
+<p>Users click device links when the RP frontend (website or app) is on the same mobile device as their Smart-ID app:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Web2App</strong> - to navigate from RP <strong>web</strong>site to Smart-ID <strong>app</strong>;</p>
+</li>
+<li>
+<p><strong>App2App</strong> - to navigate from RP <strong>app</strong> to Smart-ID <strong>app</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/link-flow.png" alt="link flow">
+</div>
+<div class="title">Same-device device link flow</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_benefits_of_device_link_flows"><a class="anchor" href="#_key_benefits_of_device_link_flows"></a>Key Benefits of Device Link Flows</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unified Flow</strong>: All flows share the same API endpoints and security mechanisms despite different launch methods</p>
+</li>
+<li>
+<p><strong>Flexible Integration</strong>: RPs can offer multiple authentication methods simultaneously</p>
+</li>
+<li>
+<p><strong>Enhanced Security</strong>: Device link flows provide better protection than notification-based flows</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_notification_based_flows"><a class="anchor" href="#_notification_based_flows"></a>Notification based Flows</h3>
+<div class="paragraph">
+<p>RP API v3 still has notification based flows that are very similar to previous versions of the RP API. Users enter their identity code. They then receive a notification on their device(s).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/notification-flow.png" alt="notification flow">
+</div>
+<div class="title">Notification based flow</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_which_flows_to_prefer_for_cross_device_use_cases"><a class="anchor" href="#_which_flows_to_prefer_for_cross_device_use_cases"></a>Which flows to prefer for cross-device use cases?</h3>
+<div class="paragraph">
+<p>When integrating RP API v3, every RP has to make a choice between using device links, notification-based flows, or a combination of them.
+Essentially, there are three possible options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Always use device links</p>
+</li>
+<li>
+<p>Use device links once on a new device, and use push notifications on known devices</p>
+</li>
+<li>
+<p>Always use push notifications</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This choice should be done after careful consideration to ensure that RP and its users obtain maximum possible security and user experience benefits.
+The following table gives an overview of the possible options and their implications.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flow on a new device</th>
+<th class="tableblock halign-left valign-top">Flow on a known device</th>
+<th class="tableblock halign-left valign-top">Protection against phishing attacks</th>
+<th class="tableblock halign-left valign-top">Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span><br>
+QR code link</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span><br>
+QR code link</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph recommended_text">
+<p><span class="image"><img src="_images/icon-3x-lock.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Maximum protection against phishing attacks</strong></p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph recommended_text center">
+<p><strong>Recommended</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-qr-code.svg" alt="QR code" width="64" height="64"></span><br>
+QR code link</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph recommended_text">
+<p><span class="image"><img src="_images/icon-2x-lock.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Enhanced protection against phishing attacks</strong></p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph recommended_text center">
+<p><strong>Recommended</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph discouraged_text">
+<p><span class="image"><img src="_images/icon-1x-lock.svg" alt="Not recommended" width="114" height="64"></span>
+<strong>Phishing protection relies on user awareness</strong></p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph discouraged_text center">
+<p><strong>Not recommended</strong></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>Table 1. Available options for implementing the cross-device flow.</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_which_flows_to_prefer_for_same_device_use_cases"><a class="anchor" href="#_which_flows_to_prefer_for_same_device_use_cases"></a>Which flows to prefer for same-device use cases?</h3>
+<div class="paragraph">
+<p>For same-device use cases, the same security considerations apply as for the cross-device use cases.
+However, there are even more benefits for always using device link flows in the same-device use case:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>they provide a seamless user experience, where user has to only make one click to open up the Smart-ID app;</p>
+</li>
+<li>
+<p>user does not have to verify verification codes (which can be highly problematic for users to verify in same-device flows);</p>
+</li>
+<li>
+<p>they provide highest phishing resistance possible, relying on the fact that RP frontend and Smart-ID app reside in the same device.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flow on a new device</th>
+<th class="tableblock halign-left valign-top">Flow on a known device</th>
+<th class="tableblock halign-left valign-top">Protection against phishing attacks</th>
+<th class="tableblock halign-left valign-top">Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span><br>
+Web2App/App2App link</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span><br>
+Web2App/App2App link</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
+<p><span class="image"><img src="_images/icon-3x-lock.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Maximum protection against phishing attacks</strong></p>
+</div>
+<div class="paragraph recommended_text">
+<p><span class="image"><img src="_images/icon-3x-thumb.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Best user experience</strong></p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph recommended_text center">
+<p><strong>Recommended</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-link.svg" alt="Device link" width="64" height="64"></span><br>
+Web2App/App2App link</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph recommended_text">
+<p><span class="image"><img src="_images/icon-2x-lock.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Enhanced protection against phishing attacks</strong></p>
+</div>
+<div class="paragraph discouraged_text">
+<p><span class="image"><img src="_images/icon-2x-thumb.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Less smooth user experience</strong></p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph discouraged_text center">
+<p><strong>Not recommended</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="_images/icon-push-notifications.svg" alt="Push notification" width="64" height="64"></span><br>
+Push notification</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph discouraged_text">
+<p><span class="image"><img src="_images/icon-1x-lock.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Phishing protection relies on user awareness</strong></p>
+</div>
+<div class="paragraph discouraged_text">
+<p><span class="image"><img src="_images/icon-2x-thumb.svg" alt="Recommended" width="114" height="64"></span>
+<strong>Less smooth user experience</strong></p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph discouraged_text center">
+<p><strong>Not recommended</strong></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>Table 2. Available options for implementing the same-device flow.</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_security_considerations"><a class="anchor" href="#_security_considerations"></a>Security considerations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Although Smart-ID service is a technology designed with security in mind, Relying Parties (RPs) need to consider potential risks which are associated with digital authentication and signing solutions. It is important that RPs implement additional security mechanisms to help users understand the context of their actions and protect them from possible attacks.</p>
+</div>
+<div class="paragraph">
+<p>Throughout this integration guide, we describe effective security measures for mitigating attacks, however not all security measures are considered mandatory for all RPs. Nevertheless, there&#8217;s nobody else who can implement those defences and security measures on their behalf. It is the RP&#8217;s opportunity and responsibility to carefully assess these risks and select appropriate countermeasures to prevent cybercriminals from being successful in their actions.</p>
+</div>
+<div class="paragraph">
+<p>Throughout this guide, the following types of information blocks are used:</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">IMPORTANT</div>
+<div class="paragraph">
+<p><strong>Important blocks</strong> contain critical information that must be followed without exception. Ignoring them may lead to security issues or implementation failures.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">NOTE</div>
+<div class="paragraph">
+<p><strong>Note blocks</strong> provide additional information and clarify implementation details.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">TIP</div>
+<div class="paragraph">
+<p><strong>Tip blocks</strong> describe optional features and provide additional information that can be used to enhance your implementation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s Next?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>To understand the technical details of the solution, start by reading the <a href="overview_of_api_endpoints.html" class="xref page">Overview of API endpoints</a>.</p>
+</li>
+<li>
+<p>For additional information about device link flows, continue to read the <a href="device_link_flows.html" class="xref page">Device Link flows</a> page.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_feedback"><a class="anchor" href="#_feedback"></a>Feedback</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All feedback to this document is appreciated and can be sent to the e-mail address <a href="mailto:support@smart-id.com?subject=Feedback%20on%20RP%20API%20integration%20document">support@smart-id.com</a>.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>© 2026 SK ID Solutions AS</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/tabs.js" data-sync-storage-key="language"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>
