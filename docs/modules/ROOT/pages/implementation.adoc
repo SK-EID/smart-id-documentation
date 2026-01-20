@@ -1,12 +1,13 @@
 = Smart-ID integration
 
 [TIP]
+.Start now
 ====
-Start your Smart-ID integration with new 
+Smart-ID integration with 
 ifeval::["{service-name}" != ""]
-xref:rp-api:ROOT:introduction.adoc[RP-API v3.1 Implementation guide].
+xref:rp-api:ROOT:introduction.adoc[RP-API Implementation guide].
 endif::[]
 ifeval::["{service-name}" == ""]
-https://sk-eid.github.io/smart-id-documentation/rp-api/[RP-API v3.1 Implementation guide].
+https://sk-eid.github.io/smart-id-documentation/rp-api/[RP-API Implementation guide].
 endif::[]
 ====
