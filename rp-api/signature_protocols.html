@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.1.7">
+<div class="nav-container" data-component="rp-api" data-version="3.2.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -103,7 +103,7 @@
     <a class="nav-link" href="introduction.html">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="changes.html">Changes</a>
+    <a class="nav-link" href="changes.html">Changelog</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="glossary.html">Glossary</a>
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.1.7</span>
+    <span class="version">3.2.0</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,19 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.1.7</a>
+          <a href="introduction.html">3.2.0</a>
         </li>
         <li class="version">
-          <a href="3.1.6/introduction.html">3.1.6</a>
-        </li>
-        <li class="version">
-          <a href="3.1.5/introduction.html">3.1.5</a>
-        </li>
-        <li class="version">
-          <a href="3.1.4/introduction.html">3.1.4</a>
-        </li>
-        <li class="version">
-          <a href="3.1.3/introduction.html">3.1.3</a>
+          <a href="3.1.7/introduction.html">3.1.7</a>
         </li>
         <li class="version">
           <a href="3.0.3/introduction.html">3.0.3</a>
@@ -464,7 +455,7 @@ puts rp_challenge</code></pre>
 <p>in case the RP is not acting as a broker, the <code>brokeredRpName</code> <strong>must be empty</strong> and the separator must still be used, i.e. <code>||</code>;</p>
 </li>
 <li>
-<p><code>interactions</code> must be the same Base64-encoded byte string value that was used to initiate the session. Since JSON to Base64 encoding is non-deterministic (parameters may be ordered randomly, whitespace can be optional), trying to encode the same object again might return a different value;</p>
+<p><code>interactions</code> must be the same Base64-encoded byte string value that was used to initiate the session. Note that serializing a JSON object may produce different byte representations depending on the JSON library or serialization settings (such as parameter ordering or whitespace), which would result in a different Base64 value. It is recommended to store the initially created Base64 representation and not re-generate it later;</p>
 </li>
 <li>
 <p>the digest must be calculated from <code>UTF-8</code> encoded byte array that consists of the described elements joined in the <strong>specified order</strong> with vertical bar character <code>|</code> (U+007C) as a separator, this also applies to Base64 encoded values, they must be used as is without Base64 decoding;</p>
@@ -1029,7 +1020,7 @@ puts Base64.strict_encode64(digest)</code></pre>
 </main>
 </div>
 <footer class="footer">
-  <p>© 2024 SK ID Solutions AS</p>
+  <p>© 2026 SK ID Solutions AS</p>
 </footer>
 <script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
 <script async src="../_/js/vendor/highlight.js"></script>
