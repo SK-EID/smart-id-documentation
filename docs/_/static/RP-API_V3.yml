@@ -1,0 +1,1643 @@
+openapi: 3.1.1
+info:
+  title: Smart-ID Relying Party API specification
+  version: "3.1"
+  description: |
+    Relying Party interface protocol of Smart-ID. The interface offers the entry point to Smart-ID main use cases, i.e. authentication and signing.
+
+    For overview of API endpoints, see the [Overview of API endpoints](./overview_of_api_endpoints.html) page.
+  contact:
+    name: SK ID Solutions
+    url: https://www.skidsolutions.eu/
+    email: support@smart-id.com
+  license:
+    name: Proprietary license
+    url: https://smart-id.com
+  termsOfService: https://www.skidsolutions.eu/resources/general-terms-of-subscriber-agreement/
+servers:
+- url: https://sid.demo.sk.ee/smart-id-rp
+tags:
+- name: Authentication session
+  description: |
+    An authentication session allows an RP to request verification of a user's identity. The result must be fetched using the separate `/session` endpoint.
+
+    For same-device use cases the `/v3/authentication/device-link` endpoints should always be used as they provide both a superior user experience and better security guarantees.
+
+    For cross-device use cases the `/v3/authentication/device-link` endpoints should be preferred. The `/v3/authentication/notification` endpoints are not recommended due to security considerations unless a prior device link based authentication has been completed on the same user device. The `/v3/authentication/notification` endpoint can be safely utilized on devices and browsers that have previously completed a successful device link based flow. It is up to the RP to decide how to securely identify such devices/browsers and tie them to the user's personal number by utilizing browser cookies, local app storage etc. For example using the User-Agent field is **not secure** and should be avoided as it can be easily spoofed by a malicious party.
+- name: Signature session
+  description: |
+    A signature session allows an RP to create digital signatures that in turn can be used to create electronic signatures. The digital signature must be fetched using the separate `/session` endpoint.
+
+    If the user signing certificate is not required, or is already known, for same-device use cases the `/v3/signature/device-link` endpoints must always be used as they provide both a superior user experience and better security guarantees. For cross-device use cases the `/v3/signature/device-link` endpoints should be preferred. The `/v3/signature/notification` endpoints are not recommended due to security considerations.
+
+    Otherwise, it is possible to obtain the user signing certificate using other endpoints first.
+
+    1. If the user was previously successfully identified in an authentication session then the `/v3/signature/certificate/{document-number}` endpoint must be used to obtain the signing certificate. The required `document-number` is retrieved from the `session` response of the `authentication` session, specifically the `result.documentNumber` field.\
+    The RP can then call either the `/v3/signature/device-link/document` or `/v3/signature/notification/document` endpoint to request digital signature creation.
+    2. However, if the `document-number` is not available then the `/v3/signature/certificate-choice/` endpoints must be used.\
+    These create special `certificate-choice` sessions which allow the user to choose which app they will use for the following signing session. For same-device use cases `/v3/signature/certificate-choice/device-link` must be used, for cross-device use cases `/v3/signature/certificate-choice/notification` may also be used, although is not recommended due to security considerations.\
+    After `certificate-choice` session is initiated, the Smart-ID app will remain in the foreground while the RP fetches the signing certificate via the `/session` endpoint.\
+    If device link based `certificate-choice` session was used, the RP creates the following `signature` session using specifically the `/v3/signature/notification/linked` endpoint providing the mandatory `linkedSessionID` parameter (session ID of the preceding `certificate-choice` request).\
+    If the `certificate-choice` session was completed in same-device use case, after the flow is completed, the Smart-ID app will launch the `callbackUrl` given in the preceding device link based `certificate-choice` as explained in [Callback URLs](./callback_urls.html#callback_urls_in_linked_notification_based_flows) page.
+- name: Session endpoint
+  description: |
+    This method is used to asynchronously retrieve the session results from the Smart-ID backend.
+
+    This is a long poll method, meaning it might not return until a timeout expires. Caller can tune the request parameters inside the bounds set by the service operator.
+paths:
+  /v3/authentication/device-link/etsi/{id-etsi-qcs-SemanticsId-Natural}:
+    post:
+      tags:
+      - Authentication session
+      summary: Device link based authentication session with ETSI Natural Person Semantics Identifier
+      description: Used when authenticating a user who has provided an identifier from an ETSI scheme. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
+      operationId: authDeviceLinkSemanticId
+      parameters:
+      - $ref: '#/components/parameters/id-etsi-qcs-SemanticsId-Natural'
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceLinkAuthenticationRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/DeviceLinkResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/authentication/device-link/document/{document-number}:
+    post:
+      tags:
+      - Authentication session
+      summary: Device link based authentication session with document number
+      description: This method is used to re-authenticate a previously logged-in user when their RP session has expired, but they wish to continue using it. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
+      operationId: authDeviceLinkDocumentNumber
+      parameters:
+      - $ref: '#/components/parameters/document-number'
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceLinkAuthenticationRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/DeviceLinkResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_DocumentNotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/authentication/device-link/anonymous:
+    post:
+      tags:
+      - Authentication session
+      summary: Anonymous device link based authentication session
+      description: Used when the user authenticating does not provide any identification. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
+      operationId: authDeviceLinkAnonymous
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceLinkAuthenticationRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/DeviceLinkResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/authentication/notification/etsi/{id-etsi-qcs-SemanticsId-Natural}:
+    post:
+      tags:
+      - Authentication session
+      summary: Notification based authentication session with ETSI Natural Person Semantics Identifier
+      description: |
+        Used when authenticating a user who has provided an identifier from an ETSI scheme. A notification is sent to the user's phone.
+
+        **Consider using one of the device-link endpoints instead.**
+      operationId: authNotificationSemanticId
+      parameters:
+      - $ref: '#/components/parameters/id-etsi-qcs-SemanticsId-Natural'
+      requestBody:
+        $ref: '#/components/requestBodies/NotificationAuthenticationRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/NotificationAuthenticationResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/authentication/notification/document/{document-number}:
+    post:
+      tags:
+      - Authentication session
+      summary: Notification based authentication session with document number
+      description: This method is used to re-authenticate a previously logged-in user when their RP session has expired, but they wish to continue using it. A notification is sent to the user's phone.
+      operationId: authNotificationDocumentNumber
+      parameters:
+      - $ref: '#/components/parameters/document-number'
+      requestBody:
+        $ref: '#/components/requestBodies/NotificationAuthenticationRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/NotificationAuthenticationResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_DocumentNotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/device-link/etsi/{id-etsi-qcs-SemanticsId-Natural}:
+    post:
+      tags:
+      - Signature session
+      summary: Device link based signature session with ETSI Natural Person Semantics Identifier
+      description: |
+        Used when creating a digital signature for a user who has provided an identifier from an ETSI scheme. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
+
+        **Rarely used.**
+      operationId: signDeviceLinkSemanticId
+      parameters:
+      - $ref: '#/components/parameters/id-etsi-qcs-SemanticsId-Natural'
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceLinkSigningRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/DeviceLinkResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/device-link/document/{document-number}:
+    post:
+      tags:
+      - Signature session
+      summary: Device link based signature session with document number
+      description: Used when creating a digital signature for a user identified by a document number. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
+      operationId: signDeviceLinkDocumentNumber
+      parameters:
+      - $ref: '#/components/parameters/document-number'
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceLinkSigningRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/DeviceLinkResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_DocumentNotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/notification/etsi/{id-etsi-qcs-SemanticsId-Natural}:
+    post:
+      tags:
+      - Signature session
+      summary: Notification based signature session with ETSI Natural Person Semantics Identifier
+      description: |
+        Used when creating a digital signature for a user who has provided an identifier from an ETSI scheme. A notification is sent to the user's phone.
+
+        **Rarely used.**
+      operationId: signNotificationSemanticId
+      parameters:
+      - $ref: '#/components/parameters/id-etsi-qcs-SemanticsId-Natural'
+      requestBody:
+        $ref: '#/components/requestBodies/NotificationSigningRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/NotificationSigningResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/notification/document/{document-number}:
+    post:
+      tags:
+      - Signature session
+      summary: Notification based signature session with document number
+      description: Used when creating a digital signature for a user identified by a document number. A notification is sent to the user's phone.
+      operationId: signNotificationDocumentNumber
+      parameters:
+      - $ref: '#/components/parameters/document-number'
+      requestBody:
+        $ref: '#/components/requestBodies/NotificationSigningRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/NotificationSigningResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_DocumentNotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/notification/linked/{document-number}:
+    post:
+      tags:
+      - Signature session
+      summary: Notification based signature session that is linked to the preceding device link based certificate-choice request
+      description: |
+        This endpoint is used right after a device link based certificate-choice request. It creates a linked session for creating a digital signature.
+
+        Note that interactions involving verification code choice, namely `confirmationMessageAndVerificationCodeChoice`, is forbidden for this endpoint (since verification code is not shown to the user in the linked flow).
+
+        After signature is completed, the Smart-ID app will launch the `callbackUrl` given in the preceding device link based `certificate-choice` request as explained in [Callback URLs](./callback_urls.html#callback_urls_in_linked_notification_based_flows) page.
+      operationId: signNotificationLinked
+      parameters:
+      - $ref: '#/components/parameters/document-number'
+      requestBody:
+        $ref: '#/components/requestBodies/NotificationSigningLinkedRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/NotificationSigningLinkedResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_DocumentNotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/certificate/{document-number}:
+    post:
+      tags:
+      - Signature session
+      summary: Get the signing certificate of the requested document number
+      description: Used to retrieve the signing certificate of a user identified by a document number.
+      operationId: signCertificateDocumentNumber
+      parameters:
+      - $ref: '#/components/parameters/document-number'
+      requestBody:
+        $ref: '#/components/requestBodies/SigningCertificateRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/CertificateResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_DocumentNotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/certificate-choice/device-link/anonymous:
+    post:
+      tags:
+      - Signature session
+      summary: Anonymous device link based certificate-choice session
+      description: Used to request the signing certificate and start the signing session of a user who has not provided any identification. A device link must be shown to the user (QR code for the cross-device use case and a Web2App/App2App link for the same-device use case).
+      operationId: signCertChoiceDeviceLinkAnonymous
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceLinkCertificateChoiceRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/DeviceLinkResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/certificate-choice/notification/etsi/{id-etsi-qcs-SemanticsId-Natural}:
+    post:
+      tags:
+      - Signature session
+      summary: Notification based certificate-choice session with ETSI Natural Person Semantics Identifier
+      description: |
+        Used to request the signing certificate and start the signing session of a user who provided an identifier from an ETSI scheme. A notification is sent to the user's phone. A `POST` `/v3/signature/notification/document/` session must follow it.
+
+        **Consider using one of the device-link endpoints instead.**
+      operationId: singCertChoiceNotificationSemanticIdNatural
+      parameters:
+      - $ref: '#/components/parameters/id-etsi-qcs-SemanticsId-Natural'
+      requestBody:
+        $ref: '#/components/requestBodies/NotificationCertificateChoiceRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/NotificationCertificateChoiceResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/session/{sessionID}:
+    get:
+      tags:
+      - Session endpoint
+      summary: Get session status
+      description: Used to fetch the results of the sessions requested using POST endpoints.
+      operationId: sessionStatus
+      parameters:
+      - $ref: '#/components/parameters/sessionID'
+      - $ref: '#/components/parameters/timeoutMs'
+      responses:
+        "200":
+          $ref: '#/components/responses/SessionStatusResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "404":
+          $ref: '#/components/responses/404_SessionNotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+components:
+  schemas:
+    SessionID:
+      type: string
+      format: uuid
+      description: A string that can be used to request the operation result.
+    HashAlgorithm:
+      type: string
+      enum:
+      - SHA-256
+      - SHA-384
+      - SHA-512
+      - SHA3-256
+      - SHA3-384
+      - SHA3-512
+      description: |
+        Hash algorithm that is either:
+
+        * used to compute the digest from the `ACSP_V2` data structure for authentication requests,
+        * used by the RP to generate the digest from the data-to-be-signed for signature requests.
+
+        Also used internally by the `rsassa-pss` signature algorithm the as the mask generation algorithm (`MGF1`) hash algorithm.
+    FlowType:
+      type: string
+      enum:
+      - QR
+      - App2App
+      - Web2App
+      - Notification
+      description: Similar to `deviceLinkType` in [device link flows](./device_link_flows.html#device_link_parameters) but it additionally contains `Notification` as an option. RP must make sure that the `flowType` that is returned was one of the options provided for the user.
+    SignatureAlgorithm:
+      type: string
+      enum:
+      - rsassa-pss
+      description: |
+        Digital signature algorithm name. This is a reference name to algorithm defined in Public-Key cryptography standards. There is currently a single supported signature algorithm.
+
+        * `rsassa-pss` - Rivest, Shamir, Adleman (RSA) Signature Scheme with Appendix - Probabilistic Signature Scheme (RSASSA-PSS) [RFC8017, Appendix A.2.3](https://www.rfc-editor.org/rfc/rfc8017#appendix-A.2.3), OID [1.2.840.113549.1.1.10](https://oidref.com/1.2.840.113549.1.1.10). If a request is made with `rsassa-pss`, then the `signatureAlgorithmParameters` must be present in the request body.
+    RelyingPartyUUID:
+      type: string
+      format: uuid
+      description: UUID of Relying Party.
+    VerificationCodeType:
+      type: string
+      enum:
+      - numeric4
+      description: The Verification Code (VC) type to use.
+    RelyingPartyName:
+      type: string
+      description: |
+        RP name is a short text string, displayed to the user in the Smart-ID authentication or digital signature consent dialogue. It helps the user to verify that the request is coming from a trusted source. `relyingPartyName` will be displayed on the top of the consent screen, in bold letters.
+
+        `relyingPartyName` **must** be pre-registered with the service provider.
+
+        The following are basic requirements for setting the correct `relyingPartyName`:
+
+        * the name of the company,
+        * the domain name the RP website is using,
+        * a registered trademark associated with the website or app the user is interacting with,
+        * a brand name associated with the website or app the user is interacting with.
+
+        Generic `relyingPartyName` which does not help user to distinguish between different RP-s, **are not accepted** (such as "login", "authentication", etc).
+    InitialCallbackUrl:
+      type: string
+      format: uri
+      maxLength: 1800
+      pattern: ^https:\/\/([^|#]+)$
+      description: Callback URL the Smart-ID app will add parameters to and launch after a successful Web2App or App2App flow. Mandatory if Web2App and App2App flows are used. If the callback URL contains vertical bar characters `|` (U+007C), they **must** be percent encoded. Must use `HTTPS` scheme. Must not contain URL fragments (`#`). [Callback URLs](./callback_urls.html) page explains how to verify the full callback URL. Must be different URLs in App2App and Web2App flows.
+    AuthCertificateLevel:
+      type: string
+      enum:
+      - ADVANCED
+      - QUALIFIED
+      default: QUALIFIED
+      description: Level of certificate requested.
+    SignCertificateLevel:
+      type: string
+      enum:
+      - ADVANCED
+      - QUALIFIED
+      - QSCD
+      default: QUALIFIED
+      description: Level of certificate requested. `QSCD` as a certificate level parameter is accepted. This is a shortcut marking a certificate of `QUALIFIED` level which is also QSCD-capable. `ADVANCED` certificates cannot be QSCD-capable.
+    AuthSignatureProtocol:
+      type: string
+      enum:
+      - ACSP_V2
+      description: |
+        Signature protocol. Describes the algorithm how signature is produced and the `signatureProtocolParameters` object. Currently, the only allowed value is:
+
+        * `ACSP_V2` - Data structure for authentication context to be signed. For more details, see section [`ACSP_V2` protocol](./signature_protocols.html#acsp_v2_signature_protocol).
+    SignSignatureProtocol:
+      type: string
+      enum:
+      - RAW_DIGEST_SIGNATURE
+      description: |
+        Signature protocol. Describes the `signatureProtocolParameters` object. Currently, the only allowed value is:
+
+        * `RAW_DIGEST_SIGNATURE` - scheme where user-provided digest is signed directly (similarly to RP API v1 and v2). For more details, see section [`RAW_DIGEST_SIGNATURE` protocol](./signature_protocols.html#raw_digest_signature_protocol).
+    SignatureAlgorithmParametersInRequest:
+      type: object
+      required:
+      - hashAlgorithm
+      properties:
+        hashAlgorithm:
+          $ref: '#/components/schemas/HashAlgorithm'
+      description: Object with parameters for specific signature algorithm in request bodies. If a request is made with `rsassa-pss`, then the `signatureAlgorithmParameters` and `signatureAlgorithmParameters.hashAlgorithm` must be present in the request body.
+    AuthSignatureProtocolParameters:
+      type: object
+      required:
+      - rpChallenge
+      - signatureAlgorithm
+      - signatureAlgorithmParameters
+      properties:
+        rpChallenge:
+          type: string
+          format: byte
+          contentEncoding: base64
+          minLength: 44
+          maxLength: 88
+          pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+          description: |
+            A random value which is randomly generated by the RP backend with size in the range of 32 bytes - 64 bytes and applying Base64 encoding (according to [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648)). It must be freshly generated for each `authentication`.
+
+            The recommended way of generating the `rpChallenge` is to use the [Java `SecureRandom` class](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/SecureRandom.html) or equivalent method in other programming languages.
+
+            The `rpChallenge` must be kept in the current user's session on the RP backend for the duration of the `authentication` session, and later must be used to reconstruct and validate the signed authentication data structure.
+        signatureAlgorithm:
+          $ref: '#/components/schemas/SignatureAlgorithm'
+        signatureAlgorithmParameters:
+          $ref: '#/components/schemas/SignatureAlgorithmParametersInRequest'
+      description: An object describing the parameters of the signature algorithm.
+    SignSignatureProtocolParameters:
+      type: object
+      required:
+      - digest
+      - signatureAlgorithm
+      - signatureAlgorithmParameters
+      properties:
+        digest:
+          type: string
+          format: byte
+          contentEncoding: base64
+          minLength: 44
+          maxLength: 88
+          pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+          description: This value should be the Base64 encoded digest of the "data-to-be-signed". It is obtained by first applying the cryptographic hash function specified in the hashAlgorithm field to the complete "data-to-be-signed". The output of this hash operation is the digest (a binary value), which must then be Base64 encoded.
+        signatureAlgorithm:
+          $ref: '#/components/schemas/SignatureAlgorithm'
+        signatureAlgorithmParameters:
+          $ref: '#/components/schemas/SignatureAlgorithmParametersInRequest'
+      description: Signature protocol. An object describing the parameters of the signature algorithm.
+    LinkedSessionID:
+      type: string
+      format: uuid
+      description: |
+        `sessionID` of the previous device-link based certificate-choice session.
+    Nonce:
+      type: string
+      minLength: 1
+      maxLength: 30
+      description: An optional parameter that can be used to override the idempotent behavior of this request. Random string, up to 30 characters. If present, must have at least 1 character. For more details, see [Idempotent behaviour](./api_details.html#idempotent_behaviour).
+    InteractionsNotificationBased:
+      type: string
+      format: byte
+      contentEncoding: base64
+      pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+      description: "Base64 encoded representation of a JSON object that lists the supported interaction types.\n\nFollowing interaction types are allowed:\n\n1. `displayTextAndPIN` with `displayText60`\n2. `confirmationMessage` with `displayText200`\n3. `confirmationMessageAndVerificationCodeChoice` with `displayText200`\n\n**Warning!** Serializing a JSON object may produce different byte representations depending on the JSON library or serialization settings. \nCare must be taken to use the exact same Base64-encoded `interactions` object in session initiation and all subsequent calculations.\n\nFor more details, see section [interactions](./interactions.html#interactions).\n"
+    InteractionsDeviceLinkBased:
+      type: string
+      format: byte
+      contentEncoding: base64
+      pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+      description: "Base64 encoded representation of a JSON object that lists the supported interaction types.\n\nOnly the following interaction types are allowed:\n\n1. `displayTextAndPIN` with `displayText60`\n2. `confirmationMessage` with `displayText200`\n\n**Warning!** Serializing a JSON object may produce different byte representations depending on the JSON library or serialization settings. \nCare must be taken to use the exact same Base64-encoded `interactions` object in session initiation and all subsequent calculations.\n\nFor more details, see section [interactions](./interactions.html#interactions).\n"
+    RequestProperties:
+      type: object
+      properties:
+        shareMdClientIpAddress:
+          type: boolean
+          default: false
+          description: |
+            Mobile device IP address is shared to authorized RP, who are able to use the data in their transaction monitoring mechanisms to detect unauthorized or fraudulent transactions by comparing this shared IP address with the IP address, that `person` represents to the RP during interaction with RP services.
+
+            The IP address is saved to the RP session when `person` reacts to the `RpRequest` with one of its mobile devices. Saved IP address is returned to the RP in the session status response only if all of the following are true:
+
+            * The RP has privileges to request mobile device IP address (default configuration does not allow the IP sharing).
+            * The RP requests the mobile device IP address via `requestProperties` of RP request. The optional property option `shareMdClientIpAddress` must be set to `true`. If property is not defined, or is set to `false` in the RP request, IP address won't be shared in session.
+            * The RP session is complete.
+            * The mobile device IP address was successfully saved to the RP session.
+      description: |
+        Additional properties to some of the requests can be included for requesting some desired behavior using the request parameter `requestProperties`. Currently, only one property is supported:
+
+        * `shareMdClientIpAddress` - Whether the RP API server should share user mobile device IP address with the RP. By default it is set to `false`. The RP must have proper privilege to use this property.
+
+        Any unsupported property is ignored and is listed in the `ignoredProperties` parameter of the session status response.
+    Capabilities:
+      type: array
+      items:
+        type: string
+      description: Used only when agreed with Smart-ID provider. When omitted request capabilities are derived from `certificateLevel` parameter.
+    VC:
+      type: object
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          enum:
+          - numeric4
+          description: Type of the verification code (VC). Currently, the only allowed type is `numeric4`.
+        value:
+          type: string
+          minLength: 4
+          maxLength: 4
+          pattern: ^[0-9]{4}$
+          description: Value of the verification code.
+      description: Object describing the verification code to be displayed by RP. See section [Verification codes for signature sessions](./notification_based_flows.html#verification_codes_for_signature_requests) for more information.
+    MGF1HashAlgorithm:
+      type: string
+      enum:
+      - SHA-256
+      - SHA-384
+      - SHA-512
+      - SHA3-256
+      - SHA3-384
+      - SHA3-512
+      description: Hash algorithm used for `MGF1`. The hash function for `MGF1` is defined to be the same value as the `hashAlgorithm` parameter value.
+    SignatureAlgorithmParametersInResponse:
+      type: object
+      properties:
+        hashAlgorithm:
+          $ref: '#/components/schemas/HashAlgorithm'
+        maskGenAlgorithm:
+          type: object
+          properties:
+            algorithm:
+              type: string
+              enum:
+              - id-mgf1
+              description: |
+                The mask generation algorithm ID. Only a single value is supported:
+
+                * `id-mgf1` - Mask Generator Function 1 (MGF1, OID [1.2.840.113549.1.1.8](https://oidref.com/1.2.840.113549.1.1.8)).
+            parameters:
+              type: object
+              properties:
+                hashAlgorithm:
+                  $ref: '#/components/schemas/MGF1HashAlgorithm'
+              description: The mask generation algorithm specific parameters.
+          description: Identifies the mask generation function and its parameters.
+        saltLength:
+          type: integer
+          description: The octet length of the salt. This parameter is fixed, and it cannot be changed or specified. This value depends on the `hashAlgorithm` parameter, and it is equal to the octet length of the hash value which is produced by that specific `hashAlgorithm`.
+        trailerField:
+          type: string
+          enum:
+          - "0xbc"
+          description: The trailer field number, for compatibility with [IEEE 1363a](http://ieeexplore.ieee.org/document/1335427/). This parameter is fixed, and it cannot be changed or specified.
+      description: Object with parameters for specific signature algorithm in response body. If a request is made with `rsassa-pss`, then the `signatureAlgorithmParameters` is also present in the response body. The parameters in the response body `signatureAlgorithmParameters` are needed for signature verification.
+    SignatureValue:
+      type: string
+      format: byte
+      contentEncoding: base64
+      pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+      description: Signature value, Base64 encoded.
+    AcspV2Signature:
+      type: object
+      additionalProperties: false
+      required:
+      - value
+      - serverRandom
+      - userChallenge
+      - flowType
+      - signatureAlgorithm
+      properties:
+        value:
+          $ref: '#/components/schemas/SignatureValue'
+        serverRandom:
+          type: string
+          format: byte
+          contentEncoding: base64
+          minLength: 24
+          pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+          description: A unique value of length greater than 18 bytes generated by the RP API. It is returned by RP API in Base64 encoded form, it must be used as is, in Base64 form. There are no guarantees that the returned value length is the same in each call of the RP API.
+        userChallenge:
+          type: string
+          contentEncoding: base64url
+          minLength: 43
+          maxLength: 43
+          pattern: ^[a-zA-Z0-9-_]{43}$
+          description: A unique value of length 32 bytes generated by the mobile device with `BASE64URL-ENCODE(SHA-256(userChallengeVerifier))`. It is returned by RP API in Base64URL encoded form and it must be used as is, in Base64URL form. See [Callback URLs](./callback_urls.html) page for details.
+        flowType:
+          $ref: '#/components/schemas/FlowType'
+        signatureAlgorithm:
+          $ref: '#/components/schemas/SignatureAlgorithm'
+        signatureAlgorithmParameters:
+          $ref: '#/components/schemas/SignatureAlgorithmParametersInResponse'
+      description: Authentication Context Signature Protocol version 2 (`ACSP_V2`) makes the signature non-replayable by adding a server-side component to the signed object.
+    RawDigestSignature:
+      type: object
+      additionalProperties: false
+      required:
+      - value
+      - flowType
+      - signatureAlgorithm
+      properties:
+        value:
+          $ref: '#/components/schemas/SignatureValue'
+        flowType:
+          $ref: '#/components/schemas/FlowType'
+        signatureAlgorithm:
+          $ref: '#/components/schemas/SignatureAlgorithm'
+        signatureAlgorithmParameters:
+          $ref: '#/components/schemas/SignatureAlgorithmParametersInResponse'
+      description: The `RAW_DIGEST_SIGNATURE` signature protocol allows direct signing of the digest that is requested by the RP.
+    CertificateChoiceSignature:
+      type: object
+      additionalProperties: false
+      required:
+      - flowType
+      properties:
+        flowType:
+          $ref: '#/components/schemas/FlowType'
+      description: Holds the flow type that was used for the certificate choice request. This flow type is required for verifying device link certificate choice requests.
+    ErrorDetail:
+      description: Contains additional details about the error
+      type: object
+      properties:
+        code:
+          type: string
+          description: The specific code assigned to the error
+        detail:
+          type: string
+          description: The human-readable summary of the error
+        paramName:
+          type: string
+          description: Name of the invalid parameter for validation errors.
+        pointer:
+          type: string
+          description: JSON pointer which helps to locate the problem within the request's content. See [RFC6901](https://www.rfc-editor.org/rfc/rfc6901.html#section-5) for more details.
+    ExtendedProblemDetailsJson:
+      description: Problem Details for HTTP APIs. See [RFC9457](https://www.rfc-editor.org/rfc/rfc9457.html) for more details.
+      type: object
+      required:
+      - type
+      - status
+      - title
+      - detail
+      properties:
+        type:
+          type: string
+          format: uri
+          description: The `type` member is a JSON string containing a URI reference that identifies the problem type. This value is always equal to `about:blank`.
+        status:
+          type: integer
+          description: The `status` member is a JSON number indicating the HTTP status code generated by the origin server for this occurrence of the problem.
+        title:
+          type: string
+          description: The `title` member is a JSON string containing a short, human-readable summary of the problem type. Most of the times this is equal to HTTP status phrase for the code in `status`.
+        detail:
+          type: string
+          description: The `detail` member is a JSON string containing a human-readable explanation specific to this occurrence of the problem.
+        instance:
+          type: string
+          description: The `instance` member is a JSON string containing a relative URI reference that identifies the specific occurrence of the problem. If value is present, then this is URI cannot be dereferenced, and it serves as a unique identifier for the problem occurrence that may be of significance to the server but is opaque to the client.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          description: The `errors` extension member, which contains an array that describes the details of each error that occurred.
+  requestBodies:
+    DeviceLinkAuthenticationRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            - initialCallbackUrl
+            - signatureProtocol
+            - signatureProtocolParameters
+            - interactions
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              initialCallbackUrl:
+                $ref: '#/components/schemas/InitialCallbackUrl'
+              certificateLevel:
+                $ref: '#/components/schemas/AuthCertificateLevel'
+              signatureProtocol:
+                $ref: '#/components/schemas/AuthSignatureProtocol'
+              signatureProtocolParameters:
+                $ref: '#/components/schemas/AuthSignatureProtocolParameters'
+              interactions:
+                $ref: '#/components/schemas/InteractionsDeviceLinkBased'
+              requestProperties:
+                $ref: '#/components/schemas/RequestProperties'
+              capabilities:
+                $ref: '#/components/schemas/Capabilities'
+          examples:
+            Device Link Authentication Request Example:
+              $ref: '#/components/examples/DeviceLinkAuthenticationRequestBodyExample'
+    DeviceLinkSigningRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            - signatureProtocol
+            - signatureProtocolParameters
+            - interactions
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              initialCallbackUrl:
+                $ref: '#/components/schemas/InitialCallbackUrl'
+              certificateLevel:
+                $ref: '#/components/schemas/SignCertificateLevel'
+              signatureProtocol:
+                $ref: '#/components/schemas/SignSignatureProtocol'
+              signatureProtocolParameters:
+                $ref: '#/components/schemas/SignSignatureProtocolParameters'
+              nonce:
+                $ref: '#/components/schemas/Nonce'
+              interactions:
+                $ref: '#/components/schemas/InteractionsDeviceLinkBased'
+              requestProperties:
+                $ref: '#/components/schemas/RequestProperties'
+              capabilities:
+                $ref: '#/components/schemas/Capabilities'
+          examples:
+            Device Link Signing Request Example:
+              $ref: '#/components/examples/DeviceLinkSigningRequestBodyExample'
+    DeviceLinkCertificateChoiceRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              initialCallbackUrl:
+                $ref: '#/components/schemas/InitialCallbackUrl'
+              certificateLevel:
+                $ref: '#/components/schemas/SignCertificateLevel'
+              nonce:
+                $ref: '#/components/schemas/Nonce'
+              requestProperties:
+                $ref: '#/components/schemas/RequestProperties'
+              capabilities:
+                $ref: '#/components/schemas/Capabilities'
+          examples:
+            Device Link Certificate Choice Request Example:
+              $ref: '#/components/examples/DeviceLinkCertificateChoiceRequestBodyExample'
+    NotificationAuthenticationRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            - signatureProtocol
+            - signatureProtocolParameters
+            - interactions
+            - vcType
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              certificateLevel:
+                $ref: '#/components/schemas/AuthCertificateLevel'
+              signatureProtocol:
+                $ref: '#/components/schemas/AuthSignatureProtocol'
+              signatureProtocolParameters:
+                $ref: '#/components/schemas/AuthSignatureProtocolParameters'
+              interactions:
+                $ref: '#/components/schemas/InteractionsNotificationBased'
+              requestProperties:
+                $ref: '#/components/schemas/RequestProperties'
+              capabilities:
+                $ref: '#/components/schemas/Capabilities'
+              vcType:
+                $ref: '#/components/schemas/VerificationCodeType'
+          examples:
+            Notification Authentication Request Example:
+              $ref: '#/components/examples/NotificationAuthenticationRequestBodyExample'
+    NotificationSigningRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            - signatureProtocol
+            - signatureProtocolParameters
+            - interactions
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              certificateLevel:
+                $ref: '#/components/schemas/SignCertificateLevel'
+              signatureProtocol:
+                $ref: '#/components/schemas/SignSignatureProtocol'
+              signatureProtocolParameters:
+                $ref: '#/components/schemas/SignSignatureProtocolParameters'
+              nonce:
+                $ref: '#/components/schemas/Nonce'
+              interactions:
+                $ref: '#/components/schemas/InteractionsNotificationBased'
+              requestProperties:
+                $ref: '#/components/schemas/RequestProperties'
+              capabilities:
+                $ref: '#/components/schemas/Capabilities'
+          examples:
+            Notification Signing Request Example:
+              $ref: '#/components/examples/NotificationSigningRequestBodyExample'
+    NotificationSigningLinkedRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            - signatureProtocol
+            - signatureProtocolParameters
+            - interactions
+            - linkedSessionID
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              certificateLevel:
+                $ref: '#/components/schemas/SignCertificateLevel'
+              signatureProtocol:
+                $ref: '#/components/schemas/SignSignatureProtocol'
+              signatureProtocolParameters:
+                $ref: '#/components/schemas/SignSignatureProtocolParameters'
+              linkedSessionID:
+                $ref: '#/components/schemas/LinkedSessionID'
+              nonce:
+                $ref: '#/components/schemas/Nonce'
+              interactions:
+                $ref: '#/components/schemas/InteractionsDeviceLinkBased'
+              requestProperties:
+                $ref: '#/components/schemas/RequestProperties'
+              capabilities:
+                $ref: '#/components/schemas/Capabilities'
+          examples:
+            Notification Signing Linked Request Example:
+              $ref: '#/components/examples/NotificationSigningLinkedRequestBodyExample'
+    NotificationCertificateChoiceRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              certificateLevel:
+                $ref: '#/components/schemas/SignCertificateLevel'
+              nonce:
+                $ref: '#/components/schemas/Nonce'
+              requestProperties:
+                $ref: '#/components/schemas/RequestProperties'
+              capabilities:
+                $ref: '#/components/schemas/Capabilities'
+          examples:
+            Notification Certificate Choice Request Example:
+              $ref: '#/components/examples/NotificationCertificateChoiceRequestBodyExample'
+    SigningCertificateRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - relyingPartyUUID
+            - relyingPartyName
+            type: object
+            properties:
+              relyingPartyUUID:
+                $ref: '#/components/schemas/RelyingPartyUUID'
+              relyingPartyName:
+                $ref: '#/components/schemas/RelyingPartyName'
+              certificateLevel:
+                $ref: '#/components/schemas/SignCertificateLevel'
+          examples:
+            Signing Certificate Request Example:
+              $ref: '#/components/examples/SigningCertificateRequestBodyExample'
+  responses:
+    DeviceLinkResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            required:
+            - sessionID
+            - sessionToken
+            - sessionSecret
+            - deviceLinkBase
+            type: object
+            properties:
+              sessionID:
+                $ref: '#/components/schemas/SessionID'
+              sessionToken:
+                type: string
+                minLength: 24
+                pattern: ^[a-zA-Z0-9]+$
+                description: Unique value that is used to connect this device link request between the relevant parties (RP, RP API, mobile app). It is a URL safe value and it must be used as is.
+              sessionSecret:
+                type: string
+                format: byte
+                contentEncoding: base64
+                minLength: 24
+                pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+                description: Base64 encoded key value that must be kept secret and **must not** be shared with any other party (including RP frontend).
+              deviceLinkBase:
+                type: string
+                format: uri
+                description: The URL to be used as the basis for constructing device links.
+          examples:
+            Device Link Session Response Example:
+              $ref: '#/components/examples/DeviceLinkResponseExample'
+    NotificationAuthenticationResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            required:
+            - sessionID
+            type: object
+            properties:
+              sessionID:
+                $ref: '#/components/schemas/SessionID'
+          examples:
+            Notification Session Response Example:
+              $ref: '#/components/examples/NotificationAuthenticationResponseExample'
+    NotificationSigningResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            required:
+            - sessionID
+            - vc
+            type: object
+            properties:
+              sessionID:
+                $ref: '#/components/schemas/SessionID'
+              vc:
+                $ref: '#/components/schemas/VC'
+          examples:
+            Notification Session Response Example:
+              $ref: '#/components/examples/NotificationSigningResponseExample'
+    NotificationSigningLinkedResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            required:
+            - sessionID
+            type: object
+            properties:
+              sessionID:
+                $ref: '#/components/schemas/SessionID'
+          examples:
+            Linked Notification Session Response Example:
+              $ref: '#/components/examples/NotificationSigningLinkedResponseExample'
+    NotificationCertificateChoiceResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            required:
+            - sessionID
+            type: object
+            properties:
+              sessionID:
+                $ref: '#/components/schemas/SessionID'
+          examples:
+            Notification Session Response Example:
+              $ref: '#/components/examples/NotificationCertificateChoiceResponseExample'
+    CertificateResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - state
+            properties:
+              state:
+                type: string
+                enum:
+                - OK
+                - DOCUMENT_UNUSABLE
+                description: |
+                  End result of the request (`OK` if the request was completed successfully).
+
+                  * `OK` - Request was completed successfully, there is a certificate in this return structure.
+                  * `DOCUMENT_UNUSABLE` - for some reason, this request cannot be completed. User should either check his/her Smart-ID mobile application or turn to customer support for getting the exact reason.
+              cert:
+                type: object
+                required:
+                - value
+                - certificateLevel
+                properties:
+                  value:
+                    type: string
+                    format: byte
+                    contentEncoding: base64
+                    pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+                    description: Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the certificate is QSCD-enabled, data which is not represented by certificate level.
+                  certificateLevel:
+                    type: string
+                    description: |
+                      Level of Smart-ID certificate: `ADVANCED` or `QUALIFIED`.
+                description: Structure describing the certificate related to the request. Present if `state` is `OK`.
+          examples:
+            Successful signing certificate retrieval:
+              $ref: '#/components/examples/CertificateOKResponseExample'
+            Signing key currently not usable:
+              $ref: '#/components/examples/CertificateTimelockedResponseExample'
+    SessionStatusResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - state
+            properties:
+              state:
+                type: string
+                enum:
+                - RUNNING
+                - COMPLETE
+                description: State of request. `RUNNING`/`COMPLETE`.
+              result:
+                type: object
+                required:
+                - endResult
+                properties:
+                  endResult:
+                    type: string
+                    enum:
+                    - OK
+                    - USER_REFUSED
+                    - TIMEOUT
+                    - DOCUMENT_UNUSABLE
+                    - WRONG_VC
+                    - REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP
+                    - USER_REFUSED_CERT_CHOICE
+                    - USER_REFUSED_INTERACTION
+                    - PROTOCOL_FAILURE
+                    - EXPECTED_LINKED_SESSION
+                    - SERVER_ERROR
+                    description: |
+                      End result of the session (`OK` if session was completed successfully).
+
+                      * `OK` - session was completed successfully, there is a certificate, document number and possibly signature in return structure.
+                      * `USER_REFUSED` - user refused the session (except on the interaction screen).
+                      * `TIMEOUT` - there was a timeout, i.e. end user did not confirm or refuse the operation within given time frame.
+                      * `DOCUMENT_UNUSABLE` - for some reason, this RP request cannot be completed. User should either check his/her Smart-ID mobile application or turn to customer support for getting the exact reason.
+                      * `WRONG_VC` - in case the multiple-choice verification code was requested, the user did not choose the correct verification code.
+                      * `REQUIRED_INTERACTION_NOT_SUPPORTED_BY_APP` - user app version does not support any of the `interactions` interactions.
+                      * `USER_REFUSED_CERT_CHOICE` - user has multiple accounts and pressed Cancel on device choice screen on any device.
+                      * `USER_REFUSED_INTERACTION` - user has pressed cancel on the screen (except during certificate choice device selection).
+                      * `PROTOCOL_FAILURE` - there was a logical error in the signing protocol.
+                      * `EXPECTED_LINKED_SESSION` - the app received a different transaction while waiting for the linked session that follows the device-link based cert-choice session.
+                      * `SERVER_ERROR` - process was terminated due to server-side technical error
+                      * `ACCOUNT_UNUSABLE` - the account is currently unusable
+                  documentNumber:
+                    type: string
+                    description: Document number, can be used in further signature and authentication requests to target the same device. Mandatory if the `result.endResult` is `OK`.
+                  details:
+                    type: object
+                    properties:
+                      interaction:
+                        type: string
+                        description: Holds the refused interaction for the `USER_REFUSED_INTERACTION` `endResult` code.
+                    description: Holds extra details related to the `endResult`.
+                description: Structure describing end result, may be empty or missing when `state` is `RUNNING`.
+              signatureProtocol:
+                type: string
+                enum:
+                - ACSP_V2
+                - RAW_DIGEST_SIGNATURE
+                description: |
+                  Signature protocol. Possible values:
+
+                  * `ACSP_V2` - signature protocol used for the `authentication` sessions.
+                  * `RAW_DIGEST_SIGNATURE` - signature protocol used for the `signature` sessions.
+
+                  See [signature protocols](./signature_protocols.html#signature_protocols) for additional details.
+              signature:
+                oneOf:
+                - $ref: '#/components/schemas/AcspV2Signature'
+                - $ref: '#/components/schemas/RawDigestSignature'
+                - $ref: '#/components/schemas/CertificateChoiceSignature'
+                description: |+
+                  Structure describing the signature result, if any. The structure depends on the signature protocol used.
+
+                  Notice that the actual object that was signed is not present -- it needs to be constructed by the RP.
+
+                  * For authentication requests, construct the data-to-be-signed using the previously sent `rpChallenge`, and the `serverRandom`, `userChallenge`, `flowType` parameters returned in this response. See section [`ACSP_V2` digest calculation](./signature_protocols.html#acsp_v2_digest_calculation) for more information.
+                  * For signature requests, the data-to-be-signed is the document to be signed and should be used to verify the signature.
+
+                  This (re-constructed) object is then used to validate the signature.
+
+              cert:
+                type: object
+                required:
+                - value
+                - certificateLevel
+                properties:
+                  value:
+                    type: string
+                    format: byte
+                    contentEncoding: base64
+                    pattern: ^[a-zA-Z0-9+\/]+={0,2}$
+                    description: Certificate value, DER+Base64 encoded. The certificate itself contains info on whether the certificate is QSCD-enabled, data which is not represented by certificate level.
+                  certificateLevel:
+                    type: string
+                    description: |
+                      Level of Smart-ID certificate: `ADVANCED` or `QUALIFIED`.
+                description: Structure describing the certificate related to the request. Mandatory if the `result.endResult` is `OK`.
+              interactionTypeUsed:
+                type: string
+                enum:
+                - displayTextAndPIN
+                - confirmationMessage
+                - confirmationMessageAndVerificationCodeChoice
+                description: Name of interaction used. Mandatory if the `result.endResult` is `OK`. See section [available interactions](./interactions.html#available_interactions) for more information.
+              deviceIpAddress:
+                type: string
+                description: IP address of the mobile device. Is present only when it has been previously requested within the session creation `requestProperties` parameter by setting `shareMdClientIpAddress` to `true`. The RP must have proper privilege to use this property.
+              ignoredProperties:
+                type: array
+                items:
+                  type: string
+                description: Values from `requestProperties` that were unsupported or ignored.
+          examples:
+            ACSP_V2 Example:
+              $ref: '#/components/examples/AcspV2ResponseExample'
+            RAW_DIGEST_SIGNATURE Example:
+              $ref: '#/components/examples/RawDigestSignatureResponseExample'
+            Device link certificate choice Example:
+              $ref: '#/components/examples/CertificateChoiceSignatureResponseExample'
+            Running Session Example:
+              $ref: '#/components/examples/RunningSessionResponseExample'
+            User refused the interaction:
+              $ref: '#/components/examples/UserRefusedInteractionResponseExample'
+    400_BadRequest:
+      description: Request is invalid. The server would not process the request due to something the server considered to be a client error. The reason for a `400` response is typically due to malformed request syntax, invalid request message framing, or deceptive request routing. Clients that receive a `400` response should expect that repeating the request without modification will fail with the same error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExtendedProblemDetailsJson'
+          examples:
+            Invalid request error response example:
+              $ref: '#/components/examples/InvalidRequestErrorResponseJsonExample'
+    401_Unauthorized:
+      description: Authentication failure. The source IP-address and `relyingPartyUUID` protocol parameter combination is wrong.
+    403_Forbidden:
+      description: |
+        Forbidden - Relying Party has no permission to issue the request. This may happen when:
+
+        * Relying Party has no permission to invoke operations on accounts with `ADVANCED` certificates,
+        * Relying Party has no permission to use requested capability.
+        * Relying Party has no permission to access the requested feature or endpoint.
+        * Relying Party with given UUID does not exist.
+    404_NotFound:
+      description: Not Found - object described in URL was not found, essentially meaning that the user does not have an account in Smart-ID system.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExtendedProblemDetailsJson'
+          examples:
+            Not found error example with errors field:
+              $ref: '#/components/examples/NotFoundErrorResponseWithErrorsFieldJsonExample'
+            Not found error example:
+              $ref: '#/components/examples/NotFoundErrorResponseJsonExample'
+    404_DocumentNotFound:
+      description: Not Found - object described in URL was not found, essentially meaning that the document number does not exist or is not active anymore or no suitable account was found.
+    404_SessionNotFound:
+      description: Not Found - session does not exist or has expired.
+    480_ClientTooOld:
+      description: The RP API client is too old and not supported anymore. Update the RP API client library.
+    580_SystemUnderMaintenance:
+      description: System is under maintenance, retry again later.
+  parameters:
+    id-etsi-qcs-SemanticsId-Natural:
+      name: id-etsi-qcs-SemanticsId-Natural
+      in: path
+      description: |
+        Objects referenced by `etsi/{id-etsi-qcs-SemanticsId-Natural}` are persons identified by their ETSI Natural Person Semantics Identifier specified in [ETSI EN 319 412-1](https://portal.etsi.org/webapp/workprogram/Report_WorkItem.asp?WKI_ID=64271) in section *Natural person semantics identifier*.
+
+        The identifier contains information using the following structure in the presented order:
+
+        * 3 character natural identity type reference, that shall have one of the following defined values (the standard supports more than these three references):
+          * `PAS` for identification based on passport number.
+          * `IDC` for identification based on national identity card number.
+          * `PNO` for identification based on (national) personal number (national civic registration number).
+        * 2 character ISO 3166-1 alpha-2 country code (for example EE, LT, LV, KZ)
+        * hyphen-minus - (0x2D (ASCII), U+002D (UTF-8))
+        * identifier (according to country and identity type reference)
+
+        Please note:
+
+        * `{id-etsi-qcs-SemanticsId-Natural}` value must be encoded according to the rules defined in ETSI EN 319 412-1,
+        * the country code part in `{id-etsi-qcs-SemanticsId-Natural}` conforms to ISO 3166-1 alpha-2 code and as such must be in upper case.
+      required: true
+      schema:
+        type: string
+      examples:
+        PAS:
+          value: PASKZ-987654321012
+        PNO:
+          value: PNOEE-48010010101
+        IDC:
+          value: IDCCZ-1234567890
+    document-number:
+      name: document-number
+      in: path
+      description: |
+        Objects referenced by `document/{document-number}` are particular documents (also known as user accounts) in the Smart-ID system.
+
+        This may be used for signing once a user has already authenticated, for re-authentication or for signing once the document is known from a `certificate-choice` session query.
+      required: true
+      schema:
+        type: string
+      examples:
+        document-number:
+          value: PNOEE-30001010004-K2GN-NQ
+    sessionID:
+      name: sessionID
+      in: path
+      description: A string that can be used to request the operation result.
+      required: true
+      schema:
+        $ref: '#/components/schemas/SessionID'
+      examples:
+        sessionID:
+          value: 3d32860c-b62d-4716-9992-f6983e678761
+    timeoutMs:
+      name: timeoutMs
+      in: query
+      description: Request long poll timeout value in milliseconds. If not specified by the API client in the request, a value halfway between maximum and minimum is used.
+      required: false
+      schema:
+        type: integer
+        minimum: 1000
+        maximum: 120000
+        default: 60500
+      examples:
+        timeout:
+          value: 10000
+        timeoutMin:
+          value: 1000
+        timeoutMax:
+          value: 120000
+  examples:
+    DeviceLinkAuthenticationRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        certificateLevel: QUALIFIED
+        signatureProtocol: ACSP_V2
+        signatureProtocolParameters:
+          rpChallenge: S480uRoCX4pAb1tWqAy8WGl/AWE1RnqaP2y5iamCDhlCyQrMTVa5d8Dh34sZ+UePHXRNKTwz7QTvsIL1ls05AQ==
+          signatureAlgorithm: rsassa-pss
+          signatureAlgorithmParameters:
+            hashAlgorithm: SHA-512
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: true
+    DeviceLinkSigningRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        certificateLevel: QUALIFIED
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signatureProtocolParameters:
+          digest: VC3jDipMw9TgSQrIm3oYuz2t/GciD3Aw2WTpnaGpo+1sdkkRiCnbRz08uqlgU6q1W2/VP6PDxSQlOy5AIxT5Xw==
+          signatureAlgorithm: rsassa-pss
+          signatureAlgorithmParameters:
+            hashAlgorithm: SHA-512
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: true
+    DeviceLinkCertificateChoiceRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        certificateLevel: QUALIFIED
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        requestProperties:
+          shareMdClientIpAddress: true
+    NotificationAuthenticationRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        certificateLevel: QUALIFIED
+        signatureProtocol: ACSP_V2
+        signatureProtocolParameters:
+          rpChallenge: S480uRoCX4pAb1tWqAy8WGl/AWE1RnqaP2y5iamCDhlCyQrMTVa5d8Dh34sZ+UePHXRNKTwz7QTvsIL1ls05AQ==
+          signatureAlgorithm: rsassa-pss
+          signatureAlgorithmParameters:
+            hashAlgorithm: SHA-512
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: true
+        vcType: numeric4
+    NotificationSigningRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        certificateLevel: QUALIFIED
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signatureProtocolParameters:
+          digest: VC3jDipMw9TgSQrIm3oYuz2t/GciD3Aw2WTpnaGpo+1sdkkRiCnbRz08uqlgU6q1W2/VP6PDxSQlOy5AIxT5Xw==
+          signatureAlgorithm: rsassa-pss
+          signatureAlgorithmParameters:
+            hashAlgorithm: SHA-512
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: true
+    NotificationSigningLinkedRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        certificateLevel: QUALIFIED
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signatureProtocolParameters:
+          digest: VC3jDipMw9TgSQrIm3oYuz2t/GciD3Aw2WTpnaGpo+1sdkkRiCnbRz08uqlgU6q1W2/VP6PDxSQlOy5AIxT5Xw==
+          signatureAlgorithm: rsassa-pss
+          signatureAlgorithmParameters:
+            hashAlgorithm: SHA-512
+        linkedSessionID: 0aa27573-5ac2-479e-9c69-00343ff8416f
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: true
+    NotificationCertificateChoiceRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        certificateLevel: QUALIFIED
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        requestProperties:
+          shareMdClientIpAddress: true
+    SigningCertificateRequestBodyExample:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+    RunningSessionResponseExample:
+      value:
+        state: RUNNING
+    AcspV2ResponseExample:
+      value:
+        state: COMPLETE
+        result:
+          endResult: OK
+          documentNumber: PNOEE-30001010004-BVFM-Q
+        signatureProtocol: ACSP_V2
+        signature:
+          value: Vak2Q0NiFnh6+lW+YaJuB8yMYM7k3I5QfsUxS3Y1Ddm3qy6HvebLl0/t17dq289/+4mGx45qnHVNj1CzqF88lYFpwAQXFc5XiHtYbvnENgjwLSfrQ9mrSt0phemAK29GzAexilPPy5+PdeCdO+TEuMIhi/qkKhL+lk5d1flmrWZQ4B0H7kXTqRjJvCAUc8bsdM7SLV5jZuEIhOqTCsyDY3FZmyJi4ms8SsOmYCy/Do20CIiQbv75eunKfTKciqVnOA+WYN5OXLJVqhgaHJ+hYiYA+QXOvIIYKVIUdB1rDRnKwwvZk1lZ3oKW1r7XGkovbmwRz+NpmHTyMUubXXQHYah3T4h7vf0C14MBpupWRB47s6rsdPZzH2No7AoDGjMGAMEWg5rdB45fYXbjRV2T69e4c47VpubG1DXTsoXowe/yzXdIjUYfZDwozzW6+IXTdAKL4LP6wmCU+PxP/GfYQ1k1w3fXjh4XeO9QmipRDEle2l0z6nYJaGuIYCb7pDh6ZoJllyKSmhqWG0PMLod34Lo1MMP4WGvLe86/fiTFPbh/VR981MIjz5xIRaSxFZQmNzI5IvzORskgsHGALb7Nb51q3jPKE2D1UOrQN6N6DMbGFMFR/7vRgkvUbeC0jAWevVrssEK77d5OmgXqk7sevYDwP1WnmBwr2ov/Tt+AM58BTgdHsnWRw6hL1mS9+DzCaCuDb/+vspiZnVjP9S9ckmCLP8yrwzL8Myj5lS62Rta727GulSUet21euQl0E2CuDpSoiKuO3NkYWqskfCowb0GiiX0oZe98mFiBFo1Za5Tb207fPOQyGAwY29k0/XaYxwMPsU7/hwI5Ba8iek1A09Et3HB0q0hXeKyWl425ZrMdVoOMnVyquBNo/FhAOvoSGUyiIUSDdpSwgpiJAH5cVX3W6lOy93mNtPBMk0qxtItYD3b9N7Lut6SCLhL/IGoNmrouOUX3xM8KD8qgnXmUXF0996YK9WxFfZ8HScFVno8kRZdDY4QinqcwZy+FNXBG
+          serverRandom: +wVP2U/SMKVkVrggDjNTXFV/
+          userChallenge: TLSjYRH2oYw8tW2bq0it0IUb7WIFkCLgF8NTc7-4Zq4
+          flowType: Notification
+          signatureAlgorithm: rsassa-pss
+          signatureAlgorithmParameters:
+            hashAlgorithm: SHA-512
+            maskGenAlgorithm:
+              algorithm: id-mgf1
+              parameters:
+                hashAlgorithm: SHA-512
+            saltLength: 64
+            trailerField: "0xbc"
+        cert:
+          value: MIIFijCCBHKgAwIBAgIJAL3NmQGsd536MA0GCSqGSIb3DQEBCwUAMC8xCzAJBgNVBAYTAkVFMQ4wDAYDVQQKEwVDeWJlcjEQMA4GA1UEAxMHVEMgcm9vdDAeFw0yNTA2MTIxNDM4NDVaFw0yNjA2MTIxNDM4NDVaMIGGMQswCQYDVQQGEwJFRTENMAsGA1UEBAwES2FydTENMAsGA1UEKgwETWF0aTEaMBgGA1UEBRMRUE5PRUUtMzAwMDEwMTAwMDQxJDAiBgNVBAMMG0thcnUsTWF0aSxQTk9FRS0zMDAwMTAxMDAwNDEXMBUGA1UECwwOQVVUSEVOVElDQVRJT04wggMhMA0GCSqGSIb3DQEBAQUAA4IDDgAwggMJAoIDAHPLxyGpzYxygWyvfzju5axnHv2xyiHzSW7adv12BmrWz+W/Hjah1V3OJo3mqG6rG2LI90wNXEbQD2QS/wRI4ksVcdsnmoF5489etoW228YtcGJdIfoUDMW9bz1u4pKdQYHJBnyHo2MmL6q4r2Uyj5comPVRgaL1r16CO+n/Hi9zzomRSQ7bE5zlLaWdRjgeW33hyfy2ZQJAo3MuQ1kxqNEUGLtxhDiEN3kH7M45wikZE1EDV3yNEhrW/xAxmuLCDzY4Y+FfJ+d3H6n+3rhAgk72NfbEtR8AHjV0yj/1KdQt60muSGQ+mDSUcPaUzc9X1QrFvg01l1GcFTkM409AqskZaFFHVUs6/nHItnJO0edQS2/7G0LPPy794QwOUXamlJUZjpmNN39d5SR3WsdonzI8ZEV+PsdAqaHFbSso0fH/59XU0Vlmcy2OvXnff0IYtTWaz1+UT4KrVjPXfbUDuKiaAGKCAaNluH9NxcmVy//qoVui8zGm/swnCJxAMQhdV8Le4gEDWeJiNoUHnypdSgPevccLSxTMXSAnm/MAjXF2XZxefJeaOiVXOGEVr7c+NlMb5wtPlThHcCt9vQoKl+UFIRrSgT7J3u96SU7lFoB3CLwIVYLpmrI498iTpNsqydPGejhWHOpPsK9CSHxrtIeKHExpD2BpUxwJr1/FwwwgwRA0n0uYWk+eo5tJfxFg8FjCTxDbLuVS/DM28DmOyqydcIwkckPXBJeE/ZLHhPEbeLo5z+wCIL/Ao56UFxGrpT+slL80E2EV5ZIXLRH9q0/OzDXEJe/5nOi8pAzE7s4/pLoIlS2gJl8qIFqyrtxkTgRnrbqKftZ+ljrHgEJvUoZ64rSe+Ze4BUpjmPsSFefc5sQNq7QB6vJ860rARStDYwee7c8bZM4pnYYjXbzUATcR74445SYC92q8R6vTRZqGohP9IsrbQrVLMd7k5BEk3QyZAxhBYL1oJJCuB1fQp9orONLg5y9mmBwK/Udb0x4Rzb+sSdnrSDhegdhQbutQZwIDAQABo1IwUDAfBgNVHSMEGDAWgBR34yPLMQW8zhFBhUVMMmjuqyKPxzAdBgNVHQ4EFgQUG8uAz/1qNL+ofmnbWF3IurCBAiMwDgYDVR0PAQH/BAQDAgSwMA0GCSqGSIb3DQEBCwUAA4IBAQA/+yzSFT2Udyol0jspwqidpe0A9YFxJzU8C5i/zyDVQOV+krMS78vBNW83r14YpRxbIHXIjh3HO/oeRseEvVh5yuSYz5lexIjWATKUGOWVZac+gqrTJKuBryqWy7pjAP36knGAaGC17u/Ool/XCUb+K5yZKwsGpzOn9GOx02+0QPVhYy4iC+sJlyUWvLbwNLmf8Nkm00gMPKVUDoDHwiX35wq3ZnuuTOTMMRxx3fszdRKGklt3KytgKGnii+8+Tz3Hh1G6IuRqiMkOpI8dUvi3ywYY72HNjd6ge4Qs2Y2zBxU8XLLBwMYJgwTFoe4JFhsjr32teZZTihlk9Me44dBI
+          certificateLevel: QUALIFIED
+        interactionTypeUsed: displayTextAndPIN
+        deviceIpAddress: 203.0.113.34
+    RawDigestSignatureResponseExample:
+      value:
+        state: COMPLETE
+        result:
+          endResult: OK
+          documentNumber: PNOEE-30001010004-BVFM-Q
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signature:
+          value: HIL63iGfq1aryzoCS0zewj7JdApo/ZBpAAUlAkcV/UO69fNd3MfR9VZhog+UcTRWzvFq629yjS8be48qzREh7PVmxzPebgE6MlL/MsKkEDT6/leYpgjerhnVasFRGDvvBz5JYzgJUeu2yKzN4mYAvz6BIPpXxuqhalLUcVtOVC9jCOrcrhiaw9tWeIdxceW4vUNxeBNrk2muYl5yXt8eCtOovREeTyOzBsxa3vvbngiUYY1eb29/XRSKxudVjnEZx7nXLYHWTAr8lG/ON6wHKP5qehrIToIiKIMjCKi9zrrbYhWkIx+nbXJQWBD9NC18fmEbp0ouElLnNQoQfJqTcSrXFW3X76MTEUn6jnPaHYgJxRVLFDnFgY+qO33y+6y3wjXv8RvNvUXREtm4lR434EGMTnJ4GufBNRot1Bq4yP0RsuNldwq2WCNJD5sBP9UgkJkoXB4GyQUCEOsoXywQjlJ2gq9mgVnow1mpMnDlE2bWCLT4csoeVAFCMTgWBkkC0lVvctJRXrHO4CMfONr+KmQQL907v8FTxOA+W/MDsSPjZyXEHA3E7zfagcnaWXc2cQWNgbM3PwUFKCbjzSoQyhBrsHmdw8Akslsi9ksKoxm86k0Ex2XsDZWHqu58gN5hmoIS37SafWhLQe1gQ1VFpWge3skXpQjQZqp9zca2ZhDmHddOVM8orK3/9BPpL/lRFOqqOxqE7FOdQGlt5vq/hrF3DObigWk4ieA7NgbrSCJgx74Agy8yz3SznmhHKY9DWoKcYqDcue1WvM0TEuiu1HlC/IzVpwyAhTYy51llt14M2ciujA+kwfeFP+5qm4Q4xSjO+N1uS83N+OvQY/X72RBudRNuOuIst6dSlse21xX+ST8Mr2T9khPx4u1mACNUhImmiqofjSokDP8+lpPAfCsfofn9/RJINg5F+0zwGC0Xy2bH8WZIrUL4frX8z8f1gTpzVQ/V1b8gKJFATNQUkRMy0871j5cMphtO24KoJH2JT+1P8qFQz7QasvOFKO6o
+          flowType: Notification
+          signatureAlgorithm: rsassa-pss
+          signatureAlgorithmParameters:
+            hashAlgorithm: SHA3-512
+            maskGenAlgorithm:
+              algorithm: id-mgf1
+              parameters:
+                hashAlgorithm: SHA3-512
+            saltLength: 64
+            trailerField: "0xbc"
+        cert:
+          value: MIIFhTCCBG2gAwIBAgIJAOEfPHPNdSQRMA0GCSqGSIb3DQEBCwUAMC8xCzAJBgNVBAYTAkVFMQ4wDAYDVQQKEwVDeWJlcjEQMA4GA1UEAxMHVEMgcm9vdDAeFw0yNTA2MTIxNDM4NDVaFw0yNjA2MTIxNDM4NDVaMIGBMQswCQYDVQQGEwJFRTENMAsGA1UEBAwES2FydTENMAsGA1UEKgwETWF0aTEaMBgGA1UEBRMRUE5PRUUtMzAwMDEwMTAwMDQxJDAiBgNVBAMMG0thcnUsTWF0aSxQTk9FRS0zMDAwMTAxMDAwNDESMBAGA1UECwwJU0lHTkFUVVJFMIIDITANBgkqhkiG9w0BAQEFAAOCAw4AMIIDCQKCAwBv9rtZZe+Kf5APF0oWQoWKc52m5iHRFhZosavDDyaSoLAwR7lobnOpLv3jocBN0ulUgi+9u0EbvRY6jE9eNbFc5gPySBuP7Ku/8bbZXpbptRZd1v5CkadT8rmrKL28255GMxWozklmHCSGv2/TAhMueANaM7JCPIuKLRH4PT9jcv5TUdiq5i5ryCC66RAuSa33LBZLg1/GrL+qVKqsuDz8LSbf7r3A5Bqw9G6+1D9XqXRCS1n7/CgbmnXFG58BQkJ30g/Mpnwq37a8f5qzpZVI3hqsBGKmfI/BV7QyVL8xsE4q+9lQ/mnKfmEapaikCn8H/75ta5OsxEiq8NTlV2KBh//dAEkJx/TzDJjY7EBbBvmKZaDKsyQkwLkQWQFtoMywzL1e6VfQVcsGXFW1z54akN00Jw0S4eV3Y4vaVc0CKV2210/HQKAMOlkYfaSjTUfUTDLmfIORUBBmIDo4yJFem9MJx607TWr8pW2YckBhACz2TpAZK/nZlayGlfRy7jJqHewB84ZLYziv1xU29NHXvP/+PD72qSd8HAPS+G0/fB52RAHsCI7e+u2Iunm6Ln771hkctDdw8JWrs700d+92nDG9qoFsoIQPn2NUZiFsQbdZ1F4MxM5qJxl1yaauske6iVFsGFL+DeE2O8zZcr05TqK445ObYniaEfkQ4gBUZGOyRd+KkLQSjkRKVPV2IRbIG3ayzHs0Xu4I5k1bzeCnE8dfnDTA0Dh/TE711jhbahxExgFwmQ8A38GX65oM6GHCk2GkgbYKyIrpRX4WeTTuNhPK/ypZXAn1ym9nMKzPR0NTG9odSBBJIlZPXpVbb165h/2q+uc4mQbkdA/hNJz64c1W2GioMmTJK6JgpPJtn1M3pRC+Ciwk30evc91yf+nLTZyCtss3t4q2tRF+7MVsrfltwmF8VfPAXSwUer8UMeToas82dbsHlp6od8vmS63OwPXcaV9suh4yIm8tExDqvRY9qSMzXqVihyffskD2JExKOYXF+hjCwk0iP1GXTccCAwEAAaNSMFAwHwYDVR0jBBgwFoAUd+MjyzEFvM4RQYVFTDJo7qsij8cwHQYDVR0OBBYEFNi3lSKWT6YIkHpIXEpcoJcbSa/DMA4GA1UdDwEB/wQEAwIGQDANBgkqhkiG9w0BAQsFAAOCAQEAE3V+Z6iMpQH06e2I/uBI9r4OY0On5BK2SBlEW/tnHKfMEJSi0DEA59o0vm67CcmmvP51tIEzMCfCpi+axAx/Al/MOLcw/h/UuZItJ41LT/Bwf8RpL0hLsk1haKk2CHE8bnR+1QlC+0Ay9jlTK8CzesO8TipJjIZaUFrPtOasFsOXzhS0/oyHdCZBsCowbEePpCH+P5tBkrD1F3AcNk2q2/FJjr6xwBbnxPUF95JL2Bk3Uou1EAFYbqnTR4GY5EUtfUGufa8GK5ynm2DFo5SnskXZ3E71ZOZ/8b84ySl1ME71RsmZ1omZvZhGO2HFskHmPLyvTa5IzjXs01y/FipbgQ==
+          certificateLevel: QUALIFIED
+        interactionTypeUsed: displayTextAndPIN
+        deviceIpAddress: 203.0.113.34
+    CertificateChoiceSignatureResponseExample:
+      value:
+        state: COMPLETE
+        result:
+          endResult: OK
+          documentNumber: PNOEE-30001010004-BVFM-Q
+        signature:
+          flowType: Web2App
+        cert:
+          value: MIIFhTCCBG2gAwIBAgIJAOEfPHPNdSQRMA0GCSqGSIb3DQEBCwUAMC8xCzAJBgNVBAYTAkVFMQ4wDAYDVQQKEwVDeWJlcjEQMA4GA1UEAxMHVEMgcm9vdDAeFw0yNTA2MTIxNDM4NDVaFw0yNjA2MTIxNDM4NDVaMIGBMQswCQYDVQQGEwJFRTENMAsGA1UEBAwES2FydTENMAsGA1UEKgwETWF0aTEaMBgGA1UEBRMRUE5PRUUtMzAwMDEwMTAwMDQxJDAiBgNVBAMMG0thcnUsTWF0aSxQTk9FRS0zMDAwMTAxMDAwNDESMBAGA1UECwwJU0lHTkFUVVJFMIIDITANBgkqhkiG9w0BAQEFAAOCAw4AMIIDCQKCAwBv9rtZZe+Kf5APF0oWQoWKc52m5iHRFhZosavDDyaSoLAwR7lobnOpLv3jocBN0ulUgi+9u0EbvRY6jE9eNbFc5gPySBuP7Ku/8bbZXpbptRZd1v5CkadT8rmrKL28255GMxWozklmHCSGv2/TAhMueANaM7JCPIuKLRH4PT9jcv5TUdiq5i5ryCC66RAuSa33LBZLg1/GrL+qVKqsuDz8LSbf7r3A5Bqw9G6+1D9XqXRCS1n7/CgbmnXFG58BQkJ30g/Mpnwq37a8f5qzpZVI3hqsBGKmfI/BV7QyVL8xsE4q+9lQ/mnKfmEapaikCn8H/75ta5OsxEiq8NTlV2KBh//dAEkJx/TzDJjY7EBbBvmKZaDKsyQkwLkQWQFtoMywzL1e6VfQVcsGXFW1z54akN00Jw0S4eV3Y4vaVc0CKV2210/HQKAMOlkYfaSjTUfUTDLmfIORUBBmIDo4yJFem9MJx607TWr8pW2YckBhACz2TpAZK/nZlayGlfRy7jJqHewB84ZLYziv1xU29NHXvP/+PD72qSd8HAPS+G0/fB52RAHsCI7e+u2Iunm6Ln771hkctDdw8JWrs700d+92nDG9qoFsoIQPn2NUZiFsQbdZ1F4MxM5qJxl1yaauske6iVFsGFL+DeE2O8zZcr05TqK445ObYniaEfkQ4gBUZGOyRd+KkLQSjkRKVPV2IRbIG3ayzHs0Xu4I5k1bzeCnE8dfnDTA0Dh/TE711jhbahxExgFwmQ8A38GX65oM6GHCk2GkgbYKyIrpRX4WeTTuNhPK/ypZXAn1ym9nMKzPR0NTG9odSBBJIlZPXpVbb165h/2q+uc4mQbkdA/hNJz64c1W2GioMmTJK6JgpPJtn1M3pRC+Ciwk30evc91yf+nLTZyCtss3t4q2tRF+7MVsrfltwmF8VfPAXSwUer8UMeToas82dbsHlp6od8vmS63OwPXcaV9suh4yIm8tExDqvRY9qSMzXqVihyffskD2JExKOYXF+hjCwk0iP1GXTccCAwEAAaNSMFAwHwYDVR0jBBgwFoAUd+MjyzEFvM4RQYVFTDJo7qsij8cwHQYDVR0OBBYEFNi3lSKWT6YIkHpIXEpcoJcbSa/DMA4GA1UdDwEB/wQEAwIGQDANBgkqhkiG9w0BAQsFAAOCAQEAE3V+Z6iMpQH06e2I/uBI9r4OY0On5BK2SBlEW/tnHKfMEJSi0DEA59o0vm67CcmmvP51tIEzMCfCpi+axAx/Al/MOLcw/h/UuZItJ41LT/Bwf8RpL0hLsk1haKk2CHE8bnR+1QlC+0Ay9jlTK8CzesO8TipJjIZaUFrPtOasFsOXzhS0/oyHdCZBsCowbEePpCH+P5tBkrD1F3AcNk2q2/FJjr6xwBbnxPUF95JL2Bk3Uou1EAFYbqnTR4GY5EUtfUGufa8GK5ynm2DFo5SnskXZ3E71ZOZ/8b84ySl1ME71RsmZ1omZvZhGO2HFskHmPLyvTa5IzjXs01y/FipbgQ==
+          certificateLevel: QUALIFIED
+        interactionTypeUsed: confirmationMessage
+        deviceIpAddress: 203.0.113.34
+    CertificateOKResponseExample:
+      value:
+        state: OK
+        cert:
+          value: MIIFhTCCBG2gAwIBAgIJAOEfPHPNdSQRMA0GCSqGSIb3DQEBCwUAMC8xCzAJBgNVBAYTAkVFMQ4wDAYDVQQKEwVDeWJlcjEQMA4GA1UEAxMHVEMgcm9vdDAeFw0yNTA2MTIxNDM4NDVaFw0yNjA2MTIxNDM4NDVaMIGBMQswCQYDVQQGEwJFRTENMAsGA1UEBAwES2FydTENMAsGA1UEKgwETWF0aTEaMBgGA1UEBRMRUE5PRUUtMzAwMDEwMTAwMDQxJDAiBgNVBAMMG0thcnUsTWF0aSxQTk9FRS0zMDAwMTAxMDAwNDESMBAGA1UECwwJU0lHTkFUVVJFMIIDITANBgkqhkiG9w0BAQEFAAOCAw4AMIIDCQKCAwBv9rtZZe+Kf5APF0oWQoWKc52m5iHRFhZosavDDyaSoLAwR7lobnOpLv3jocBN0ulUgi+9u0EbvRY6jE9eNbFc5gPySBuP7Ku/8bbZXpbptRZd1v5CkadT8rmrKL28255GMxWozklmHCSGv2/TAhMueANaM7JCPIuKLRH4PT9jcv5TUdiq5i5ryCC66RAuSa33LBZLg1/GrL+qVKqsuDz8LSbf7r3A5Bqw9G6+1D9XqXRCS1n7/CgbmnXFG58BQkJ30g/Mpnwq37a8f5qzpZVI3hqsBGKmfI/BV7QyVL8xsE4q+9lQ/mnKfmEapaikCn8H/75ta5OsxEiq8NTlV2KBh//dAEkJx/TzDJjY7EBbBvmKZaDKsyQkwLkQWQFtoMywzL1e6VfQVcsGXFW1z54akN00Jw0S4eV3Y4vaVc0CKV2210/HQKAMOlkYfaSjTUfUTDLmfIORUBBmIDo4yJFem9MJx607TWr8pW2YckBhACz2TpAZK/nZlayGlfRy7jJqHewB84ZLYziv1xU29NHXvP/+PD72qSd8HAPS+G0/fB52RAHsCI7e+u2Iunm6Ln771hkctDdw8JWrs700d+92nDG9qoFsoIQPn2NUZiFsQbdZ1F4MxM5qJxl1yaauske6iVFsGFL+DeE2O8zZcr05TqK445ObYniaEfkQ4gBUZGOyRd+KkLQSjkRKVPV2IRbIG3ayzHs0Xu4I5k1bzeCnE8dfnDTA0Dh/TE711jhbahxExgFwmQ8A38GX65oM6GHCk2GkgbYKyIrpRX4WeTTuNhPK/ypZXAn1ym9nMKzPR0NTG9odSBBJIlZPXpVbb165h/2q+uc4mQbkdA/hNJz64c1W2GioMmTJK6JgpPJtn1M3pRC+Ciwk30evc91yf+nLTZyCtss3t4q2tRF+7MVsrfltwmF8VfPAXSwUer8UMeToas82dbsHlp6od8vmS63OwPXcaV9suh4yIm8tExDqvRY9qSMzXqVihyffskD2JExKOYXF+hjCwk0iP1GXTccCAwEAAaNSMFAwHwYDVR0jBBgwFoAUd+MjyzEFvM4RQYVFTDJo7qsij8cwHQYDVR0OBBYEFNi3lSKWT6YIkHpIXEpcoJcbSa/DMA4GA1UdDwEB/wQEAwIGQDANBgkqhkiG9w0BAQsFAAOCAQEAE3V+Z6iMpQH06e2I/uBI9r4OY0On5BK2SBlEW/tnHKfMEJSi0DEA59o0vm67CcmmvP51tIEzMCfCpi+axAx/Al/MOLcw/h/UuZItJ41LT/Bwf8RpL0hLsk1haKk2CHE8bnR+1QlC+0Ay9jlTK8CzesO8TipJjIZaUFrPtOasFsOXzhS0/oyHdCZBsCowbEePpCH+P5tBkrD1F3AcNk2q2/FJjr6xwBbnxPUF95JL2Bk3Uou1EAFYbqnTR4GY5EUtfUGufa8GK5ynm2DFo5SnskXZ3E71ZOZ/8b84ySl1ME71RsmZ1omZvZhGO2HFskHmPLyvTa5IzjXs01y/FipbgQ==
+          certificateLevel: QUALIFIED
+    CertificateTimelockedResponseExample:
+      value:
+        state: DOCUMENT_UNUSABLE
+    UserRefusedInteractionResponseExample:
+      value:
+        state: COMPLETE
+        result:
+          endResult: USER_REFUSED_INTERACTION
+          details:
+            interaction: displayTextAndPIN
+    DeviceLinkResponseExample:
+      value:
+        sessionID: fa20fd1e-e320-4c68-8315-f6a507a0b4a9
+        sessionToken: wGIrqveE6AuGDATZKmR1mtAZ
+        sessionSecret: B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=
+        deviceLinkBase: https://smart-id.com/device-link
+    NotificationAuthenticationResponseExample:
+      value:
+        sessionID: 56e1c1d0-dc07-4c71-890b-6200856b8c75
+    NotificationSigningResponseExample:
+      value:
+        sessionID: 56e1c1d0-dc07-4c71-890b-6200856b8c75
+        vc:
+          type: numeric4
+          value: "4927"
+    NotificationSigningLinkedResponseExample:
+      value:
+        sessionID: 56e1c1d0-dc07-4c71-890b-6200856b8c75
+    NotificationCertificateChoiceResponseExample:
+      value:
+        sessionID: 56e1c1d0-dc07-4c71-890b-6200856b8c75
+    InvalidRequestErrorResponseJsonExample:
+      value:
+        type: about:blank
+        status: 400
+        title: Bad Request
+        detail: Invalid request parameters found
+        errors:
+        - detail: 'Invalid initialCallbackUrl: The callback URL value is invalid'
+          paramName: initialCallbackUrl
+          pointer: /initialCallbackUrl
+    NotFoundErrorResponseWithErrorsFieldJsonExample:
+      value:
+        type: about:blank
+        title: Not Found
+        status: 404
+        detail: Not Found
+        instance: /task-id/tdgx2dj9cfumh8
+        errors:
+        - code: NO_SUITABLE_ACCOUNT_FOUND
+          detail: No suitable account of requested type found, but user has some other accounts
+    NotFoundErrorResponseJsonExample:
+      value:
+        type: about:blank
+        title: Not Found
+        status: 404
+        detail: Not Found
+        instance: /task-id/tdgx2dj9cfumh8
