@@ -7,13 +7,44 @@
 }
 .doc details>summary::before {
     border-width: .3em .5em .3em;
+    top: 0.625rem;
 </style>
 ++++
+
+[#v315]
+== Smart-ID App v31.5
+.Released: 2026-02-09
+[%collapsible%open]
+====
+Fixed::
+* Fix registration loader regression.
+* Fix redirect issue to Scan QR code view from widget if app cold starts
+* Show better error message when starting device link transaction without active account.
+* Fix OK button active state when PIN confirmation is required.
+* Fix RP buttons disabled state during loading.
+* Fix youtube configuration issue error if trying to watch embed videos
+* Sync registration steps animation with screen transitions.
+* Fix success loader checkmark not showing when animation to next screen.
+* Fix infinite loader when inactive account (e.g. deleted in portal) is deleted in app.
+
+Changed::
+* Always show confirm transaction modal when transaction source is QR code.
+* Add RP name to displayText and VC modal.
+* Add instructions modal before starting liveness check during registration.
+* Increase iOS deployment target version to  iOS 15
+
+Added::
+* Add Smart-ID+ introduction for end-user
+* Added support for registering using ID-Card (EE) with NFC 
+
+Security::
+* Updated 3rd party libraries, inc ReadID M122
+====
 
 [#v305]
 == Smart-ID App v30.5
 .Released: 2025-12-01
-[%collapsible%open]
+[%collapsible]
 ====
 Fixed::
 * Return to token view from error view after error is resolved (e.g. network was lost and then restored).
