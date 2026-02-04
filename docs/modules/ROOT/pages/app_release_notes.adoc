@@ -11,8 +11,9 @@
 </style>
 ++++
 
+[#v316]
+== Smart-ID App v31.6
 [#v315]
-== Smart-ID App v31.5
 .Released: 2026-02-09
 [%collapsible%open]
 ====
@@ -32,13 +33,14 @@ Changed::
 * Add RP name to displayText and VC modal.
 * Add instructions modal before starting liveness check during registration.
 * Increase iOS deployment target version to  iOS 15
+* Do not allow transaction during call
 
 Added::
 * Add Smart-ID+ introduction for end-user
 * Added support for registering using ID-Card (EE) with NFC 
 
 Security::
-* Updated 3rd party libraries, inc ReadID M122
+* Updated 3rd party libraries, inc ReadID M123
 ====
 
 [#v305]
