@@ -33,7 +33,6 @@ Changed::
 * Add RP name to displayText and VC modal.
 * Add instructions modal before starting liveness check during registration.
 * Increase iOS deployment target version to  iOS 15
-* Do not allow transaction during call
 
 Added::
 * Add Smart-ID+ introduction for end-user
