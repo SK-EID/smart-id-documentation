@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.0">
+<div class="nav-container" data-component="rp-api" data-version="3.2.1">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.0</span>
+    <span class="version">3.2.1</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,7 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.0</a>
+          <a href="introduction.html">3.2.1</a>
+        </li>
+        <li class="version">
+          <a href="3.2.0/introduction.html">3.2.0</a>
         </li>
         <li class="version">
           <a href="3.1.7/introduction.html">3.1.7</a>
@@ -195,10 +198,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#acsp_v2_signature_protocol">Signature protocol <code>ACSP_V2</code></a> - for authentication requests,</p>
+<p><a href="#acsp_v2_signature_protocol">Signature protocol <code>ACSP_V2</code></a> - used for authentication requests,</p>
 </li>
 <li>
-<p><a href="#raw_digest_signature_protocol">Signature protocol <code>RAW_DIGEST_SIGNATURE</code></a> - for signing requests.</p>
+<p><a href="#raw_digest_signature_protocol">Signature protocol <code>RAW_DIGEST_SIGNATURE</code></a> - used for signing requests.</p>
 </li>
 </ul>
 </div>
@@ -972,7 +975,8 @@ puts Base64.strict_encode64(digest)</code></pre>
 <h2 id="raw_digest_signature_protocol"><a class="anchor" href="#raw_digest_signature_protocol"></a><code>RAW_DIGEST_SIGNATURE</code> signature protocol</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>RAW_DIGEST_SIGNATURE</code> is a signature protocol where a pre-calculated digest (hash) of the data-to-be-signed is sent in the initial request, and the digital signature is generated directly on this provided digest. For verification, the digest itself or the complete original data that corresponds to the digest must be used.</p>
+<p><code>RAW_DIGEST_SIGNATURE</code> is a signature protocol where a pre-calculated digest (hash) of the data-to-be-signed is sent in the initial request.
+The digital signature is generated directly over this digest. During verification, the same digest or the complete original data that corresponds to the digest must be used.</p>
 </div>
 <div class="sect2">
 <h3 id="raw_digest_signature_request_parameters"><a class="anchor" href="#raw_digest_signature_request_parameters"></a><code>RAW_DIGEST_SIGNATURE</code> signature request parameters</h3>
@@ -989,7 +993,7 @@ puts Base64.strict_encode64(digest)</code></pre>
 <div class="sect2">
 <h3 id="_raw_digest_signature_signature_response_parameters"><a class="anchor" href="#_raw_digest_signature_signature_response_parameters"></a><code>RAW_DIGEST_SIGNATURE</code> signature response parameters</h3>
 <div class="paragraph">
-<p>For <code>RAW_DIGEST_SIGNATURE</code> <code>signature</code> parameter in the signature response and examples, see the <a href="api_specification.html" class="xref page">API spec session status response parameters</a>.</p>
+<p>For <code>RAW_DIGEST_SIGNATURE</code> <code>signature</code> parameter in the signature response and examples, see the <a href="api_specification.html#tag/signature-session" class="xref page">API spec signature session status response parameters</a>.</p>
 </div>
 <div class="paragraph">
 <p>Full verification of the signature and response is described in <a href="response_verification.html" class="xref page">Response verification</a>.</p>
@@ -1003,10 +1007,10 @@ puts Base64.strict_encode64(digest)</code></pre>
 <td class="content">
 <div class="title">NOTE</div>
 <div class="paragraph">
-<p>When integrating with Smart-ID RP API for electronic signing, note that RP API v3 and above only supports <code>RSASSA-PSS</code> signature scheme. Previous versions supported only the legacy <code>RSASSA-PKCS1-v1_5</code> signature scheme.</p>
+<p>When integrating with Smart-ID RP API for electronic signing, note that RP API v3 and above primarily supports <code>RSASSA-PSS</code> signature scheme, which is the recommended option. <code>RSASSA-PKCS1-v1_5</code> (<code>PKCS#1 v1.5</code>) is a legacy signature scheme and is considered deprecated. Its use in RP API v3 is intended only when <code>RSASSA-PSS</code> is not available&#8201;&#8212;&#8201;for example, some national signature container formats do not yet support <code>RSASSA-PSS</code>.</p>
 </div>
 <div class="paragraph">
-<p>Some national signature container formats do not support <code>RSASSA-PSS</code> and if alternatives are not available (such as the ASiC format that is internationally recognized), previous RP API versions might have to be used to obtain <code>RSASSA-PKCS1-v1_5</code> signatures.</p>
+<p>In RP API v1 and v2, only the <code>RSASSA-PKCS1-v1_5</code> signature scheme was supported.</p>
 </div>
 </td>
 </tr>
