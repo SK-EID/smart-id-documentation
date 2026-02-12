@@ -453,10 +453,16 @@ components:
       type: string
       enum:
       - rsassa-pss
+      - sha256WithRSAEncryption
+      - sha384WithRSAEncryption
+      - sha512WithRSAEncryption
       description: |
-        Digital signature algorithm name. This is a reference name to algorithm defined in Public-Key cryptography standards. There is currently a single supported signature algorithm.
+        Digital signature algorithm name. This is a reference name to algorithm defined in Public-Key cryptography standards. RSASSA-PSS is the default and recommended algorithm. RSASSA-PKCS1-v1_5–based algorithms are deprecated and should only be used if RSASSA-PSS is not available.
 
         * `rsassa-pss` - Rivest, Shamir, Adleman (RSA) Signature Scheme with Appendix - Probabilistic Signature Scheme (RSASSA-PSS) [RFC8017, Appendix A.2.3](https://www.rfc-editor.org/rfc/rfc8017#appendix-A.2.3), OID [1.2.840.113549.1.1.10](https://oidref.com/1.2.840.113549.1.1.10). If a request is made with `rsassa-pss`, then the `signatureAlgorithmParameters` must be present in the request body.
+        * `sha256WithRSAEncryption` - *DEPRECATED.* Secure Hash Algorithm 256 (SHA-256) with Rivest, Shamir and Adleman (RSA) encryption https://www.rfc-editor.org/rfc/rfc8017#appendix-A.2.4[RFC8017, Appendix A.2.4], OID https://oidref.com/1.2.840.113549.1.1.11[1.2.840.113549.1.1.11]. This algorithm *does not require* `signatureAlgorithmParameters`.
+        * `sha384WithRSAEncryption` - *DEPRECATED.* Secure Hash Algorithm 384 (SHA-384) with Rivest, Shamir and Adleman (RSA) Encryption https://www.rfc-editor.org/rfc/rfc8017#appendix-A.2.4[RFC8017, Appendix A.2.4], OID https://oidref.com/1.2.840.113549.1.1.12[1.2.840.113549.1.1.12]. This algorithm *does not require* `signatureAlgorithmParameters`.
+        * `sha512WithRSAEncryption` - *DEPRECATED.* Secure Hash Algorithm 512 (SHA-512) with Rivest, Shamir and Adleman (RSA) encryption https://www.rfc-editor.org/rfc/rfc8017#appendix-A.2.4[RFC8017, Appendix A.2.4], OID https://oidref.com/1.2.840.113549.1.1.13[1.2.
     RelyingPartyUUID:
       type: string
       format: uuid
@@ -531,7 +537,6 @@ components:
       required:
       - rpChallenge
       - signatureAlgorithm
-      - signatureAlgorithmParameters
       properties:
         rpChallenge:
           type: string
@@ -556,7 +561,6 @@ components:
       required:
       - digest
       - signatureAlgorithm
-      - signatureAlgorithmParameters
       properties:
         digest:
           type: string
@@ -860,8 +864,10 @@ components:
               capabilities:
                 $ref: '#/components/schemas/Capabilities'
           examples:
-            Device Link Signing Request Example:
-              $ref: '#/components/examples/DeviceLinkSigningRequestBodyExample'
+            Device Link Signing Request Example (RSASSA-PSS):
+              $ref: '#/components/examples/DeviceLinkSigningRequestBodyExampleRSAPSS'
+            Device Link Signing Request Example (PKCS#1 v1.5):
+              $ref: '#/components/examples/DeviceLinkSigningRequestBodyExamplePKCS1v15'
     DeviceLinkCertificateChoiceRequestBody:
       required: true
       content:
@@ -956,8 +962,10 @@ components:
               capabilities:
                 $ref: '#/components/schemas/Capabilities'
           examples:
-            Notification Signing Request Example:
-              $ref: '#/components/examples/NotificationSigningRequestBodyExample'
+            Notification Signing Request Example (RSASSA-PSS):
+              $ref: '#/components/examples/NotificationSigningRequestBodyExampleRSAPSS'
+            Notification Signing Request Example (PKCS#1 v1.5):
+              $ref: '#/components/examples/NotificationSigningRequestBodyExamplePKCS1v15'
     NotificationSigningLinkedRequestBody:
       required: true
       content:
@@ -993,8 +1001,10 @@ components:
               capabilities:
                 $ref: '#/components/schemas/Capabilities'
           examples:
-            Notification Signing Linked Request Example:
-              $ref: '#/components/examples/NotificationSigningLinkedRequestBodyExample'
+            Notification Signing Linked Request Example (RSASSA-PSS):
+              $ref: '#/components/examples/NotificationSigningLinkedRequestBodyExampleRSAPSS'
+            Notification Signing Linked Request Example (PKCS#1 v1.5):
+              $ref: '#/components/examples/NotificationSigningLinkedRequestBodyExamplePKCS1v15'
     NotificationCertificateChoiceRequestBody:
       required: true
       content:
@@ -1295,8 +1305,10 @@ components:
           examples:
             ACSP_V2 Example:
               $ref: '#/components/examples/AcspV2ResponseExample'
-            RAW_DIGEST_SIGNATURE Example:
-              $ref: '#/components/examples/RawDigestSignatureResponseExample'
+            RAW_DIGEST_SIGNATURE Example (RSASSA-PSS):
+              $ref: '#/components/examples/RawDigestSignatureResponseExampleRSAPSS'
+            RAW_DIGEST_SIGNATURE Example (PKCS#1 v1.5):
+              $ref: '#/components/examples/RawDigestSignatureResponseExamplePKCS1v15'
             Device link certificate choice Example:
               $ref: '#/components/examples/CertificateChoiceSignatureResponseExample'
             Running Session Example:
@@ -1428,7 +1440,7 @@ components:
         interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
         requestProperties:
           shareMdClientIpAddress: true
-    DeviceLinkSigningRequestBodyExample:
+    DeviceLinkSigningRequestBodyExampleRSAPSS:
       value:
         relyingPartyUUID: 00000000-0000-4000-8000-000000000000
         relyingPartyName: DEMO
@@ -1444,6 +1456,20 @@ components:
         interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
         requestProperties:
           shareMdClientIpAddress: true
+    DeviceLinkSigningRequestBodyExamplePKCS1v15:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        certificateLevel: QUALIFIED
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signatureProtocolParameters:
+          digest: VC3jDipMw9TgSQrIm3oYuz2t/GciD3Aw2WTpnaGpo+1sdkkRiCnbRz08uqlgU6q1W2/VP6PDxSQlOy5AIxT5Xw==
+          signatureAlgorithm: sha512WithRSAEncryption
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: false
     DeviceLinkCertificateChoiceRequestBodyExample:
       value:
         relyingPartyUUID: 00000000-0000-4000-8000-000000000000
@@ -1468,7 +1494,7 @@ components:
         requestProperties:
           shareMdClientIpAddress: true
         vcType: numeric4
-    NotificationSigningRequestBodyExample:
+    NotificationSigningRequestBodyExampleRSAPSS:
       value:
         relyingPartyUUID: 00000000-0000-4000-8000-000000000000
         relyingPartyName: DEMO
@@ -1483,7 +1509,20 @@ components:
         interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
         requestProperties:
           shareMdClientIpAddress: true
-    NotificationSigningLinkedRequestBodyExample:
+    NotificationSigningRequestBodyExamplePKCS1v15:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        certificateLevel: QUALIFIED
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signatureProtocolParameters:
+          digest: VC3jDipMw9TgSQrIm3oYuz2t/GciD3Aw2WTpnaGpo+1sdkkRiCnbRz08uqlgU6q1W2/VP6PDxSQlOy5AIxT5Xw==
+          signatureAlgorithm: sha512WithRSAEncryption
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: false
+    NotificationSigningLinkedRequestBodyExampleRSAPSS:
       value:
         relyingPartyUUID: 00000000-0000-4000-8000-000000000000
         relyingPartyName: DEMO
@@ -1499,6 +1538,20 @@ components:
         interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
         requestProperties:
           shareMdClientIpAddress: true
+    NotificationSigningLinkedRequestBodyExamplePKCS1v15:
+      value:
+        relyingPartyUUID: 00000000-0000-4000-8000-000000000000
+        relyingPartyName: DEMO
+        certificateLevel: QUALIFIED
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signatureProtocolParameters:
+          digest: VC3jDipMw9TgSQrIm3oYuz2t/GciD3Aw2WTpnaGpo+1sdkkRiCnbRz08uqlgU6q1W2/VP6PDxSQlOy5AIxT5Xw==
+          signatureAlgorithm: sha512WithRSAEncryption
+        linkedSessionID: 0aa27573-5ac2-479e-9c69-00343ff8416f
+        nonce: d8XkbEnA0WsE0PvBZZoxGnPI4ml9qk
+        interactions: W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d
+        requestProperties:
+          shareMdClientIpAddress: false
     NotificationCertificateChoiceRequestBodyExample:
       value:
         relyingPartyUUID: 00000000-0000-4000-8000-000000000000
@@ -1540,7 +1593,7 @@ components:
           certificateLevel: QUALIFIED
         interactionTypeUsed: displayTextAndPIN
         deviceIpAddress: 203.0.113.34
-    RawDigestSignatureResponseExample:
+    RawDigestSignatureResponseExampleRSAPSS:
       value:
         state: COMPLETE
         result:
@@ -1559,6 +1612,22 @@ components:
                 hashAlgorithm: SHA3-512
             saltLength: 64
             trailerField: "0xbc"
+        cert:
+          value: MIIFhTCCBG2gAwIBAgIJAOEfPHPNdSQRMA0GCSqGSIb3DQEBCwUAMC8xCzAJBgNVBAYTAkVFMQ4wDAYDVQQKEwVDeWJlcjEQMA4GA1UEAxMHVEMgcm9vdDAeFw0yNTA2MTIxNDM4NDVaFw0yNjA2MTIxNDM4NDVaMIGBMQswCQYDVQQGEwJFRTENMAsGA1UEBAwES2FydTENMAsGA1UEKgwETWF0aTEaMBgGA1UEBRMRUE5PRUUtMzAwMDEwMTAwMDQxJDAiBgNVBAMMG0thcnUsTWF0aSxQTk9FRS0zMDAwMTAxMDAwNDESMBAGA1UECwwJU0lHTkFUVVJFMIIDITANBgkqhkiG9w0BAQEFAAOCAw4AMIIDCQKCAwBv9rtZZe+Kf5APF0oWQoWKc52m5iHRFhZosavDDyaSoLAwR7lobnOpLv3jocBN0ulUgi+9u0EbvRY6jE9eNbFc5gPySBuP7Ku/8bbZXpbptRZd1v5CkadT8rmrKL28255GMxWozklmHCSGv2/TAhMueANaM7JCPIuKLRH4PT9jcv5TUdiq5i5ryCC66RAuSa33LBZLg1/GrL+qVKqsuDz8LSbf7r3A5Bqw9G6+1D9XqXRCS1n7/CgbmnXFG58BQkJ30g/Mpnwq37a8f5qzpZVI3hqsBGKmfI/BV7QyVL8xsE4q+9lQ/mnKfmEapaikCn8H/75ta5OsxEiq8NTlV2KBh//dAEkJx/TzDJjY7EBbBvmKZaDKsyQkwLkQWQFtoMywzL1e6VfQVcsGXFW1z54akN00Jw0S4eV3Y4vaVc0CKV2210/HQKAMOlkYfaSjTUfUTDLmfIORUBBmIDo4yJFem9MJx607TWr8pW2YckBhACz2TpAZK/nZlayGlfRy7jJqHewB84ZLYziv1xU29NHXvP/+PD72qSd8HAPS+G0/fB52RAHsCI7e+u2Iunm6Ln771hkctDdw8JWrs700d+92nDG9qoFsoIQPn2NUZiFsQbdZ1F4MxM5qJxl1yaauske6iVFsGFL+DeE2O8zZcr05TqK445ObYniaEfkQ4gBUZGOyRd+KkLQSjkRKVPV2IRbIG3ayzHs0Xu4I5k1bzeCnE8dfnDTA0Dh/TE711jhbahxExgFwmQ8A38GX65oM6GHCk2GkgbYKyIrpRX4WeTTuNhPK/ypZXAn1ym9nMKzPR0NTG9odSBBJIlZPXpVbb165h/2q+uc4mQbkdA/hNJz64c1W2GioMmTJK6JgpPJtn1M3pRC+Ciwk30evc91yf+nLTZyCtss3t4q2tRF+7MVsrfltwmF8VfPAXSwUer8UMeToas82dbsHlp6od8vmS63OwPXcaV9suh4yIm8tExDqvRY9qSMzXqVihyffskD2JExKOYXF+hjCwk0iP1GXTccCAwEAAaNSMFAwHwYDVR0jBBgwFoAUd+MjyzEFvM4RQYVFTDJo7qsij8cwHQYDVR0OBBYEFNi3lSKWT6YIkHpIXEpcoJcbSa/DMA4GA1UdDwEB/wQEAwIGQDANBgkqhkiG9w0BAQsFAAOCAQEAE3V+Z6iMpQH06e2I/uBI9r4OY0On5BK2SBlEW/tnHKfMEJSi0DEA59o0vm67CcmmvP51tIEzMCfCpi+axAx/Al/MOLcw/h/UuZItJ41LT/Bwf8RpL0hLsk1haKk2CHE8bnR+1QlC+0Ay9jlTK8CzesO8TipJjIZaUFrPtOasFsOXzhS0/oyHdCZBsCowbEePpCH+P5tBkrD1F3AcNk2q2/FJjr6xwBbnxPUF95JL2Bk3Uou1EAFYbqnTR4GY5EUtfUGufa8GK5ynm2DFo5SnskXZ3E71ZOZ/8b84ySl1ME71RsmZ1omZvZhGO2HFskHmPLyvTa5IzjXs01y/FipbgQ==
+          certificateLevel: QUALIFIED
+        interactionTypeUsed: displayTextAndPIN
+        deviceIpAddress: 203.0.113.34
+    RawDigestSignatureResponseExamplePKCS1v15:
+      value:
+        state: COMPLETE
+        result:
+          endResult: OK
+          documentNumber: PNOEE-30001010004-BVFM-Q
+        signatureProtocol: RAW_DIGEST_SIGNATURE
+        signature:
+          value: HIL63iGfq1aryzoCS0zewj7JdApo/ZBpAAUlAkcV/UO69fNd3MfR9VZhog+UcTRWzvFq629yjS8be48qzREh7PVmxzPebgE6MlL/MsKkEDT6/leYpgjerhnVasFRGDvvBz5JYzgJUeu2yKzN4mYAvz6BIPpXxuqhalLUcVtOVC9jCOrcrhiaw9tWeIdxceW4vUNxeBNrk2muYl5yXt8eCtOovREeTyOzBsxa3vvbngiUYY1eb29/XRSKxudVjnEZx7nXLYHWTAr8lG/ON6wHKP5qehrIToIiKIMjCKi9zrrbYhWkIx+nbXJQWBD9NC18fmEbp0ouElLnNQoQfJqTcSrXFW3X76MTEUn6jnPaHYgJxRVLFDnFgY+qO33y+6y3wjXv8RvNvUXREtm4lR434EGMTnJ4GufBNRot1Bq4yP0RsuNldwq2WCNJD5sBP9UgkJkoXB4GyQUCEOsoXywQjlJ2gq9mgVnow1mpMnDlE2bWCLT4csoeVAFCMTgWBkkC0lVvctJRXrHO4CMfONr+KmQQL907v8FTxOA+W/MDsSPjZyXEHA3E7zfagcnaWXc2cQWNgbM3PwUFKCbjzSoQyhBrsHmdw8Akslsi9ksKoxm86k0Ex2XsDZWHqu58gN5hmoIS37SafWhLQe1gQ1VFpWge3skXpQjQZqp9zca2ZhDmHddOVM8orK3/9BPpL/lRFOqqOxqE7FOdQGlt5vq/hrF3DObigWk4ieA7NgbrSCJgx74Agy8yz3SznmhHKY9DWoKcYqDcue1WvM0TEuiu1HlC/IzVpwyAhTYy51llt14M2ciujA+kwfeFP+5qm4Q4xSjO+N1uS83N+OvQY/X72RBudRNuOuIst6dSlse21xX+ST8Mr2T9khPx4u1mACNUhImmiqofjSokDP8+lpPAfCsfofn9/RJINg5F+0zwGC0Xy2bH8WZIrUL4frX8z8f1gTpzVQ/V1b8gKJFATNQUkRMy0871j5cMphtO24KoJH2JT+1P8qFQz7QasvOFKO6o
+          flowType: Notification
+          signatureAlgorithm: sha512WithRSAEncryption
         cert:
           value: MIIFhTCCBG2gAwIBAgIJAOEfPHPNdSQRMA0GCSqGSIb3DQEBCwUAMC8xCzAJBgNVBAYTAkVFMQ4wDAYDVQQKEwVDeWJlcjEQMA4GA1UEAxMHVEMgcm9vdDAeFw0yNTA2MTIxNDM4NDVaFw0yNjA2MTIxNDM4NDVaMIGBMQswCQYDVQQGEwJFRTENMAsGA1UEBAwES2FydTENMAsGA1UEKgwETWF0aTEaMBgGA1UEBRMRUE5PRUUtMzAwMDEwMTAwMDQxJDAiBgNVBAMMG0thcnUsTWF0aSxQTk9FRS0zMDAwMTAxMDAwNDESMBAGA1UECwwJU0lHTkFUVVJFMIIDITANBgkqhkiG9w0BAQEFAAOCAw4AMIIDCQKCAwBv9rtZZe+Kf5APF0oWQoWKc52m5iHRFhZosavDDyaSoLAwR7lobnOpLv3jocBN0ulUgi+9u0EbvRY6jE9eNbFc5gPySBuP7Ku/8bbZXpbptRZd1v5CkadT8rmrKL28255GMxWozklmHCSGv2/TAhMueANaM7JCPIuKLRH4PT9jcv5TUdiq5i5ryCC66RAuSa33LBZLg1/GrL+qVKqsuDz8LSbf7r3A5Bqw9G6+1D9XqXRCS1n7/CgbmnXFG58BQkJ30g/Mpnwq37a8f5qzpZVI3hqsBGKmfI/BV7QyVL8xsE4q+9lQ/mnKfmEapaikCn8H/75ta5OsxEiq8NTlV2KBh//dAEkJx/TzDJjY7EBbBvmKZaDKsyQkwLkQWQFtoMywzL1e6VfQVcsGXFW1z54akN00Jw0S4eV3Y4vaVc0CKV2210/HQKAMOlkYfaSjTUfUTDLmfIORUBBmIDo4yJFem9MJx607TWr8pW2YckBhACz2TpAZK/nZlayGlfRy7jJqHewB84ZLYziv1xU29NHXvP/+PD72qSd8HAPS+G0/fB52RAHsCI7e+u2Iunm6Ln771hkctDdw8JWrs700d+92nDG9qoFsoIQPn2NUZiFsQbdZ1F4MxM5qJxl1yaauske6iVFsGFL+DeE2O8zZcr05TqK445ObYniaEfkQ4gBUZGOyRd+KkLQSjkRKVPV2IRbIG3ayzHs0Xu4I5k1bzeCnE8dfnDTA0Dh/TE711jhbahxExgFwmQ8A38GX65oM6GHCk2GkgbYKyIrpRX4WeTTuNhPK/ypZXAn1ym9nMKzPR0NTG9odSBBJIlZPXpVbb165h/2q+uc4mQbkdA/hNJz64c1W2GioMmTJK6JgpPJtn1M3pRC+Ciwk30evc91yf+nLTZyCtss3t4q2tRF+7MVsrfltwmF8VfPAXSwUer8UMeToas82dbsHlp6od8vmS63OwPXcaV9suh4yIm8tExDqvRY9qSMzXqVihyffskD2JExKOYXF+hjCwk0iP1GXTccCAwEAAaNSMFAwHwYDVR0jBBgwFoAUd+MjyzEFvM4RQYVFTDJo7qsij8cwHQYDVR0OBBYEFNi3lSKWT6YIkHpIXEpcoJcbSa/DMA4GA1UdDwEB/wQEAwIGQDANBgkqhkiG9w0BAQsFAAOCAQEAE3V+Z6iMpQH06e2I/uBI9r4OY0On5BK2SBlEW/tnHKfMEJSi0DEA59o0vm67CcmmvP51tIEzMCfCpi+axAx/Al/MOLcw/h/UuZItJ41LT/Bwf8RpL0hLsk1haKk2CHE8bnR+1QlC+0Ay9jlTK8CzesO8TipJjIZaUFrPtOasFsOXzhS0/oyHdCZBsCowbEePpCH+P5tBkrD1F3AcNk2q2/FJjr6xwBbnxPUF95JL2Bk3Uou1EAFYbqnTR4GY5EUtfUGufa8GK5ynm2DFo5SnskXZ3E71ZOZ/8b84ySl1ME71RsmZ1omZvZhGO2HFskHmPLyvTa5IzjXs01y/FipbgQ==
           certificateLevel: QUALIFIED

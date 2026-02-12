@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.0">
+<div class="nav-container" data-component="rp-api" data-version="3.2.1">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.0</span>
+    <span class="version">3.2.1</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,7 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.0</a>
+          <a href="introduction.html">3.2.1</a>
+        </li>
+        <li class="version">
+          <a href="3.2.0/introduction.html">3.2.0</a>
         </li>
         <li class="version">
           <a href="3.1.7/introduction.html">3.1.7</a>
@@ -191,7 +194,16 @@
 <h2 id="_rp_api_version_3_2_changes_compared_to_version_3_1"><a class="anchor" href="#_rp_api_version_3_2_changes_compared_to_version_3_1"></a>RP API version 3.2 changes compared to version 3.1</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_api_changes"><a class="anchor" href="#_api_changes"></a>API changes</h3>
+<h3 id="_rp_3_2_1"><a class="anchor" href="#_rp_3_2_1"></a>RP 3.2.1</h3>
+<div class="paragraph">
+<p>Signature scheme <code>RSASSA-PKCS#1-v1_5</code> has been restored as a legacy option.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rp_3_2_0"><a class="anchor" href="#_rp_3_2_0"></a>RP 3.2.0</h3>
+<div class="paragraph">
+<p><strong>API changes</strong>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -204,9 +216,9 @@ The error details are provided according to <a href="https://www.rfc-editor.org/
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Documentation changes</strong>:</p>
 </div>
-<div class="sect2">
-<h3 id="_documentation_changes"><a class="anchor" href="#_documentation_changes"></a>Documentation changes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -214,6 +226,9 @@ The error details are provided according to <a href="https://www.rfc-editor.org/
 </li>
 <li>
 <p>Page <a href="#additional_security_measures">Additional security measures</a> has been updated.</p>
+</li>
+<li>
+<p>Page <a href="#signature_protocols">Signature protocols</a> has been updated to clarify the deprecated status of <code>RSASSA-PKCS1-v#1_5</code> and its recommended usage only when <code>RSASSA-PSS</code> is not available.</p>
 </li>
 </ul>
 </div>
@@ -264,7 +279,7 @@ Note that version 3.0 was not widely publicly released.</p>
 <p>Added capability to link a device link based <code>certificate-choice</code> request to a subsequent notification based <code>signature</code> request via <code>/v3/signature/notification/linked/{document-number}</code>.</p>
 </li>
 <li>
-<p>Added an endpoint <code>/v3/signature/certificate/{document-number}</code> to request signing certificates when document number is know. This means that <code>certificate-choice</code> should only be used now before signature sessions in cases where document number is not know (e.g., no prior Smart-ID authentication).</p>
+<p>Added an endpoint <code>/v3/signature/certificate/{document-number}</code> to request signing certificates when document number is known. This means that <code>certificate-choice</code> should only be used now before signature sessions in cases where document number is not known (e.g., no prior Smart-ID authentication).</p>
 </li>
 </ul>
 </div>
