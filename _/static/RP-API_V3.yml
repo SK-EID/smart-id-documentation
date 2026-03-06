@@ -1333,7 +1333,15 @@ components:
         * Relying Party has no permission to invoke operations on accounts with `ADVANCED` certificates,
         * Relying Party has no permission to use requested capability.
         * Relying Party has no permission to access the requested feature or endpoint.
+        * Relying Party has no permission to request MD client IP-address, if it's sharing is forbidden by RP configuration.
         * Relying Party with given UUID does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExtendedProblemDetailsJson'
+          examples:
+            Forbidden error example with errors field:
+              $ref: '#/components/examples/ForbiddenErrorResponseWithErrorsFieldJsonExample'
     404_NotFound:
       description: Not Found - object described in URL was not found, essentially meaning that the user does not have an account in Smart-ID system.
       content:
@@ -1703,6 +1711,17 @@ components:
         errors:
         - code: NO_SUITABLE_ACCOUNT_FOUND
           detail: No suitable account of requested type found, but user has some other accounts
+    ForbiddenErrorResponseWithErrorsFieldJsonExample:
+      value:
+        type: about:blank
+        title: Forbidden
+        status: 403
+        detail: Forbidden
+        instance: /task-id/wCbZHrqH+7vY6YL9
+        errors:
+        - detail: Relying Party does not have permissions to request the MD client IP address sharing
+          paramName: shareMdClientIpAddress
+          pointer: /requestProperties/shareMdClientIpAddress
     NotFoundErrorResponseJsonExample:
       value:
         type: about:blank
