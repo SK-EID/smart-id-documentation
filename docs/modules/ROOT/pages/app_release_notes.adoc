@@ -11,11 +11,33 @@
 </style>
 ++++
 
+[#v320]
+== Smart-ID App v32.0
+.Released: 2026-03-30
+[%collapsible%open]
+
+====
+Fixed::
+* Remove id-card NFC signing full screen loader success.
+* Improve CAN field validation UX
+* Don't show success animation in case of web2app or app2app flow.
+* App does not open push transaction when pending QR transaction in background
+* Add id card NFC dependencies license info and dependency documentation
+* Better error handling when PIN1 or PIN2 is locked for device link operations.
+
+Changed::
+* Integrate LIB v25.2 (Android)
+* Integrate LIB v25.4 (iOS)
+
+Security::
+* Updated 3rd party libraries, inc ReadID M124
+====
+
 [#v316]
 == Smart-ID App v31.6
 [#v315]
 .Released: 2026-02-09
-[%collapsible%open]
+[%collapsible]
 ====
 Fixed::
 * Fix registration loader regression.
