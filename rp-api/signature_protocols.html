@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.2">
+<div class="nav-container" data-component="rp-api" data-version="3.2.3">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.2</span>
+    <span class="version">3.2.3</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,7 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.2</a>
+          <a href="introduction.html">3.2.3</a>
+        </li>
+        <li class="version">
+          <a href="3.2.2/introduction.html">3.2.2</a>
         </li>
         <li class="version">
           <a href="3.2.1/introduction.html">3.2.1</a>
@@ -459,6 +462,9 @@ puts rp_challenge</code></pre>
 </li>
 <li>
 <p>in case the RP is not acting as a broker, the <code>brokeredRpName</code> <strong>must be empty</strong> and the separator must still be used, i.e. <code>||</code>;</p>
+</li>
+<li>
+<p>the <code>relyingPartyName</code> value must match byte for byte with the one submitted in the initial RP API request (a common mistake is to use different capitalization);</p>
 </li>
 <li>
 <p><code>interactions</code> must be the same Base64-encoded byte string value that was used to initiate the session. Note that serializing a JSON object may produce different byte representations depending on the JSON library or serialization settings (such as parameter ordering or whitespace), which would result in a different Base64 value. It is recommended to store the initially created Base64 representation and not re-generate it later;</p>
