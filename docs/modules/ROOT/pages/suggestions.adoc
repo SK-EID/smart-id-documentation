@@ -18,7 +18,7 @@ into your web service you need to make some additional changes in User Interface
 | *Step 1* 
 2+| Detect if user is trying to use Smart-ID on same or other device.
 |  
-2+^| Use method that make sense for you, for example use User-Agent string for detection.
+2+^| Use method that make sense for you (https://www.npmjs.com/package/ua-parser-js[ua-parser-js] or similar), take into account that browsers alter user-agent value when user asks desktop site from mobile device.
 | *Step 2* 
 2+| Show respective button with meaningful text 
 | 
