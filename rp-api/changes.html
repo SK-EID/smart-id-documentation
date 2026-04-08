@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.2">
+<div class="nav-container" data-component="rp-api" data-version="3.2.3">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.2</span>
+    <span class="version">3.2.3</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,7 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.2</a>
+          <a href="introduction.html">3.2.3</a>
+        </li>
+        <li class="version">
+          <a href="3.2.2/introduction.html">3.2.2</a>
         </li>
         <li class="version">
           <a href="3.2.1/introduction.html">3.2.1</a>
@@ -196,6 +199,25 @@
 <div class="sect1">
 <h2 id="_rp_api_version_3_2_changes_compared_to_version_3_1"><a class="anchor" href="#_rp_api_version_3_2_changes_compared_to_version_3_1"></a>RP API version 3.2 changes compared to version 3.1</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_rp_3_2_3"><a class="anchor" href="#_rp_3_2_3"></a>RP 3.2.3</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Page <a href="device_link_test_endpoint.html#tag/device-link/POST/device-link" class="xref page">Device link test endpoint</a> has been updated to improve the structure.</p>
+</li>
+<li>
+<p>Server URL for <a href="device_link_test_endpoint.html#tag/device-link/POST/device-link" class="xref page">device link test endpoint</a> has been fixed.</p>
+</li>
+<li>
+<p>Description of parameter <code>userChallenge</code> has been clarified in <a href="api_specification.html" class="xref page">OpenAPI specification</a>.</p>
+</li>
+<li>
+<p>A note about a common mistake regarding <code>relyingPartyName</code> has been added to the <code>authCode</code> calculation and <code>ACSP_V2</code> protocol pages.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_rp_3_2_2"><a class="anchor" href="#_rp_3_2_2"></a>RP 3.2.2</h3>
 <div class="ulist">
@@ -238,10 +260,10 @@ The error details are provided according to <a href="https://www.rfc-editor.org/
 <p>Instructions have been fixed regarding session handling after <a href="callback_urls.html" class="xref page">callback URL</a> is used in the same-device flows.</p>
 </li>
 <li>
-<p>Page <a href="#additional_security_measures">Additional security measures</a> has been updated.</p>
+<p>Page <a href="additional_security_measures.html" class="xref page">Additional security measures</a> has been updated.</p>
 </li>
 <li>
-<p>Page <a href="#signature_protocols">Signature protocols</a> has been updated to clarify the deprecated status of <code>RSASSA-PKCS1-v#1_5</code> and its recommended usage only when <code>RSASSA-PSS</code> is not available.</p>
+<p>Page <a href="signature_protocols.html" class="xref page">Signature protocols</a> has been updated to clarify the deprecated status of <code>RSASSA-PKCS1-v#1_5</code> and its recommended usage only when <code>RSASSA-PSS</code> is not available.</p>
 </li>
 </ul>
 </div>

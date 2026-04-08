@@ -2,7 +2,7 @@ openapi: 3.1.1
 info:
   title: Smart-ID Automated Testing Interface
   version: 1.0.0
-  description: Smart-ID Relying Party API version 3 automated testing interface, also referred to as "autosigner". Mobile device is not required for testing. Session will be resolved with a predetermined result. Only known document numbers can be used for testing.
+  description: "Smart-ID helper API for automated testing of RP API v3 device link flows. \nFor background and usage guidance, it is recommended to first read the [Introduction](./mock_service.html) to the Mock Service. \n\nIn order to test their implementation in the demo environment, RPs should initially create the session via RP API in the usual way. \nThen (in the case of device link flows), the API endpoint described below should be used to simulate the mobile device interaction (Web2App, App2App, or QR). \nAfter that, the session will be resolved with a predetermined result based on the provided test document number.\nFinally, the session result can be obtained via RP API, as usually.\n"
   contact:
     name: SK ID Solutions
     url: https://www.skidsolutions.eu/
@@ -22,7 +22,9 @@ paths:
       tags:
       - Device Link
       summary: API endpoint for submitting device links to the automated testing interface
-      description: Used when device link endpoints are used with test accounts.
+      description: |-
+        For a general overview of the testing environment and its purpose, see [Introduction](./mock_service.html) to the Mock Service.
+        For details on how device links are generated and used in authentication/signing flows, see [Device link flow](./device_link_flows.html).
       operationId: sendDeviceLink
       requestBody:
         $ref: '#/components/requestBodies/DeviceLinkRequestBody'
@@ -35,19 +37,14 @@ components:
   schemas:
     DocumentNumber:
       type: string
-      description: One of the configured document numbers. Find more from https://sk-eid.github.io/smart-id-documentation/test_accounts.html.  Each resolves with a specific resultType. Mandatory and must be provided even for anonymous sessions, because this will determine the resultType.
-      enum:
-      - PNOEE-40404040009-MOCK-Q
-      - PNOLV-040404-10003-MOCK-Q
-      - PNOLT-40404040009-MOCK-Q
-      - PNOBE-04040400287-MOCK-Q
+      description: One of the configured document numbers. Each resolves with a specific resultType. Mandatory and must be provided even for anonymous sessions, because this will determine the resultType. See [Test accounts](../test_accounts.html) for available values.
     DeviceLink:
       type: string
-      description: The device link that will be tied to the provided documentNumber
+      description: Device link (Web2App link, App2App link, or the device link contained in a QR code) that the user would normally interact with in a live environment. In the automated testing interface, this interaction is simulated by sending the device link to this endpoint instead. The link should be constructed using the same principles as in the live environment and must correspond to the selected flowType. The provided device link will be associated with the specified documentNumber to simulate the transaction outcome.
       format: URL
     FlowType:
       type: string
-      description: the flow type the automated testing interface will use
+      description: Specifies which device link flow the automated testing interface will simulate. The provided deviceLink must correspond to the selected flow type.
       enum:
       - Web2App
       - App2App
@@ -88,7 +85,7 @@ components:
     DeviceLinkRequestBodyExample:
       value:
         documentNumber: PNOEE-40404040009-MOCK-Q
-        deviceLink: https://sid.demo.sk.ee/smart-id-rp/v3/device-link/?...
+        deviceLink: https://sid.demo.sk.ee/device-link/?...
         flowType: Web2App
         browserCookie: a=b;c=d
         initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
