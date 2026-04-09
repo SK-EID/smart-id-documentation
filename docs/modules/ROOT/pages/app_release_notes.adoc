@@ -11,6 +11,16 @@
 </style>
 ++++
 
+[#v321]
+== Smart-ID App v32.1
+.Released: 2026-04-10
+[%collapsible%open]
+
+====
+Fixed::
+* Update nfc lib to work with iOS 26.4
+====
+
 [#v320]
 == Smart-ID App v32.0
 .Released: 2026-03-30
