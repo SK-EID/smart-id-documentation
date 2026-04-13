@@ -1,6 +1,6 @@
 = Device link fallback page
 
-In some cases user may end up in device link fallback page.
+In some cases user may end up in device link fallback page - https://smart-id.com/device-link/?lang=eng.
 
 For better user experience there is possibility to view that page in different languages.
 

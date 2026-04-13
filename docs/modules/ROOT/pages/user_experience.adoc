@@ -1,0 +1,117 @@
+= User Experience
+:page-aliases: suggestions.adoc
+
+Integrating new https://www.smart-id.com/smart-id-brings-the-future-of-authentication-to-you/[Smart-ID+], Smart-ID RP API v3 
+ifeval::["{service-name}" != ""]
+xref:rp-api:ROOT:device_link_flows.adoc[device link flows],
+endif::[]
+ifeval::["{service-name}" == ""]
+https://sk-eid.github.io/smart-id-documentation/rp-api/device_link_flows.html[device link flows],
+endif::[]
+into your web service you need to make some additional changes in User Interface (UI) layer. Also give instructions in case something went wrong.
+
+// Table
+[cols="4a,4a,4a", options="header", stripes=odd, grid=none, frame=none]
+|=== 
+3+| 
+3+^| *Provide login options based on device*
+3+| Detect if user is trying to use Smart-ID on mobile, tablet or computer and provide options (same-device, cross-device or both) based on that. Use method that make sense for you (https://www.npmjs.com/package/ua-parser-js[ua-parser-js] or similar). +
+[IMPORTANT]
+.Please note
+====
+browsers alter user-agent value when user asks desktop site from mobile device.
+====
+
+^| *Phone: Provide both options* +
+^| *Tablet: Provide both options* +
+^| *Computer: Provide one option* +
+
+^| default: *same-device* +
+
+image::step-1-phone.png[static,150,title="",caption="",link=_images/step-1-phone.png]
+
+_"Open Smart-ID app"_ +
+_"Scan QR code with another device"_ 
+
+^| default: *cross-device* +
+
+image::step-1-tablet.png[static,220,title="",caption="",link=_images/step-1-tablet.png]
+
+_"Scan QR code with another device"_ +
+_"Open Smart-ID app"_
+
+^| *cross-device* +
+
+image::step-1-computer.png[static,400,title="",caption="",link=_images/step-1-computer.png]
+
+_"Sign in using Smart-ID QR code"_
+
+3+^| *Show instructions*
+
+^| 
+
+image::step-2-phone.png[static,150,title="",caption="",link=_images/step-2-phone.png]
+
+_Finish authentication in Smart-ID app_ +
+in case of user moves back without finishing transaction 
+2+^| 
+
+image::step-2-computer.gif[static,400,title="",caption="",link=_images/step-2-computer.gif]
+
+_Scan the QR code with Smart-ID app to continue_ +
+_This session is about to expire_ +
+Refresh QR code each second over 60 second period to leave time for the user to finish transaction in the app +
+Do not show QR code that is older than 3sec
+
+3+^| *User interaction*
+ 
+^| Smart-ID app is opened automatically
+
+image::SD-3a.png[static,150,title="",caption="",link=_images/SD-3a.png] 
+
+^| or https://smart-id.com/device-link/?lang=eng[fallback page] is displayed
+
+image::SD-3b.png[static,150,title="",caption="",link=_images/SD-3b.png] 
+
+Page guides user with instructions
+
+^| User opens Smart-ID app to scan QR code
+
+image::OD-3a.png[static,150,title="",caption="",link=_images/OD-3a.png] 
+
+3+^| *After successful PIN entry*
+
+^| user is redirected back to e-service
+
+image::SD-4.png[static,150,title="",caption="",link=_images/SD-4.png] 
+^|
+^| user returns back to e-service
+
+image::OD-4.png[static,500,title="",caption="",link=_images/OD-4.png] 
+
+3+^| *Web2app callback exceptions*
+^|
+
+image::step-5-phone.png[static,150,title="",caption="",link=_images/step-5-phone.png] 
+
+2+| In some cases user may end up in browser he/she did not start from and this results in session cookie verification failure.
+
+Some known cases::
+ - user started in a web browser embedded in an app
+ - user started from non-default browser (on an iOS device)
+ - user is using incognito or private mode
+
+_Please try again from your default browser._
+
+3+^| *Sample video through the eyes of a user*
+
+^|video::EizJiqN4Jx4[youtube]
+^| 
+^|video::V6BhvAJ7qsQ[youtube]
+|===
+
+.IMPORTANT
+[IMPORTANT]
+====
+At the end of authentication on *same device flow* (web2app) new tab is opened. We suggest closing old tab on the background when authentication has been finished on Smart-ID app.
+====
