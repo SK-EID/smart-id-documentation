@@ -16,11 +16,11 @@ The demo version has the following functionality:
 
 For using demo environment there is need to install Smart-ID demo app.
 
-Getting Smart-ID up and running is easy. Follow those easy 4 steps:
+Getting Smart-ID up and running is easy. Follow next steps:
 
 . **Registration & Installation**
-.. Install demo app on Android platform (minimum Android 5 required): https://play.google.com/apps/testing/com.stagnationlab.sk
-.. Steps to install on iOS (minimum iOS13 required):
+.. Install demo app on Android platform: https://play.google.com/apps/testing/com.stagnationlab.sk
+.. Steps to install on iOS:
 ... Download Testflight https://itunes.apple.com/us/app/testflight/id899247664?mt=8
 ... Join Smart-ID demo beta app in https://testflight.apple.com/join/DoWddZjR
 . **Start the app**
@@ -52,7 +52,7 @@ how Smart-ID app is automatically opened from another app.
 .. Get app for iOS platform by joining  https://testflight.apple.com/join/oAeBWz8l
 
 
-Your Smart-ID account is now ready to use. If you have iOS watch with watchOS 8.5 or later, then you can test Smart-ID from the watch as well.
+Your Smart-ID account is now ready to use. If you have iOS watch, then you can test Smart-ID from the watch as well.
 
 == Try it out
 
