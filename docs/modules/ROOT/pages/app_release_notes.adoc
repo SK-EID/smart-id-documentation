@@ -11,10 +11,28 @@
 </style>
 ++++
 
+[#v325]
+== Smart-ID App v32.5
+.Released: 2026-05-08
+[%collapsible%open]
+
+====
+Added::
+* Add iOS lock screen widget for QR scanner
+
+Fixed::
+* Disable Impeller render engine for Android 12 and lower (fix for CAT devices)
+
+Changed::
+* Add new error code for ID-card auth token validation failure and handle it as critical error
+* Change timeout modal to be less intrusive
+* Add iOS nfc lib version and license info
+====
+
 [#v321]
 == Smart-ID App v32.1
 .Released: 2026-04-10
-[%collapsible%open]
+[%collapsible]
 
 ====
 Fixed::
@@ -24,7 +42,7 @@ Fixed::
 [#v320]
 == Smart-ID App v32.0
 .Released: 2026-03-30
-[%collapsible%open]
+[%collapsible]
 
 ====
 Fixed::
