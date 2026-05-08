@@ -105,9 +105,9 @@ _Please try again from your default browser._
 
 3+^| *Sample video through the eyes of a user*
 
-^|video::EizJiqN4Jx4[youtube]
+^|video::EGFptcnNKV4[youtube]
 ^| 
-^|video::V6BhvAJ7qsQ[youtube]
+^|video::g9cMKfXL9Os[youtube]
 |===
 
 .IMPORTANT
