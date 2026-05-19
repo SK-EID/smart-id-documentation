@@ -56,8 +56,8 @@ We’re experiencing issues with some test numbers and are working on repairs.
 LT +
 LV +
 LV +
-BE | PNOEE-40504040001-DEM1-Q +
-PNOLT-40504040001-DEMO-Q +
+BE | PNOEE-40504040001-DEM2-Q +
+PNOLT-40504040001-DEM2-Q +
 PNOLV-050405-10009-DEM0-Q +
 https://www.pmlp.gov.lv/en/change-personal-identity-number[PNOLV-320000-10003-DEMO-Q] +
 PNOBE-05040400211-DEMO-Q | Issued using: +
@@ -71,7 +71,7 @@ LT +
 LV +
 BE | PNOEE-50001029996-DEMO-Q +
 PNOLT-50001029996-MOCK-Q +
-PNOLV-020100-29990-DEM1-Q +
+PNOLV-020100-29990-DEM2-Q +
 PNOBE-00010299944-MOCK-Q | Adult
 | OK | EE +
 LT +
@@ -91,7 +91,7 @@ PNOLV-320000-00032-DEMO-Q | User age is under 18 (2011-01-01)
 PNOLV-329999-99901-MOCK-Q | dateOfBirth in separate field
 | OK | LV | PNOLV-329999-99709-MOCK-Q | No dateOfBirth in separate field
 | OK | LT +
-LV | PNOLT-49912318881-DEMO-NQ +
+LV | PNOLT-49912318881-DEM1-NQ +
 PNOLV-311299-18886-MOCK-NQ |
 | USER_REFUSED | EE +
 LT +
