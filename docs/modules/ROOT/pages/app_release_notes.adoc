@@ -11,6 +11,17 @@
 </style>
 ++++
 
+[#v326]
+== Smart-ID App v32.6
+.Released: 2026-05-25
+[%collapsible%open]
+
+====
+Fixed::
+* "Confirm" button is not working during registration (iOS)
+* Voiceover/keyboard support is gone (iOS)
+====
+
 [#v325]
 == Smart-ID App v32.5
 .Released: 2026-05-08
