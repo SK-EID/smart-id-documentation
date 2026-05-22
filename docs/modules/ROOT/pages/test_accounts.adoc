@@ -43,12 +43,6 @@ PNOLV-020211-12351-MOCK-NQ
 
 == Notification flows
 
-.NB!
-[IMPORTANT]
-====
-We’re experiencing issues with some test numbers and are working on repairs. 
-====
-
 [cols="2m,1,3,3", options="header", stripes=odd, grid=none, frame=none]
 |===
 | EndResult | Country | Document Number | Comment
