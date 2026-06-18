@@ -11,10 +11,32 @@
 </style>
 ++++
 
+[#v330]
+== Smart-ID App v33.0
+.Released: 2026-07-01
+[%collapsible%open]
+
+====
+Added::
+* Add brokered RP name and redesign transaction view.
+* Added ID card libs with LV support
+
+Changed::
+* Regroup registration methods
+* New design for country selection
+* Redesign the How-to-use tutorial with method-based slides
+* Leaving only the Artea logo
+* Integrate LIB v25.3 (Android)
+* Integrate LIB v25.5 (iOS)
+
+Security::
+* Updated 3rd party libraries, inc ReadID M127
+====
+
 [#v326]
 == Smart-ID App v32.6
 .Released: 2026-05-25
-[%collapsible%open]
+[%collapsible]
 
 ====
 Fixed::
@@ -25,7 +47,7 @@ Fixed::
 [#v325]
 == Smart-ID App v32.5
 .Released: 2026-05-08
-[%collapsible%open]
+[%collapsible]
 
 ====
 Added::
