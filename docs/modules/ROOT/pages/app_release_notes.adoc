@@ -11,10 +11,31 @@
 </style>
 ++++
 
+[#v335]
+== Smart-ID App v33.5
+.Released: 2026-09-02
+[%collapsible%open]
+
+====
+
+Fixed::
+* Fix for older LV (SeID) Idemia cards on Android and iOS NFC libs.
+* Fix iOS uses "too much" data (left over files will be removed with next version)
+* Fix retries when network issues occur during registration.
+* Fix ABIV face recognition step showing English instead of the app language
+* Make hybrid app compatible with Chrome 51 (Android 7.0)
+* Visual improvements to new registration method selection.
+* Fix country select animation.
+* Fix continuous menu flickering when pressing "Upgrade Smart-ID level" button.
+
+Security::
+* Updated 3rd party libraries, inc ReadID M128
+====
+
 [#v330]
 == Smart-ID App v33.0
 .Released: 2026-07-01
-[%collapsible%open]
+[%collapsible]
 
 ====
 Added::
