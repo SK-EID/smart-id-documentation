@@ -11,6 +11,17 @@
 </style>
 ++++
 
+[#v336]
+== Smart-ID App v33.6
+.Released: 2026-09-09
+[%collapsible%open]
+
+====
+
+Fixed::
+* Fix renewal notification scheduling on iOS 27.
+====
+
 [#v335]
 == Smart-ID App v33.5
 .Released: 2026-09-02
