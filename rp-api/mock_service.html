@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.3">
+<div class="nav-container" data-component="rp-api" data-version="3.2.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.3</span>
+    <span class="version">3.2.6</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,13 +165,7 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.3</a>
-        </li>
-        <li class="version">
-          <a href="3.2.2/introduction.html">3.2.2</a>
-        </li>
-        <li class="version">
-          <a href="3.2.1/introduction.html">3.2.1</a>
+          <a href="introduction.html">3.2.6</a>
         </li>
         <li class="version">
           <a href="3.2.0/introduction.html">3.2.0</a>
@@ -256,6 +250,19 @@ To achieve this flow in the Demo environment, the Mock Service requires the RP t
 To replicate this in the Demo environment, the Mock Service processes the signing or authentication request and performs a GET request to the <a href="callback_urls.html" class="xref page">Callback URL</a> supplied by the RP. It includes the appropriate cookies and additional parameters, such as the <code>userChallengeVerifier</code> and <code>sessionSecretDigest</code>, which the RP would normally receive via the callback URL from the real application.</p>
 </div>
 <div class="paragraph">
+<p>The Mock Service provides ways to change this <a href="callback_urls.html" class="xref page">Callback URL</a> redirect behavior:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The callback can be disabled with the <code>disableCallbackGetRequest</code> parameter. If set to <code>true</code> then the Mock Service will not do a GET request to the callback URL. Instead the generated callback URL will be available from the <code>/device-link/callback-url</code> endpoint. This allows the RP to make the callback themselves. This is useful when the callback server is not publicly accessible over the internet.</p>
+</li>
+<li>
+<p>The <code>initialCallbackUrl</code> used for building the final callback URL can be changed with the <code>replacementInitialCallbackUrl</code> parameter. If provided then the <code>initialCallbackUrl</code> provided to Core is ignored and the <code>replacementInitialCallbackUrl</code> is used instead. This is useful when the callback server does not support HTTPS as Core only accepts HTTPS callback URLs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
 <p>The following diagram describes the the simplified version of the device link based flow for the <code>authentication</code> session in Live environment. The full version of the diagram can be found at the <a href="device_link_flows.html" class="xref page">Device link flow</a> page.</p>
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
@@ -268,7 +275,7 @@ To replicate this in the Demo environment, the Mock Service processes the signin
 </div>
 <div class="imageblock sequence kroki-format-svg kroki">
 <div class="content">
-<a class="image" href="_images/flow-d73b4df9480fa06a145d6f7d1014fe2adf375107.svg"><img src="_images/flow-d73b4df9480fa06a145d6f7d1014fe2adf375107.svg" alt="flow"></a>
+<a class="image" href="_images/flow-815bfb5a360b0e32e0ad9a0db4409846f6c07fc5.svg"><img src="_images/flow-815bfb5a360b0e32e0ad9a0db4409846f6c07fc5.svg" alt="flow"></a>
 </div>
 </div>
 </div>

@@ -286,37 +286,6 @@ paths:
           $ref: '#/components/responses/480_ClientTooOld'
         "580":
           $ref: '#/components/responses/580_SystemUnderMaintenance'
-  /v3/signature/notification/linked/{document-number}:
-    post:
-      tags:
-      - Signature session
-      summary: Notification based signature session that is linked to the preceding device link based certificate-choice request
-      description: |
-        This endpoint is used right after a device link based certificate-choice request. It creates a linked session for creating a digital signature.
-
-        Note that interactions involving verification code choice, namely `confirmationMessageAndVerificationCodeChoice`, is forbidden for this endpoint (since verification code is not shown to the user in the linked flow).
-
-        After signature is completed, the Smart-ID app will launch the `callbackUrl` given in the preceding device link based `certificate-choice` request as explained in [Callback URLs](./callback_urls.html#callback_urls_in_linked_notification_based_flows) page.
-      operationId: signNotificationLinked
-      parameters:
-      - $ref: '#/components/parameters/document-number'
-      requestBody:
-        $ref: '#/components/requestBodies/NotificationSigningLinkedRequestBody'
-      responses:
-        "200":
-          $ref: '#/components/responses/NotificationSigningLinkedResponse'
-        "400":
-          $ref: '#/components/responses/400_BadRequest'
-        "401":
-          $ref: '#/components/responses/401_Unauthorized'
-        "403":
-          $ref: '#/components/responses/403_Forbidden'
-        "404":
-          $ref: '#/components/responses/404_DocumentNotFound'
-        "480":
-          $ref: '#/components/responses/480_ClientTooOld'
-        "580":
-          $ref: '#/components/responses/580_SystemUnderMaintenance'
   /v3/signature/certificate/{document-number}:
     post:
       tags:
@@ -363,6 +332,37 @@ paths:
           $ref: '#/components/responses/403_Forbidden'
         "404":
           $ref: '#/components/responses/404_NotFound'
+        "480":
+          $ref: '#/components/responses/480_ClientTooOld'
+        "580":
+          $ref: '#/components/responses/580_SystemUnderMaintenance'
+  /v3/signature/notification/linked/{document-number}:
+    post:
+      tags:
+      - Signature session
+      summary: Notification based signature session that is linked to the preceding device link based certificate-choice request
+      description: |
+        This endpoint is used right after a device link based certificate-choice request. It creates a linked session for creating a digital signature.
+
+        Note that interactions involving verification code choice, namely `confirmationMessageAndVerificationCodeChoice`, is forbidden for this endpoint (since verification code is not shown to the user in the linked flow).
+
+        After signature is completed, the Smart-ID app will launch the `callbackUrl` given in the preceding device link based `certificate-choice` request as explained in [Callback URLs](./callback_urls.html#callback_urls_in_linked_notification_based_flows) page.
+      operationId: signNotificationLinked
+      parameters:
+      - $ref: '#/components/parameters/document-number'
+      requestBody:
+        $ref: '#/components/requestBodies/NotificationSigningLinkedRequestBody'
+      responses:
+        "200":
+          $ref: '#/components/responses/NotificationSigningLinkedResponse'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "401":
+          $ref: '#/components/responses/401_Unauthorized'
+        "403":
+          $ref: '#/components/responses/403_Forbidden'
+        "404":
+          $ref: '#/components/responses/404_DocumentNotFound'
         "480":
           $ref: '#/components/responses/480_ClientTooOld'
         "580":
@@ -492,7 +492,7 @@ components:
       format: uri
       maxLength: 1800
       pattern: ^https:\/\/([^|#]+)$
-      description: Callback URL the Smart-ID app will add parameters to and launch after a successful Web2App or App2App flow. Mandatory if Web2App and App2App flows are used. If the callback URL contains vertical bar characters `|` (U+007C), they **must** be percent encoded. Must use `HTTPS` scheme. Must not contain URL fragments (`#`). [Callback URLs](./callback_urls.html) page explains how to verify the full callback URL. Must be different URLs in App2App and Web2App flows.
+      description: Callback URL the Smart-ID app will add parameters to and launch after a successful Web2App or App2App flow. Mandatory if Web2App and App2App flows are used. Parameter values in the callback URL must be URL-encoded. Must use `HTTPS` scheme. Must not contain URL fragments (`#`). [Callback URLs](./callback_urls.html) page explains how to verify the full callback URL. Must be different URLs in App2App and Web2App flows.
     AuthCertificateLevel:
       type: string
       enum:
@@ -1198,6 +1198,9 @@ components:
                 - RUNNING
                 - COMPLETE
                 description: State of request. `RUNNING`/`COMPLETE`.
+              deviceLinkRegistered:
+                type: boolean
+                description: "Only present for the device link flows and `flowType`:`QR`/`Web2App`/`App2App`. \nValue is true if a user has interacted with the device link and the transaction is successfully created, false otherwise.\nNo value when the `flowType` is `NOTIFICATION`.\n"
               result:
                 type: object
                 required:

@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.3">
+<div class="nav-container" data-component="rp-api" data-version="3.2.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.3</span>
+    <span class="version">3.2.6</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,13 +165,7 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.3</a>
-        </li>
-        <li class="version">
-          <a href="3.2.2/introduction.html">3.2.2</a>
-        </li>
-        <li class="version">
-          <a href="3.2.1/introduction.html">3.2.1</a>
+          <a href="introduction.html">3.2.6</a>
         </li>
         <li class="version">
           <a href="3.2.0/introduction.html">3.2.0</a>
@@ -398,18 +392,18 @@ import (
 )
 
 func main() {
-	var rpChallengeBase64 string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var rpChallengeBase64 = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
 	var rpChallengeBytes, err = base64.StdEncoding.DecodeString(rpChallengeBase64)
 	if err != nil {
 		panic(err)
 	}
 
-	var sha256Hash [32]byte = sha256.Sum256(rpChallengeBytes)
-	var result int = int(sha256Hash[len(sha256Hash)-2])&lt;&lt;8 + int(sha256Hash[len(sha256Hash)-1])
+	var sha256Hash = sha256.Sum256(rpChallengeBytes)
+	var result = int(sha256Hash[len(sha256Hash)-2])&lt;&lt;8 + int(sha256Hash[len(sha256Hash)-1])
 	result %= 10000
 
-	var verificationCode string = fmt.Sprintf("%04d", result)
-	fmt.Printf("%s\n",verificationCode)
+	var verificationCode = fmt.Sprintf("%04d", result)
+	fmt.Printf("%s\n", verificationCode)
 }</code></pre>
 </div>
 </div>
@@ -417,12 +411,12 @@ func main() {
 <div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::decode;
-use sha2::{Sha256, Digest};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine, prelude::BASE64_STANDARD};
+use sha2::{Digest, Sha256};
 
 fn main() {
     let rp_challenge_base64: &amp;str = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg==";
-    let rp_challenge_bytes = decode(rp_challenge_base64).unwrap();
+    let rp_challenge_bytes = BASE64_STANDARD.decode(rp_challenge_base64).unwrap();
     let sha256_hash = Sha256::digest(&amp;rp_challenge_bytes);
     let result = (((sha256_hash[30] as u16) &lt;&lt; 8) + (sha256_hash[31] as u16)) % 10000;
     let verification_code: String = format!("{:04}", result);
