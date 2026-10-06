@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.3">
+<div class="nav-container" data-component="rp-api" data-version="3.2.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.3</span>
+    <span class="version">3.2.6</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,22 +165,22 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.3</a>
+          <a href="introduction.html">3.2.6</a>
+        </li>
+        <li class="version">
+          <a href="3.2.5/introduction.html">3.2.5</a>
+        </li>
+        <li class="version">
+          <a href="3.2.4/introduction.html">3.2.4</a>
+        </li>
+        <li class="version">
+          <a href="3.2.3/introduction.html">3.2.3</a>
         </li>
         <li class="version">
           <a href="3.2.2/introduction.html">3.2.2</a>
         </li>
         <li class="version">
           <a href="3.2.1/introduction.html">3.2.1</a>
-        </li>
-        <li class="version">
-          <a href="3.2.0/introduction.html">3.2.0</a>
-        </li>
-        <li class="version">
-          <a href="3.1.7/introduction.html">3.1.7</a>
-        </li>
-        <li class="version">
-          <a href="3.0.3/introduction.html">3.0.3</a>
         </li>
       </ul>
     </li>
@@ -199,6 +199,65 @@
 <div class="sect1">
 <h2 id="_rp_api_version_3_2_changes_compared_to_version_3_1"><a class="anchor" href="#_rp_api_version_3_2_changes_compared_to_version_3_1"></a>RP API version 3.2 changes compared to version 3.1</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_rp_3_2_6"><a class="anchor" href="#_rp_3_2_6"></a>RP 3.2.6</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Page <a href="callback_urls.html" class="xref page">Callback URLs</a> has been updated to include instructions for handling cases where the authentication flow is opened in a different browser than the one used to initiate the flow.</p>
+</li>
+<li>
+<p>Page <a href="device_link_test_endpoint.html#tag/device-link/POST/device-link" class="xref page">Device link endpoint</a> has been updated to improve the structure.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rp_3_2_5"><a class="anchor" href="#_rp_3_2_5"></a>RP 3.2.5</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The Mock Service was updated.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/device-link</code> <code>POST</code> endpoint was changed.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>flowType</code> and <code>initialCallbackUrl</code> parameters were removed.</p>
+</li>
+<li>
+<p><code>replacementInitialCallbackUrl</code> and <code>disableCallbackGetRequest</code> parameters were added.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New <code>/device-link/callback-url</code> <code>GET</code> endpoint was added.</p>
+</li>
+<li>
+<p>The Mock Service info and diagrams were updated.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rp_3_2_4"><a class="anchor" href="#_rp_3_2_4"></a>RP 3.2.4</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Code examples for Go and Rust languages were updated.</p>
+</li>
+<li>
+<p>Page <a href="device_link_flows.html" class="xref page">Device link flows</a> has been updated to improve the "Parameter visibility" table.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_rp_3_2_3"><a class="anchor" href="#_rp_3_2_3"></a>RP 3.2.3</h3>
 <div class="ulist">
@@ -385,7 +444,20 @@ Note that version 3.0 was not widely publicly released.</p>
 <p>The RP API server now provides the device link base URL to RPs.</p>
 </li>
 <li>
-<p>The session status response (<code>GET /session/{sessionID}</code>) now includes <code>userChallenge</code> and <code>flowType</code>.</p>
+<p>The session status response (<code>GET /v3/session/{sessionID}</code>) now includes following new parameters:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>userChallenge</code></p>
+</li>
+<li>
+<p><code>flowType</code></p>
+</li>
+<li>
+<p><code>deviceLinkRegistered</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Added <code>interactionTypeUsed</code> to v3 responses.</p>

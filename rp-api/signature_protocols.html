@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.3">
+<div class="nav-container" data-component="rp-api" data-version="3.2.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.3</span>
+    <span class="version">3.2.6</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,22 +165,22 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.3</a>
+          <a href="introduction.html">3.2.6</a>
+        </li>
+        <li class="version">
+          <a href="3.2.5/introduction.html">3.2.5</a>
+        </li>
+        <li class="version">
+          <a href="3.2.4/introduction.html">3.2.4</a>
+        </li>
+        <li class="version">
+          <a href="3.2.3/introduction.html">3.2.3</a>
         </li>
         <li class="version">
           <a href="3.2.2/introduction.html">3.2.2</a>
         </li>
         <li class="version">
           <a href="3.2.1/introduction.html">3.2.1</a>
-        </li>
-        <li class="version">
-          <a href="3.2.0/introduction.html">3.2.0</a>
-        </li>
-        <li class="version">
-          <a href="3.1.7/introduction.html">3.1.7</a>
-        </li>
-        <li class="version">
-          <a href="3.0.3/introduction.html">3.0.3</a>
         </li>
       </ul>
     </li>
@@ -325,13 +325,13 @@ import (
 )
 
 func main() {
-	var rpChallengeBytes []byte = make([]byte, 64)
+	var rpChallengeBytes = make([]byte, 64)
 	_, err := rand.Read(rpChallengeBytes)
 	if err != nil {
 		fmt.Printf("error: %s\n", err)
 		return
 	}
-	var rpChallenge []byte = []byte(base64.StdEncoding.EncodeToString([]byte(rpChallengeBytes)))
+	var rpChallenge = []byte(base64.StdEncoding.EncodeToString([]byte(rpChallengeBytes)))
 	fmt.Printf("%q\n", rpChallenge)
 }</code></pre>
 </div>
@@ -340,14 +340,16 @@ func main() {
 <div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
-use rand::RngCore;
-use rand::rngs::OsRng;
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::BASE64_STANDARD};
+use rand::{TryRng as _, rngs::SysRng};
 
 fn main() {
     let mut rp_challenge_bytes: [u8; 64] = [0u8; 64];
-    OsRng.fill_bytes(&amp;mut rp_challenge_bytes);
-    let rp_challenge_string: String = base64::engine::general_purpose::STANDARD.encode(rp_challenge_bytes);
+    if SysRng.try_fill_bytes(&amp;mut rp_challenge_bytes).is_err() {
+        eprintln!("Could not generate randomness");
+        return;
+    }
+    let rp_challenge_string: String = BASE64_STANDARD.encode(rp_challenge_bytes);
     let rp_challenge: &amp;[u8] = rp_challenge_string.as_bytes();
     println!("{:?}\n{}", rp_challenge, rp_challenge_string);
 }</code></pre>
@@ -679,31 +681,32 @@ print(base64.b64encode(digest))</code></pre>
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main
 
 import (
-	"bytes"
+	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/base64"
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "ACSP_V2"
-	var serverRandom string = "MTlop6EXCrQ6FOErcKjxUhbV"
-	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var userChallenge string = "GnsWXXEjTCKR89fj9uo5u5ReBZ9JR7_pezLAI5jMS00"
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var interactionTypeUsed string = "confirmationMessage"
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var flowType string = "Web2App"
+	var schemeName = "smart-id"
+	var signatureProtocol = "ACSP_V2"
+	var serverRandom = "MTlop6EXCrQ6FOErcKjxUhbV"
+	var rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var userChallenge = "GnsWXXEjTCKR89fj9uo5u5ReBZ9JR7_pezLAI5jMS00"
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var interactionTypeUsed = "confirmationMessage"
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var flowType = "Web2App"
 
-    var interactionsHash [32]byte = sha256.Sum256([]byte(interactions))
-    var interactionsBase64 string = base64.StdEncoding.EncodeToString(interactionsHash[:])
+	var interactionsHash = sha256.Sum256([]byte(interactions))
+	var interactionsBase64 = base64.StdEncoding.EncodeToString(interactionsHash[:])
 
-	var acspv2Payload string = strings.Join([]string{
+	var acspv2Payload = strings.Join([]string{
 		schemeName,
 		signatureProtocol,
 		serverRandom,
@@ -713,11 +716,11 @@ func main() {
 		brokeredRpNameBase64,
 		interactionsBase64,
 		interactionTypeUsed,
-		initialCallbackUrl,
+		initialCallbackURL,
 		flowType,
 	}, separator)
 
-	var digest [64]byte = sha512.Sum512([]byte(acspv2Payload))
+	var digest = sha512.Sum512([]byte(acspv2Payload))
 	fmt.Printf("%q\n", base64.StdEncoding.EncodeToString(digest[:]))
 }</code></pre>
 </div>
@@ -726,8 +729,8 @@ func main() {
 <div id="_tabs_2_rust--panel" class="tabpanel" aria-labelledby="_tabs_2_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
-use sha2::{Sha256, Sha512, Digest};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::BASE64_STANDARD};
+use sha2::{Digest, Sha256, Sha512};
 
 fn main() {
     let separator: &amp;str = "|";
@@ -745,9 +748,9 @@ fn main() {
     let flow_type: &amp;str = "Web2App";
 
     let interactions_hash = Sha256::digest(interactions.as_bytes());
-    let interactions_base64 = &amp;base64::engine::general_purpose::STANDARD.encode(interactions_hash);
+    let interactions_base64 = &amp;BASE64_STANDARD.encode(interactions_hash);
 
-    let acsp_v2_payload_parts: [&str; 10] = [
+    let acsp_v2_payload_parts: [&str; 11] = [
         scheme_name,
         signature_protocol,
         server_random,
@@ -766,7 +769,7 @@ fn main() {
     let mut hasher = Sha512::new();
     hasher.update(acsp_v2_payload.as_bytes());
     let digest: Vec&lt;u8&gt; = hasher.finalize().to_vec();
-    println!("{:?}", base64::engine::general_purpose::STANDARD.encode(digest))
+    println!("{}", BASE64_STANDARD.encode(digest))
 }</code></pre>
 </div>
 </div>

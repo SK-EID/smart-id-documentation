@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.3">
+<div class="nav-container" data-component="rp-api" data-version="3.2.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.3</span>
+    <span class="version">3.2.6</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,22 +165,22 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.3</a>
+          <a href="introduction.html">3.2.6</a>
+        </li>
+        <li class="version">
+          <a href="3.2.5/introduction.html">3.2.5</a>
+        </li>
+        <li class="version">
+          <a href="3.2.4/introduction.html">3.2.4</a>
+        </li>
+        <li class="version">
+          <a href="3.2.3/introduction.html">3.2.3</a>
         </li>
         <li class="version">
           <a href="3.2.2/introduction.html">3.2.2</a>
         </li>
         <li class="version">
           <a href="3.2.1/introduction.html">3.2.1</a>
-        </li>
-        <li class="version">
-          <a href="3.2.0/introduction.html">3.2.0</a>
-        </li>
-        <li class="version">
-          <a href="3.1.7/introduction.html">3.1.7</a>
-        </li>
-        <li class="version">
-          <a href="3.0.3/introduction.html">3.0.3</a>
         </li>
       </ul>
     </li>
@@ -484,13 +484,13 @@ type Interactions struct {
 }
 
 func main() {
-	var interactions []Interactions = []Interactions{{Type: "confirmationMessage", DisplayText200: "Longer description of the transaction context"}, {Type: "displayTextAndPIN", DisplayText60: "Short description of the transaction context"}}
+	var interactions = []Interactions{{Type: "confirmationMessage", DisplayText200: "Longer description of the transaction context"}, {Type: "displayTextAndPIN", DisplayText60: "Short description of the transaction context"}}
 	interactionsBytes, err := json.Marshal(interactions)
 	if err != nil {
 		fmt.Printf("error: %s\n", err)
 		return
 	}
-	var interactionsBase64 []byte = []byte(base64.StdEncoding.EncodeToString(interactionsBytes))
+	var interactionsBase64 = []byte(base64.StdEncoding.EncodeToString(interactionsBytes))
 	fmt.Printf("%q\n", interactionsBase64)
 }</code></pre>
 </div>
@@ -499,32 +499,33 @@ func main() {
 <div id="_tabs_1_rust--panel" class="tabpanel" aria-labelledby="_tabs_1_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::BASE64_STANDARD};
 use serde::{Deserialize, Serialize};
 
-type Interactions&lt;'a&gt; = Vec&lt;Interaction&lt;'a&gt;&gt;;
+type Interactions = Vec&lt;Interaction&gt;;
 
 #[derive(Debug, Deserialize, Serialize)]
-enum DisplayText&lt;'a&gt; {
+enum DisplayText {
     #[serde(rename = "displayText200")]
-    DisplayText200(&amp;'a str),
+    DisplayText200(String),
     #[serde(rename = "displayText60")]
-    DisplayText60(&amp;'a str),
+    DisplayText60(String),
 }
 
 #[derive(Serialize, Deserialize)]
-struct Interaction&lt;'a&gt; {
+struct Interaction {
     #[serde(rename = "type")]
-    type_field: &amp;'a str,
+    type_field: String,
     #[serde(flatten)]
-    display_text: DisplayText&lt;'a&gt;,
+    display_text: DisplayText,
 }
 
 fn main() {
-    let interactions: Interactions = vec![Interaction{type_field: "confirmationMessage", display_text: DisplayText::DisplayText200("Longer description of the transaction context")}, Interaction{type_field: "displayTextAndPIN", display_text: DisplayText::DisplayText60("Short description of the transaction context")}];
+    let interactions: Interactions = vec![Interaction{type_field: String::from("confirmationMessage"), display_text: DisplayText::DisplayText200(String::from("Longer description of the transaction context"))}, Interaction{type_field: String::from("displayTextAndPIN"), display_text: DisplayText::DisplayText60(String::from("Short description of the transaction context"))}];
 
-    let interactions_base64: String = base64::engine::general_purpose::STANDARD.encode(serde_json::to_string(&amp;interactions).unwrap().into_bytes());
-    println!("{:?}", interactions_base64);
+    let interactions_base64: String =
+        BASE64_STANDARD.encode(serde_json::to_string(&amp;interactions).unwrap().into_bytes());
+    println!("{}", interactions_base64);
 }</code></pre>
 </div>
 </div>

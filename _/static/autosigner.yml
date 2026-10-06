@@ -2,7 +2,7 @@ openapi: 3.1.1
 info:
   title: Smart-ID Automated Testing Interface
   version: 1.0.0
-  description: "Smart-ID helper API for automated testing of RP API v3 device link flows. \nFor background and usage guidance, it is recommended to first read the [Introduction](./mock_service.html) to the Mock Service. \n\nIn order to test their implementation in the demo environment, RPs should initially create the session via RP API in the usual way. \nThen (in the case of device link flows), the API endpoint described below should be used to simulate the mobile device interaction (Web2App, App2App, or QR). \nAfter that, the session will be resolved with a predetermined result based on the provided test document number.\nFinally, the session result can be obtained via RP API, as usually.\n"
+  description: "Smart-ID helper API for automated testing of RP API v3 device link flows. \nFor background and usage guidance, it is recommended to first read the [Introduction](./mock_service.html) to the Mock Service. \n\nIn order to test their implementation in the demo environment, RPs should initially create the session via RP API in the usual way. \nThen (in the case of device link flows), the `/device-link` endpoint described below should be used to simulate the mobile device interaction (Web2App, App2App, or QR). \nAfter that, the session will be resolved with a predetermined result based on the provided test document number. \nIf the RP disabled the callback in `/device-link` request then the RP can fetch the callback URL from the `/device-link/callback-url` endpoint and make the request to it themselves. \nFinally, the session result can be obtained via RP API, as usually.\n"
   contact:
     name: SK ID Solutions
     url: https://www.skidsolutions.eu/
@@ -13,14 +13,9 @@ info:
   termsOfService: https://www.skidsolutions.eu/resources/general-terms-of-subscriber-agreement/
 servers:
 - url: https://sid.demo.sk.ee/mock
-tags:
-- name: Device Link
-  description: API endpoint for submitting device links to the automated testing interface
 paths:
   /device-link:
     post:
-      tags:
-      - Device Link
       summary: API endpoint for submitting device links to the automated testing interface
       description: |-
         For a general overview of the testing environment and its purpose, see [Introduction](./mock_service.html) to the Mock Service.
@@ -32,32 +27,53 @@ paths:
         "200":
           description: OK
         "400":
-          description: Bad request. Client error.
+          $ref: '#/components/responses/400_BadRequest'
+        "503":
+          $ref: '#/components/responses/503_ServiceUnavailable'
+  /device-link/callback-url/{sessionToken}:
+    get:
+      operationId: getCallbackUrl
+      summary: API endpoint for retrieving callback URLs when `disableCallbackGetRequest` was used
+      description: |-
+        A long poll endpoint that returns the callback URLs that would be called by the mobile device.
+        The callback URL is available here only if the callback GET request was disabled in the device link POST request (with the `disableCallbackGetRequest` parameter), the same-device flow (App2App & Web2App) is used and the RP request was successfully completed with OK result by the automated testing interface. The RP should call the returned callback URL themselves.
+      parameters:
+      - name: sessionToken
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The session token from the device link.
+      - name: timeoutMs
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 30000
+        description: Request long poll timeout value in milliseconds. If missing the request is processed immediately.
+      responses:
+        "200":
+          description: Callback URL found
+          $ref: '#/components/responses/CallbackUrlResponseBody'
+        "400":
+          $ref: '#/components/responses/400_BadRequest'
+        "404":
+          $ref: '#/components/responses/404_NotFound'
 components:
   schemas:
-    DocumentNumber:
-      type: string
-      description: One of the configured document numbers. Each resolves with a specific resultType. Mandatory and must be provided even for anonymous sessions, because this will determine the resultType. See [Test accounts](../test_accounts.html) for available values.
-    DeviceLink:
-      type: string
-      description: Device link (Web2App link, App2App link, or the device link contained in a QR code) that the user would normally interact with in a live environment. In the automated testing interface, this interaction is simulated by sending the device link to this endpoint instead. The link should be constructed using the same principles as in the live environment and must correspond to the selected flowType. The provided device link will be associated with the specified documentNumber to simulate the transaction outcome.
-      format: URL
-    FlowType:
-      type: string
-      description: Specifies which device link flow the automated testing interface will simulate. The provided deviceLink must correspond to the selected flow type.
-      enum:
-      - Web2App
-      - App2App
-      - QR
-    BrowserCookie:
-      type: string
-      description: A string or stringified JSON of the cookie value that RP would have set to user's browser if this was a user-initiated session. Required if flowType is Web2App or App2App. Should be ignored if flowType is QR.
-    InitialCallbackUrl:
-      type: string
-      description: The callback URL the automated testing interface will add parameters to and launch after a successful Web2App or App2App flow. Mandatory if Web2App and App2App flows are used, ignored for QR flow.
-      format: URL
+    ErrorDetail:
+      description: Returned when an error occurred with the request.
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: The human-readable summary of the error
   requestBodies:
     DeviceLinkRequestBody:
+      description: Contains the required data for the Mock Service to simulate the mobile device.
       required: true
       content:
         application/json:
@@ -66,26 +82,92 @@ components:
             required:
             - documentNumber
             - deviceLink
-            - flowType
             properties:
               documentNumber:
-                $ref: '#/components/schemas/DocumentNumber'
+                type: string
+                description: One of the configured document numbers. Each resolves with a specific resultType. Mandatory and must be provided even for anonymous sessions, because this will determine the resultType. See [Test accounts](../test_accounts.html) for available values.
               deviceLink:
-                $ref: '#/components/schemas/DeviceLink'
-              flowType:
-                $ref: '#/components/schemas/FlowType'
+                type: string
+                description: Device link (Web2App link, App2App link, or the device link contained in a QR code) that the user would normally interact with in a live environment. In the automated testing interface, this interaction is simulated by sending the device link to this endpoint instead. The link should be constructed using the same principles as in the live environment and must correspond to the selected flowType. The provided device link will be associated with the specified documentNumber to simulate the transaction outcome.
+                format: URL
               browserCookie:
-                $ref: '#/components/schemas/BrowserCookie'
-              initialCallbackUrl:
-                $ref: '#/components/schemas/InitialCallbackUrl'
+                type: string
+                description: A string or stringified JSON of the cookie value that RP would have set to user's browser if this was a user-initiated session. Required if flowType is Web2App or App2App. Should be ignored if flowType is QR.
+              replacementInitialCallbackUrl:
+                type: string
+                description: If provided, this parameter overrides the `initialCallbackUrl` provided to Core and is used to build the final callback URL for a successful Web2App or App2App session.
+                format: URL
+              disableCallbackGetRequest:
+                type: boolean
+                description: Used to disable GET request to the callback URL by the automated testing interface. Instead the callback URL will be made available in the `/device-link/callback-url` GET endpoint. If not provided, it defaults to false.
           examples:
             Device Link Authentication Request Example:
               $ref: '#/components/examples/DeviceLinkRequestBodyExample'
+  responses:
+    CallbackUrlResponseBody:
+      description: Holds the necessary info the make a GET request to the callback URL after a successful transaction.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - callbackUrl
+            properties:
+              callbackUrl:
+                type: string
+                description: The callback URL the automated testing interface will call after a successful Web2App or App2App flow.
+                format: URL
+              browserCookie:
+                type: string
+                description: The browserCookies that were provided in the /device-link POST request.
+          examples:
+            Device Link Authentication Request Example:
+              $ref: '#/components/examples/CallbackUrlResponseExample'
+    400_BadRequest:
+      description: Bad request. Client error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorDetail'
+          examples:
+            Invalid Device Link Error:
+              $ref: '#/components/examples/InvalidDeviceLinkErrorResponseExample'
+    404_NotFound:
+      description: Not Found. Did not find a callback URL for the provided session token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorDetail'
+          examples:
+            Callback URL Not Found Error:
+              $ref: '#/components/examples/CallbackUrlNotFoundErrorResponseExample'
+    503_ServiceUnavailable:
+      description: Service Unavailable. The automated testing interface is currently overloaded. Please try again later.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorDetail'
+          examples:
+            Too Many Device Links Queued Error:
+              $ref: '#/components/examples/TooManyQueuedDeviceLinksErrorResponseExample'
   examples:
     DeviceLinkRequestBodyExample:
       value:
         documentNumber: PNOEE-40404040009-MOCK-Q
         deviceLink: https://sid.demo.sk.ee/device-link/?...
-        flowType: Web2App
         browserCookie: a=b;c=d
-        initialCallbackUrl: https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        replacementInitialCallbackUrl: http://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ
+        disableCallbackGetRequest: true
+    CallbackUrlResponseExample:
+      value:
+        callbackUrl: https://rp.example.com/callback?sessionSecretDigest=Cv...jHa&userChallengeVerifier=Cn...KcM
+        browserCookie: cookie1=value1; cookie2=value2
+    InvalidDeviceLinkErrorResponseExample:
+      value:
+        message: 'Invalid parameter ''deviceLink'': device link query parameter ''elapsedSeconds'' is mandatory for the QR flow'
+    CallbackUrlNotFoundErrorResponseExample:
+      value:
+        message: Did not find a callback URL for the provided session token
+    TooManyQueuedDeviceLinksErrorResponseExample:
+      value:
+        message: The device link queue is currently at capacity and cannot accept new requests. Please retry again later

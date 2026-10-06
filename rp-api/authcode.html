@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.3">
+<div class="nav-container" data-component="rp-api" data-version="3.2.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.3</span>
+    <span class="version">3.2.6</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,22 +165,22 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.3</a>
+          <a href="introduction.html">3.2.6</a>
+        </li>
+        <li class="version">
+          <a href="3.2.5/introduction.html">3.2.5</a>
+        </li>
+        <li class="version">
+          <a href="3.2.4/introduction.html">3.2.4</a>
+        </li>
+        <li class="version">
+          <a href="3.2.3/introduction.html">3.2.3</a>
         </li>
         <li class="version">
           <a href="3.2.2/introduction.html">3.2.2</a>
         </li>
         <li class="version">
           <a href="3.2.1/introduction.html">3.2.1</a>
-        </li>
-        <li class="version">
-          <a href="3.2.0/introduction.html">3.2.0</a>
-        </li>
-        <li class="version">
-          <a href="3.1.7/introduction.html">3.1.7</a>
-        </li>
-        <li class="version">
-          <a href="3.0.3/introduction.html">3.0.3</a>
         </li>
       </ul>
     </li>
@@ -451,19 +451,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "ACSP_V2"
-	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = "ACSP_V2"
+	var rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -472,11 +473,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -497,7 +498,7 @@ func main() {
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         rp_challenge,
@@ -804,19 +805,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
-	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = "RAW_DIGEST_SIGNATURE"
+	var digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -825,11 +827,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -850,7 +852,7 @@ func main() {
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         digest,
@@ -1157,19 +1159,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = ""
-	var digest string = ""
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = ""
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = ""
+	var digest = ""
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = ""
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -1178,11 +1181,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -1203,7 +1206,7 @@ func main() {
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=Web2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         digest,
@@ -1504,7 +1507,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0")
+	var authCodePayload = []byte("aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -1513,9 +1516,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -1524,13 +1527,13 @@ func main() {
 <div id="_tabs_7_rust--panel" class="tabpanel" aria-labelledby="_tabs_7_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"aegUh6gCKkXBJhhvtJqSTWB5_2W8TDQt5eZ7db6krv0"[..];
 
@@ -1539,8 +1542,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -1789,7 +1791,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8")
+	var authCodePayload = []byte("R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -1798,9 +1800,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -1809,13 +1811,13 @@ func main() {
 <div id="_tabs_8_rust--panel" class="tabpanel" aria-labelledby="_tabs_8_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"R0iNcUp8nK1nqrcVFWerXUfWMSjwDOMC6MAHKrckaH8"[..];
 
@@ -1824,8 +1826,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -2074,7 +2075,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg")
+	var authCodePayload = []byte("PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -2083,9 +2084,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -2094,13 +2095,13 @@ func main() {
 <div id="_tabs_9_rust--panel" class="tabpanel" aria-labelledby="_tabs_9_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"PI1qYa9_l6zR-v6Pkre6ycSm7S3BGiOQSe5OQlw4UJg"[..];
 
@@ -2109,8 +2110,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -2408,19 +2408,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "ACSP_V2"
-	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = "ACSP_V2"
+	var rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -2429,11 +2430,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -2454,7 +2455,7 @@ func main() {
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         rp_challenge,
@@ -2761,19 +2762,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
-	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = "RAW_DIGEST_SIGNATURE"
+	var digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -2782,11 +2784,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -2807,7 +2809,7 @@ func main() {
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         digest,
@@ -3114,19 +3116,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = ""
-	var digest string = ""
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = ""
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = ""
+	var digest = ""
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = ""
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -3135,11 +3138,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -3160,7 +3163,7 @@ func main() {
     let initial_callback_url: &amp;str = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=App2App&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         digest,
@@ -3461,7 +3464,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo")
+	var authCodePayload = []byte("00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -3470,9 +3473,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -3481,13 +3484,13 @@ func main() {
 <div id="_tabs_15_rust--panel" class="tabpanel" aria-labelledby="_tabs_15_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"00NRcgi4Jk7WdIwgMPlyM8wRy9KMu4C_oQvd-N6PKoo"[..];
 
@@ -3496,8 +3499,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -3746,7 +3748,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM")
+	var authCodePayload = []byte("8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -3755,9 +3757,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -3766,13 +3768,13 @@ func main() {
 <div id="_tabs_16_rust--panel" class="tabpanel" aria-labelledby="_tabs_16_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"8QZ16rkBW_ffkq6osT7UH1DbUlF9gEOZevgj-A0VNbM"[..];
 
@@ -3781,8 +3783,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -4031,7 +4032,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU")
+	var authCodePayload = []byte("AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -4040,9 +4041,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -4051,13 +4052,13 @@ func main() {
 <div id="_tabs_17_rust--panel" class="tabpanel" aria-labelledby="_tabs_17_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"AtayuRPP3N59wXF8Cijwjt3pQ16knW2L-5VLDTRD_KU"[..];
 
@@ -4066,8 +4067,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -4380,19 +4380,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "ACSP_V2"
-	var rpChallenge string = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var initialCallbackUrl string = ""
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = "ACSP_V2"
+	var rpChallenge = "GYS+yoah6emAcVDNIajwSs6UB/M95XrDxMzXBUkwQJ9YFDipXXzGpPc7raWcuc2+TEoRc7WvIZ/7dU/iRXenYg=="
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var initialCallbackURL = ""
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -4401,11 +4402,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -4426,7 +4427,7 @@ func main() {
     let initial_callback_url: &amp;str = "";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         rp_challenge,
@@ -4733,19 +4734,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = "RAW_DIGEST_SIGNATURE"
-	var digest string = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
-	var initialCallbackUrl string = ""
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = "RAW_DIGEST_SIGNATURE"
+	var digest = "FNZFFya5wGLv9b27fZngaWrOBqle4tGwxZuDFRBdPl1RQvxJsfoqvTbjafd+8BcehMOQGvak6zlP+F8tga4bfQ=="
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = "W3sidHlwZSI6ImNvbmZpcm1hdGlvbk1lc3NhZ2UiLCJkaXNwbGF5VGV4dDIwMCI6IkxvbmdlciBkZXNjcmlwdGlvbiBvZiB0aGUgdHJhbnNhY3Rpb24gY29udGV4dCJ9LHsidHlwZSI6ImRpc3BsYXlUZXh0QW5kUElOIiwiZGlzcGxheVRleHQ2MCI6IlNob3J0IGRlc2NyaXB0aW9uIG9mIHRoZSB0cmFuc2FjdGlvbiBjb250ZXh0In1d"
+	var initialCallbackURL = ""
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -4754,11 +4756,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -4779,7 +4781,7 @@ func main() {
     let initial_callback_url: &amp;str = "";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         digest,
@@ -5086,19 +5088,20 @@ print(auth_code_payload)</code></pre>
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var separator string = "|"
+	var separator = "|"
 
-	var schemeName string = "smart-id"
-	var signatureProtocol string = ""
-	var digest string = ""
-	var relyingPartyNameBase64 string = "REVNTw=="
-	var brokeredRpNameBase64 string = "RXhhbXBsZSBSUA=="
-	var interactions string = ""
-	var initialCallbackUrl string = ""
-	var unprotectedDeviceLink string = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
+	var schemeName = "smart-id"
+	var signatureProtocol = ""
+	var digest = ""
+	var relyingPartyNameBase64 = "REVNTw=="
+	var brokeredRpNameBase64 = "RXhhbXBsZSBSUA=="
+	var interactions = ""
+	var initialCallbackURL = ""
+	var unprotectedDeviceLink = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng"
 
 	var payloadParts = []string{
 		schemeName,
@@ -5107,11 +5110,11 @@ func main() {
 		relyingPartyNameBase64,
 		brokeredRpNameBase64,
 		interactions,
-		initialCallbackUrl,
+		initialCallbackURL,
 		unprotectedDeviceLink,
 	}
 
-	var authCodePayload string = strings.Join(payloadParts, separator)
+	var authCodePayload = strings.Join(payloadParts, separator)
 
 	fmt.Printf("%q\n", authCodePayload)
 }</code></pre>
@@ -5132,7 +5135,7 @@ func main() {
     let initial_callback_url: &amp;str = "";
     let unprotected_device_link: &amp;str = "https://smart-id.com/device-link?deviceLinkType=QR&amp;elapsedSeconds=22&amp;sessionToken=wGIrqveE6AuGDATZKmR1mtAZ&amp;sessionType=auth&amp;version=1.0&amp;lang=eng";
 
-    let auth_code_payload_parts: [&str; 7] = [
+    let auth_code_payload_parts: [&str; 8] = [
         scheme_name,
         signature_protocol,
         digest,
@@ -5433,7 +5436,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0")
+	var authCodePayload = []byte("OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -5442,9 +5445,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -5453,13 +5456,13 @@ func main() {
 <div id="_tabs_23_rust--panel" class="tabpanel" aria-labelledby="_tabs_23_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"OY1eHaD4UYedrBwtqUbSkpa0w7ttm4FllPkCD_3wlE0"[..];
 
@@ -5468,8 +5471,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -5718,7 +5720,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco")
+	var authCodePayload = []byte("5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -5727,9 +5729,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -5738,13 +5740,13 @@ func main() {
 <div id="_tabs_24_rust--panel" class="tabpanel" aria-labelledby="_tabs_24_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"5PZVhiNDTnt1MjLz8_YCjnNtR7p0iGevaL2G1ajfMco"[..];
 
@@ -5753,8 +5755,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -6003,7 +6004,7 @@ import (
 
 func main() {
 	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
-	var authCodePayload []byte = []byte("T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo")
+	var authCodePayload = []byte("T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo")
 
 	sessionSecret, err := base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
@@ -6012,9 +6013,9 @@ func main() {
 
 	mac := hmac.New(sha256.New, sessionSecret)
 	mac.Write(authCodePayload)
-	var authCodeBytes []byte = mac.Sum(nil)
+	var authCodeBytes = mac.Sum(nil)
 
-	var authCode string = base64.RawURLEncoding.EncodeToString(authCodeBytes)
+	var authCode = base64.RawURLEncoding.EncodeToString(authCodeBytes)
 	fmt.Printf("%s\n", authCode)
 }</code></pre>
 </div>
@@ -6023,13 +6024,13 @@ func main() {
 <div id="_tabs_25_rust--panel" class="tabpanel" aria-labelledby="_tabs_25_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use hmac::{Hmac, Mac};
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::{BASE64_STANDARD, BASE64_URL_SAFE_NO_PAD}};
+use hmac::{Hmac, KeyInit as _, Mac};
 use sha2::Sha256;
-use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret: &amp;[u8] = &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 
     let auth_code_payload: &amp;[u8] = &amp;b"T5pDDPAjoMS0byqS-FoaWVjlubODXoCCF4XDB4HeYNo"[..];
 
@@ -6038,8 +6039,7 @@ fn main() {
 
     let auth_code_bytes = mac.finalize().into_bytes();
 
-    const CUSTOM_ENGINE: engine::GeneralPurpose = base64::engine::GeneralPurpose::new(&amp;alphabet::URL_SAFE, general_purpose::NO_PAD);
-    let auth_code: String = CUSTOM_ENGINE.encode(auth_code_bytes);
+    let auth_code: String = BASE64_URL_SAFE_NO_PAD.encode(auth_code_bytes);
     println!("{}", auth_code)
 }</code></pre>
 </div>
@@ -6357,10 +6357,9 @@ import (
 )
 
 func main() {
-	var sessionSecretBase64 string = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
+	var sessionSecretBase64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps="
 
-	var sessionSecretBytes, err =
-		base64.StdEncoding.DecodeString(sessionSecretBase64)
+	var sessionSecretBytes, err = base64.StdEncoding.DecodeString(sessionSecretBase64)
 	if err != nil {
 		panic(err)
 	}
@@ -6373,12 +6372,11 @@ func main() {
 <div id="_tabs_26_rust--panel" class="tabpanel" aria-labelledby="_tabs_26_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::BASE64_STANDARD};
 
 fn main() {
     let session_secret_base64 = "B98ODiVCebRedSwdTk51zFSaGYyHtY1H2A0ocAi3/Ps=";
-    let session_secret_bytes: &amp;[u8] =
-      &amp;base64::engine::general_purpose::STANDARD.decode(session_secret_base64).unwrap();
+    let session_secret_bytes: &amp;[u8] = &amp;BASE64_STANDARD.decode(session_secret_base64).unwrap();
 }</code></pre>
 </div>
 </div>
@@ -6635,8 +6633,8 @@ import (
 )
 
 func main() {
-	var relyingPartyName string = "DEMO"
-	var relyingPartyNameBase64 []byte = []byte(base64.StdEncoding.EncodeToString([]byte(relyingPartyName)))
+	var relyingPartyName = "DEMO"
+	var relyingPartyNameBase64 = []byte(base64.StdEncoding.EncodeToString([]byte(relyingPartyName)))
 	fmt.Printf("%q\n", relyingPartyNameBase64)
 }</code></pre>
 </div>
@@ -6645,11 +6643,11 @@ func main() {
 <div id="_tabs_27_rust--panel" class="tabpanel" aria-labelledby="_tabs_27_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::BASE64_STANDARD};
 
 fn main() {
     let relying_party_name: &amp;str = "DEMO";
-    let relying_party_name_base64_string: String = base64::engine::general_purpose::STANDARD.encode(relying_party_name.as_bytes());
+    let relying_party_name_base64_string: String = BASE64_STANDARD.encode(relying_party_name.as_bytes());
     let relying_party_name_base64: &amp;[u8] = relying_party_name_base64_string.as_bytes();
     println!("{:?}\n{}", relying_party_name_base64, relying_party_name_base64_string);
 }</code></pre>
@@ -6828,8 +6826,8 @@ import (
 )
 
 func main() {
-	var brokeredRpName string = "Example RP"
-	var brokeredRpNameBase64 []byte = []byte(base64.StdEncoding.EncodeToString([]byte(brokeredRpName)))
+	var brokeredRpName = "Example RP"
+	var brokeredRpNameBase64 = []byte(base64.StdEncoding.EncodeToString([]byte(brokeredRpName)))
 	fmt.Printf("%q\n", brokeredRpNameBase64)
 }</code></pre>
 </div>
@@ -6838,11 +6836,11 @@ func main() {
 <div id="_tabs_28_rust--panel" class="tabpanel" aria-labelledby="_tabs_28_rust">
 <div class="listingblock wrap">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::Engine as _;
+<pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">use base64::{Engine as _, prelude::BASE64_STANDARD};
 
 fn main() {
     let brokered_rp_name: &amp;str = "Example RP";
-    let brokered_rp_name_base64_string: String = base64::engine::general_purpose::STANDARD.encode(brokered_rp_name.as_bytes());
+    let brokered_rp_name_base64_string: String = BASE64_STANDARD.encode(brokered_rp_name.as_bytes());
     let brokered_rp_name_base64: &amp;[u8] = brokered_rp_name_base64_string.as_bytes();
     println!("{:?}\n{}", brokered_rp_name_base64, brokered_rp_name_base64_string);
 }</code></pre>
@@ -7059,10 +7057,10 @@ import (
 )
 
 func main() {
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var initialCallbackUrlBytes []byte = []byte(initialCallbackUrl)
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var initialCallbackURLBytes = []byte(initialCallbackURL)
 
-	fmt.Printf("%q\n", initialCallbackUrlBytes)
+	fmt.Printf("%q\n", initialCallbackURLBytes)
 }</code></pre>
 </div>
 </div>
@@ -7243,10 +7241,10 @@ import (
 )
 
 func main() {
-	var initialCallbackUrl string = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
-	var initialCallbackUrlBytes []byte = []byte(initialCallbackUrl)
+	var initialCallbackURL = "https://rp.example.com/callback-url?value=RrKjjT4aggzu27YBddX1bQ"
+	var initialCallbackURLBytes = []byte(initialCallbackURL)
 
-	fmt.Printf("%q\n", initialCallbackUrlBytes)
+	fmt.Printf("%q\n", initialCallbackURLBytes)
 }</code></pre>
 </div>
 </div>
@@ -7461,7 +7459,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
-device_link_type = "Web2App" # One of "Web2App", "App2App", "QR"
+device_link_type = "Web2App" # One of "Web2App", "App2App"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
@@ -7484,18 +7482,17 @@ print(unprotected_device_link)</code></pre>
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com"
-	var deviceLinkType string = "Web2App" // One of "Web2App", "App2App", "QR"
-	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
-	var sessionType string = "auth"
-	var version string = "1.0"
-	var lang string = "eng"
+	var deviceLinkBase = "https://smart-id.com"
+	var deviceLinkType = "Web2App" // One of "Web2App", "App2App"
+	var sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ"
+	var sessionType = "auth"
+	var version = "1.0"
+	var lang = "eng"
 
-	var unprotectedDeviceLink string = deviceLinkBase + "?" +
+	var unprotectedDeviceLink = deviceLinkBase + "?" +
 		"deviceLinkType=" + deviceLinkType +
 		"&amp;sessionToken=" + sessionToken +
 		"&amp;sessionType=" + sessionType +
@@ -7512,13 +7509,16 @@ func main() {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
     let device_link_base: &amp;str = "https://smart-id.com";
-    let device_link_type: &amp;str = "Web2App"; // One of "Web2App", "App2App", "QR"
+    let device_link_type: &amp;str = "Web2App"; // One of "Web2App", "App2App"
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
     let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
 
-    let unprotected_device_link: String = format!("{}?deviceLinkType={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}", device_link_base, device_link_type, session_token, session_type, version, lang);
+    let unprotected_device_link: String = format!(
+        "{}?deviceLinkType={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}",
+        device_link_base, device_link_type, session_token, session_type, version, lang
+    );
 
     println!("{}", unprotected_device_link);
 }</code></pre>
@@ -7604,7 +7604,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
-device_link_type = "Web2App" # One of "Web2App", "App2App", "QR"
+device_link_type = "Web2App" # One of "Web2App", "App2App"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
@@ -7768,7 +7768,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
-device_link_type = "App2App" # One of "Web2App", "App2App", "QR"
+device_link_type = "App2App" # One of "Web2App", "App2App"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
@@ -7791,18 +7791,17 @@ print(unprotected_device_link)</code></pre>
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com"
-	var deviceLinkType string = "App2App" // One of "Web2App", "App2App", "QR"
-	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
-	var sessionType string = "auth"
-	var version string = "1.0"
-	var lang string = "eng"
+	var deviceLinkBase = "https://smart-id.com"
+	var deviceLinkType = "App2App" // One of "Web2App", "App2App"
+	var sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ"
+	var sessionType = "auth"
+	var version = "1.0"
+	var lang = "eng"
 
-	var unprotectedDeviceLink string = deviceLinkBase + "?" +
+	var unprotectedDeviceLink = deviceLinkBase + "?" +
 		"deviceLinkType=" + deviceLinkType +
 		"&amp;sessionToken=" + sessionToken +
 		"&amp;sessionType=" + sessionType +
@@ -7819,13 +7818,16 @@ func main() {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
     let device_link_base: &amp;str = "https://smart-id.com";
-    let device_link_type: &amp;str = "App2App"; // One of "Web2App", "App2App", "QR"
+    let device_link_type: &amp;str = "App2App"; // One of "Web2App", "App2App"
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
     let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
 
-    let unprotected_device_link: String = format!("{}?deviceLinkType={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}", device_link_base, device_link_type, session_token, session_type, version, lang);
+    let unprotected_device_link: String = format!(
+        "{}?deviceLinkType={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}",
+        device_link_base, device_link_type, session_token, session_type, version, lang
+    );
 
     println!("{}", unprotected_device_link);
 }</code></pre>
@@ -7911,7 +7913,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
-device_link_type = "App2App" # One of "Web2App", "App2App", "QR"
+device_link_type = "App2App" # One of "Web2App", "App2App"
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
 version = "1.0"
@@ -8028,7 +8030,7 @@ puts unprotected_device_link</code></pre>
   public static void main(String[] args) {
 
     String deviceLinkBase = "https://smart-id.com";
-    String deviceLinkType = "QR";
+    String deviceLinkType = "QR"; // "QR"
     int elapsedSeconds = 22;
     String sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
     String sessionType = "auth";
@@ -8055,7 +8057,7 @@ puts unprotected_device_link</code></pre>
 <pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
 $deviceLinkBase = "https://smart-id.com";
-$deviceLinkType = "QR";
+$deviceLinkType = "QR"; // "QR"
 $elapsedSeconds = 22;
 $sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 $sessionType = "auth";
@@ -8080,7 +8082,7 @@ echo $unprotectedDeviceLink . PHP_EOL;
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">device_link_base = "https://smart-id.com"
-device_link_type = "QR"
+device_link_type = "QR" # "QR"
 elapsed_seconds = 22
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
@@ -8109,15 +8111,15 @@ import (
 )
 
 func main() {
-	var deviceLinkBase string = "https://smart-id.com"
-	var deviceLinkType string = "QR"
-	var elapsedSeconds int = 22
-	var sessionToken string = "wGIrqveE6AuGDATZKmR1mtAZ"
-	var sessionType string = "auth"
-	var version string = "1.0"
-	var lang string = "eng"
+	var deviceLinkBase = "https://smart-id.com"
+	var deviceLinkType = "QR" // "QR"
+	var elapsedSeconds = 22
+	var sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ"
+	var sessionType = "auth"
+	var version = "1.0"
+	var lang = "eng"
 
-	var unprotectedDeviceLink string = deviceLinkBase + "?" +
+	var unprotectedDeviceLink = deviceLinkBase + "?" +
 		"deviceLinkType=" + deviceLinkType +
 		"&amp;elapsedSeconds=" + strconv.Itoa(elapsedSeconds) +
 		"&amp;sessionToken=" + sessionToken +
@@ -8135,14 +8137,23 @@ func main() {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-rust hljs" data-lang="rust">fn main() {
     let device_link_base: &amp;str = "https://smart-id.com";
-    let device_link_type: &amp;str = "QR";
-    let elapsed_seconds: i32 = 22;
+    let device_link_type: &amp;str = "QR"; // "QR"
+    let elapsed_seconds: u32 = 22;
     let session_token: &amp;str = "wGIrqveE6AuGDATZKmR1mtAZ";
     let session_type: &amp;str = "auth";
     let version: &amp;str = "1.0";
     let lang: &amp;str = "eng";
 
-    let unprotected_device_link: String = format!("{}?deviceLinkType={}&amp;elapsedSeconds={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}", device_link_base, device_link_type, elapsed_seconds, session_token, session_type, version, lang);
+    let unprotected_device_link: String = format!(
+        "{}?deviceLinkType={}&amp;elapsedSeconds={}&amp;sessionToken={}&amp;sessionType={}&amp;version={}&amp;lang={}",
+        device_link_base,
+        device_link_type,
+        elapsed_seconds,
+        session_token,
+        session_type,
+        version,
+        lang
+    );
 
     println!("{}", unprotected_device_link);
 }</code></pre>
@@ -8156,7 +8167,7 @@ func main() {
 
 fun main() {
     val deviceLinkBase: String = "https://smart-id.com"
-    val deviceLinkType: String = "QR"
+    val deviceLinkType: String = "QR" // "QR"
     val elapsedSeconds: Int = 22
     val sessionToken: String = "wGIrqveE6AuGDATZKmR1mtAZ"
     val sessionType: String = "auth"
@@ -8186,7 +8197,7 @@ public class UnprotectedDeviceLink
     public static void Main(string[] args)
     {
         string deviceLinkBase = "https://smart-id.com";
-        string deviceLinkType = "QR";
+        string deviceLinkType = "QR"; // "QR"
         int elapsedSeconds = 22;
         string sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
         string sessionType = "auth";
@@ -8211,7 +8222,7 @@ public class UnprotectedDeviceLink
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const deviceLinkBase = "https://smart-id.com";
-const deviceLinkType = "QR";
+const deviceLinkType = "QR"; // "QR"
 const elapsedSeconds = 22;
 const sessionToken = "wGIrqveE6AuGDATZKmR1mtAZ";
 const sessionType = "auth";
@@ -8234,7 +8245,7 @@ console.log(unprotectedDeviceLink);</code></pre>
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">device_link_base = "https://smart-id.com"
-device_link_type = "QR"
+device_link_type = "QR" # "QR"
 elapsed_seconds = 22
 session_token = "wGIrqveE6AuGDATZKmR1mtAZ"
 session_type = "auth"
