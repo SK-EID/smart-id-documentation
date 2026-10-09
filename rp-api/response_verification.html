@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.6">
+<div class="nav-container" data-component="rp-api" data-version="3.2.7">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.6</span>
+    <span class="version">3.2.7</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,7 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.6</a>
+          <a href="introduction.html">3.2.7</a>
+        </li>
+        <li class="version">
+          <a href="3.2.6/introduction.html">3.2.6</a>
         </li>
         <li class="version">
           <a href="3.2.5/introduction.html">3.2.5</a>
@@ -199,12 +202,12 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>After receiving the transaction response from the session status API call the following algorithm must be used to decide</p>
+<p>This page describes the steps for verifying the details after receiving the transaction response from the session status API call. These steps determine:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>if the authentication result is trustworthy and what the identity of the authenticating end user is,</p>
+<p>if the authentication result is trustworthy and what the identity of the authenticating end user is;</p>
 </li>
 <li>
 <p>if the signature result is valid.</p>
@@ -220,7 +223,7 @@
 <h2 id="_response_verification_steps"><a class="anchor" href="#_response_verification_steps"></a>Response verification steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following steps perform the response verification algorithm. Note that the algorithm is applicable to both authentication and signature session flows. Specific differences, such as the conditional execution of Steps 1 and 3, are noted within the steps.</p>
+<p>The response verification algorithm consists of the following steps. Note that the algorithm is applicable to both authentication and signature session flows. Specific differences, such as the conditional execution of Steps 1 and 3, are noted within the steps.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -238,7 +241,7 @@
 <p>Encode the raw bytes of the calculated hash using Base64URL.</p>
 </li>
 <li>
-<p>Obtain the <code>sessionSecretDigest</code> value from the callback URL parameter visited by the user upon returning to the RP website or application.</p>
+<p>Obtain the <code>sessionSecretDigest</code> value from the callback URL parameters after the user has returned to the RP website or application.</p>
 </li>
 <li>
 <p>Verify that this Base64URL encoded hash result exactly matches the <code>sessionSecretDigest</code> obtained from the callback URL.</p>
@@ -257,7 +260,7 @@
 <p>Verify the <code>result.endResult</code> field is exactly <code>OK</code>.</p>
 </li>
 <li>
-<p>Verify the <code>signatureProtocol</code> field is exactly <code>ACSP_V2</code> in case of authentication or <code>RAW_DIGEST_SIGNATURE</code> in case of signature.</p>
+<p>Verify that the <code>signatureProtocol</code> field is exactly <code>ACSP_V2</code> for authentication sessions or <code>RAW_DIGEST_SIGNATURE</code> for signature sessions.</p>
 </li>
 <li>
 <p>Ensure the <code>cert</code>, <code>signature</code>, and <code>result</code> objects are present and not null.</p>
@@ -270,7 +273,7 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Obtain the <code>userChallengeVerifier</code> value from the callback URL parameter visited by the user upon returning to the RP website or application.</p>
+<p>Obtain the <code>userChallengeVerifier</code> value from the callback URL parameters after the user has returned to the RP website or application.</p>
 </li>
 <li>
 <p>Calculate the SHA-256 digest of the received <code>userChallengeVerifier</code> string.</p>
@@ -279,7 +282,7 @@
 <p>Encode the raw bytes of the calculated hash using Base64URL.</p>
 </li>
 <li>
-<p>Verify that this Base64URL encoded hash result exactly matches the <code>signature.userChallenge</code> string provided in the JSON response&#8217;s signature object.</p>
+<p>Verify that the Base64URL encoded hash result exactly matches the <code>signature.userChallenge</code> value in the JSON response&#8217;s <code>signature</code> object.</p>
 </li>
 </ol>
 </div>
@@ -289,15 +292,15 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Decode the Base64 encoded end-entity certificate string from <code>cert.value</code> and parse it into a standard X.509 certificate representation. The RP API provides only the end-entity certificate, the Relying Party must have the necessary root and intermediate CA certificates configured locally to allow the library to build the full certificate chain.
+<p>Decode the Base64 encoded end-entity certificate string from <code>cert.value</code> and parse it into a standard X.509 certificate representation. The RP API provides only the end-entity certificate. The Relying Party must have the necessary root and intermediate CA certificates configured locally to allow the library to build the full certificate chain.
 For these certificates, see <a href="https://www.skidsolutions.eu/resources/certificates/">Certificates</a> page.</p>
 </li>
 <li>
-<p>Using a standard cryptographic library, initiate the validation of the certificate chain starting from the end-entity certificate. Provide the end-entity certificate to the library, along with configuring it with the set of trusted CA certificates (trust anchors).</p>
+<p>Using a standard cryptographic library, validate the certificate chain starting from the end-entity certificate. Provide the end-entity certificate to the library and configure the trusted CA certificates as trust anchors.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>It&#8217;s important to note that some libraries use the system certificate store in addition to the provided CA certificates, this should be disabled and only the explicitly configured CA certificates should be used.</p>
+<p>It&#8217;s important to note that some libraries use the system certificate store in addition to the explicitly provided CA certificates. This should be disabled and only the explicitly configured CA certificates should be used.</p>
 </li>
 </ul>
 </div>
@@ -313,7 +316,7 @@ For these certificates, see <a href="https://www.skidsolutions.eu/resources/cert
 <p>Verify the certificate&#8217;s validity period against the current time, i.e., not before the <code>notBefore</code> date and not after the <code>notAfter</code> date.</p>
 </li>
 <li>
-<p>Verify that the certificate has not been revoked. This check should be performed using the Online Certificate Status Protocol (OCSP), utilizing the Authority Information Access (AIA) extension within the certificate to locate the OCSP responder URL. If OCSP fails or is unavailable, Certificate Revocation List (CRL) checking should be used as fallback.</p>
+<p>Verify that the certificate has not been revoked. This check should be performed using the Online Certificate Status Protocol (OCSP), utilizing the Authority Information Access (AIA) extension within the certificate to locate the OCSP responder URL. If OCSP fails or is unavailable, Certificate Revocation List (CRL) checking should be used as a fallback.</p>
 <div class="olist upperalpha">
 <ol class="upperalpha" type="A">
 <li>
@@ -326,7 +329,7 @@ For these certificates, see <a href="https://www.skidsolutions.eu/resources/cert
 </div>
 </li>
 <li>
-<p>Verify basic constraints are appropriate: Intermediate CA certificates must have the Basic Constraints extension present with the <code>cA</code> boolean set to <code>TRUE</code>. For end-entity certificates, the Basic Constraints extension should either absent, or if present, its <code>cA</code> boolean should be set to <code>FALSE</code>.</p>
+<p>Verify basic constraints are appropriate: Intermediate CA certificates must have the Basic Constraints extension present with the <code>cA</code> boolean set to <code>TRUE</code>. For end-entity certificates, the Basic Constraints extension should either absent, or if present, have the <code>cA</code> boolean set to <code>FALSE</code>.</p>
 </li>
 </ol>
 </div>
@@ -344,7 +347,7 @@ For these certificates, see <a href="https://www.skidsolutions.eu/resources/cert
 <ol class="lowerroman" type="i">
 <li>
 <p>Examine the Certificate Policies extension of the end-entity certificate.
-The certificate must contain <strong>all the</strong> specific policy OIDs designated by SK ID Solutions for the Smart-ID scheme (as defined in Chapter 2.2.3 of the "Certificate and OCSP Profile for Smart-ID" in <a href="https://www.skidsolutions.eu/resources/profiles/">Certificate Profiles</a> page). These OIDs differentiate Smart-ID certificates from other types of certificates (e.g., Mobile-ID, Estonian ID-card). The Relying Party must consult the current official SK ID Solutions Certificate Policies for the definitive list of Smart-ID scheme policy OIDs. For these certificate policies, see <a href="https://www.skidsolutions.eu/resources/certificate-policies/">Certificate Policies</a> page.</p>
+The certificate must contain <strong>all</strong> applicable policy OIDs designated by SK ID Solutions for the Smart-ID scheme (as defined in Chapter 2.2.3 of the "Certificate and OCSP Profile for Smart-ID" in <a href="https://www.skidsolutions.eu/resources/profiles/">Certificate Profiles</a> page). These OIDs differentiate Smart-ID certificates from other types of certificates (e.g., Mobile-ID, Estonian ID-card). The Relying Party must consult the current official SK ID Solutions Certificate Policies for the definitive list of Smart-ID scheme policy OIDs. For these certificate policies, see <a href="https://www.skidsolutions.eu/resources/certificate-policies/">Certificate Policies</a> page.</p>
 </li>
 <li>
 <p>If not all the recognized Smart-ID scheme policy OIDs are present, the certificate should not be processed as a Smart-ID certificate, and the verification should fail for this context.</p>
@@ -369,7 +372,7 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>digitalSignature</code> key usage <strong>and</strong> the <code>Smart-ID authentication</code> (<code>1.3.6.1.4.1.62306.5.7.0</code>) Extended Key Usage which is present in certificates issued April 2025 onwards.</p>
+<p>The <code>digitalSignature</code> key usage <strong>and</strong> the <code>Smart-ID authentication</code> (<code>1.3.6.1.4.1.62306.5.7.0</code>) Extended Key Usage which is present in certificates issued April 2025 onward.</p>
 </li>
 <li>
 <p>The <code>digitalSignature</code>, <code>keyEncipherment</code>, <code>dataEncipherment</code> key usages <strong>and</strong> the <code>id-kp-clientAuth</code> (<code>1.3.6.1.5.5.7.3.2</code>) Extended Key Usage which is found in older, still valid certificates issued before April 2025.</p>
@@ -407,10 +410,10 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Extract the authenticated user&#8217;s identifier from the end-entity certificate. For Smart-ID certificates <code>serialNumber</code> (OID <code>2.5.4.5</code>) under <code>Subject DN</code> contain the national identity code, for example <code>PNOEE-30001010004</code>.</p>
+<p>Extract the authenticated user&#8217;s identifier from the end-entity certificate. For Smart-ID certificates, the <code>serialNumber</code> attribute (OID <code>2.5.4.5</code>) in the <code>Subject DN</code> contains the national identity code, for example <code>PNOEE-30001010004</code>.</p>
 </li>
 <li>
-<p>If the RP initiated the authentication or signing for a specific known user, verify that the extracted identifier matches the expected identity for that session.</p>
+<p>If the RP initiated the authentication or signing for a known user, verify that the extracted identifier matches the identity expected for the session.</p>
 </li>
 </ol>
 </div>
@@ -420,7 +423,7 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Only for authentication session: Reconstruct the exact <code>ACSP_V2_payload</code> string that was signed, as described under <a href="signature_protocols.html#acsp_v2_digest_calculation" class="xref page"><code>ACSP_V2</code> digest calculation</a>. This is done by concatenating the fields in order, separated by the vertical bar character <code>|</code> (U+007C):</p>
+<p>For authentication sessions only: Reconstruct the exact <code>ACSP_V2_payload</code> string that was signed, as described under <a href="signature_protocols.html#acsp_v2_digest_calculation" class="xref page"><code>ACSP_V2</code> digest calculation</a>. This is done by concatenating the fields in the specified order and separating them with the vertical bar character <code>|</code> (U+007C):</p>
 <div class="listingblock wrap">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">'smart-id'|'ACSP_V2'|serverRandom|rpChallenge|userChallenge|BASE64(relyingPartyName)|BASE64(brokeredRpName)|BASE64(SHA-256(interactions))|interactionTypeUsed|initialCallbackUrl|flowType</code></pre>
@@ -428,7 +431,7 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 </div>
 </li>
 <li>
-<p>Only for signature session: Use the data-to-be-signed, a digest of which was initially sent when initiating the signature session (as described in <a href="signature_protocols.html#raw_digest_signature_protocol" class="xref page"><code>RAW_DIGEST_SIGNATURE</code> signature protocol</a>).</p>
+<p>For signature sessions only: Use the data-to-be-signed, a digest of which was initially sent when initiating the signature session (as described in <a href="signature_protocols.html#raw_digest_signature_protocol" class="xref page"><code>RAW_DIGEST_SIGNATURE</code> signature protocol</a>).</p>
 </li>
 <li>
 <p>Decode the signature value from <code>signature.value</code> using Base64 decoding.</p>
@@ -437,10 +440,10 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 <p>Obtain the public key from the parsed end-entity user certificate (from Step 4).</p>
 </li>
 <li>
-<p>Only for authentication session: Using a cryptographic library, verify the decoded signature against the UTF-8 bytes of the reconstructed <code>ACSP_V2_payload</code> string.</p>
+<p>For authentication sessions only: Using a cryptographic library, verify the decoded signature against the UTF-8 bytes of the reconstructed <code>ACSP_V2_payload</code> string.</p>
 </li>
 <li>
-<p>Only for signature session: Using a cryptographic library, verify the decoded signature against either the data-to-be-signed or the hash of the data-to-be-signed (there are libraries that provide options for either).</p>
+<p>For signature sessions only: Using a cryptographic library, verify the decoded signature against either the data-to-be-signed or the hash of the data-to-be-signed (there are libraries that provide options for either).</p>
 </li>
 <li>
 <p>Ensure the verification uses the algorithm specified in <code>signature.signatureAlgorithm</code> (e.g., rsassa-pss) and correctly applies the parameters from <code>signature.signatureAlgorithmParameters</code> (e.g., hash algorithm like <code>SHA-512</code>, MGF1 hash like <code>SHA-512</code>, salt length like <code>64</code>, and the trailer field <code>0xbc</code>).</p>
@@ -459,13 +462,13 @@ For these certificate profiles, see <a href="https://www.skidsolutions.eu/resour
 <p>Generate a new, secure, and unique session identifier representing the now authenticated state.</p>
 </li>
 <li>
-<p>Associate the authenticated user&#8217;s identity (from Step 8) and potentially the assurance level (from Step 7) with this new session identifier in your server-side session store.</p>
+<p>Associate the authenticated user&#8217;s identity (from Step 8) and, where applicable, the assurance level (from Step 7) with the new session identifier in the server-side session store.</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>After a successful action, the users should be able to view their actions or download the signed document. For more information, see <a href="additional_security_measures.html#allowing-users-to-verify-operations" class="xref page">Allowing users to verify operations</a> section.</p>
+<p>After a successful action, users should be able to view information about the operation or download the signed document. For more information, see <a href="additional_security_measures.html#allowing-users-to-verify-operations" class="xref page">Allowing users to verify operations</a> section.</p>
 </li>
 </ol>
 </div>
