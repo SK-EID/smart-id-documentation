@@ -11,10 +11,38 @@
 </style>
 ++++
 
+[#v341]
+== Smart-ID App v34.1
+.Released: 2026-11-02
+[%collapsible%open]
+
+====
+
+Added::
+* ID-card registration (Belgium): The registration token is replaced by scanning the portal QR code. 
+* Mobile-ID (iOS): Added reverse SMS phone verification. The user sends a prefilled message from their own number instead of receiving a code.
+* NFC diagnostics: Added ID-card NFC diagnostics, with iOS and Android id-card-nfc libs updated to 3.0.1.
+* Parent signing: Signing links for parents can be shared as QR codes, and PinIntro has a new design. The portal link can also be shared through the native share sheet, so it can be sent to a computer.
+
+Fixed::
+* Help videos open in the external browser or YouTube app, so device parental controls apply.
+* The registration country is preselected from device signals.
+* The ID-card CAN input field has better accessibility labeling.
+* The "androidWeb2appDetectBrowser" feature works again in Chrome 152+.
+* Misleading instructions are removed from the ABIV ID-card intro.
+* Overlay scrim colors are unified.
+* Link the correct article on registering with an existing Smart-ID.
+
+Security::
+* ReadID updated to M130 and the app now targets Android 17.
+* Dependencies updated.
+
+====
+
 [#v336]
 == Smart-ID App v33.6
 .Released: 2026-09-09
-[%collapsible%open]
+[%collapsible]
 
 ====
 
@@ -25,7 +53,7 @@ Fixed::
 [#v335]
 == Smart-ID App v33.5
 .Released: 2026-09-02
-[%collapsible%open]
+[%collapsible]
 
 ====
 
