@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: Smart-ID Automated Testing Interface
-  version: 1.0.0
+  version: 1.1.0
   description: "Smart-ID helper API for automated testing of RP API v3 device link flows. \nFor background and usage guidance, it is recommended to first read the [Introduction](./mock_service.html) to the Mock Service. \n\nIn order to test their implementation in the demo environment, RPs should initially create the session via RP API in the usual way. \nThen (in the case of device link flows), the `/device-link` endpoint described below should be used to simulate the mobile device interaction (Web2App, App2App, or QR). \nAfter that, the session will be resolved with a predetermined result based on the provided test document number. \nIf the RP disabled the callback in `/device-link` request then the RP can fetch the callback URL from the `/device-link/callback-url` endpoint and make the request to it themselves. \nFinally, the session result can be obtained via RP API, as usually.\n"
   contact:
     name: SK ID Solutions
@@ -60,6 +60,16 @@ paths:
           $ref: '#/components/responses/400_BadRequest'
         "404":
           $ref: '#/components/responses/404_NotFound'
+  /mock-accounts:
+    get:
+      summary: API endpoint that returns the document numbers of the available mock accounts.
+      description: |-
+        This endpoint returns the document numbers of the available mock accounts.
+        The document numbers are grouped by the mock type (ok, cancel, timeout). For the cancel mock type the document numbers are grouped by the transaction cancelling reason.
+      responses:
+        "200":
+          description: Document numbers from configuration
+          $ref: '#/components/responses/MockedAccountsResponse'
 components:
   schemas:
     ErrorDetail:
@@ -150,6 +160,29 @@ components:
           examples:
             Too Many Device Links Queued Error:
               $ref: '#/components/examples/TooManyQueuedDeviceLinksErrorResponseExample'
+    MockedAccountsResponse:
+      description: Holds the document numbers of the available mock accounts.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok:
+                type: array
+                items:
+                  type: string
+                description: Document numbers for mock accounts that complete transactions successfully.
+              cancel:
+                type: object
+                description: Document numbers of mock accounts that cancel transactions, grouped by the cancellation reason.
+              timeout:
+                type: array
+                items:
+                  type: string
+                description: Document numbers of mock accounts that time out transactions.
+          examples:
+            Mocked Accounts Response Example:
+              $ref: '#/components/examples/MockedAccountsResponseExample'
   examples:
     DeviceLinkRequestBodyExample:
       value:
@@ -171,3 +204,14 @@ components:
     TooManyQueuedDeviceLinksErrorResponseExample:
       value:
         message: The device link queue is currently at capacity and cannot accept new requests. Please retry again later
+    MockedAccountsResponseExample:
+      value:
+        ok:
+        - PNOEE-10101010005-8FQW-Q
+        cancel:
+          USER_REFUSED:
+          - PNOLV-010101-10006-PZX0-Q
+          USER_REFUSED_INTERACTION:
+          - PNOEE-10101010003-RW1F-Q
+        timeout:
+        - PNOLV-010101-10002-12BF-Q
