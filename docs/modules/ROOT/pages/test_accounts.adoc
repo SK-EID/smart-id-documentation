@@ -22,6 +22,10 @@ PNOLT-40404040009-MOCK-Q +
 PNOLV-040404-10003-DEMO-Q +
 PNOBE-04040400287-MOCK-Q
 | Adult
+| OK | EE
+| PNOEE-47106280129-MOCK-Q
+| Adult, for testing long-name +
+_Alexandria Evangeline Anastasia Wilhelmina Montgomery Fitzgerald Vanderbilt-Hart_
 | OK | EE +
 LT +
 LV +
