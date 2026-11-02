@@ -32,7 +32,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rp-api" data-version="3.2.7">
+<div class="nav-container" data-component="rp-api" data-version="3.2.8">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -155,7 +155,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Relying Party API</span>
-    <span class="version">3.2.7</span>
+    <span class="version">3.2.8</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -165,7 +165,10 @@
       <div class="title"><a href="introduction.html">Relying Party API</a></div>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="introduction.html">3.2.7</a>
+          <a href="introduction.html">3.2.8</a>
+        </li>
+        <li class="version">
+          <a href="3.2.7/introduction.html">3.2.7</a>
         </li>
         <li class="version">
           <a href="3.2.6/introduction.html">3.2.6</a>
@@ -249,7 +252,7 @@
 <p>User will end up on a new browser tab;</p>
 </li>
 <li>
-<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> which is the Base64URL encoded SHA-256 digest of the <code>sessionSecret</code>; and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code> which is also Base64URL encoded.</p>
+<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> which is the Base64URL encoded SHA-256 digest of the <code>sessionSecret</code>; and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code> which is a random string consisting of URL safe characters.</p>
 </li>
 </ul>
 </div>
@@ -271,7 +274,7 @@
 <p>Verify that the SHA-256 digest of the <code>sessionSecret</code> equals to <code>sessionSecretDigest</code> in the callback URL;</p>
 </li>
 <li>
-<p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value (as is, without Base64URL decoding), the result equals to the <code>userChallenge</code> within the <code>signature</code> object returned by the RP API in the session API response;</p>
+<p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value, the result equals to the <code>userChallenge</code> within the <code>signature</code> object returned by the RP API in the session API response;</p>
 </li>
 <li>
 <p>Perform the response verification steps described in <a href="response_verification.html" class="xref page">Response verification</a> page. Note that this cannot be performed before the user has returned to the RP website via the callback URL;</p>
@@ -341,7 +344,7 @@ however, there are also some differences in the steps below due to fundamental d
 <p>Once the user has signed (or rejected the transaction), they are redirected to the callback URL, which will cause RP app to open (for this to work, RP app has to be configured to handle that domain and path of the URL).</p>
 </li>
 <li>
-<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> which is the Base64URL encoded SHA-256 digest of the <code>sessionSecret</code>; and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code> which is also Base64URL encoded.</p>
+<p>The callback URL contains an additional parameter <code>sessionSecretDigest</code> which is the Base64URL encoded SHA-256 digest of the <code>sessionSecret</code>; and in case of authentication flows, it also contains the parameter <code>userChallengeVerifier</code> which is a random string consisting of URL safe characters.</p>
 </li>
 <li>
 <p>RP app sends the callback URL together with the session identifier from storage to RP backend.</p>
@@ -360,7 +363,7 @@ however, there are also some differences in the steps below due to fundamental d
 <p>Verify that the SHA-256 digest of the <code>sessionSecret</code> equals to <code>sessionSecretDigest</code> in the callback URL;</p>
 </li>
 <li>
-<p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value (as is, without Base64URL decoding), the result equals to the <code>userChallenge</code> within the <code>signature</code> object sent by the RP API in the session API response;</p>
+<p>In authentication flows, verify that after applying the SHA-256 hash algorithm to <code>userChallengeVerifier</code> value, the result equals to the <code>userChallenge</code> within the <code>signature</code> object sent by the RP API in the session API response;</p>
 </li>
 <li>
 <p>Perform the response verification steps described in <a href="response_verification.html" class="xref page">Response verification</a> page. Note that this cannot be performed before the user has returned to the RP app via the callback URL;</p>
